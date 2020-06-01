@@ -282,7 +282,7 @@ case "table" :  catNum="5"; break;
                                     <div class="line"></div>
 
                                     <p class="product-price">$<%=result.get(i).getP_price() %></p>
-                                    <a href="product-details.do?id=<%=result.get(i).getP_id()%>">
+                                    <a href="product-details.do?p_id=<%=result.get(i).getP_id()%>">
                                         <h6><%=result.get(i).getP_name()%></h6>
 
                            
@@ -299,7 +299,7 @@ case "table" :  catNum="5"; break;
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                     </div>
                                     <div class="cart">
-                                        <a href="cart.do?id=8" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
+                                        <a href="cart.do?p_id=8" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
                                     </div>
                                 </div>
                             </div>
