@@ -19,6 +19,13 @@ public class ShopDAOImpl implements ShopDAO{
 		return result;
 	}
 
+	@Override
+	public ProductVO getOneProduct(ProductVO vo) {
+		ProductVO result = mybatis.selectOne("ShopDAO.getOneProduct",vo);
+		
+		return result;
+	}
+
 	
 
 

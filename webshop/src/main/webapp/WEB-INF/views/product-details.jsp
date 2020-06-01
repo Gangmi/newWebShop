@@ -1,7 +1,11 @@
+<%@page import="com.javassem.domain.ProductVO"%>
+
 <%@page contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE>
-<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="">
@@ -19,7 +23,23 @@
     <link rel="stylesheet" href="css/core-style.css">
     <!-- <link rel="stylesheet" href="style.css"> -->
 
+
+
+	
+
+
 </head>
+
+ 
+<%
+	//request.setCharacterEncoding("UTF-8");
+	
+	ProductVO vo = (ProductVO)request.getAttribute("product");
+	
+	
+%>
+
+
 
 <body>
     <!-- Search Wrapper Area Start -->
@@ -71,7 +91,7 @@
             <nav class="amado-nav">
                 <ul>
                     <li><a href="index.do">Home</a></li>
-                    <li><a href="shop.do?p_cat=chair">Shop</a></li>
+                    <li><a href="shop.do">Shop</a></li>
                     
                     <li><a href="cart.do">Cart</a></li>
                     <li><a href="checkout.do">Checkout</a></li>
@@ -121,27 +141,27 @@
                         <div class="single_product_thumb">
                             <div id="product_details_slider" class="carousel slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
-                                    <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url(img/product-img/Dressings2_6.jpg);">
+                                    <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url(img/product-img/<%=vo.getP_cat() %><%=vo.getP_id() %>_1.jpg);">
                                     </li>
-                                    <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url(img/product-img/Dressings2_6.jpg);">
+                                    <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url(img/product-img/<%=vo.getP_cat() %><%=vo.getP_id() %>_2.jpg);">
                                     </li>
-                                    <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url(img/product-img/Dressings2_6.jpg);">
+                                    <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url(img/product-img/<%=vo.getP_cat() %><%=vo.getP_id() %>_3.jpg);">
                                     
                                 </ol>
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <a class="gallery_img" href="img/product-img/Dressings1_1.jpg">
-                                            <img class="d-block w-100" src="img/product-img/Dressings1_1.jpg" alt="First slide">
+                                        <a class="gallery_img" href="img/product-img/<%=vo.getP_cat()%><%=vo.getP_id()%>_1.jpg">
+                                            <img class="d-block w-70" src="img/product-img/<%=vo.getP_cat()%><%=vo.getP_id()%>_1.jpg" alt="First slide">
                                         </a>
                                     </div>
                                     <div class="carousel-item">
-                                        <a class="gallery_img" href="img/product-img/Dressings1_1.jpg">
-                                            <img class="d-block w-100" src="img/product-img/Dressings1_1.jpg" alt="Second slide">
+                                        <a class="gallery_img" href="img/product-img/<%=vo.getP_cat()%><%=vo.getP_id()%>_2.jpg">
+                                            <img class="d-block w-70" src="img/product-img/<%=vo.getP_cat()%><%=vo.getP_id()%>_2.jpg" alt="Second slide">
                                         </a>
                                     </div>
                                     <div class="carousel-item">
-                                        <a class="gallery_img" href="img/product-img/pro-big-3.jpg">
-                                            <img class="d-block w-100" src="img/product-img/pro-big-3.jpg" alt="Third slide">
+                                        <a class="gallery_img" href="img/product-img/<%=vo.getP_cat()%><%=vo.getP_id()%>_3.jpg">
+                                            <img class="d-block w-70" src="img/product-img/<%=vo.getP_cat()%><%=vo.getP_id()%>_3.jpg" alt="Third slide">
                                         </a>
                                     </div>
                                     
@@ -154,10 +174,10 @@
                             <!-- Product Meta Data -->
                             <div class="product-meta-data">
                                 <div class="line"></div>
-                                <p class="product-price">$180</p>
+                                <p class="product-price">$<%=vo.getP_price()%></p>
                                 <a href="product-details.do">
-                                    <h6>White Modern Chair</h6>
-                                    ${id}
+                                    <h6><%=vo.getP_name() %></h6>
+                                    
                                 </a>
                                 <!-- Ratings & Review -->
                                 <div class="ratings-review mb-15 d-flex align-items-center justify-content-between">
@@ -187,11 +207,11 @@
                                     <div class="quantity">
                                         <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
                                         <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="1">
-                                        <input type="hidden" value=${ id} name='id'/>
+                                        <input type="hidden" value=<%=vo.getP_id() %> name='p_id'/>
                                         <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
                                     </div>
                                     &nbsp; &nbsp; &nbsp; 
-                                    <div><a href="wishlist.do?id=${id }" class="fav-nav"><img src="img/core-img/favorites.png" alt=""></div>
+                                    <div><a href="wishlist.do?p_id=<%=vo.getP_id()%>" class="fav-nav"><img src="img/core-img/favorites.png" alt=""></div>
                                 </div>
                                 <button type="submit" name="addtocart" value="5" class="btn amado-btn">Add to cart</button>
                             </form>
@@ -293,6 +313,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/plugins.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
+   
 
 </body>
 

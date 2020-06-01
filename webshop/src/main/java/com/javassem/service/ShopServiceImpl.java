@@ -37,5 +37,11 @@ public class ShopServiceImpl implements ShopService {
 		return shopDAO.getProductDetail(vo);
 	}
 
+	@Override
+	public ProductVO getOneProduct(ProductVO vo) {
+		
+		return shopDAO.getOneProduct(vo);
+	}
+
 
 }

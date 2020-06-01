@@ -21,13 +21,7 @@ import com.javassem.service.ShopService;
 public class CartController {
 	@Autowired	
 	private CartService service;
-	
-	@RequestMapping("/product-details.do")
-	public void getShopList(String id, Model model)
-	{
-		model.addAttribute("id",id);
-		
-	}
+
 	
 	  @RequestMapping("/cart.do") 
 	  public String cart(String id,String quantity, HttpServletResponse response) {
