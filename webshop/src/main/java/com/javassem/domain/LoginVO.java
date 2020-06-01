@@ -10,8 +10,15 @@ public class LoginVO {
 	private String msub;
 	private String mpostCode;
 	private String maddrDetail;
+	private String mname;
 	
 	
+	public String getMname() {
+		return mname;
+	}
+	public void setMname(String mname) {
+		this.mname = mname;
+	}
 	public String getMid() {
 		return mid;
 	}

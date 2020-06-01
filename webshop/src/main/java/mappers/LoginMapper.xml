@@ -7,9 +7,7 @@
 	<insert id="insertmember" parameterType="login">
 		<![CDATA[
 		INSERT INTO member
-		VALUES(shop_seq.nextval,
-			#{title}, #{writer}, #{content}, 
-			sysdate, 0)
+		VALUES(#{mid},#{mpass},#{mtel},#{memail},#{maddr},'브론즈','X',#{mpostCode},#{maddrDetail},#{mname})
 		]]>
 	</insert>
 	
