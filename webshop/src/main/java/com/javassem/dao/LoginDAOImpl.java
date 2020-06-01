@@ -11,6 +11,7 @@ import com.javassem.domain.LoginVO;
 @Repository("loginDAO")
 public class LoginDAOImpl implements LoginDAO{
 
+	//회원가입
 	@Autowired
 	private SqlSessionTemplate mybatis;
 

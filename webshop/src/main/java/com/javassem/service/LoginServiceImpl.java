@@ -12,6 +12,7 @@ public class LoginServiceImpl implements LoginService {
 	@Autowired
 	private LoginDAOImpl loginDAO;
 
+	//회원가입
 	public void insertMember(LoginVO vo) {
 
 		loginDAO.insertMember(vo);
