@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ShopDAO">
+
+	
+	
+	
+	<select id="getProductDetail" parameterType="product" resultType="product">
+	
+select * 
+
+
+from (select rownum as rnum,product.p_id,product.p_name,product.p_price,product.p_cat,product.p_quan from product where product.p_cat=#{p_cat} order by product.p_id)
+
+<![CDATA[
+where rnum>=1 and rnum<=4
+]]>
+	
+	</select>
+	
+	
+	<!-- <insert id="insertshop" parameterType="shop">
+		<![CDATA[
+		INSERT INTO shop(SEQ, TITLE, WRITER, CONTENT, REGDATE, CNT)
+		VALUES(shop_seq.nextval,
+			#{title}, #{writer}, #{content}, 
+			sysdate, 0)
+		]]>
+	</insert>
+	
+	<update id="updateshop" parameterType="shop">
+		<![CDATA[
+		UPDATE shop SET
+		TITLE = #{title},
+		CONTENT = #{content}
+		WHERE SEQ = #{seq}
+		]]>
+	</update>
+	
+	<delete id="deleteshop" parameterType="shop">
+		<![CDATA[
+		DELETE shop
+		WHERE SEQ = #{seq}
+		]]>
+	</delete>
+	
+	<select id="getshop" parameterType="shop" resultType="shop">
+		<![CDATA[
+		SELECT *
+		FROM shop
+		WHERE SEQ = #{seq}
+		]]>
+	</select>
+	
+	<select id="getshopList" resultType="shop">
+		<![CDATA[
+		SELECT *
+		FROM shop
+		ORDER BY SEQ DESC
+		]]>
+	</select> -->
+</mapper>
