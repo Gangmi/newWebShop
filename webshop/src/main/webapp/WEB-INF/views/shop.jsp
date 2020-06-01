@@ -264,13 +264,15 @@ case "table" :  catNum="5"; break;
                 <div class="row">
 
                     <!-- Single Product Area  ---------------------start-->
+                    
+                    <%for(int i=0; i<result.size(); i++){ %>
                     <div class="col-12 col-sm-6 col-md-12 col-xl-6">
                         <div class="single-product-wrapper">
                             <!-- Product Image -->
                             <div class="product-img">
-                                <img src="img/product-img/<%=cat%>1_4.jpg" alt="">
+                                <img src="img/product-img/<%=cat%><%=result.get(i).getP_id() %>_4.jpg" alt="">
                                 <!-- Hover Thumb -->
-                                <img class="hover-img" src="img/product-img/<%=cat%>1_4.jpg" alt="">
+                                <img class="hover-img" src="img/product-img/<%=cat%><%=result.get(i).getP_id() %>_4.jpg" alt="">
                             </div>
 
                             <!-- Product Description -->
@@ -279,9 +281,9 @@ case "table" :  catNum="5"; break;
                                 <div class="product-meta-data">
                                     <div class="line"></div>
 
-                                    <p class="product-price">$<%=result.get(0).getP_price() %></p>
-                                    <a href="product-details.do?id=<%=result.get(0).getP_id()%>">
-                                        <h6><%=result.get(0).getP_name()%></h6>
+                                    <p class="product-price">$<%=result.get(i).getP_price() %></p>
+                                    <a href="product-details.do?id=<%=result.get(i).getP_id()%>">
+                                        <h6><%=result.get(i).getP_name()%></h6>
 
                            
 
@@ -303,119 +305,8 @@ case "table" :  catNum="5"; break;
                             </div>
                         </div>
                     </div>
-
-                    <!-- Single Product Area -->
-                    <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                        <div class="single-product-wrapper">
-                            <!-- Product Image -->
-                            <div class="product-img">
-                                <img src="img/product-img/<%=cat%>2_4.jpg" alt="">
-                                <!-- Hover Thumb -->
-                                <img class="hover-img" src="img/product-img/<%=cat%>2_4.jpg" alt="">
-                            </div>
-
-                            <!-- Product Description -->
-                            <div class="product-description d-flex align-items-center justify-content-between">
-                                <!-- Product Meta Data -->
-                                <div class="product-meta-data">
-                                    <div class="line"></div>
-                                    <p class="product-price">$<%=result.get(1).getP_price() %></p>
-                                    <a href="product-details.do?id=<%=result.get(1).getP_id()%>">
-                                        <h6><%=result.get(1).getP_name()%></h6>
-                                    </a>
-                                </div>
-                                <!-- Ratings & Cart -->
-                                <div class="ratings-cart text-right">
-                                    <div class="ratings">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="cart">
-                                        <a href="cart.do?id=101" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                   
-
-                 
-
-                    <!-- Single Product Area -->
-                    <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                        <div class="single-product-wrapper">
-                            <!-- Product Image -->
-                            <div class="product-img">
-                                <img src="img/product-img/<%=cat%>3_4.jpg" alt="">
-                                <!-- Hover Thumb -->
-                                <img class="hover-img" src="img/product-img/<%=cat%>3_4.jpg" alt="">
-                            </div>
-
-                            <!-- Product Description -->
-                            <div class="product-description d-flex align-items-center justify-content-between">
-                                <!-- Product Meta Data -->
-                                <div class="product-meta-data">
-                                    <div class="line"></div>
-                                    <p class="product-price">$<%=result.get(2).getP_price() %></p>
-                                    <a href="product-details.do?id=<%=result.get(2).getP_id()%>">
-                                        <h6><%=result.get(2).getP_name()%></h6>
-                                </div>
-                                <!-- Ratings & Cart -->
-                                <div class="ratings-cart text-right">
-                                    <div class="ratings">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="cart">
-                                        <a href="cart.do?id=104" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Product Area -->
-                    <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                        <div class="single-product-wrapper">
-                            <!-- Product Image -->
-                            <div class="product-img">
-                                <img src="img/product-img/<%=cat%>4_4.jpg" alt="">
-                                <!-- Hover Thumb -->
-                                <img class="hover-img" src="img/product-img/<%=cat%>4_4.jpg" alt="">
-                            </div>
-
-                            <!-- Product Description -->
-                            <div class="product-description d-flex align-items-center justify-content-between">
-                                <!-- Product Meta Data -->
-                                <div class="product-meta-data">
-                                    <div class="line"></div>
-                                    <p class="product-price">$<%=result.get(3).getP_price() %></p>
-                                    <a href="product-details.do?id=<%=result.get(3).getP_id()%>">
-                                        <h6><%=result.get(3).getP_name()%></h6>
-                                </div>
-                                <!-- Ratings & Cart -->
-                                <div class="ratings-cart text-right">
-                                    <div class="ratings">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="cart">
-                                        <a href="cart.do?id=105" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+					<%} %>
+              
                 </div>
 
                 <div class="row">
