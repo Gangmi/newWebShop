@@ -12,12 +12,13 @@ public class LoginController {
 	
 	@Autowired
 	private LoginService loginservice;
-		
+	////
+	//회원가입
 	@RequestMapping("/insertMember.do")
 	public String insesrtMember(LoginVO vo) {
 		loginservice.insertMember(vo);
 		return "redirect:/index.do";
-		//ㅁㄴㅇㅁㄴㅇ
+		
 	}
 	
 
