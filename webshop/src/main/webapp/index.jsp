@@ -126,7 +126,7 @@
                             <p>From $180</p>
                             <h4>Minimalistic Plant Pot</h4>
                         </div>
-                    </a><!--  -->
+                    </a>
                 </div>
 
                 <!-- Single Catagory -->
