@@ -43,5 +43,11 @@ public class ShopServiceImpl implements ShopService {
 		return shopDAO.getOneProduct(vo);
 	}
 
+	@Override
+	public int getCatTotal(ProductVO vo) {
+		
+		return shopDAO.getCatTotal(vo);
+	}
+
 
 }

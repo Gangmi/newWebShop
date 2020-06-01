@@ -9,6 +9,8 @@ public interface ShopDAO {
 	public List<ProductVO> getProductDetail(ProductVO vo);
 	
 	public ProductVO getOneProduct(ProductVO vo);
+	
+	public int getCatTotal(ProductVO vo);
 
 	
 }

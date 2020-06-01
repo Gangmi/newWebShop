@@ -13,6 +13,8 @@ public interface ShopService {
 	
 	ProductVO getOneProduct(ProductVO vo);
 	
+	int getCatTotal (ProductVO vo);
+	
 	/*
 	 * // 글 수정 void updateShop(ShopVO vo);
 	 * 
