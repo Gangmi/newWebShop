@@ -17,6 +17,7 @@ public class LoginController {
 	public String insesrtMember(LoginVO vo) {
 		loginservice.insertMember(vo);
 		return "redirect:/index.do";
+		//ㅁㄴㅇㅁㄴㅇ
 	}
 	
 
