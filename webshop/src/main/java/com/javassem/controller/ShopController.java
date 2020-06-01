@@ -53,6 +53,7 @@ public class ShopController {
 		if (vo.getItemQuan() == null) {
 			vo.setItemQuan("4");
 		}
+		
 
 		// 해당하는 카테고리의 전체 갯수를 가져와서 몇 페이지를 할 지 결정
 
