@@ -33,35 +33,55 @@ public class ShopController {
 		return step;
 	}
 
-	//shop.do요청이 들어왔을 때
+	// shop.do요청이 들어왔을 때
 	@RequestMapping("/shop.do")
 	public ModelAndView viewShop(ModelAndView mv, ProductVO vo) {
 
-		String page = "1";
+		// 카테고리가 들어오지 않았다면
 		if (vo.getP_cat() == null) {
+			// 의자로 기본 카테고리를 지정
 			vo.setP_cat("chair");
 
 		}
-		vo.setPage(page);
+		// 만약 페이지가 들어오지 않았다면,
+		if (vo.getPage() == null) {
+			// 페이지를 1로 지정
+			vo.setPage("1");
+		}
+
+		// 페이지당 아이템의 갯수가 들어오지 않으면
+		if (vo.getItemQuan() == null) {
+			vo.setItemQuan("4");
+		}
+
+		// 해당하는 카테고리의 전체 갯수를 가져와서 몇 페이지를 할 지 결정
+
+		int totalpage = service.getCatTotal(vo);
+		
+		
+		// 해당하는 카테고리의 물품들을 db에 요청
 		List<ProductVO> result = service.getProductDetail(vo);
+
+		// 다음 페이지 지정
 		mv.setViewName("shop");
-		mv.addObject("cat", vo.getP_cat());
-		mv.addObject("page", vo.getPage());
+
+		mv.addObject("totalpage",totalpage);
+		
+		// 다음 페이지에 해당하는 물품들을 전달
 		mv.addObject("details", result);
 		return mv;
 
 	}
 
-	//상품을 클릭해서 해당 상품의 페이지로 넘어갈 때
+	// 상품을 클릭해서 해당 상품의 페이지로 넘어갈 때
 	@RequestMapping("/product-details.do")
 	public ModelAndView getProductDetails(ProductVO vo) {
-		//해당 상품의 id를 가져와서 서비스로 보냄
-		ProductVO result =service.getOneProduct(vo);
+		// 해당 상품의 id를 가져와서 서비스로 보냄
+		ProductVO result = service.getOneProduct(vo);
 		ModelAndView model = new ModelAndView();
 		model.addObject("product", result);
 		model.setViewName("product-details");
 		return model;
 	}
-
 
 }

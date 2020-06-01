@@ -15,7 +15,7 @@
 <%
 String cat=(String)request.getAttribute("cat"); 
 String pageNum = (String)request.getAttribute("page");
-String catNum = "";
+
 
 List<ProductVO> result = (List)request.getAttribute("details");
 
@@ -248,11 +248,11 @@ case "table" :  catNum="5"; break;
                                 <div class="view-product d-flex align-items-center">
                                     <p>View</p>
                                     <form action="#" method="get">
-                                        <select name="select" id="viewProduct">
+                                        <select name="itemquan" id="viewProduct">
+                                            <option value="value">4</option>
+                                            <option value="value">8</option>
                                             <option value="value">12</option>
-                                            <option value="value">24</option>
-                                            <option value="value">48</option>
-                                            <option value="value">96</option>
+                                            
                                         </select>
                                     </form>
                                 </div>
@@ -270,9 +270,9 @@ case "table" :  catNum="5"; break;
                         <div class="single-product-wrapper">
                             <!-- Product Image -->
                             <div class="product-img">
-                                <img src="img/product-img/<%=cat%><%=result.get(i).getP_id() %>_4.jpg" alt="">
+                                <img src="img/product-img/<%=result.get(i).getP_cat()%><%=result.get(i).getP_id() %>_4.jpg" alt="">
                                 <!-- Hover Thumb -->
-                                <img class="hover-img" src="img/product-img/<%=cat%><%=result.get(i).getP_id() %>_4.jpg" alt="">
+                                <img class="hover-img" src="img/product-img/<%=result.get(i).getP_cat()%><%=result.get(i).getP_id() %>_4.jpg" alt="">
                             </div>
 
                             <!-- Product Description -->
@@ -314,10 +314,10 @@ case "table" :  catNum="5"; break;
                         <!-- Pagination -->
                         <nav aria-label="navigation">
                             <ul class="pagination justify-content-end mt-50">
-                                <li class="page-item active"><a class="page-link" href="#">01.</a></li>
-                                <li class="page-item"><a class="page-link" href="#">02.</a></li>
-                                <li class="page-item"><a class="page-link" href="#">03.</a></li>
-                                <li class="page-item"><a class="page-link" href="#">04.</a></li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">4</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -330,7 +330,7 @@ case "table" :  catNum="5"; break;
     <!-- ##### Newsletter Area Start ##### -->
     <section class="newsletter-area section-padding-100-0">
         <div class="container">
-            <div class="row align-items-center">
+            <div class="row align-items-center"> 
                 <!-- Newsletter Text -->
                 <div class="col-12 col-lg-6 col-xl-7">
                     <div class="newsletter-text mb-100">

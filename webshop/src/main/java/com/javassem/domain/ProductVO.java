@@ -7,9 +7,14 @@ public class ProductVO {
 	private String p_cat;
 	private int p_price;
 	private int p_quan;
-
 	private String page;
-	
+	private String itemQuan;
+	public String getItemQuan() {
+		return itemQuan;
+	}
+	public void setItemQuan(String itemQuan) {
+		this.itemQuan = itemQuan;
+	}
 	public String getPage() {
 		return page;
 	}

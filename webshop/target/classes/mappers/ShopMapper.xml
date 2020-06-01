@@ -6,16 +6,16 @@
 	
 	
 	
-	<select id="getProductDetail" parameterType="product" resultType="product">
+	<select id="getProductDetail" parameterType="hashmap" resultType="product">
 	
 select * 
 
 
-from (select rownum as rnum,product.p_id,product.p_name,product.p_price,product.p_cat,product.p_quan from product where product.p_cat=#{p_cat} order by product.p_id)
+from (select rownum as rnum,product.p_id,product.p_name,product.p_price,product.p_cat,product.p_quan from product where product.p_cat=#{cat} order by product.p_id)
 
-<![CDATA[
-where rnum>=1 and rnum<=4
-]]>
+
+where <![CDATA[rnum>=]]>#{start} and <![CDATA[rnum<=]]>#{end}
+
 	
 	</select>
 	
@@ -24,6 +24,13 @@ where rnum>=1 and rnum<=4
 	<select id ="getOneProduct" parameterType="product" resultType="product">
 	
 	select * from product where p_id=#{p_id}
+	
+	</select>
+	
+	
+	<select id="getCatTotal" parameterType="product" resultType="int">
+	
+	select count(*) from product where p_cat=#{p_cat}
 	
 	</select>
 	<!-- <insert id="insertshop" parameterType="shop">
