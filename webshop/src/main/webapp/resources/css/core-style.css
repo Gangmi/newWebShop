@@ -110,6 +110,9 @@ img {
 
 .ml-50 {
   margin-left: 50px !important; }
+ 
+.ml-100 {
+  margin-left: 300px !important; }
 
 .mr-15 {
   margin-right: 15px !important; }
@@ -119,6 +122,8 @@ img {
 
 .mr-50 {
   margin-right: 50px !important; }
+  
+ 
 
 /* Height */
 .height-400 {

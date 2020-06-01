@@ -108,20 +108,21 @@
                     <div class="col-12 col-lg-8">
                         <div class="checkout_details_area mt-50 clearfix">
 
-                            <div class="cart-title">
+                            <div class="ml-100 cart-title">
                                 <h2>Login</h2>
                             </div>
 
                             <form action="#" method="post">
-                                <div class="row">
-                                     <div class="col-md-6 mb-3">
+                            
+                                <div class="ml-100 mt-100 row">
+                                     <div class="col-md-11 mb-3">
                                         <input type="text" class="form-control" id="id" value="" placeholder="아이디" required>
                                         
                                     </div>
-                                     <div class="col-md-6 mb-3">
+                                     <div class="col-md-1 mb-3">
                                      <a href="#" class="btn amado-btn mb-15">로그인</a>
                                      </div>
-                                     <div class="col-md-6 mb-3">
+                                     <div class="col-md-11 mb-3">
                                         <input type="text" class="form-control" id="password" placeholder="비밀번호" value="" required>
                                     </div>
                                
