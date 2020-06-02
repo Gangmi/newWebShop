@@ -30,7 +30,7 @@ public class CartController {
 
 	
 	  @RequestMapping("/cart.do") 
-	  public ModelAndView cart(String p_id,String quantity, HttpServletResponse response, HttpServletRequest request) {
+	  public ModelAndView cart(String p_id,HttpServletResponse response, HttpServletRequest request) {
 
 		  List<ProductVO> seq = new ArrayList<ProductVO>();
 		  if(!(p_id==null))
@@ -62,20 +62,36 @@ public class CartController {
 	  
 	  //System.out.println(list.getP_cat());
 
+	  int total=0;
 	  for(int i=0; i<list.size();i++)
 	  {
 		  ProductVO result = new ProductVO();
 		  result = list.get(i);
-
+		  total+= result.getP_price();
 	  }
 	  
 	  ModelAndView mv = new ModelAndView();
 	  mv.setViewName("cart");
 	  mv.addObject("list",list);
+	  mv.addObject("total", total);
 	  
 	  return mv;
   
 	  }
+		/*
+		 * @RequestMapping("/cartdel.do") public ModelAndView cartdel(HttpServletRequest
+		 * request) { System.out.println(request.getParameterValues("p_id"));
+		 * ModelAndView mv = new ModelAndView(); List<ProductVO> seq = new
+		 * ArrayList<ProductVO>(); Cookie[] cookies = request.getCookies(); //request로
+		 * 받고 if(cookies != null) //null이 아니면 { for(int i=1; i<cookies.length; i++) //모든
+		 * 쿠키 출력 { ProductVO vo = new ProductVO();
+		 * vo.setP_id(Integer.parseInt(cookies[i].getValue())); seq.add(vo);
+		 * 
+		 * } //cookieN에 대한 정보가 다 사라져있어야 함 }
+		 * 
+		 * List<ProductVO> list = service.getShopList(seq); mv.setViewName("cart");
+		 * mv.addObject("list",list); return mv; }
+		 */
 	  
 	  @RequestMapping("/wishlist.do")
 	  public void wishlist(String id, Model model)

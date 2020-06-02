@@ -4,6 +4,38 @@
 
 <!DOCTYPE>
 <html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- <script src="../../resources/js/jquery/jquery.cookie.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script> -->
+
+<script type="text/javascript">
+$(function(){
+    $("#selectall").click(function(){
+        var chk = $(this).is(":checked");//.attr('checked');
+        if(chk) $(".check").prop('checked', true);
+        else  $(".check").prop('checked', false);
+    });
+    $("#delsel").click(function(){
+        $(".check:checked").each(function (index) {  
+            var str = $(this).val();  
+            //$.cookie('cart7', "");
+            alert(str);
+        });  
+    });  
+
+    $(".quantity").click(function(){
+    	 var count = $(this).find(".qty-text").val();
+ 		alert(count);
+
+ 		 var price = $(this).find(".price").val();
+  		alert(price);
+
+    });
+
+
+});
+
+</script>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge; charset=UTF-8">
 <meta name="description" content="">
@@ -25,6 +57,15 @@
 <body>
 <%
 List<ProductVO> list =(List<ProductVO>) request.getAttribute("list");
+int total = (int)request.getAttribute("total");
+int deli =0;
+if(total<50000)
+{
+	deli = 2500;
+	}
+else{
+		deli =0;
+	}
 %>
 
     <!-- Search Wrapper Area Start -->
@@ -89,7 +130,7 @@ List<ProductVO> list =(List<ProductVO>) request.getAttribute("list");
             </div>
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
-                <a href="cart.do" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(0)</span></a>
+                <a href="cart.do" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(<%=list.size() %>)</span></a>
                 <a href="wishlist.do" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Favourite</a>
                 <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>
             </div>
@@ -110,17 +151,18 @@ List<ProductVO> list =(List<ProductVO>) request.getAttribute("list");
                         <div class="cart-title mt-50">
                             <h2>Shopping Cart</h2>
                         </div>
-                        
-                        	<div style = "float:right;">
-							<label id='delsel'>Delete</label>
+                        <!-- <form action="cartdel.do" method="get"> -->
+                        	<div id='delsel' style = "float:right;">
+							Delete</div>
 							<br>
-							<label>All Select <input type="checkbox" name="selectall" id='selectall'></label>
+							<div style = "float:right;">
+							<label for='selectall'>All Select <input type="checkbox" name="selectall" id='selectall'></label>
 							</div>
 							
 							<br>
 							
                         <div class="cart-table clearfix">
-                            <table class="table table-responsive">
+                            <table class="table table-responsive" id='table'>
                                 <thead>
                                     <tr>
                                         <th></th>
@@ -134,6 +176,7 @@ List<ProductVO> list =(List<ProductVO>) request.getAttribute("list");
                                 	ProductVO vo = new ProductVO();
                                 	vo = list.get(i);
                                 %>
+                                	
                                     <tr>
                                         <td class="cart_product_img">
                                             <a href="img/product-img/<%=vo.getP_cat()%><%=vo.getP_id()%>_1.jpg"><img src="img/product-img/<%=vo.getP_cat()%><%=vo.getP_id()%>_1.jpg" alt="Product"></a>
@@ -141,19 +184,20 @@ List<ProductVO> list =(List<ProductVO>) request.getAttribute("list");
                                         <td class="cart_product_desc">
                                             <h5><%=vo.getP_name() %></h5>
                                         </td>
-                                        <td class="price">
+                                        <td class="price" >
                                             <span>$<%=vo.getP_price() %></span>
                                         </td>
                                         <td class="qty">
                                             <div class="qty-btn d-flex">
                                                 <p>Qty</p>
                                                 <div class="quantity">
-                                                    <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                                    <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="1">
-                                                    <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                                    <span class="qty-minus" onclick="var effect = document.getElementById('qty<%=vo.getP_id() %>'); var qty<%=vo.getP_id() %> = effect.value; if( !isNaN( qty<%=vo.getP_id() %> ) &amp;&amp; qty<%=vo.getP_id() %> &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                                                    <input type="hidden" value='<%=vo.getP_price() %>' name='p_price' class='price'/>
+                                                    <input type="number" class="qty-text" id="qty<%=vo.getP_id() %>" step="1" min="1" max="300" name="quantity" value="1">
+                                                    <span class="qty-plus" onclick="var effect = document.getElementById('qty<%=vo.getP_id() %>'); var qty<%=vo.getP_id() %> = effect.value; if( !isNaN( qty<%=vo.getP_id() %> )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                                 </div>
                                                 &nbsp;
-                                                <label><input type="checkbox" name="check" class='check' value='<%=vo.getP_id() %>' ></label>
+                                                <label><input type="checkbox" name="check" class='check' value='<%=vo.getP_id()%>' ></label>
                                             </div>
                                         </td>
                                     </tr>
@@ -162,14 +206,15 @@ List<ProductVO> list =(List<ProductVO>) request.getAttribute("list");
                                 </tbody>
                             </table>
                         </div>
+                        <!-- </form> -->
                     </div>
                     <div class="col-12 col-lg-4">
                         <div class="cart-summary">
                             <h5>Cart Total</h5>
                             <ul class="summary-table">
-                                <li><span>subtotal:</span> <span>$140.00</span></li>
-                                <li><span>delivery:</span> <span>Free</span></li>
-                                <li><span>total:</span> <span>$140.00</span></li>
+                                <li><span>subtotal:</span> <span>$ <%=total %></span></li>
+                                <li><span>delivery:</span> <span>$ <% if(deli==0){%>Free<%}else{ %><%=deli%><%} %></span></li>
+                                <li><span>total:</span> <span>$ <%=total-deli %></span></li>
                             </ul>
                             <div class="cart-btn mt-100">
                                 <a href="cart.do" class="btn amado-btn w-100">Checkout</a>
