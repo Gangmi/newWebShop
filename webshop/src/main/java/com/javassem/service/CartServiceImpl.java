@@ -1,5 +1,6 @@
 package com.javassem.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,8 @@ public class CartServiceImpl implements CartService {
 		return CartDAO.getShop(vo);
 	}
 
-	public List<ProductVO> getShopList(ProductVO vo) {
-		return CartDAO.getShopList(vo);
+	public List<ProductVO> getShopList(List<ProductVO> seq) {
+		return CartDAO.getShopList(seq);
 	}
 
 

@@ -1,5 +1,6 @@
 package com.javassem.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -36,8 +37,8 @@ public class CartDAOImpl implements CartDAO{
 		return mybatis.selectOne("CartDAO.getshop", vo);
 	}
 
-	public List<ProductVO> getShopList(ProductVO vo) {
+	public List<ProductVO> getShopList(List<ProductVO> seq) {
 		System.out.println("===> Mybatis getShopList() 호출");
-		return mybatis.selectList("ShopDAO.getshopList", vo);
+		return mybatis.selectList("CartDAO.getshopList", seq);
 	}
 }

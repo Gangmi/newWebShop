@@ -1,5 +1,6 @@
 package com.javassem.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.javassem.domain.ProductVO;
@@ -14,5 +15,5 @@ public interface CartDAO {
 
 	public ProductVO getShop(ProductVO vo) ;
 
-	public List<ProductVO> getShopList(ProductVO vo) ;
+	public List<ProductVO> getShopList(List<ProductVO> seq) ;
 }

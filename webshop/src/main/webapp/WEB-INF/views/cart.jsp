@@ -1,4 +1,6 @@
+<%@page import="java.util.List"%>
 <%@page contentType="text/html; charset=UTF-8"%>
+<%@ page import='com.javassem.domain.ProductVO' %>
 
 <!DOCTYPE>
 <html>
@@ -21,6 +23,34 @@
 </head>
 
 <body>
+<%
+Cookie[] cookies = request.getCookies(); //request로 쿠키를 받음
+
+for(int i=0; i<cookies.length; i++)
+{
+	String str = cookies[i].getName(); //쿠키의 이름을 받는다.
+	String sdf = cookies[i].getValue();
+
+
+		out.println("cookies[" +i+ "] name : "+ str+"<br/>"); //쿠키의 이름
+		out.println("cookies[" +i+ "] value : "+ sdf+"<br/>"); //쿠키의 값
+		out.println("===================<br/>");
+	
+	
+}
+
+List<ProductVO> list =(List<ProductVO>) request.getAttribute("list");
+for(int i=0;i<list.size();i++)
+{
+	ProductVO vo = new ProductVO();
+	vo = list.get(i);
+	System.out.print("name = "+vo.getP_name());
+	System.out.print("price = "+vo.getP_price());
+}
+
+
+%>
+
     <!-- Search Wrapper Area Start -->
     <div class="search-wrapper section-padding-100">
         <div class="search-close">
@@ -158,27 +188,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="cart_product_img">
-                                            <a href="#"><img src="img/bg-img/cart3.jpg" alt="Product"></a>
-                                        </td>
-                                        <td class="cart_product_desc">
-                                            <h5>Minimal Plant Pot</h5>
-                                        </td>
-                                        <td class="price">
-                                            <span>$10</span>
-                                        </td>
-                                        <td class="qty">
-                                            <div class="qty-btn d-flex">
-                                                <p>Qty</p>
-                                                <div class="quantity">
-                                                    <span class="qty-minus" onclick="var effect = document.getElementById('qty3'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                                    <input type="number" class="qty-text" id="qty3" step="1" min="1" max="300" name="quantity" value="1">
-                                                    <span class="qty-plus" onclick="var effect = document.getElementById('qty3'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    
                                 </tbody>
                             </table>
                         </div>
