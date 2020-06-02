@@ -4,5 +4,7 @@ import com.javassem.domain.LoginVO;
 
 public interface LoginService {
 
-	void insertMember(LoginVO vo);
+	int insertMember(LoginVO vo);
+
+	LoginVO signInMember(LoginVO vo);
 }

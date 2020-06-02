@@ -6,7 +6,7 @@ import com.javassem.domain.LoginVO;
 
 
 public interface LoginDAO {
-	public void insertMember(LoginVO vo);
+	public int insertMember(LoginVO vo);
 
-
+	public LoginVO signInMember(LoginVO vo);
 }
