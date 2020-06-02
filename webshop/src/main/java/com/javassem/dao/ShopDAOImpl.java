@@ -30,7 +30,7 @@ public class ShopDAOImpl implements ShopDAO {
 		if (vo.getP_brand() == null) {
 
 			catTot = mybatis.selectOne("ShopDAO.getCatTotal", map);
-		} else if(vo.getP_brand() !="") {
+		} else if(vo.getP_brand()!=null) {
 			// 브랜드가 있을 때
 			// string tokenizer로 /를 기준으로 자르기
 			StringTokenizer sc = new StringTokenizer(vo.getP_brand(), "/");
@@ -97,8 +97,7 @@ public class ShopDAOImpl implements ShopDAO {
 		// 가져온 페이지당 갯수를 int로 변환
 		int itemquan = Integer.parseInt(vo.getItemQuan());
 
-		// 페이지갯수를 구하기
-		int totalpage = 0;
+		
 
 		// 해쉬맵으로 조회에 필요한 값을 넘김
 		

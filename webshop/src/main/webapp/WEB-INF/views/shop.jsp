@@ -18,6 +18,7 @@ int totalpage = (Integer) request.getAttribute("totalpage");
 
 
 List<String> select = (List)request.getAttribute("brand");
+String rawbrand = (String)request.getAttribute("rawbrand");
 
 
 List<ProductVO> result = (List) request.getAttribute("details");
@@ -170,25 +171,25 @@ case "table" :  catNum="5"; break;
 					</div>
 					<!-- Single Form Check -->
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="Ikea" id="ikea">
+						<input class="form-check-input" type="checkbox" value="Ikea" id="ikea" <%if(select!=null) {%><% if(select.contains("Ikea")){%>checked<%}}%>>
 						<label class="form-check-label" for="ikea">Ikea</label>
 					</div>
 					<!-- Single Form Check -->
 					<div class="form-check">
 						<input class="form-check-input" type="checkbox" value="Furniture Inc"
-							id="furniture"> <label class="form-check-label"
+							id="furniture" <%if(select!=null) {%><% if(select.contains("Furniture Inc")){%>checked<%}}%>> <label class="form-check-label"
 							for="furniture">Furniture Inc</label>
 					</div>
 					<!-- Single Form Check -->
 					<div class="form-check">
 						<input class="form-check-input" type="checkbox" value="The factory"
-							id="factory"> <label class="form-check-label"
+							id="factory" <%if(select!=null) {%><% if(select.contains("The factory")){%>checked<%}}%>> <label class="form-check-label"
 							for="factory">The factory</label>
 					</div>
 					<!-- Single Form Check -->
 					<div class="form-check">
 						<input class="form-check-input" type="checkbox" value="Artdeco"
-							id="artdeco"> <label class="form-check-label"
+							id="artdeco" <%if(select!=null) {%><% if(select.contains("Artdeco")){%>checked<%}}%>> <label class="form-check-label"
 							for="artdeco">Artdeco</label>
 					</div>
 				</div>
@@ -350,7 +351,7 @@ case "table" :  catNum="5"; break;
 
 
 								<li class="page-item"><a class="page-link"
-									href="shop.do?p_cat=<%=result.get(0).getP_cat()%>&page=<%=i%>"><%=i%></a></li>
+									href="shop.do?p_brand=<%=rawbrand%>&p_cat=<%=result.get(0).getP_cat()%>&page=<%=i%>"><%=i%></a></li>
 
 								<%
 									}

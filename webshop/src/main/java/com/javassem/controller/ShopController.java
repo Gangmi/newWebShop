@@ -73,6 +73,7 @@ public class ShopController {
 				i++;
 			}
 			mv.addObject("brand", brandlist);
+			mv.addObject("rawbrand",vo.getP_brand());
 			
 		}
 		
