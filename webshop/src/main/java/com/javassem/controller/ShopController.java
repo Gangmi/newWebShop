@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.Cookie;
 import javax.xml.ws.Response;
@@ -61,14 +62,14 @@ public class ShopController {
 		if (vo.getItemQuan() == null) {
 			vo.setItemQuan("4");
 		}
-		//현재 사용자의 카테고리를 지정
 		
-		System.out.println(vo.getP_cat());
-		System.out.println(vo.getPage());
-		System.out.println(vo.getItemQuan());
+//		
+//		System.out.println(vo.getP_cat());
+//		System.out.println(vo.getItemQuan());
+//		System.out.println(vo.getP_brand());
+//		
 		
 	
-
 		// 해당하는 카테고리의 전체 갯수를 가져와서 몇 페이지를 할 지 결정
 
 		int totalpage = service.getCatTotal(vo);
@@ -80,10 +81,13 @@ public class ShopController {
 		// 다음 페이지 지정
 		mv.setViewName("shop");
 
+		//총 페이지 지정
 		mv.addObject("totalpage",totalpage);
 		
 		// 다음 페이지에 해당하는 물품들을 전달
 		mv.addObject("details", result);
+		
+		//현재 사용자의 카테고리, 페이지 , 페이지당 아이템 갯수의 정보를 저장
 		mv.addObject("nowcat",vo.getP_cat());
 		mv.addObject("nowpage",vo.getPage());
 		mv.addObject("nowquan",vo.getItemQuan());

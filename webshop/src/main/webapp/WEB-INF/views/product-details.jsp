@@ -189,15 +189,18 @@
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                     </div>
                                     <div class="review">
-                                        <a href="#">Write A Review</a>
+                                        <a href="#"><%=vo.getP_brand() %></a>
                                     </div>
                                 </div>
                                 <!-- Avaiable -->
-                                <p class="avaibility"><i class="fa fa-circle"></i> In Stock</p>
+                               
+                                <p class="avaibility"> <%if (vo.getP_quan()!=0) {%><i class="fa fa-circle"></i> In Stock<%}else{ %><i class="fa fa-circle nostock"></i>No Stock<%} %></p>
+                                
                             </div>
 
                             <div class="short_overview my-5">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid quae eveniet culpa officia quidem mollitia impedit iste asperiores nisi reprehenderit consequatur, autem, nostrum pariatur enim?</p>
+                            	
+                                <p><%=vo.getP_detail() %></p>
                             </div>
 
                             <!-- Add to Cart Form -->
@@ -213,7 +216,12 @@
                                     &nbsp; &nbsp; &nbsp; 
                                     <div><a href="wishlist.do?p_id=<%=vo.getP_id()%>" class="fav-nav"><img src="img/core-img/favorites.png" alt=""></div>
                                 </div>
+                                <%if (vo.getP_quan()!=0){ %>
                                 <button type="submit" name="addtocart" value="5" class="btn amado-btn">Add to cart</button>
+                                <%}else{%> 
+                                	<button name="addtocart" value="5" class="btn amado-btn">Sold Out</button>
+                                <%} %>
+                                
                             </form>
 
                         </div>

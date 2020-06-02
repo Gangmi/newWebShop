@@ -1,7 +1,9 @@
 package com.javassem.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +18,40 @@ public class ShopDAOImpl implements ShopDAO {
 	private SqlSessionTemplate mybatis;
 
 	public int getCatTotal(ProductVO vo) {
+		// 전체 아이템수
+		int catTot = 0;
 
-		// 해당하는 카테고리의 전체 갯수를 가져오기
-		int catTot = mybatis.selectOne("ShopDAO.getCatTotal", vo);
+		// 해쉬맵으로 카테고리 설정
+		HashMap map = new HashMap();
+
+		map.put("p_cat", vo.getP_cat());
+
+		// 해당하는 카테고리의 전체 갯수를 가져오기(브랜드가 없을 때)
+		if (vo.getP_brand() == null) {
+
+			catTot = mybatis.selectOne("ShopDAO.getCatTotal", map);
+		} else {
+			// 브랜드가 있을 때
+			// string tokenizer로 /를 기준으로 자르기
+			StringTokenizer sc = new StringTokenizer(vo.getP_brand(), "/");
+
+			List<String> brandlist = new ArrayList();
+			int i = 0;
+			while (sc.hasMoreTokens()) {
+
+				brandlist.add(i, sc.nextToken());
+
+				i++;
+
+			}
+
+			// 맵에 브랜드 리스트 추가
+			map.put("brand", brandlist);
+
+			// 전체 갯수를 구하기 위해 맵퍼로 전송
+			catTot = mybatis.selectOne("ShopDAO.getCatTotal", map);
+
+		}
 
 		// 가져온 페이지당 갯수를 int로 변환
 		int itemquan = Integer.parseInt(vo.getItemQuan());
@@ -39,7 +72,24 @@ public class ShopDAOImpl implements ShopDAO {
 	// 해당 카테고리의 상품을 가져오기
 	public List<ProductVO> getProductDetail(ProductVO vo) {
 
-		getCatTotal(vo);
+		// getCatTotal(vo);
+
+		//브랜드 리스트가 있으면
+		List<String> brandlist = new ArrayList();
+		if (vo.getP_brand() != null) {
+			
+			StringTokenizer sc = new StringTokenizer(vo.getP_brand(), "/");
+
+			int i = 0;
+			while (sc.hasMoreTokens()) {
+
+				brandlist.add(i, sc.nextToken());
+
+				i++;
+
+			}
+		}
+		// 맵에 브랜드 리스트 추가
 
 		// 가져온 페이지당 갯수를 int로 변환
 		int itemquan = Integer.parseInt(vo.getItemQuan());
@@ -56,6 +106,7 @@ public class ShopDAOImpl implements ShopDAO {
 		map.put("cat", vo.getP_cat());
 		map.put("start", start);
 		map.put("end", end);
+		map.put("brand", brandlist);
 
 		// vo 에 저장된 카테고리에서 , 해당하는 페이지의 해당하는 물품갯수만큼 가져와서 리스트에 저장한다.
 		List<ProductVO> result = mybatis.selectList("ShopDAO.getProductDetail", map);

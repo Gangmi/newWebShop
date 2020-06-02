@@ -159,29 +159,29 @@ case "table" :  catNum="5"; break;
 				<div class="widget-desc">
 					<!-- Single Form Check -->
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value=""
+						<input class="form-check-input" type="checkbox" value="Amado"
 							id="amado"> <label class="form-check-label" for="amado">Amado</label>
 					</div>
 					<!-- Single Form Check -->
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="ikea">
+						<input class="form-check-input" type="checkbox" value="Ikea" id="ikea">
 						<label class="form-check-label" for="ikea">Ikea</label>
 					</div>
 					<!-- Single Form Check -->
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value=""
+						<input class="form-check-input" type="checkbox" value="Furniture Inc"
 							id="furniture"> <label class="form-check-label"
 							for="furniture">Furniture Inc</label>
 					</div>
 					<!-- Single Form Check -->
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value=""
+						<input class="form-check-input" type="checkbox" value="The factory"
 							id="factory"> <label class="form-check-label"
 							for="factory">The factory</label>
 					</div>
 					<!-- Single Form Check -->
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value=""
+						<input class="form-check-input" type="checkbox" value="Artdeco"
 							id="artdeco"> <label class="form-check-label"
 							for="artdeco">Artdeco</label>
 					</div>
@@ -368,7 +368,8 @@ case "table" :  catNum="5"; break;
 						<h2>
 							Subscribe for a <span>25% Discount</span>
 						</h2>
-						<p>Nulla ac convallis lorem, eget euismod nisl. Donec in
+						<p>	
+							Nulla ac convallis lorem, eget euismod nisl. Donec in
 							libero sit amet mi vulputate consectetur. Donec auctor interdum
 							purus, ac finibus massa bibendum nec.</p>
 					</div>

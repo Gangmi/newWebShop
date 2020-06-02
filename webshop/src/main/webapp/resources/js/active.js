@@ -140,6 +140,42 @@
     	
     });
     
+    // 브랜드 별 상품을 보여주기 위한 부분
+    $(".form-check input").click(function(){
+    	var itemQuan =$("#itemQuan").val();
+    	var cat = $("#p_cat").val();
+    	
+    	
+    	
+    	var send_array="";
+    	
+    	
+    	var chkbox = $(".form-check-input");
+
+    	for(var i=0;i<chkbox.length;i++) {
+    	    if (chkbox[i].checked == true){
+    	        send_array += chkbox[i].value+"/";
+    	        
+    	        
+    	    }
+    	}
+    	
+    	window.location.href ="shop.do?"+"p_cat="+cat+"&itemQuan="+itemQuan+"&p_brand="+send_array;
+
+    });
+//    	$.ajax({
+//			type:'post', // 원래 포스트 방식
+//			async: true, // 비동기 통신 실행 여부
+//			url:'shop.do',
+//			contentType:'application/x-www-form-urlencoded;charset=UTF-8', //한글 설정
+//			data:"p_cat="+$("#p_cat").val()+"&p_brand="+send_array,
+//			success:function(resultData){
+//				$('#idCheckResult').html(resultData);
+//			}
+//		});
+    	 
+    
+    
     
     
     
