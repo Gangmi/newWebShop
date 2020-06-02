@@ -10,5 +10,17 @@
 		WHERE P_ID = #{p_id}
 		]]>
 	</select>
+	<select id="getshopList" parameterType="HashMap" resultType="product">
+		
+		SELECT *
+		FROM PRODUCT
+		WHERE P_ID in
+        <foreach collection="list" index='index' item='test' open='(' close=')' separator=','>
+			#{test.p_id}
+		</foreach>
+
+		
+		
+	</select>
 
 </mapper>

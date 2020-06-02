@@ -1,6 +1,11 @@
 package com.javassem.controller;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +17,7 @@ import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.javassem.domain.ProductVO;
 import com.javassem.service.CartService;
@@ -24,24 +30,52 @@ public class CartController {
 
 	
 	  @RequestMapping("/cart.do") 
-	  public String cart(String id,String quantity, HttpServletResponse response) {
+	  public ModelAndView cart(String id,String quantity, HttpServletResponse response, HttpServletRequest request) {
 /*	  model.addAttribute("id",id);
 	  model.addAttribute("quantity",quantity);*/
-		  ProductVO vo = new ProductVO();
-		  vo.setP_id(Integer.parseInt(id));
-	  
-		  ProductVO list = service.getShop(vo);
-		  
-		  System.out.println(list.getP_cat());
 
+		  if(!(id==null))
+		  {
+		  Cookie cookie = new Cookie(id, id);
+		  cookie.setPath("/");
+		  cookie.setMaxAge(60*60*24*7);
+		  response.addCookie(cookie);
+		  }
 
-		  
-	  Cookie cookie = new Cookie("cartidtest", id);
-	  cookie.setPath("/");
-	  cookie.setMaxAge(60*60*24*7);
-	  response.addCookie(cookie);
 	  
-	  return "cart";
+	  List<ProductVO> seq = new ArrayList<ProductVO>();
+	  Cookie[] cookies = request.getCookies(); //request로 받고
+		if(cookies != null) //null이 아니면 
+		{
+			for(int i=1; i<cookies.length; i++) //모든 쿠키 출력
+			{
+				System.out.println(cookies[i].getName()+"<br/>");
+				System.out.println(cookies[i].getValue()+"<br/>");
+				
+				ProductVO vo = new ProductVO();
+				vo.setP_id(Integer.parseInt(cookies[i].getValue()));
+				seq.add(vo);
+				
+			} //cookieN에 대한 정보가 다 사라져있어야 함
+		}
+	  
+
+	  List<ProductVO> list = service.getShopList(seq);
+	  
+	  //System.out.println(list.getP_cat());
+
+	  for(int i=0; i<list.size();i++)
+	  {
+		  ProductVO result = new ProductVO();
+		  result = list.get(i);
+		  System.out.println("결과는 : **********"+result.getP_name());
+	  }
+	  
+	  ModelAndView mv = new ModelAndView();
+	  mv.setViewName("cart");
+	  mv.addObject("list",list);
+	  
+	  return mv;
   
 	  }
 	  
