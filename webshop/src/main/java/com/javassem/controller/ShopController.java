@@ -22,6 +22,11 @@ import com.javassem.service.ShopService;
 
 @Controller
 public class ShopController {
+	
+	public int nowpage;
+	public int nowitemquan;
+	public String nowcat;
+	
 
 	@Autowired
 	private ShopService service;
