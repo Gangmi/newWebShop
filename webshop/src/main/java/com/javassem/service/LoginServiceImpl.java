@@ -13,9 +13,13 @@ public class LoginServiceImpl implements LoginService {
 	private LoginDAOImpl loginDAO;
 
 	//회원가입
-	public void insertMember(LoginVO vo) {
+	public int insertMember(LoginVO vo) {
 
-		loginDAO.insertMember(vo);
+		return loginDAO.insertMember(vo);
+	}
+	
+	public LoginVO signInMember(LoginVO vo) {
+		return loginDAO.signInMember(vo);
 	}
 
 

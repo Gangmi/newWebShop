@@ -3,24 +3,24 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="LoginDAO">
 
-	
+	<!-- 회원가입 -->
 	<insert id="insertmember" parameterType="login">
 		<![CDATA[
 		INSERT INTO member
 		VALUES(#{mid},#{mpass},#{mtel},#{memail},#{maddr},'브론즈','X',#{mpostCode},#{maddrDetail},#{mname})
 		]]>
 	</insert>
+	<!-- 아이디찾기 & 로그인 -->
+	 <select id="signInMember" parameterType="login" resultType="login">
+		
+		SELECT mid FROM member WHERE mid= #{mid} 
+		<if test='mpass !=null'>
+		AND mpass= #{mpass}
+		</if>
 	
-	<!-- <update id="updateshop" parameterType="shop">
-		<![CDATA[
-		UPDATE shop SET
-		TITLE = #{title},
-		CONTENT = #{content}
-		WHERE SEQ = #{seq}
-		]]>
-	</update>
+	</select>
 	
-	<delete id="deleteshop" parameterType="shop">
+	<!-- <delete id="deleteshop" parameterType="shop">
 		<![CDATA[
 		DELETE shop
 		WHERE SEQ = #{seq}
@@ -41,5 +41,5 @@
 		FROM shop
 		ORDER BY SEQ DESC
 		]]>
-	</select> -->
+	</select>  -->
 </mapper>

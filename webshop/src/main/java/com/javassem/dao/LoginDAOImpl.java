@@ -15,9 +15,15 @@ public class LoginDAOImpl implements LoginDAO{
 	@Autowired
 	private SqlSessionTemplate mybatis;
 
-	public void insertMember(LoginVO vo) {
+	public int insertMember(LoginVO vo) {
 		System.out.println("===> Mybatis insertMember() 호출");
-		mybatis.insert("LoginDAO.insertmember", vo);
+		return mybatis.insert("LoginDAO.insertmember", vo);
+	}
+
+	public LoginVO signInMember(LoginVO vo) {
+		System.out.println("===> Mybatis signInMember() 호출");
+		return mybatis.selectOne("LoginDAO.signInMember", vo);
+		
 	}
 
 	
