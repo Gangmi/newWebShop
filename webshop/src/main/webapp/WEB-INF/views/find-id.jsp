@@ -21,6 +21,9 @@
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="css/core-style.css">
     <!-- <link rel="stylesheet" href="style.css"> -->
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./resources/js/login-userInput.js"></script>
 
 </head>
 
@@ -112,17 +115,17 @@
                                 <h2>Find-id</h2>
                             </div>
 
-                            <form action="#" method="post">
+                            <form action="find_id.do" id ="findid" name="findid"  method="get">
                                 <div class="ml-100 mt-100 row">
                                      <div class="col-md-11 mb-3">
-                                        <input type="text" class="form-control" id="id" value="" placeholder="이름" required>
+                                        <input type="text" class="form-control" id="mname" class="mname" value="" placeholder="이름" required>
                                         
                                     </div>
                                      <div class="col-md-1 mb-3">
-                                     <a href="#" class="btn amado-btn mb-15">아이디 찾기</a>
+                                     <a id="id_conf" name="id_conf" class="btn amado-btn mb-15">아이디 찾기</a>
                                      </div>
                                      <div class="col-md-11 mb-3">
-                                        <input type="text" class="form-control" id="password" placeholder="가입휴대폰번호" value="" required>
+                                        <input type="text" class="form-control" id="mtel" class="mtel" placeholder="가입휴대폰번호" value="" required>
                                     </div>
                                
 <!--                                     <div class="amado-btn-group mt-30 mb-100"> -->

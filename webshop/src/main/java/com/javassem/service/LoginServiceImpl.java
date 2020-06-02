@@ -22,6 +22,9 @@ public class LoginServiceImpl implements LoginService {
 		return loginDAO.signInMember(vo);
 	}
 
+	public LoginVO findId(LoginVO vo) {
+		return loginDAO.signInMember(vo);
+	}
 
 
 }

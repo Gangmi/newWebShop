@@ -21,6 +21,9 @@
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="css/core-style.css">
     <!-- <link rel="stylesheet" href="style.css"> -->
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./resources/js/login-userInput.js"></script>
 
 </head>
 
@@ -111,21 +114,21 @@
                             <div class="ml-100 cart-title">
                                 <h2>Login</h2>
                             </div>
-	<!--  -->
-                            <form action="sign_in.do" method="post">
+
+                            <form action="sign_in.do" id="signinmember" name="signinmember" method="get">
                             
                                 <div class="ml-100 mt-100 row">
                                      <div class="col-md-11 mb-3">
-                                        <input type="text" class="form-control" id="id" value="" placeholder="아이디" required>
+                                        <input type="text" class="form-control" id="mid" name="mid" value="" placeholder="아이디" required>
                                         <!--  -->
                                     </div>
                                      <div class="col-md-1 mb-3">
-                                     <a class="btn amado-btn mb-15">로그인</a>
+                                     <a id="conf"  name="conf" class="btn amado-btn mb-15">로그인</a>
                                      </div>
                                      <div class="col-md-11 mb-3">
-                                        <input type="text" class="form-control" id="password" placeholder="비밀번호" value="" required>
+                                        <input type="text" class="form-control" id="mpass" name="mpass" placeholder="비밀번호" value="" required>
                                     </div>
-                               
+                                		[ ${sessionScope.sessionTime} ] ${userId}님 아령하세요 하잇 &nbsp; &nbsp;
 <!--                                     <div class="amado-btn-group mt-30 mb-100"> -->
                                      <div  class="col-12 mb-3">
 						                

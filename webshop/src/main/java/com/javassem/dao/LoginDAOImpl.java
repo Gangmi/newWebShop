@@ -21,12 +21,22 @@ public class LoginDAOImpl implements LoginDAO{
 	}
 
 	public LoginVO signInMember(LoginVO vo) {
-		System.out.println("===> Mybatis signInMember() 호출");
-		return mybatis.selectOne("LoginDAO.signInMember", vo);
+		System.out.println("===> Mybatis signinmember() 호출");
+//		System.out.println(vo.getMid() + "/" + vo.getMpass());
+		LoginVO result = mybatis.selectOne("LoginDAO.signinmember", vo);
+//		System.out.println(result.getMid() + "/" + result.getMpass());
+		return result;
 		
 	}
 
 	
+	public LoginVO findId(LoginVO vo) {
+		System.out.println("===> Mybatis findid() 호출");
+		System.out.println(vo.getMname());
+		LoginVO result = mybatis.selectOne("LoginDAO.findid", vo);
+		System.out.println(vo.getMid());
+		return  result;
+	}
 
 	
 

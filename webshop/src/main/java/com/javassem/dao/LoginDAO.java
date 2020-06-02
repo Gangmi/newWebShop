@@ -9,4 +9,6 @@ public interface LoginDAO {
 	public int insertMember(LoginVO vo);
 
 	public LoginVO signInMember(LoginVO vo);
+	
+	public LoginVO findId(LoginVO vo);
 }
