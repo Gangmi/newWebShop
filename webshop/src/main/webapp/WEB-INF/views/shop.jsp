@@ -260,9 +260,9 @@ case "table" :  catNum="5"; break;
 									<p>View</p>
 									<form action="shop.do" method="get">
 										<select name="itemquan" id="viewProduct">
-											<option selected="selected" value="4">4</option>
-											<option value="8">8</option>
-											<option value="12">12</option>
+											<option selected="selected" name="itemQuan" value="4">4</option>
+											<option name="itemQuan" value="8">8</option>
+											<option name="itemQuan" value="12">12</option>
 
 										</select>
 									</form>

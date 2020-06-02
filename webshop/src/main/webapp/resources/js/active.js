@@ -127,6 +127,16 @@
     });
      
  
+    //페이지당 아이템 갯수를 설정하는 부분
+    $("#viewProduct").change(function(evt){
+    	var itemQuan =$(evt.target).val();
+    	var page = $()
+    	window.location.href ="shop.do?itemQuan="+itemQuan
+    	
+    	
+    });
+    
+    
     
     
 
