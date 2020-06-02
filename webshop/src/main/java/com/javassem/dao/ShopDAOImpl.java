@@ -30,7 +30,7 @@ public class ShopDAOImpl implements ShopDAO {
 		if (vo.getP_brand() == null) {
 
 			catTot = mybatis.selectOne("ShopDAO.getCatTotal", map);
-		} else {
+		} else if(vo.getP_brand() !="") {
 			// 브랜드가 있을 때
 			// string tokenizer로 /를 기준으로 자르기
 			StringTokenizer sc = new StringTokenizer(vo.getP_brand(), "/");
@@ -74,6 +74,7 @@ public class ShopDAOImpl implements ShopDAO {
 
 		// getCatTotal(vo);
 
+		HashMap map = new HashMap();
 		//브랜드 리스트가 있으면
 		List<String> brandlist = new ArrayList();
 		if (vo.getP_brand() != null) {
@@ -88,6 +89,8 @@ public class ShopDAOImpl implements ShopDAO {
 				i++;
 
 			}
+			map.put("brand", brandlist);
+
 		}
 		// 맵에 브랜드 리스트 추가
 
@@ -98,7 +101,7 @@ public class ShopDAOImpl implements ShopDAO {
 		int totalpage = 0;
 
 		// 해쉬맵으로 조회에 필요한 값을 넘김
-		HashMap map = new HashMap();
+		
 		int page = Integer.parseInt(vo.getPage());
 		int end = page * itemquan;
 		int start = end - (itemquan - 1);
@@ -106,8 +109,7 @@ public class ShopDAOImpl implements ShopDAO {
 		map.put("cat", vo.getP_cat());
 		map.put("start", start);
 		map.put("end", end);
-		map.put("brand", brandlist);
-
+		
 		// vo 에 저장된 카테고리에서 , 해당하는 페이지의 해당하는 물품갯수만큼 가져와서 리스트에 저장한다.
 		List<ProductVO> result = mybatis.selectList("ShopDAO.getProductDetail", map);
 

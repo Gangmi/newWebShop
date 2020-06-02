@@ -4,6 +4,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,6 +63,18 @@ public class ShopController {
 		if (vo.getItemQuan() == null) {
 			vo.setItemQuan("4");
 		}
+		List<String> brandlist = new ArrayList<String>();
+		if(vo.getP_brand()!=null) {
+			
+			StringTokenizer sc = new StringTokenizer(vo.getP_brand(),"/");
+			int i =0;
+			while(sc.hasMoreTokens()) {
+				brandlist.add(i, sc.nextToken());
+				i++;
+			}
+			mv.addObject("brand", brandlist);
+			
+		}
 		
 //		
 //		System.out.println(vo.getP_cat());
@@ -91,6 +104,9 @@ public class ShopController {
 		mv.addObject("nowcat",vo.getP_cat());
 		mv.addObject("nowpage",vo.getPage());
 		mv.addObject("nowquan",vo.getItemQuan());
+		
+		
+		
 		return mv;
 
 	}

@@ -16,6 +16,10 @@
 	String cat = (String) request.getAttribute("cat");
 int totalpage = (Integer) request.getAttribute("totalpage");
 
+
+List<String> select = (List)request.getAttribute("brand");
+
+
 List<ProductVO> result = (List) request.getAttribute("details");
 
 /* switch(catNum) {
@@ -156,11 +160,13 @@ case "table" :  catNum="5"; break;
 				<!-- Widget Title -->
 				<h6 class="widget-title mb-30">Brands</h6>
 
+
+				
 				<div class="widget-desc">
 					<!-- Single Form Check -->
 					<div class="form-check">
 						<input class="form-check-input" type="checkbox" value="Amado"
-							id="amado"> <label class="form-check-label" for="amado">Amado</label>
+							id="amado"<%if(select!=null) {%><% if(select.contains("Amado")){%>checked<%}}%>> <label class="form-check-label" for="amado">Amado</label>
 					</div>
 					<!-- Single Form Check -->
 					<div class="form-check">
