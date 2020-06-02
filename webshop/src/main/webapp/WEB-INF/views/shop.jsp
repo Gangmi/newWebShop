@@ -256,14 +256,15 @@ case "table" :  catNum="5"; break;
 										</select>
 									</form>
 								</div>
+								
+								
 								<div class="view-product d-flex align-items-center">
 									<p>View</p>
 									<form action="shop.do" method="get">
 										<select name="itemquan" id="viewProduct">
-											<option selected="selected" name="itemQuan" value="4">4</option>
-											<option name="itemQuan" value="8">8</option>
-											<option name="itemQuan" value="12">12</option>
-
+											<option <% if(request.getAttribute("nowquan").equals("4")){ %>selected="selected"<%} %> value="4">4</option>	
+											<option <% if(request.getAttribute("nowquan").equals("8")){ %>selected="selected"<%} %> value="8">8</option>
+											<option <% if(request.getAttribute("nowquan").equals("12")){ %>selected="selected"<%} %> value="12">12</option>
 										</select>
 									</form>
 								</div>
@@ -343,7 +344,7 @@ case "table" :  catNum="5"; break;
 
 
 								<li class="page-item"><a class="page-link"
-									href="shop.do?page=<%=i%>"><%=i%></a></li>
+									href="shop.do?p_cat=<%=result.get(0).getP_cat()%>&page=<%=i%>"><%=i%></a></li>
 
 								<%
 									}
@@ -448,7 +449,10 @@ case "table" :  catNum="5"; break;
 		</div>
 	</footer>
 	<!-- ##### Footer Area End ##### -->
-
+	<input type="hidden" id="p_cat" value=<%=request.getAttribute("nowcat")%>>
+	<input type="hidden" id="page" value=<%=request.getAttribute("nowpage")%>>
+	<input type="hidden" id="itemQuan" value=<%=request.getAttribute("nowquan")%>>
+	
 	<!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
 	<script src="js/jquery/jquery-2.2.4.min.js"></script>
 	<!-- Popper js -->

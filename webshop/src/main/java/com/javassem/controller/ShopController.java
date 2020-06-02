@@ -8,6 +8,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
+import javax.xml.ws.Response;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -20,12 +23,11 @@ import com.javassem.domain.ProductVO;
 import com.javassem.domain.ShopVO;
 import com.javassem.service.ShopService;
 
+import jdk.nashorn.internal.ir.RuntimeNode.Request;
+
 @Controller
 public class ShopController {
 	
-	public int nowpage;
-	public int nowitemquan;
-	public String nowcat;
 	
 
 	@Autowired
@@ -46,6 +48,7 @@ public class ShopController {
 		if (vo.getP_cat() == null) {
 			// 의자로 기본 카테고리를 지정
 			vo.setP_cat("chair");
+		
 
 		}
 		// 만약 페이지가 들어오지 않았다면,
@@ -58,7 +61,13 @@ public class ShopController {
 		if (vo.getItemQuan() == null) {
 			vo.setItemQuan("4");
 		}
+		//현재 사용자의 카테고리를 지정
 		
+		System.out.println(vo.getP_cat());
+		System.out.println(vo.getPage());
+		System.out.println(vo.getItemQuan());
+		
+	
 
 		// 해당하는 카테고리의 전체 갯수를 가져와서 몇 페이지를 할 지 결정
 
@@ -75,6 +84,9 @@ public class ShopController {
 		
 		// 다음 페이지에 해당하는 물품들을 전달
 		mv.addObject("details", result);
+		mv.addObject("nowcat",vo.getP_cat());
+		mv.addObject("nowpage",vo.getPage());
+		mv.addObject("nowquan",vo.getItemQuan());
 		return mv;
 
 	}
