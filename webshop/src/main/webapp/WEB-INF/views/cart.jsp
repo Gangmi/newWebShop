@@ -24,31 +24,7 @@
 
 <body>
 <%
-Cookie[] cookies = request.getCookies(); //request로 쿠키를 받음
-
-for(int i=0; i<cookies.length; i++)
-{
-	String str = cookies[i].getName(); //쿠키의 이름을 받는다.
-	String sdf = cookies[i].getValue();
-
-
-		out.println("cookies[" +i+ "] name : "+ str+"<br/>"); //쿠키의 이름
-		out.println("cookies[" +i+ "] value : "+ sdf+"<br/>"); //쿠키의 값
-		out.println("===================<br/>");
-	
-	
-}
-
 List<ProductVO> list =(List<ProductVO>) request.getAttribute("list");
-for(int i=0;i<list.size();i++)
-{
-	ProductVO vo = new ProductVO();
-	vo = list.get(i);
-	System.out.print("name = "+vo.getP_name());
-	System.out.print("price = "+vo.getP_price());
-}
-
-
 %>
 
     <!-- Search Wrapper Area Start -->
@@ -134,10 +110,15 @@ for(int i=0;i<list.size();i++)
                         <div class="cart-title mt-50">
                             <h2>Shopping Cart</h2>
                         </div>
-							<div style = "float:right;">
-							<label>All Select <input type="checkbox" name="selectall" id='selectall'></label>
+                        
+                        	<div style = "float:right;">
+							<label id='delsel'>Delete</label>
 							<br>
+							<label>All Select <input type="checkbox" name="selectall" id='selectall'></label>
 							</div>
+							
+							<br>
+							
                         <div class="cart-table clearfix">
                             <table class="table table-responsive">
                                 <thead>

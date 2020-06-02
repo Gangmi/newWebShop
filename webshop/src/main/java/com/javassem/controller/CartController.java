@@ -30,28 +30,26 @@ public class CartController {
 
 	
 	  @RequestMapping("/cart.do") 
-	  public ModelAndView cart(String id,String quantity, HttpServletResponse response, HttpServletRequest request) {
-/*	  model.addAttribute("id",id);
-	  model.addAttribute("quantity",quantity);*/
+	  public ModelAndView cart(String p_id,String quantity, HttpServletResponse response, HttpServletRequest request) {
 
-		  if(!(id==null))
+		  List<ProductVO> seq = new ArrayList<ProductVO>();
+		  if(!(p_id==null))
 		  {
-		  Cookie cookie = new Cookie(id, id);
+		  Cookie cookie = new Cookie("cart"+p_id, p_id);
+
 		  cookie.setPath("/");
 		  cookie.setMaxAge(60*60*24*7);
 		  response.addCookie(cookie);
+		  ProductVO vo = new ProductVO();
+			vo.setP_id(Integer.parseInt(p_id));
+		  seq.add(vo);
 		  }
 
-	  
-	  List<ProductVO> seq = new ArrayList<ProductVO>();
 	  Cookie[] cookies = request.getCookies(); //request로 받고
 		if(cookies != null) //null이 아니면 
 		{
 			for(int i=1; i<cookies.length; i++) //모든 쿠키 출력
 			{
-				System.out.println(cookies[i].getName()+"<br/>");
-				System.out.println(cookies[i].getValue()+"<br/>");
-				
 				ProductVO vo = new ProductVO();
 				vo.setP_id(Integer.parseInt(cookies[i].getValue()));
 				seq.add(vo);
@@ -68,7 +66,7 @@ public class CartController {
 	  {
 		  ProductVO result = new ProductVO();
 		  result = list.get(i);
-		  System.out.println("결과는 : **********"+result.getP_name());
+
 	  }
 	  
 	  ModelAndView mv = new ModelAndView();
