@@ -111,13 +111,13 @@
                             <div class="ml-100 cart-title">
                                 <h2>Login</h2>
                             </div>
-
+	<!--  -->
                             <form action="sign_in.do" method="post">
                             
                                 <div class="ml-100 mt-100 row">
                                      <div class="col-md-11 mb-3">
                                         <input type="text" class="form-control" id="id" value="" placeholder="아이디" required>
-                                        
+                                        <!--  -->
                                     </div>
                                      <div class="col-md-1 mb-3">
                                      <a class="btn amado-btn mb-15">로그인</a>

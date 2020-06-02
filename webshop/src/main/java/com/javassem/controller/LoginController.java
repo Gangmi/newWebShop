@@ -23,7 +23,7 @@ public class LoginController {
 		mv.setViewName("/index.do");
 		return mv;
 		//회원가입 완료되면 완료됬다는 창으로 보내주기 그리고 거기서 다시 버튼만들어서 다시 메인창으로
-		
+		//
 	}
 	//
 	@RequestMapping("/sign_in.do")
