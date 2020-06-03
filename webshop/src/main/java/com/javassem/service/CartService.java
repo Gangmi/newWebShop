@@ -3,6 +3,7 @@ package com.javassem.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.javassem.domain.LoginVO;
 import com.javassem.domain.ProductVO;
 
 
@@ -24,4 +25,6 @@ public interface CartService {
 
 	// 글 목록 조회
 	List<ProductVO> getShopList(List<ProductVO> seq);
+	
+	LoginVO getmemberInfo(LoginVO vo);
 }

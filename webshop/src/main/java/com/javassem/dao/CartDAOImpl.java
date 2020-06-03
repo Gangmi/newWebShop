@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.javassem.domain.LoginVO;
 import com.javassem.domain.ProductVO;
 import com.javassem.domain.ShopVO;
 
@@ -40,5 +41,11 @@ public class CartDAOImpl implements CartDAO{
 	public List<ProductVO> getShopList(List<ProductVO> seq) {
 		System.out.println("===> Mybatis getShopList() 호출");
 		return mybatis.selectList("CartDAO.getshopList", seq);
+	}
+	
+	public LoginVO getmemberInfo(LoginVO vo)
+	{
+		System.out.println("===> Mybatis getmemberInfo() 호출");
+		return mybatis.selectOne("CartDAO.getmemberInfo",vo);
 	}
 }

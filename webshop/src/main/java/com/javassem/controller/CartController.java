@@ -1,6 +1,7 @@
 package com.javassem.controller;
 
 import java.io.IOException;
+import java.nio.channels.SeekableByteChannel;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -10,15 +11,18 @@ import java.util.ListIterator;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.javassem.domain.LoginVO;
 import com.javassem.domain.ProductVO;
 import com.javassem.service.CartService;
 
@@ -72,7 +76,7 @@ public class CartController {
 		int total=0;
 		if(cookies != null&&cookies.length>1) //null이 아니면 
 		{
-			System.out.println("null인디 ");
+			
 			for(int i=1; i<cookies.length; i++) //모든 쿠키 출력
 			{
 				ProductVO vo = new ProductVO();
@@ -101,6 +105,27 @@ public class CartController {
 
 		return mv;
 
+	}
+	@ResponseBody
+	@RequestMapping(value="/checkout.do",produces="applicaton/text; charset=UTF-8")
+	public ModelAndView checkout(String subtotal,HttpServletResponse response, HttpServletRequest request,HttpSession session)
+	{
+		if(subtotal!=null)
+		{
+			System.out.println(subtotal);
+		}
+		
+		
+		
+		String userId = (String)session.getAttribute("userId");
+		System.out.println(userId);
+		LoginVO vo = new LoginVO();
+		vo.setMid(userId);
+		LoginVO result = service.getmemberInfo(vo);
+		ModelAndView mv=new ModelAndView();
+		mv.setViewName("checkout");
+		mv.addObject("result",result);
+		return mv;
 	}
 
 

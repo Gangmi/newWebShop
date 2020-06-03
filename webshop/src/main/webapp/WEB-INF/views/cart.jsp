@@ -5,6 +5,7 @@
 <!DOCTYPE>
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <!-- <script src="../../resources/js/jquery/jquery.cookie.js"></script> -->
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script> -->
 
@@ -116,41 +117,21 @@ $(function(){
 
         });
 
-$('#checkout').click(function(){
-	$.ajax({
-        url:"transfer.do",
-        type:'GET',
-        data: {
-        	param:$("#subtotal").val()
-            // 보낼 데이터
-        },
-        success:function(data){
-            alert("완료!");
-            window.opener.location.reload();
-            self.close();
-        },
-        error:function(jqXHR, textStatus, errorThrown){
-            alert("에러 발생~~ \n" + textStatus + " : " + errorThrown);
-            self.close();
-        }
-    });
+	$("#checkout").click(function(){
 
-	$.ajax({
-		type:'post',
-		async: true,
-		url:'idCheck.do',
-		contentType : 'application/x-www-form-urlencoded;charset=UTF-8',
-		data:"userId="+$('#userId').val(),
-		success:function(resultData){
-			$('#idCheckResult').html(resultData);
-		}
-	});
+			$.ajax({
+				type:'post',
+				async: true,
+				url:'checkout.do',
+				contentType : 'application/x-www-form-urlencoded;charset=UTF-8',
+				data:"subtotal="+$('#subtotal').val()
+			});
+		});
+
 	
 });
     
-   
 
-});
 
 </script>
 <head>
@@ -238,7 +219,7 @@ int total = subtotal+deli;
                     <li><a href="index.do">Home</a></li>
                     <li><a href="shop.do?p_cat=chair">Shop</a></li>
                     <li class="active"><a href="cart.do">Cart</a></li>
-                    <li><a id='checkout'>Checkout</a></li>
+                    <li><a href="checkout.do">Checkout</a></li>
                     <li><a href="login.do">Login</a></li>
                 </ul>
             </nav>
@@ -335,7 +316,7 @@ int total = subtotal+deli;
                                 <li><span>total:</span> <span id='total'>$ <% if(total>0){%><%=total %><%}else{ %>0<%} %></span></li>
                             </ul>
                             <div class="cart-btn mt-100">
-                                <a href="cart.do" class="btn amado-btn w-100">Checkout</a>
+                                <a id='checkout' class="btn amado-btn w-100">Checkout</a>
                             </div>
                         </div>
                     </div>

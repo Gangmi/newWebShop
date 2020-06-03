@@ -1,10 +1,13 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page import='com.javassem.domain.LoginVO' %>
 
 <!DOCTYPE html>
 <html lang="en">
+<% LoginVO vo = (LoginVO)request.getAttribute("result");
 
+%>
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="">
@@ -119,25 +122,25 @@
                                 <div class="row">
                                   
                                     <div class="col-12 mb-3">
-                                        <input type="text" class="form-control mb-3" id="mname" name="mname" placeholder="이름" value="" required>
+                                        <input type="text" class="form-control mb-3" id="mname" name="mname" placeholder="이름" value="<%= vo.getMname() %>" required>
                                     </div>
                                     <div class="col-12 mb-3">
-                                        <input type="email" class="form-control" id="memail"  name="memail" placeholder="이메일" value="" required>
+                                        <input type="email" class="form-control" id="memail"  name="memail" placeholder="이메일" value="<%= vo.getMemail() %>" required>
                                     </div>
                                     <div class="col-12 mb-3">
-                                        <input type="text" class="form-control" id="mtel" name="mtel"  placeholder="휴대폰번호" value="" required>
+                                        <input type="text" class="form-control" id="mtel" name="mtel"  placeholder="휴대폰번호" value="<%= vo.getMtel() %>" required>
                                     </div>
                                    <div class="col-md-6 mb-3">
-                                    <input type="text" class="form-control" id="mpostCode"  name="mpostCode" placeholder="우편번호">
+                                    <input type="text" class="form-control" id="mpostCode"  name="mpostCode" placeholder="우편번호" value='<%= vo.getMpostCode() %>'>
                                     </div>
                                     <div class="col-md-6 mb-3">
 									<input type="button" class="btn amado-btn mb-15" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
 									</div>
 									 <div class="col-12 mb-3">
-									<input type="text" class="form-control" id="maddr"  name="maddr" placeholder="주소"><br>
+									<input type="text" class="form-control" id="maddr"  name="maddr" placeholder="주소" value='<%= vo.getMaddr() %>'><br>
 									</div>
 									<div class="col-12 mb-3">
-									<input type="text" class="form-control" id="maddrDetail"  name="maddrDetail" placeholder="상세주소">
+									<input type="text" class="form-control" id="maddrDetail"  name="maddrDetail" placeholder="상세주소" value="<%= vo.getMaddrDetail() %>">
 									</div>
                                 </div>
                             </form>

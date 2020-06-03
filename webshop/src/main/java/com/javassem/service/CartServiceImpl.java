@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.javassem.dao.CartDAOImpl;
 import com.javassem.dao.ShopDAOImpl;
+import com.javassem.domain.LoginVO;
 import com.javassem.domain.ProductVO;
 import com.javassem.domain.ShopVO;
 
@@ -37,6 +38,12 @@ public class CartServiceImpl implements CartService {
 
 	public List<ProductVO> getShopList(List<ProductVO> seq) {
 		return CartDAO.getShopList(seq);
+	}
+
+
+	public LoginVO getmemberInfo(LoginVO vo) {
+		
+		return CartDAO.getmemberInfo(vo);
 	}
 
 

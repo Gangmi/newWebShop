@@ -19,13 +19,13 @@ public class TransferDAOImpl implements TransferDAO {
 	 */
 	@Transactional(rollbackFor=TransException.class)
 	@Override
-	public void transfer(String send, String recv) throws TransException{
-		int resultSend = sqlSession.update("trans.withdraw", send);
-		if( resultSend == 0) throw new TransException();
-		System.out.println("인출");
-		int resultRecv = sqlSession.update("trans.deposit", recv);
-		if( resultRecv == 0) throw new TransException();
-		System.out.println("입금");
+	public void transfer(int subtotal) throws TransException{
+//		int resultSend = sqlSession.update("trans.withdraw", send);
+//		if( resultSend == 0) throw new TransException();
+//		System.out.println("인출");
+//		int resultRecv = sqlSession.update("trans.deposit", recv);
+//		if( resultRecv == 0) throw new TransException();
+//		System.out.println("입금");
 	}
 
 }
