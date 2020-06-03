@@ -106,25 +106,20 @@ public class CartController {
 		return mv;
 
 	}
-	@ResponseBody
-	@RequestMapping(value="/checkout.do",produces="applicaton/text; charset=UTF-8")
+	
+	@RequestMapping(value="/checkout.do")
 	public ModelAndView checkout(String subtotal,HttpServletResponse response, HttpServletRequest request,HttpSession session)
-	{
-		if(subtotal!=null)
-		{
-			System.out.println(subtotal);
-		}
-		
-		
-		
+	{	
 		String userId = (String)session.getAttribute("userId");
-		System.out.println(userId);
+
 		LoginVO vo = new LoginVO();
 		vo.setMid(userId);
 		LoginVO result = service.getmemberInfo(vo);
+
 		ModelAndView mv=new ModelAndView();
 		mv.setViewName("checkout");
 		mv.addObject("result",result);
+		mv.addObject("subtotal",subtotal);
 		return mv;
 	}
 

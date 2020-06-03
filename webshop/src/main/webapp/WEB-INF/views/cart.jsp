@@ -32,7 +32,7 @@ $(function(){
   			}
   		var total = subtotal+deli;
   		$("#subtotal").text("$ "+subtotal);
-  		$("#subtotal").val(subtotal);
+  		$("#subtotal").attr("value",subtotal);
   		$("#deli").text("$ "+deli);
   		$("#total").text("$ "+total);
     });
@@ -64,7 +64,7 @@ $(function(){
   		$("#subtotal").text("$ "+subtotal);
   		$("#deli").text("$ "+deli);
   		$("#total").text("$ "+total);
-  		$("#subtotal").val(subtotal);
+  		$("#subtotal").attr("value",subtotal);
 
     });
     $(".check").change(function(){
@@ -89,7 +89,7 @@ $(function(){
        		$("#subtotal").text("$ "+subtotal);
        		$("#deli").text("$ "+deli);
        		$("#total").text("$ "+total);
-       		$("#subtotal").val(subtotal);
+       		$("#subtotal").attr("value",subtotal);
 
         }else{
 
@@ -112,21 +112,16 @@ $(function(){
       		$("#subtotal").text("$ "+subtotal);
       		$("#deli").text("$ "+deli);
       		$("#total").text("$ "+total);
-      		$("#subtotal").val(subtotal);
+      		$("#subtotal").attr("value",subtotal);
         }
 
         });
 
-	$("#checkout").click(function(){
-
-			$.ajax({
-				type:'post',
-				async: true,
-				url:'checkout.do',
-				contentType : 'application/x-www-form-urlencoded;charset=UTF-8',
-				data:"subtotal="+$('#subtotal').val()
-			});
-		});
+    $('#checkout').click(function(){
+    	var to  = $('#subtotal').text().split("$ ");
+    	var subtotalresult = to[1];
+    	window.location.href = "checkout.do?subtotal=" + subtotalresult;
+        });
 
 	
 });

@@ -20,7 +20,7 @@
 	</select>
 	<select id="getmemberInfo" parameterType="login" resultType="login">
 		<![CDATA[
-		SELECT M_NAME mname, M_EMAIL memail, M_TEL mtel, M_POSTCODE mpostCode, M_ADDR maddr, M_ADDR_DETAIL maddrDetail
+		SELECT M_NAME mname, M_EMAIL memail, M_TEL mtel, M_POSTCODE mpostCode, M_ADDR maddr, M_ADDR_DETAIL maddrDetail, M_ID mid
 		FROM MEMBER
 		WHERE M_ID = #{mid}
 		]]>

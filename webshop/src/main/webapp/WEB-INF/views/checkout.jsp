@@ -6,7 +6,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <% LoginVO vo = (LoginVO)request.getAttribute("result");
-
+ int subtotal = Integer.parseInt((String)request.getAttribute("subtotal"));
+int deli =0;
+if(subtotal<50000)
+{
+	deli = 2500;
+	}
+else{
+		deli =0;
+	}
+int total = subtotal+deli; 
 %>
 <head>
     <meta charset="UTF-8">
@@ -150,9 +159,9 @@
                         <div class="cart-summary">
                             <h5>Cart Total</h5>
                             <ul class="summary-table">
-                                <li><span>subtotal:</span> <span>$140.00</span></li>
-                                <li><span>delivery:</span> <span>Free</span></li>
-                                <li><span>total:</span> <span>$140.00</span></li>
+                                <li><span>subtotal:</span> <span id='subtotal'>$ <%=subtotal %></span></li>
+                                <li><span>delivery:</span> <span id='deli'>$ <% if(deli==0){%>Free<%}else{ %><%=deli%><%} %></span></li>
+                                <li><span>total:</span> <span id='total'>$ <% if(total>0){%><%=total %><%}else{ %>0<%} %></span></li>
                             </ul>
 
                             <div class="payment-method">
