@@ -58,12 +58,12 @@ public class LoginController {
 		}
 		return mv;
 	}
-
+//	아이디 찾기
 	@RequestMapping("/find_Id.do")
 	public ModelAndView findId(LoginVO vo) {
-		System.out.println(vo.getMname());
+
 		LoginVO result = loginservice.findId(vo);
-		System.out.println(result.getMid());
+		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/find-id-ok");
 		mv.addObject("id", result.getMid());
@@ -74,10 +74,15 @@ public class LoginController {
 	public ModelAndView findPassword(LoginVO vo) {
 		LoginVO result = loginservice.findPassword(vo);
 		
+		ModelAndView mv = new ModelAndView();
+		
+		if (result == null || result.getMpass() == null) {
+			mv.setViewName("/find-password");
 	
-		  ModelAndView mv = new ModelAndView();
+		}else {
 		  gmailSend(result);
 		  mv.setViewName("/find-password-ok");
+		}
 		 return mv;		
 	}
 
@@ -108,11 +113,12 @@ public class LoginController {
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(vo.getMemail())); 
 
             // Subject
-            message.setSubject("안녕하세요"); //메일 제목을 입력
+            message.setSubject("정준주식회사 비밀번호찾기"); //메일 제목을 입력
 
             // Text
-            message.setText("비밀번호는 ' "+vo.getMpass()+" '입니다 .");    //메일 내용을 입력
-
+            message.setText("=================================================\n"+vo.getMid()+" 님의 비밀번호는 '"+vo.getMpass()+"'입니다 .\n"+"=================================================\n");//메일 내용을 입력
+              
+           
             // send the message
             Transport.send(message); ////전송
             System.out.println("message sent successfully...");

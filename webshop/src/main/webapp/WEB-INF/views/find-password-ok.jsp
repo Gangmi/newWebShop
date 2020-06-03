@@ -118,7 +118,7 @@
                             <form id ="" name="" action="" method="post">
                                 <div class="ml-100 mt-100 row">
                                      <div class="col-md-11 mb-3">
-                                        <input type="text" class="form-control" id="" class="" value="비밀번호를 가입하신 메일로 전송하시겠습니까?" readonly="readonly" required>
+                                        <input type="text" class="form-control" id="" class="" value="비밀번호를 가입하신 메일로 전송했습니다." readonly="readonly" required>
                                         
                                     </div>
                                      <div class="col-12 mb-3">
