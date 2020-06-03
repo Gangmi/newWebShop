@@ -311,6 +311,7 @@ case "table" :  catNum="5"; break;
 										$<%=result.get(i).getP_price()%></p>
 									<a href="product-details.do?p_id=<%=result.get(i).getP_id()%>">
 										<h6><%=result.get(i).getP_name()%></h6>
+										 <a href="#"><%=result.get(i).getP_brand() %></a>
 
 
 
@@ -457,9 +458,13 @@ case "table" :  catNum="5"; break;
 		</div>
 	</footer>
 	<!-- ##### Footer Area End ##### -->
+	<!--다음페이지 요청을 위한 현재 페이지 정보  -->
 	<input type="hidden" id="p_cat" value=<%=request.getAttribute("nowcat")%>>
 	<input type="hidden" id="page" value=<%=request.getAttribute("nowpage")%>>
 	<input type="hidden" id="itemQuan" value=<%=request.getAttribute("nowquan")%>>
+	<input type="hidden" id="rawbrand" value="<%=request.getAttribute("rawbrand") %>">
+	
+	
 	
 	<!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
 	<script src="js/jquery/jquery-2.2.4.min.js"></script>

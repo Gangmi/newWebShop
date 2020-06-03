@@ -132,52 +132,60 @@
 	// 페이지당 아이템 갯수를 설정하는 부분
 	$("#viewProduct").change(
 			function(evt) {
+				// 선택된 아이템 갯수를 가져옴
 				var itemQuan = $(evt.target).val();
+
+				// 카테고리와 페이지정보 그리고 브랜드 체크 여부를 가져옴
 				var cat = $("#p_cat").val();
 				var page = $("#page").val();
 
+				// 브랜드 클릭 정보가 있으면
+				if ($("#rawbrand").val()!="null") {
+					
+					var brand = $("#rawbrand").val();
+
+					window.location.href = "shop.do?" + "p_cat=" + cat
+							+ "&page=" + page + "&itemQuan=" + itemQuan +"&p_brand="+brand
+							
+				}else if ($("#rawbrand").val()=="null"){
 				window.location.href = "shop.do?" + "p_cat=" + cat + "&page="
 						+ page + "&itemQuan=" + itemQuan
+						
+				}
 
 			});
 
 	// 브랜드 별 상품을 보여주기 위한 부분
 	$(".form-check input").click(
 			function() {
-				//체크박스 객체 가져오기
+				// 체크박스 객체 가져오기
 				var chkbox = $(".form-check-input");
-				//브랜드를 저장할 변수
+				// 브랜드를 저장할 변수
 				var send_array = "";
 
-				//안에 체크가 있는지 확인하고  위의 변수에 붙여넣기
+				// 안에 체크가 있는지 확인하고 위의 변수에 붙여넣기
 				for (var i = 0; i < chkbox.length; i++) {
 					if (chkbox[i].checked == true) {
 						send_array += chkbox[i].value + "/";
 					}
 				}
-				
-				alert(send_array);
-				
-				
-				//로케이션 넘길때 사용해야할 변수들
+
+				// 로케이션 넘길때 사용해야할 변수들
 				var itemQuan = $("#itemQuan").val();
 				var cat = $("#p_cat").val();
-				
-				
-				//만약 체크된 것이 없다면
-				if(send_array==""){
-					window.location.href = "shop.do?" + "p_cat=" + cat
-					+ "&itemQuan=" + itemQuan;
-				
-				//체크된 것이 있다면	
-				}else if(send_array!=""){
-				
-				
 
-				window.location.href = "shop.do?" + "p_cat=" + cat
-						+ "&itemQuan=" + itemQuan + "&p_brand=" + send_array;
-				
-				
+				// 만약 체크된 것이 없다면
+				if (send_array == "") {
+					window.location.href = "shop.do?" + "p_cat=" + cat
+							+ "&itemQuan=" + itemQuan;
+
+					// 체크된 것이 있다면
+				} else if (send_array != "") {
+
+					window.location.href = "shop.do?" + "p_cat=" + cat
+							+ "&itemQuan=" + itemQuan + "&p_brand="
+							+ send_array;
+
 				}
 
 			});

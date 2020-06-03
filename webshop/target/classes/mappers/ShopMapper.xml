@@ -11,7 +11,7 @@
 select * 
 
 
-from (select rownum as rnum,product.p_id,product.p_name,product.p_price,product.p_cat,product.p_quan from product where product.p_cat=#{cat}<if test="brand!=null">and p_brand in<foreach collection="brand" item="br"  open="(" close=")" separator=",">#{br}</foreach></if> order by product.p_date desc)
+from (select rownum as rnum,product.p_id,product.p_name,product.p_price,product.p_cat,product.p_quan,p_brand from product where product.p_cat=#{cat}<if test="brand!=null">and p_brand in<foreach collection="brand" item="br"  open="(" close=")" separator=",">#{br}</foreach></if> order by product.p_date desc)
 
 
 where <![CDATA[rnum>=]]>#{start} and <![CDATA[rnum<=]]>#{end}

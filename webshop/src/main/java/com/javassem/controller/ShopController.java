@@ -61,19 +61,32 @@ public class ShopController {
 
 		// 페이지당 아이템의 갯수가 들어오지 않으면
 		if (vo.getItemQuan() == null) {
+			//4로 지정
 			vo.setItemQuan("4");
 		}
-		List<String> brandlist = new ArrayList<String>();
+		//체크된 브랜드의 정보를 넘기기 위해서 ArrayList선언
+		
+		
+		//브랜드정보가 들어왔다면,
 		if(vo.getP_brand()!=null) {
 			
-			StringTokenizer sc = new StringTokenizer(vo.getP_brand(),"/");
+			//브랜드 정보를 가져오고
+			String brand=vo.getP_brand();
+			List<String> brandlist = new ArrayList<String>();
+			
+			//스트링 토큰나이저로 끊어줌
+			StringTokenizer sc = new StringTokenizer(brand,"/");
 			int i =0;
+			//토큰나이저로 끊는대로 리스트에 저장
 			while(sc.hasMoreTokens()) {
 				brandlist.add(i, sc.nextToken());
 				i++;
+				
 			}
+			
 			mv.addObject("brand", brandlist);
-			mv.addObject("rawbrand",vo.getP_brand());
+			System.out.println(brand);
+			mv.addObject("rawbrand",brand);
 			
 		}
 		
