@@ -128,7 +128,7 @@
                                      <div class="col-md-11 mb-3">
                                         <input type="text" class="form-control" id="mpass" name="mpass" placeholder="비밀번호" value="" required>
                                     </div>
-                                		[ ${sessionScope.sessionTime} ] ${userId}님 아령하세요 하잇 &nbsp; &nbsp;
+                                		[ ${sessionScope.sessionTime} ] ${sessionScope.userId}님 아령하세요 하잇 &nbsp; &nbsp;
 <!--                                     <div class="amado-btn-group mt-30 mb-100"> -->
                                      <div  class="col-12 mb-3">
 						                
