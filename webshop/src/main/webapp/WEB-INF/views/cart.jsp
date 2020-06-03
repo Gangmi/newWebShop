@@ -14,6 +14,25 @@ $(function(){
         var chk = $(this).is(":checked");//.attr('checked');
         if(chk) $(".check").prop('checked', true);
         else  $(".check").prop('checked', false);
+    	var count=0;
+    	var price=0;
+    	var subtotal=0;
+    	$(".check:checked").each(function (index) {  
+             count = $(this).parents().prevAll(".quantity").find(".qty-text").val();
+             price = $(this).parents().prevAll(".quantity").find(".price").val();
+             subtotal += count*price;
+        }); 
+  		var deli =0;
+  		if(subtotal<50000)
+  		{
+  			deli = 2500;
+  		}else{
+  				deli =0;
+  			}
+  		var total = subtotal+deli;
+  		$("#subtotal").text("$ "+subtotal);
+  		$("#deli").text("$ "+deli);
+  		$("#total").text("$ "+total);
     });
     $("#delsel").click(function(){
     	var str="";
@@ -24,13 +43,75 @@ $(function(){
     });  
 
     $(".quantity").click(function(){
-    	 var count = $(this).find(".qty-text").val();
- 		alert(count);
-
- 		 var price = $(this).find(".price").val();
-  		alert(price);
+    	var count=0;
+    	var price=0;
+    	var subtotal=0;
+    	$(".check:checked").each(function (index) {  
+             count = $(this).parents().prevAll(".quantity").find(".qty-text").val();
+             price = $(this).parents().prevAll(".quantity").find(".price").val();
+             subtotal += count*price;
+        }); 
+  		var deli =0;
+  		if(subtotal<50000)
+  		{
+  			deli = 2500;
+  		}else{
+  				deli =0;
+  			}
+  		var total = subtotal+deli;
+  		$("#subtotal").text("$ "+subtotal);
+  		$("#deli").text("$ "+deli);
+  		$("#total").text("$ "+total);
 
     });
+    $(".check").change(function(){
+
+    	if($(this).is(":checked")){
+    		 var count=0;
+         	var price=0;
+         	var subtotal=0;
+         	$(".check:checked").each(function (index) {  
+                  count = $(this).parents().prevAll(".quantity").find(".qty-text").val();
+                  price = $(this).parents().prevAll(".quantity").find(".price").val();
+                  subtotal += count*price;
+             }); 
+       		var deli =0;
+       		if(subtotal<50000)
+       		{
+       			deli = 2500;
+       		}else{
+       				deli =0;
+       			}
+       		var total = subtotal+deli;
+       		$("#subtotal").text("$ "+subtotal);
+       		$("#deli").text("$ "+deli);
+       		$("#total").text("$ "+total);
+
+        }else{
+
+            var count=0;
+        	var price=0;
+        	var subtotal=0;
+        	$(".check:checked").each(function (index) {  
+                 count = $(this).parents().prevAll(".quantity").find(".qty-text").val();
+                 price = $(this).parents().prevAll(".quantity").find(".price").val();
+                 subtotal += count*price;
+            }); 
+      		var deli =0;
+      		if(subtotal<50000)
+      		{
+      			deli = 2500;
+      		}else{
+      				deli =0;
+      			}
+      		var total = subtotal+deli;
+      		$("#subtotal").text("$ "+subtotal);
+      		$("#deli").text("$ "+deli);
+      		$("#total").text("$ "+total);
+        }
+
+        });
+    
 
 
 });
@@ -57,15 +138,16 @@ $(function(){
 <body>
 <%
 List<ProductVO> list =(List<ProductVO>) request.getAttribute("list");
-int total = (int)request.getAttribute("total");
+int subtotal = (int)request.getAttribute("total");
 int deli =0;
-if(total<50000)
+if(subtotal<50000)
 {
 	deli = 2500;
 	}
 else{
 		deli =0;
 	}
+int total = subtotal+deli;
 %>
 
     <!-- Search Wrapper Area Start -->
@@ -196,7 +278,7 @@ else{
                                                     <span class="qty-plus" onclick="var effect = document.getElementById('qty<%=vo.getP_id() %>'); var qty<%=vo.getP_id() %> = effect.value; if( !isNaN( qty<%=vo.getP_id() %> )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                                 </div>
                                                 &nbsp;
-                                                <label><input type="checkbox" name="check" class='check' value='<%=vo.getP_id()%>' ></label>
+                                                <label><input type="checkbox" name="check" class='check'  checked="checked" value='<%=vo.getP_id()%>' ></label>
                                             </div>
                                         </td>
                                     </tr>
@@ -211,9 +293,9 @@ else{
                         <div class="cart-summary">
                             <h5>Cart Total</h5>
                             <ul class="summary-table">
-                                <li><span>subtotal:</span> <span>$ <%=total %></span></li>
-                                <li><span>delivery:</span> <span>$ <% if(deli==0){%>Free<%}else{ %><%=deli%><%} %></span></li>
-                                <li><span>total:</span> <span>$ <% if(total-deli>0){%><%=total-deli %><%}else{ %>0<%} %></span></li>
+                                <li><span>subtotal:</span> <span id='subtotal'>$ <%=subtotal %></span></li>
+                                <li><span>delivery:</span> <span id='deli'>$ <% if(deli==0){%>Free<%}else{ %><%=deli%><%} %></span></li>
+                                <li><span>total:</span> <span id='total'>$ <% if(total>0){%><%=total %><%}else{ %>0<%} %></span></li>
                             </ul>
                             <div class="cart-btn mt-100">
                                 <a href="cart.do" class="btn amado-btn w-100">Checkout</a>
