@@ -183,6 +183,7 @@ case "table" :  catNum="5"; break;
 					<!-- Single Form Check -->
 					<div class="form-check">
 						<input class="form-check-input" type="checkbox" value="Furniture Inc"
+						
 							id="furniture" <%if(select!=null) {%><% if(select.contains("Furniture Inc")){%>checked<%}}%>> <label class="form-check-label"
 							for="furniture">Furniture Inc</label>
 					</div>
@@ -209,7 +210,7 @@ case "table" :  catNum="5"; break;
 				<div class="widget-desc">
 					<ul class="d-flex">
 						<%if(selectcolor!=null){ %>
-						<li>now<a class="<%=selectcolor%>"></a></li><li><li><li>
+						<li>now<a class="<%=selectcolor%>"></a></li><li></li><li><li>
 						<%} %>
 						<li><a href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=nowcate%>&page=<%=request.getAttribute("nowpage")%>&p_color=white" class="white"></a></li>
 						<li><a href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=nowcate%>&page=<%=request.getAttribute("nowpage")%>&p_color=gray" class="gray"></a></li>
@@ -220,6 +221,7 @@ case "table" :  catNum="5"; break;
 						<li><a href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=nowcate%>&page=<%=request.getAttribute("nowpage")%>&p_color=orange" class="orange"></a></li>
 						<li><a href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=nowcate%>&page=<%=request.getAttribute("nowpage")%>&p_color=brown" class="brown"></a></li>
 					</ul>
+					<a href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=nowcate%>&page=<%=request.getAttribute("nowpage")%>">reset</a>
 				</div>
 			</div>
 
@@ -345,7 +347,12 @@ case "table" :  catNum="5"; break;
 						</div>
 					</div>
 					<%
-						}}
+						}
+					}else{
+					%>	
+						검색목록 없음
+						
+					<% }
 					%>
 
 				</div>
@@ -360,8 +367,7 @@ case "table" :  catNum="5"; break;
 								%>
 
 
-								<li class="page-item"><a class="page-link"
-									href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=result.get(0).getP_cat()%><%if(selectcolor!=null){%>&p_color=<%=selectcolor%><%}%>&page=<%=i%>"><%=i%></a></li>
+								<li class="page-item"><a class="page-link" href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=result.get(0).getP_cat()%><%if(selectcolor!=null){%>&p_color=<%=selectcolor%><%}%>&page=<%=i%>"><%=i%></a></li>
 
 								<%
 									}

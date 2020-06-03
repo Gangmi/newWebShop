@@ -96,6 +96,8 @@ public class ShopController {
 			
 			//mv에 저장
 			mv.addObject("selectcolor",vo.getP_color());
+			System.out.println(vo.getP_color() +"-----------controler");
+			
 		}
 		
 //		
@@ -109,6 +111,7 @@ public class ShopController {
 
 		int totalpage = service.getCatTotal(vo);
 		
+		
 		//만약 구해온 페이지보다 현재 페이지가 크다면
 		if(Integer.parseInt(vo.getPage())>totalpage) {
 			//페이지를 1페이지로 만듦
@@ -118,6 +121,10 @@ public class ShopController {
 		// 해당하는 카테고리의 물품들을 db에 요청
 		List<ProductVO> result = service.getProductDetail(vo);
 
+		if(result.size()==0) {
+			System.out.println("받아온 리스트 없음");
+		}
+		
 		// 다음 페이지 지정
 		mv.setViewName("shop");
 

@@ -55,6 +55,7 @@ public class ShopDAOImpl implements ShopDAO {
 		// 전체 갯수를 구하기 위해 맵퍼로 전송
 		catTot = mybatis.selectOne("ShopDAO.getCatTotal", map);
 
+		System.out.println("shopdao 아이템갯수 " + catTot);
 		// 가져온 페이지당 갯수를 int로 변환
 		int itemquan = Integer.parseInt(vo.getItemQuan());
 
@@ -73,6 +74,7 @@ public class ShopDAOImpl implements ShopDAO {
 
 	// 해당 카테고리의 상품을 가져오기
 	public List<ProductVO> getProductDetail(ProductVO vo) {
+		System.out.println("다오 들어옴");
 
 		// getCatTotal(vo);
 
@@ -81,6 +83,7 @@ public class ShopDAOImpl implements ShopDAO {
 		List<String> brandlist = new ArrayList();
 		if (vo.getP_brand() != null) {
 
+			
 			StringTokenizer sc = new StringTokenizer(vo.getP_brand(), "/");
 
 			int i = 0;
@@ -98,7 +101,8 @@ public class ShopDAOImpl implements ShopDAO {
 
 		// 컬러에대한 검색이 있다면,
 		if (vo.getP_color() != null) {
-			map.put("selectcolor", vo.getP_color());
+			
+			map.put("selectcol", vo.getP_color());
 		}
 
 		// 가져온 페이지당 갯수를 int로 변환
@@ -124,7 +128,7 @@ public class ShopDAOImpl implements ShopDAO {
 		int end = page * itemquan;
 		int start = end - (itemquan - 1);
 
-		System.out.println(vo.getP_color());
+		
 
 		map.put("cat", vo.getP_cat());
 		map.put("start", start);
@@ -132,6 +136,8 @@ public class ShopDAOImpl implements ShopDAO {
 
 		// vo 에 저장된 카테고리에서 , 해당하는 페이지의 해당하는 물품갯수만큼 가져와서 리스트에 저장한다.
 		List<ProductVO> result = mybatis.selectList("ShopDAO.getProductDetail", map);
+		
+		
 
 		return result;
 	}
