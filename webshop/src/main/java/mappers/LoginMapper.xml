@@ -15,9 +15,7 @@
 		
 		SELECT m_id mid				
 		FROM member
-		 WHERE M_ID= 
-		 
-		 #{mid} AND M_PASS = #{mpass}
+		 WHERE M_ID= #{mid} AND M_PASS = #{mpass}
 		
 		
 	</select>
@@ -30,6 +28,19 @@
 		FROM member WHERE M_TEL= #{mtel} 
 		
 		AND M_NAME = #{mname}
+		
+		
+	</select>
+	
+	
+	<!-- 비밀번호찾기-->
+	 <select id="findpassword" parameterType="login" resultType="login">
+		
+		SELECT m_pass mpass, M_EMAIL memail
+				
+		FROM member 
+		WHERE M_ID= #{mid} 
+
 		
 		
 	</select>

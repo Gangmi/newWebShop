@@ -21,6 +21,10 @@
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="css/core-style.css">
     <!-- <link rel="stylesheet" href="style.css"> -->
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./resources/js/login-userInput.js"></script>
+    
 
 </head>
 
@@ -109,20 +113,20 @@
                         <div class="checkout_details_area mt-50 clearfix">
 
                             <div class="ml-100 cart-title">
-                                <h2>Find-password</h2>
+                                <h2>Find-Password</h2>
                             </div>
 
-                            <form action="#" method="post">
+                            <form action="find_password.do" id="findPassword" name="findPassword" method="post">
                                 <div class="ml-100 mt-100 row">
                                      <div class="col-md-11 mb-3">
-                                        <input type="text" class="form-control" id="mid" value="" placeholder="아이디" required>                                      
+                                        <input type="text" class="form-control" id="mid" name="mid" value="" placeholder="아이디" required>                                      
                                     </div>
                                     <div class="col-12  newsletter-text mb-3">
                                     <p>아이디를 모르시나요?   <a href="find-id.do">아이디 찾기</a></p>
                                     </div>
                       
                                      <div class="col-12 mb-3">						              					        
-						               	<a href="#" class="btn amado-btn mb-15">다음</a>
+						               	<a id="findPasswordNext" class="btn amado-btn mb-15">다음</a>
 						            </div>
 
                                 </div>

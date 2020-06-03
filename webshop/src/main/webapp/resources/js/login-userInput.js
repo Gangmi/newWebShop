@@ -131,12 +131,19 @@ $(function(){
 			$('#allcheckNext').attr("href","#");
 			
 		}
+		
 	});
 	
-
+	$('#findPasswordNext').click(function(){
+		if( $.trim($("#mid").val()) == '' ){
+            alert("아이디를 입력해 주세요.");
+            $("#mid").focus();
+            return;
+        }
+		
+	document.findPassword.submit();
 	
-	
-	
+	});
 	
 	
 	
