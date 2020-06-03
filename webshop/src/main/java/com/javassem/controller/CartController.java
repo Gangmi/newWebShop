@@ -1,8 +1,8 @@
 package com.javassem.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -16,88 +16,99 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+
 import org.springframework.web.servlet.ModelAndView;
 
 import com.javassem.domain.ProductVO;
 import com.javassem.service.CartService;
-import com.javassem.service.ShopService;
+
 
 @Controller
 public class CartController {
 	@Autowired	
 	private CartService service;
 
-	
-	  @RequestMapping("/cart.do") 
-	  public ModelAndView cart(String p_id,HttpServletResponse response, HttpServletRequest request) {
 
-		  List<ProductVO> seq = new ArrayList<ProductVO>();
-		  if(!(p_id==null))
-		  {
-		  Cookie cookie = new Cookie("cart"+p_id, p_id);
+	@RequestMapping("/cart.do") 
+	public ModelAndView cart(String delstr,String p_id,HttpServletResponse response, HttpServletRequest request) {
 
-		  cookie.setPath("/");
-		  cookie.setMaxAge(60*60*24*7);
-		  response.addCookie(cookie);
-		  ProductVO vo = new ProductVO();
-			vo.setP_id(Integer.parseInt(p_id));
-		  seq.add(vo);
-		  }
-
-	  Cookie[] cookies = request.getCookies(); //request로 받고
-		if(cookies != null) //null이 아니면 
+		List<ProductVO> seq = new ArrayList<ProductVO>();
+		if(!(p_id==null))
 		{
+			Cookie cookie = new Cookie("cart"+p_id, p_id);
+
+			cookie.setPath("/");
+			cookie.setMaxAge(60*60*24*7);
+			response.addCookie(cookie);
+			ProductVO vo = new ProductVO();
+			vo.setP_id(Integer.parseInt(p_id));
+			seq.add(vo);
+		}
+		if(delstr!=null)
+		{
+			String[] array = delstr.split(",");
+
+			//출력				
+			for(int i=0;i<array.length;i++) {
+
+				Cookie delcookie = new Cookie("cart"+array[i], null);
+				delcookie.setMaxAge(0);
+				delcookie.setPath("/");
+				System.out.println("cart"+array[i]);
+				
+				response.addCookie(delcookie);
+				
+			}
+			try {
+				response.sendRedirect("cart.do");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		Cookie[] cookies = request.getCookies(); //request로 받고
+		List<ProductVO> list =new ArrayList<ProductVO>();
+		int total=0;
+		if(cookies != null&&cookies.length>1) //null이 아니면 
+		{
+			System.out.println("null인디 ");
 			for(int i=1; i<cookies.length; i++) //모든 쿠키 출력
 			{
 				ProductVO vo = new ProductVO();
 				vo.setP_id(Integer.parseInt(cookies[i].getValue()));
 				seq.add(vo);
-				
+
 			} //cookieN에 대한 정보가 다 사라져있어야 함
+			list = service.getShopList(seq);
+
+			//System.out.println(list.getP_cat());
+
+			
+			for(int i=0; i<list.size();i++)
+			{
+				ProductVO result = new ProductVO();
+				result = list.get(i);
+				total+= result.getP_price();
+			}
+			
 		}
-	  
 
-	  List<ProductVO> list = service.getShopList(seq);
-	  
-	  //System.out.println(list.getP_cat());
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("cart");
+		mv.addObject("list",list);
+		mv.addObject("total", total);
 
-	  int total=0;
-	  for(int i=0; i<list.size();i++)
-	  {
-		  ProductVO result = new ProductVO();
-		  result = list.get(i);
-		  total+= result.getP_price();
-	  }
-	  
-	  ModelAndView mv = new ModelAndView();
-	  mv.setViewName("cart");
-	  mv.addObject("list",list);
-	  mv.addObject("total", total);
-	  
-	  return mv;
-  
-	  }
-		/*
-		 * @RequestMapping("/cartdel.do") public ModelAndView cartdel(HttpServletRequest
-		 * request) { System.out.println(request.getParameterValues("p_id"));
-		 * ModelAndView mv = new ModelAndView(); List<ProductVO> seq = new
-		 * ArrayList<ProductVO>(); Cookie[] cookies = request.getCookies(); //request로
-		 * 받고 if(cookies != null) //null이 아니면 { for(int i=1; i<cookies.length; i++) //모든
-		 * 쿠키 출력 { ProductVO vo = new ProductVO();
-		 * vo.setP_id(Integer.parseInt(cookies[i].getValue())); seq.add(vo);
-		 * 
-		 * } //cookieN에 대한 정보가 다 사라져있어야 함 }
-		 * 
-		 * List<ProductVO> list = service.getShopList(seq); mv.setViewName("cart");
-		 * mv.addObject("list",list); return mv; }
-		 */
-	  
-	  @RequestMapping("/wishlist.do")
-	  public void wishlist(String id, Model model)
-	  {
-		  model.addAttribute("id",id);
-	  }
-	 
+		return mv;
+
+	}
+
+
+
+	@RequestMapping("/wishlist.do")
+	public void wishlist(String id, Model model)
+	{
+		model.addAttribute("id",id);
+	}
 
 }

@@ -16,11 +16,11 @@ $(function(){
         else  $(".check").prop('checked', false);
     });
     $("#delsel").click(function(){
+    	var str="";
         $(".check:checked").each(function (index) {  
-            var str = $(this).val();  
-            //$.cookie('cart7', "");
-            alert(str);
+            str += $(this).val()+",";  
         });  
+        $("#delstr").val(str);
     });  
 
     $(".quantity").click(function(){
@@ -151,16 +151,15 @@ else{
                         <div class="cart-title mt-50">
                             <h2>Shopping Cart</h2>
                         </div>
-                        <!-- <form action="cartdel.do" method="get"> -->
-                        	<div id='delsel' style = "float:right;">
-							Delete</div>
-							<br>
+                         <form action="cart.do" method="post"> 
+                        	<input type='submit' id='delsel' value='Delete'  />
+							
 							<div style = "float:right;">
 							<label for='selectall'>All Select <input type="checkbox" name="selectall" id='selectall'></label>
 							</div>
-							
+							<input type="hidden" value='hi' id="delstr" name='delstr' class='delstr'/>
 							<br>
-							
+							</form> 
                         <div class="cart-table clearfix">
                             <table class="table table-responsive" id='table'>
                                 <thead>
@@ -206,7 +205,7 @@ else{
                                 </tbody>
                             </table>
                         </div>
-                        <!-- </form> -->
+                         
                     </div>
                     <div class="col-12 col-lg-4">
                         <div class="cart-summary">
@@ -214,7 +213,7 @@ else{
                             <ul class="summary-table">
                                 <li><span>subtotal:</span> <span>$ <%=total %></span></li>
                                 <li><span>delivery:</span> <span>$ <% if(deli==0){%>Free<%}else{ %><%=deli%><%} %></span></li>
-                                <li><span>total:</span> <span>$ <%=total-deli %></span></li>
+                                <li><span>total:</span> <span>$ <% if(total-deli>0){%><%=total-deli %><%}else{ %>0<%} %></span></li>
                             </ul>
                             <div class="cart-btn mt-100">
                                 <a href="cart.do" class="btn amado-btn w-100">Checkout</a>
