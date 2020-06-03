@@ -162,6 +162,8 @@
 				var chkbox = $(".form-check-input");
 				// 브랜드를 저장할 변수
 				var send_array = "";
+				//페이지를 저장할 변수
+				var page = $("#page").val();
 
 				// 안에 체크가 있는지 확인하고 위의 변수에 붙여넣기
 				for (var i = 0; i < chkbox.length; i++) {
@@ -177,14 +179,16 @@
 				// 만약 체크된 것이 없다면
 				if (send_array == "") {
 					window.location.href = "shop.do?" + "p_cat=" + cat
-							+ "&itemQuan=" + itemQuan;
+							+ "&itemQuan=" + itemQuan+"&page="+ page;
+							
 
 					// 체크된 것이 있다면
 				} else if (send_array != "") {
 
 					window.location.href = "shop.do?" + "p_cat=" + cat
 							+ "&itemQuan=" + itemQuan + "&p_brand="
-							+ send_array;
+							+ send_array+"&page="+ page;
+							
 
 				}
 

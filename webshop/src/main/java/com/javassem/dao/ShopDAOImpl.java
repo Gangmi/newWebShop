@@ -101,10 +101,26 @@ public class ShopDAOImpl implements ShopDAO {
 
 		// 해쉬맵으로 조회에 필요한 값을 넘김
 		
+		//페이지값을 가져옴
 		int page = Integer.parseInt(vo.getPage());
+		
+		//전체 있어야할 페이지값을 가져옴
+		int totpage = getCatTotal(vo);
+		
+		//만약 현재 페이지가 나올 페이지의 값보다 크면, 
+		if(page>totpage) {
+			//페이지를 1로 지정함
+			page=1;
+			
+			//의자 카테고르에서 페이지당 4개로 설정된 2페이지에서 상품을 보고있다고 가정했을 때 이케아를 눌렀는데 
+			//이케아의 해당 카테고리 품목이 2개 밖에 없다면 2페이지가 나오지 못해서 에러가 남
+		}
+		
 		int end = page * itemquan;
 		int start = end - (itemquan - 1);
 
+		System.out.println(vo.getP_color());
+		
 		map.put("cat", vo.getP_cat());
 		map.put("start", start);
 		map.put("end", end);

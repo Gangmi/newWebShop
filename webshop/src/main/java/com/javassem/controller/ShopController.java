@@ -85,10 +85,13 @@ public class ShopController {
 			}
 			
 			mv.addObject("brand", brandlist);
-			System.out.println(brand);
+			
 			mv.addObject("rawbrand",brand);
 			
 		}
+		//정렬기준이 인기순일 경우 vo의 p_date 멤버변수를 이용 , 지금까지의 정보와 함께 인기순으로 정렬한다.
+		
+		
 		
 //		
 //		System.out.println(vo.getP_cat());
@@ -101,6 +104,11 @@ public class ShopController {
 
 		int totalpage = service.getCatTotal(vo);
 		
+		//만약 구해온 페이지보다 현재 페이지가 크다면
+		if(Integer.parseInt(vo.getPage())>totalpage) {
+			//페이지를 1페이지로 만듦
+			vo.setPage("1");
+		}
 		
 		// 해당하는 카테고리의 물품들을 db에 요청
 		List<ProductVO> result = service.getProductDetail(vo);

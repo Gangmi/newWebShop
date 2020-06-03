@@ -257,8 +257,7 @@ case "table" :  catNum="5"; break;
 									<p>Sort by</p>
 									<form action="#" method="get">
 										<select name="select" id="sortBydate">
-											<option value="value">Date</option>
-											<option value="value">Newest</option>
+											<option value="p_date">Newest</option>
 											<option value="value">Popular</option>
 										</select>
 									</form>
@@ -327,7 +326,7 @@ case "table" :  catNum="5"; break;
 											class="fa fa-star" aria-hidden="true"></i>
 									</div>
 									<div class="cart">
-										<a href="cart.do?p_id=8" data-toggle="tooltip"
+										<a href="cart.do?p_id=<%=result.get(i).getP_id() %>" data-toggle="tooltip"
 											data-placement="left" title="Add to Cart"><img
 											src="img/core-img/cart.png" alt=""></a>
 									</div>
@@ -352,7 +351,7 @@ case "table" :  catNum="5"; break;
 
 
 								<li class="page-item"><a class="page-link"
-									href="shop.do?p_brand=<%=rawbrand%>&p_cat=<%=result.get(0).getP_cat()%>&page=<%=i%>"><%=i%></a></li>
+									href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=result.get(0).getP_cat()%>&page=<%=i%>"><%=i%></a></li>
 
 								<%
 									}
