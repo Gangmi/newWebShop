@@ -13,14 +13,14 @@
 <head>
 
 <%
-	String cat = (String) request.getAttribute("cat");
+	
 int totalpage = (Integer) request.getAttribute("totalpage");
 
 
 List<String> select = (List)request.getAttribute("brand");
 String rawbrand = (String)request.getAttribute("rawbrand");
-
-
+String selectcolor = (String)request.getAttribute("selectcolor");
+String nowcate = (String)request.getAttribute("nowcat");
 List<ProductVO> result = (List) request.getAttribute("details");
 
 /* switch(catNum) {
@@ -42,7 +42,7 @@ case "table" :  catNum="5"; break;
 <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 <!-- Title  -->
-<title>Amado - Furniture Ecommerce Template | Shop</title>
+<title><%=request.getRequestURL()+"&p_color=white"%>Amado - Furniture Ecommerce Template | Shop</title>
 
 <!-- Favicon  -->
 <link rel="icon" href="img/core-img/favicon.ico">
@@ -54,6 +54,12 @@ case "table" :  catNum="5"; break;
 </head>
 
 <body>
+<!--다음페이지 요청을 위한 현재 페이지 정보  -->
+	<input type="hidden" id="p_cat" value=<%=request.getAttribute("nowcat")%>>
+	<input type="hidden" id="page" value=<%=request.getAttribute("nowpage")%>>
+	<input type="hidden" id="itemQuan" value=<%=request.getAttribute("nowquan")%>>
+	<input type="hidden" id="rawbrand" value="<%=request.getAttribute("rawbrand") %>">
+	<input type="hidden" id="selectcolor" value=<%=selectcolor%>>	
 	<!-- Search Wrapper Area Start -->
 	<div class="search-wrapper section-padding-100">
 		<div class="search-close">
@@ -202,7 +208,7 @@ case "table" :  catNum="5"; break;
 
 				<div class="widget-desc">
 					<ul class="d-flex">
-						<li><a href="#" class="color1"></a></li>
+						<li><a href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=nowcate%>&page=<%=request.getAttribute("nowpage")%>&p_color=white" class="color1"></a></li>
 						<li><a href="#" class="color2"></a></li>
 						<li><a href="#" class="color3"></a></li>
 						<li><a href="#" class="color4"></a></li>
@@ -284,6 +290,7 @@ case "table" :  catNum="5"; break;
 					<!-- Single Product Area  ---------------------start-->
 
 					<%
+					if(result.size()>0){
 						for (int i = 0; i < result.size(); i++) {
 					%>
 					<div class="col-12 col-sm-6 col-md-12 col-xl-6">
@@ -335,7 +342,7 @@ case "table" :  catNum="5"; break;
 						</div>
 					</div>
 					<%
-						}
+						}}
 					%>
 
 				</div>
@@ -351,7 +358,7 @@ case "table" :  catNum="5"; break;
 
 
 								<li class="page-item"><a class="page-link"
-									href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=result.get(0).getP_cat()%>&page=<%=i%>"><%=i%></a></li>
+									href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=result.get(0).getP_cat()%><%if(selectcolor!=null){%>&p_color=<%=selectcolor%><%}%>&page=<%=i%>"><%=i%></a></li>
 
 								<%
 									}
@@ -457,11 +464,7 @@ case "table" :  catNum="5"; break;
 		</div>
 	</footer>
 	<!-- ##### Footer Area End ##### -->
-	<!--다음페이지 요청을 위한 현재 페이지 정보  -->
-	<input type="hidden" id="p_cat" value=<%=request.getAttribute("nowcat")%>>
-	<input type="hidden" id="page" value=<%=request.getAttribute("nowpage")%>>
-	<input type="hidden" id="itemQuan" value=<%=request.getAttribute("nowquan")%>>
-	<input type="hidden" id="rawbrand" value="<%=request.getAttribute("rawbrand") %>">
+	
 	
 	
 	

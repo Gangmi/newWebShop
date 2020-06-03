@@ -91,7 +91,12 @@ public class ShopController {
 		}
 		//정렬기준이 인기순일 경우 vo의 p_date 멤버변수를 이용 , 지금까지의 정보와 함께 인기순으로 정렬한다.
 		
-		
+		//색이 들어온 경우
+		if(vo.getP_color()!=null) {
+			
+			//mv에 저장
+			mv.addObject("selectcolor",vo.getP_color());
+		}
 		
 //		
 //		System.out.println(vo.getP_cat());

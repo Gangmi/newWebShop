@@ -8,16 +8,19 @@
 	
 	<select id="getProductDetail" parameterType="hashmap" resultType="product">
 	
-select * 
-
-
-from (select rownum as rnum,product.p_id,product.p_name,product.p_price,product.p_cat,product.p_quan,p_brand from product where product.p_cat=#{cat}<if test="brand!=null">and p_brand in<foreach collection="brand" item="br"  open="(" close=")" separator=",">#{br}</foreach></if> order by<if test="selectcolor != null">p_color,</if><if test="orderbydate == null">product.p_date desc</if>)
+select * from (select rownum as rnum,product.p_id,product.p_name,product.p_price,product.p_cat,product.p_quan,product.p_brand,product.p_color from product where product.p_cat=#{cat}<if test="brand!=null">and p_brand in<foreach collection="brand" item="br"  open="(" close=")" separator=",">#{br}</foreach></if> order by<if test="selectcolor != null">p_color,</if><if test="orderbydate == null">product.p_date desc</if>)
 
 
 where <![CDATA[rnum>=]]>#{start} and <![CDATA[rnum<=]]>#{end}<if test="selectcolor!=null">and p_color=#{selectcolor}</if>
 
 	
 	</select>
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -31,7 +34,7 @@ where <![CDATA[rnum>=]]>#{start} and <![CDATA[rnum<=]]>#{end}<if test="selectcol
 	<select id="getCatTotal" parameterType="hashmap" resultType="int">
 	
 	select count(*) from product where p_cat=#{p_cat}<if test="brand != null"> and p_brand in <foreach collection="brand" item="br"  open="(" close=")" separator=",">#{br}</foreach>
-     </if>
+     </if><if test="selectcolor!=null">and p_color=#{selectcolor}</if>
 
 	
 	</select>
