@@ -5,8 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.javassem.domain.ReceiverVO;
-import com.javassem.domain.SenderVO;
 
 
 @Repository
@@ -21,7 +19,7 @@ public class TransferDAOImpl implements TransferDAO {
 	 */
 	@Transactional(rollbackFor=TransException.class)
 	@Override
-	public void transfer(SenderVO send, ReceiverVO recv) throws TransException{
+	public void transfer(String send, String recv) throws TransException{
 		int resultSend = sqlSession.update("trans.withdraw", send);
 		if( resultSend == 0) throw new TransException();
 		System.out.println("인출");

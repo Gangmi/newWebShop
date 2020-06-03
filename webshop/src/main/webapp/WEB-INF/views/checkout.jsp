@@ -21,6 +21,9 @@
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="css/core-style.css">
     <!-- <link rel="stylesheet" href="style.css"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    
 
 </head>
 
@@ -114,56 +117,28 @@
 
                             <form action="#" method="post">
                                 <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <input type="text" class="form-control" id="first_name" value="" placeholder="First Name" required>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <input type="text" class="form-control" id="last_name" value="" placeholder="Last Name" required>
+                                  
+                                    <div class="col-12 mb-3">
+                                        <input type="text" class="form-control mb-3" id="mname" name="mname" placeholder="이름" value="" required>
                                     </div>
                                     <div class="col-12 mb-3">
-                                        <input type="text" class="form-control" id="company" placeholder="Company Name" value="">
+                                        <input type="email" class="form-control" id="memail"  name="memail" placeholder="이메일" value="" required>
                                     </div>
                                     <div class="col-12 mb-3">
-                                        <input type="email" class="form-control" id="email" placeholder="Email" value="">
+                                        <input type="text" class="form-control" id="mtel" name="mtel"  placeholder="휴대폰번호" value="" required>
                                     </div>
-                                    <div class="col-12 mb-3">
-                                        <select class="w-100" id="country">
-                                        <option value="usa">United States</option>
-                                        <option value="uk">United Kingdom</option>
-                                        <option value="ger">Germany</option>
-                                        <option value="fra">France</option>
-                                        <option value="ind">India</option>
-                                        <option value="aus">Australia</option>
-                                        <option value="bra">Brazil</option>
-                                        <option value="cana">Canada</option>
-                                    </select>
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <input type="text" class="form-control mb-3" id="street_address" placeholder="Address" value="">
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <input type="text" class="form-control" id="city" placeholder="Town" value="">
+                                   <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control" id="mpostCode"  name="mpostCode" placeholder="우편번호">
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <input type="text" class="form-control" id="zipCode" placeholder="Zip Code" value="">
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <input type="number" class="form-control" id="phone_number" min="0" placeholder="Phone No" value="">
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <textarea name="comment" class="form-control w-100" id="comment" cols="30" rows="10" placeholder="Leave a comment about your order"></textarea>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <div class="custom-control custom-checkbox d-block mb-2">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck2">
-                                            <label class="custom-control-label" for="customCheck2">Create an accout</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox d-block">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck3">
-                                            <label class="custom-control-label" for="customCheck3">Ship to a different address</label>
-                                        </div>
-                                    </div>
+									<input type="button" class="btn amado-btn mb-15" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+									</div>
+									 <div class="col-12 mb-3">
+									<input type="text" class="form-control" id="maddr"  name="maddr" placeholder="주소"><br>
+									</div>
+									<div class="col-12 mb-3">
+									<input type="text" class="form-control" id="maddrDetail"  name="maddrDetail" placeholder="상세주소">
+									</div>
                                 </div>
                             </form>
                         </div>
@@ -289,6 +264,57 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/plugins.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                if(data.userSelectedType === 'R'){
+                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있고, 공동주택일 경우 추가한다.
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                    if(extraAddr !== ''){
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                    // 조합된 참고항목을 해당 필드에 넣는다.
+//                     document.getElementById("sample6_extraAddress").value = extraAddr;
+                
+                } 
+//                 else {
+//                     document.getElementById("sample6_extraAddress").value = '';
+//                 }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('mpostCode').value = data.zonecode;
+                document.getElementById("maddr").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("maddrDetail").focus();
+            }
+        }).open();
+    }
+</script>
 
 </body>
 

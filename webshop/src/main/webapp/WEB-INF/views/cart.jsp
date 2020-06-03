@@ -31,6 +31,7 @@ $(function(){
   			}
   		var total = subtotal+deli;
   		$("#subtotal").text("$ "+subtotal);
+  		$("#subtotal").val(subtotal);
   		$("#deli").text("$ "+deli);
   		$("#total").text("$ "+total);
     });
@@ -62,6 +63,7 @@ $(function(){
   		$("#subtotal").text("$ "+subtotal);
   		$("#deli").text("$ "+deli);
   		$("#total").text("$ "+total);
+  		$("#subtotal").val(subtotal);
 
     });
     $(".check").change(function(){
@@ -86,6 +88,7 @@ $(function(){
        		$("#subtotal").text("$ "+subtotal);
        		$("#deli").text("$ "+deli);
        		$("#total").text("$ "+total);
+       		$("#subtotal").val(subtotal);
 
         }else{
 
@@ -108,11 +111,44 @@ $(function(){
       		$("#subtotal").text("$ "+subtotal);
       		$("#deli").text("$ "+deli);
       		$("#total").text("$ "+total);
+      		$("#subtotal").val(subtotal);
         }
 
         });
-    
 
+$('#checkout').click(function(){
+	$.ajax({
+        url:"transfer.do",
+        type:'GET',
+        data: {
+        	param:$("#subtotal").val()
+            // 보낼 데이터
+        },
+        success:function(data){
+            alert("완료!");
+            window.opener.location.reload();
+            self.close();
+        },
+        error:function(jqXHR, textStatus, errorThrown){
+            alert("에러 발생~~ \n" + textStatus + " : " + errorThrown);
+            self.close();
+        }
+    });
+
+	$.ajax({
+		type:'post',
+		async: true,
+		url:'idCheck.do',
+		contentType : 'application/x-www-form-urlencoded;charset=UTF-8',
+		data:"userId="+$('#userId').val(),
+		success:function(resultData){
+			$('#idCheckResult').html(resultData);
+		}
+	});
+	
+});
+    
+   
 
 });
 
@@ -148,6 +184,7 @@ else{
 		deli =0;
 	}
 int total = subtotal+deli;
+
 %>
 
     <!-- Search Wrapper Area Start -->
@@ -201,7 +238,7 @@ int total = subtotal+deli;
                     <li><a href="index.do">Home</a></li>
                     <li><a href="shop.do?p_cat=chair">Shop</a></li>
                     <li class="active"><a href="cart.do">Cart</a></li>
-                    <li><a href="checkout.do">Checkout</a></li>
+                    <li><a id='checkout'>Checkout</a></li>
                     <li><a href="login.do">Login</a></li>
                 </ul>
             </nav>
