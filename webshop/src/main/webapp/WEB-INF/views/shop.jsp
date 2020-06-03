@@ -127,7 +127,7 @@ case "table" :  catNum="5"; break;
 			<!-- Cart Menu -->
 			<div class="cart-fav-search mb-100">
 				<a href="cart.do" class="cart-nav"><img
-					src="img/core-img/cart.png" alt=""> Cart <span>(0)</span></a> <a
+					src="img/core-img/cart.png" alt=""> Cart <span>(<%= request.getCookies().length-1 %>)</span></a> <a
 					href="wishlist.do" class="fav-nav"><img
 					src="img/core-img/favorites.png" alt=""> Favourite</a> <a
 					href="#" class="search-nav"><img src="img/core-img/search.png"
