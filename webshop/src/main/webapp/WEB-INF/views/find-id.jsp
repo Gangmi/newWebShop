@@ -115,7 +115,7 @@
                                 <h2>Find-id</h2>
                             </div>
 
-                            <form action="find_id.do" id ="findid" name="findid"  method="get">
+                            <form action="find_Id.do" id ="findid" name="findid"  method="get">
                                 <div class="ml-100 mt-100 row">
                                      <div class="col-md-11 mb-3">
                                         <input type="text" class="form-control" id="mname" class="mname" value="" placeholder="이름" required>

@@ -22,6 +22,9 @@
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="css/core-style.css">
     <!-- <link rel="stylesheet" href="style.css"> -->
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./resources/js/login-userInput.js"></script>
 
 </head>
 
@@ -118,7 +121,7 @@
                                 <div class="col-12 mb-3"> 
                                 <tr>
    <td align="left"><font size="2" >이용약관, 개인정보 수집 및 이용에 모두 동의합니다.&nbsp&nbsp&nbsp</font></td>
-   <td><input type="checkbox" name="all" id="all"></td><hr/>
+   <td><input type="checkbox" name="allcheck" id="allcheck"></td><hr/>
   </tr>
   </div> 
   <br/>
@@ -344,7 +347,7 @@
    </textarea>
  	</div>    
     <div class="col-12 mb-3"> 
-   <h3><a href="#"><font size="2">이용약관 동의(필수)&nbsp&nbsp&nbsp</font><input type="checkbox" name="c1" id="c1"/></a></h3>
+   <h3><font size="2">이용약관 동의(필수)&nbsp&nbsp&nbsp</font><input type="checkbox" name="c1" id="c1"/></a></h3>
       </div>    
       <div class="col-12 mb-3">  
       <td><textarea readonly="readonly" rows="5" cols="66">                         
@@ -362,11 +365,11 @@
            </textarea>
            </div> 
         	 <div class="col-12 mb-3"> 
-   			<h3><a href="#"><font size="2">개인정보수집 동의(필수)&nbsp&nbsp&nbsp</font><input type="checkbox" name="c2" id="c2"/></a></h3>
+   			<h3><font size="2">개인정보수집 동의(필수)&nbsp&nbsp&nbsp</font><input type="checkbox" name="c2" id="c2"/></a></h3>
       		</div>                           
                                      <div class="col-12 mb-3">
 						                <a href="login.do" class="btn amado-btn mb-15">이전단계</a>
-						               	<a href="sign-up.do" class="btn amado-btn mb-15">다음단계</a>
+						               	<a id="allcheckNext" name="allcheckNext" href="sign-up.do" class="btn amado-btn mb-15">다음단계</a>
 						            </div>
 
                                 </div>

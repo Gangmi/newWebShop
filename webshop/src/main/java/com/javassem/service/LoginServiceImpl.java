@@ -23,7 +23,7 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	public LoginVO findId(LoginVO vo) {
-		return loginDAO.signInMember(vo);
+		return loginDAO.findId(vo);
 	}
 
 

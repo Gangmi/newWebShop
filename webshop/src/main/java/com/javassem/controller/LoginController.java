@@ -46,7 +46,7 @@ public class LoginController {
 	return mv;
 	}
 	
-	@RequestMapping("/find_id.do")
+	@RequestMapping("/find_Id.do")
 	public ModelAndView findId(LoginVO vo) {
 		System.out.println(vo.getMname());
 		LoginVO result = loginservice.findId(vo);

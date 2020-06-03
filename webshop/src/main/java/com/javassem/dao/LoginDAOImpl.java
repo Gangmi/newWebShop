@@ -32,9 +32,9 @@ public class LoginDAOImpl implements LoginDAO{
 	
 	public LoginVO findId(LoginVO vo) {
 		System.out.println("===> Mybatis findid() 호출");
-		System.out.println(vo.getMname());
+//		System.out.println(vo.getMname());
 		LoginVO result = mybatis.selectOne("LoginDAO.findid", vo);
-		System.out.println(vo.getMid());
+//		System.out.println(vo.getMid());
 		return  result;
 	}
 

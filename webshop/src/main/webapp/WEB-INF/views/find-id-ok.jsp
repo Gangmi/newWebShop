@@ -118,7 +118,7 @@
                             <form id ="" name="" action="" method="post">
                                 <div class="ml-100 mt-100 row">
                                      <div class="col-md-11 mb-3">
-                                        <input type="text" class="form-control" id="mname" class="mname" value="<%=request.getAttribute("id") %>" placeholder="" required>
+                                        <input type="text" class="form-control" id="mname" class="mname" value="<%=request.getAttribute("id") %>" readonly="readonly" required>
                                         
                                     </div>
                                      <div class="col-12 mb-3">
