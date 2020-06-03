@@ -56,6 +56,13 @@ public class LoginController {
 		mv.addObject("id", result.getMid());
 		return mv;
 	}
+	
+	@RequestMapping("/find_password.do")
+	public ModelAndView findPassword(LoginVO vo) {
+		LoginVO result = loginservice.findPassword(vo);
+		ModelAndView mv = new ModelAndView();
+		return mv;
+	}
 
 
 }

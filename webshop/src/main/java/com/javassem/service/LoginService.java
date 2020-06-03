@@ -9,4 +9,6 @@ public interface LoginService {
 	LoginVO signInMember(LoginVO vo);
 
 	LoginVO findId(LoginVO vo);
+
+	LoginVO findPassword(LoginVO vo);
 }

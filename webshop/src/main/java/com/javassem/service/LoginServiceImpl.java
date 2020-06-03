@@ -25,6 +25,10 @@ public class LoginServiceImpl implements LoginService {
 	public LoginVO findId(LoginVO vo) {
 		return loginDAO.findId(vo);
 	}
+	
+	public LoginVO findPassword(LoginVO vo) {
+		return loginDAO.findPassword(vo);
+	}
 
 
 }

@@ -38,6 +38,12 @@ public class LoginDAOImpl implements LoginDAO{
 		return  result;
 	}
 
+	public LoginVO findPassword(LoginVO vo) {
+		System.out.println("===> Mybatis findpassword() 호출");
+		LoginVO result = mybatis.selectOne("LoginDAO.findpassword", vo);
+		return result;
+	}
+
 	
 
 }
