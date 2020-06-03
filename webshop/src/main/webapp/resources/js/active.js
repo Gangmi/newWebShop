@@ -138,19 +138,38 @@
 				// 카테고리와 페이지정보 그리고 브랜드 체크 여부를 가져옴
 				var cat = $("#p_cat").val();
 				var page = $("#page").val();
+				var selectcolor = $("#selectcolor").val();
 
-				// 브랜드 클릭 정보가 있으면
-				if ($("#rawbrand").val()!="null") {
-					
+				//아이템 갯수 선택시 브랜드 클릭 정보가 있으면
+				if ($("#rawbrand").val() != "null") {
+
 					var brand = $("#rawbrand").val();
 
-					window.location.href = "shop.do?" + "p_cat=" + cat
-							+ "&page=" + page + "&itemQuan=" + itemQuan +"&p_brand="+brand
-							
-				}else if ($("#rawbrand").val()=="null"){
-				window.location.href = "shop.do?" + "p_cat=" + cat + "&page="
-						+ page + "&itemQuan=" + itemQuan
-						
+					//아이템 갯수 선택시 브랜드 클릭 정보가 있고 색이 있으면
+					if (selectcolor != "null") {
+						window.location.href = "shop.do?" + "p_cat=" + cat
+								+ "&page=" + page + "&itemQuan=" + itemQuan
+								+ "&p_brand=" + brand + "&p_color="
+								+ selectcolor
+						//아이템 갯수 선택시 브랜드 클릭 정보가 있고 색은 없으면
+					} else {
+						window.location.href = "shop.do?" + "p_cat=" + cat
+								+ "&page=" + page + "&itemQuan=" + itemQuan
+								+ "&p_brand=" + brand
+					}
+
+					//아이템 갯수 선택시 브랜드 클릭 정보가 없으면
+				} else if ($("#rawbrand").val() == "null") {
+					//아이템 갯수 선택시 브랜드 클릭정보가 없고 색이 있으면
+					if (selectcolor != "null") {
+						window.location.href = "shop.do?" + "p_cat=" + cat
+								+ "&page=" + page + "&itemQuan=" + itemQuan+"&p_color="+selectcolor
+					//아이템 갯수 선택시 브랜드 클릭 정보가 없고 색도 없으면			
+					} else {
+						window.location.href = "shop.do?" + "p_cat=" + cat
+								+ "&page=" + page + "&itemQuan=" + itemQuan
+
+					}
 				}
 
 			});
@@ -158,7 +177,7 @@
 	// 브랜드 별 상품을 보여주기 위한 부분
 	$(".form-check input").click(
 			function() {
-				// 체크박스 객체 가져오기
+				//브랜드의 체크박스 객체 가져오기
 				var chkbox = $(".form-check-input");
 				// 브랜드를 저장할 변수
 				var send_array = "";
@@ -173,19 +192,37 @@
 				// 로케이션 넘길때 사용해야할 변수들
 				var itemQuan = $("#itemQuan").val();
 				var cat = $("#p_cat").val();
+				var selectcolor= $("#selectcolor").val();
 
-				// 만약 체크된 것이 없다면
+				// 만약 브랜드에 체크된 것이 없다면 - 브랜드를 체크했다가 지워서 아무것도 없으면
 				if (send_array == "") {
+					//그런데 그때 선택한 색이 있다면
+					if(selectcolor!="null"){
+						window.location.href = "shop.do?" + "p_cat=" + cat
+						+ "&itemQuan=" + itemQuan+"&p_color="+selectcolor
+					//브랜드에 체크된것도 없고 색도 없으면	
+					}else{
 					window.location.href = "shop.do?" + "p_cat=" + cat
-							+ "&itemQuan=" + itemQuan;
+							+ "&itemQuan=" + itemQuan
 
-					// 체크된 것이 있다면
+					}
+					// 브랜드에 체크된 것이 있으면
 				} else if (send_array != "") {
 
+					//브랜드에 체크된 것이 있고 , 선택된 색도 있으면
+					if(selectcolor!="null"){
+						window.location.href = "shop.do?" + "p_cat=" + cat
+						+ "&itemQuan=" + itemQuan + "&p_brand="
+						+ send_array+"&p_color="+selectcolor
+						
+					
+					//브랜드에 체크된것은 있고 색은 없으면	
+					}else{
 					window.location.href = "shop.do?" + "p_cat=" + cat
 							+ "&itemQuan=" + itemQuan + "&p_brand="
 							+ send_array;
 
+					}
 				}
 
 			});

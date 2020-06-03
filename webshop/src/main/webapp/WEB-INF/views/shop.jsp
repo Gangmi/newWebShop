@@ -205,17 +205,20 @@ case "table" :  catNum="5"; break;
 			<div class="widget color mb-50">
 				<!-- Widget Title -->
 				<h6 class="widget-title mb-30">Color</h6>
-
+				
 				<div class="widget-desc">
 					<ul class="d-flex">
-						<li><a href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=nowcate%>&page=<%=request.getAttribute("nowpage")%>&p_color=white" class="color1"></a></li>
-						<li><a href="#" class="color2"></a></li>
-						<li><a href="#" class="color3"></a></li>
-						<li><a href="#" class="color4"></a></li>
-						<li><a href="#" class="color5"></a></li>
-						<li><a href="#" class="color6"></a></li>
-						<li><a href="#" class="color7"></a></li>
-						<li><a href="#" class="color8"></a></li>
+						<%if(selectcolor!=null){ %>
+						<li>now<a class="<%=selectcolor%>"></a></li><li><li><li>
+						<%} %>
+						<li><a href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=nowcate%>&page=<%=request.getAttribute("nowpage")%>&p_color=white" class="white"></a></li>
+						<li><a href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=nowcate%>&page=<%=request.getAttribute("nowpage")%>&p_color=gray" class="gray"></a></li>
+						<li><a href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=nowcate%>&page=<%=request.getAttribute("nowpage")%>&p_color=black" class="black"></a></li>
+						<li><a href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=nowcate%>&page=<%=request.getAttribute("nowpage")%>&p_color=blue" class="blue"></a></li>
+						<li><a href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=nowcate%>&page=<%=request.getAttribute("nowpage")%>&p_color=red" class="red"></a></li>
+						<li><a href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=nowcate%>&page=<%=request.getAttribute("nowpage")%>&p_color=yellow" class="yellow"></a></li>
+						<li><a href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=nowcate%>&page=<%=request.getAttribute("nowpage")%>&p_color=orange" class="orange"></a></li>
+						<li><a href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=nowcate%>&page=<%=request.getAttribute("nowpage")%>&p_color=brown" class="brown"></a></li>
 					</ul>
 				</div>
 			</div>
