@@ -45,6 +45,11 @@ public class CartServiceImpl implements CartService {
 		
 		return CartDAO.getmemberInfo(vo);
 	}
+	
+	public void insertWishlist(String id,String userId)
+	{
+		CartDAO.insertWishlist(id,userId);
+	}
 
 	
 	

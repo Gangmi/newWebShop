@@ -25,5 +25,8 @@
 		WHERE M_ID = #{mid}
 		]]>
 	</select>
+	<insert id="insertWishlist" parameterType="hashmap">
+	insert into WISHLIST(W_ID,P_ID,M_ID) values(SEQ_WISHLIST_ID.nextval,#{P_ID},#{M_ID})
+	</insert>
 
 </mapper>

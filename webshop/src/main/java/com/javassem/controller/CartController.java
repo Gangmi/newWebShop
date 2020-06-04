@@ -47,6 +47,12 @@ public class CartController {
 			ProductVO vo = new ProductVO();
 			vo.setP_id(Integer.parseInt(p_id));
 			seq.add(vo);
+			try {
+				response.sendRedirect("cart.do");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		if(delstr!=null)
 		{
@@ -58,7 +64,6 @@ public class CartController {
 				Cookie delcookie = new Cookie("cart"+array[i], null);
 				delcookie.setMaxAge(0);
 				delcookie.setPath("/");
-				System.out.println("cart"+array[i]);
 				
 				response.addCookie(delcookie);
 				
@@ -140,9 +145,12 @@ public class CartController {
 
 
 	@RequestMapping("/wishlist.do")
-	public void wishlist(String id, Model model)
+	public void wishlist(String p_id,HttpSession session)
 	{
-		model.addAttribute("id",id);
+		String userId = (String)session.getAttribute("userId");
+		
+		service.insertWishlist(p_id,userId);
+		
 	}
 
 }

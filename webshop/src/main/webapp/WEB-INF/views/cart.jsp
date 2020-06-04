@@ -127,7 +127,6 @@ $(function(){
     	window.location.href = "checkout.do?subtotal="+subtotalresult+"&count="+count+"&id="+id;
         });
 
-	
 });
     
 

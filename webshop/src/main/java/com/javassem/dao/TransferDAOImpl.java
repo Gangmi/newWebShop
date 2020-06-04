@@ -57,16 +57,11 @@ public class TransferDAOImpl implements TransferDAO {
 			vo.setCnt(Integer.parseInt(count));
 			vo.setP_id(Integer.parseInt(id));
 			vo.setO_id(o_id);
-			System.out.println(o_id);
+
 			ordervo.add(vo);
 			
 		}
-		for(int i=0; i<ordervo.size();i++)
-		{
-			OrderVO result = new OrderVO();
-			result = ordervo.get(i);
-			System.out.println(result.getP_id()+":pid");
-		}
+		
 		
 		int resultol = sqlSession.insert("Trans.orderlist", ordervo);
 		if( resultol == 0) throw new TransException();

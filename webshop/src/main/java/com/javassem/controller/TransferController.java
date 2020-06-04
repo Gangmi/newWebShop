@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -49,9 +50,18 @@ public class TransferController {
 		String userId = (String)session.getAttribute("userId");
 
 		dao.insertorder(pay,idlist,countlist,userId);
+		for(int i=0; i<idlist.size();i++)
+		{
+			Cookie delcookie = new Cookie("cart"+idlist.get(i), null);
+			delcookie.setMaxAge(0);
+			delcookie.setPath("/");
+			response.addCookie(delcookie);
+		}
 		
 		
+		response.sendRedirect("cart.do");
 		
+
 	}
 
 	

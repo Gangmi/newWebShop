@@ -1,6 +1,7 @@
 package com.javassem.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -48,6 +49,19 @@ public class CartDAOImpl implements CartDAO{
 	{
 		System.out.println("===> Mybatis getmemberInfo() 호출");
 		return mybatis.selectOne("CartDAO.getmemberInfo",vo);
+	}
+	public void insertWishlist(String id,String userId)
+	{
+		System.out.println("===> Mybatis insertWishlist() 호출");
+		HashMap wish = new HashMap();
+		System.out.println(id+userId);
+		wish.put("P_ID", id);
+		wish.put("M_ID", userId);
+		int result = mybatis.selectOne("CartDAO.insertWishlist",wish);
+		if(result!=0)
+		{
+			System.out.println("성공");
+		}
 	}
 
 
