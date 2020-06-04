@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="Trans">
+
+<insert id="productorder" parameterType="hashmap" >
+	insert into PRODUCTORDER(O_ID,O_DATE,M_ID,O_PAYMENT) values(SEQ_PRODUCTORDER_ID.nextval,sysdate,#{M_ID},#{O_PAYMENT})
+	<selectKey keyProperty="productorderid" resultType="Integer" order="AFTER"> SELECT SEQ_PRODUCTORDER_ID.currval FROM dual </selectKey>
+</insert>
+
+
+
+</mapper>

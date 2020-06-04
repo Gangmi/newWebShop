@@ -1,5 +1,11 @@
 package com.javassem.controller;
 
+import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +35,20 @@ public class TransferController {
 		ma.addObject("msg", msg);
 		return ma;
 	}
+	
+	@RequestMapping("/checkoutok.do")
+	public void checkoutok(String pay,HttpServletResponse response, HttpServletRequest request,HttpSession session) throws Exception
+	{
+		
+		ArrayList<String> idlist = (ArrayList)session.getAttribute("idlist");
+		ArrayList<String> countlist = (ArrayList)session.getAttribute("countlist");
+		String userId = (String)session.getAttribute("userId");
+		dao.insertorder(pay,idlist,countlist,userId);
+		
+		
+		
+	}
+
 	
 
 }

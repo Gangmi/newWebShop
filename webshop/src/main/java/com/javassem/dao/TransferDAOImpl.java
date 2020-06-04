@@ -1,9 +1,14 @@
 package com.javassem.dao;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.javassem.domain.OrderVO;
 
 
 
@@ -26,6 +31,30 @@ public class TransferDAOImpl implements TransferDAO {
 //		int resultRecv = sqlSession.update("trans.deposit", recv);
 //		if( resultRecv == 0) throw new TransException();
 //		System.out.println("입금");
+	}
+	@Transactional(rollbackFor=TransException.class)
+	@Override
+	public void insertorder(String pay,ArrayList<String> idlist, ArrayList<String> countlist, String userId) throws TransException{
+		System.out.println("===> Mybatis insertorder() 호출");
+		for(int i=0; i<idlist.size();i++)
+		{
+			String count = countlist.get(i);
+			String id = idlist.get(i);
+	
+		}
+		HashMap porder = new HashMap();
+
+		porder.put("M_ID", userId);
+		porder.put("O_PAYMENT", pay);
+		int resultSend = sqlSession.insert("Trans.productorder", porder);
+		if( resultSend == 0) throw new TransException();
+		int o_id = (int) porder.get("productorderid");
+		
+		
+		
+
+		
+		
 	}
 
 }

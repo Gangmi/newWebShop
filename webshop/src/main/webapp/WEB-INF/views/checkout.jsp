@@ -2,6 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page import='com.javassem.domain.LoginVO' %>
+<%@ page import="java.util.*"%>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +18,29 @@ else{
 		deli =0;
 	}
 int total = subtotal+deli; 
+ArrayList<String> idlist = (ArrayList)session.getAttribute("idlist");
+ArrayList<String> countlist = (ArrayList)session.getAttribute("countlist");
 %>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+
+		$('#checkoutok').click(function(){
+			var pay = "";
+			$(".custom-control-input:checked").each(function (index) {  
+				pay= $(this).val();
+
+		   });
+
+			window.location.href = "checkoutok.do?pay="+pay;
+			});
+		
+	
+
+})
+</script>
+
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="">
@@ -167,18 +191,18 @@ int total = subtotal+deli;
                             <div class="payment-method">
                                 <!-- Cash on delivery -->
                                 <div class="custom-control custom-checkbox mr-sm-2">
-                                    <input type="checkbox" class="custom-control-input" id="cod" checked>
+                                    <input type="checkbox" class="custom-control-input" value='cash' id="cod" checked>
                                     <label class="custom-control-label" for="cod">Cash on Delivery</label>
                                 </div>
                                 <!-- Paypal -->
                                 <div class="custom-control custom-checkbox mr-sm-2">
-                                    <input type="checkbox" class="custom-control-input" id="paypal">
+                                    <input type="checkbox" class="custom-control-input" value='card' id="paypal">
                                     <label class="custom-control-label" for="paypal">Paypal <img class="ml-15" src="img/core-img/paypal.png" alt=""></label>
                                 </div>
                             </div>
 
                             <div class="cart-btn mt-100">
-                                <a href="#" class="btn amado-btn w-100">Checkout</a>
+                                <a id='checkoutok' class="btn amado-btn w-100">Checkout</a>
                             </div>
                         </div>
                     </div>

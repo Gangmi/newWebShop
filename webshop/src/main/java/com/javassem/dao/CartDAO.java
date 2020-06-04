@@ -16,4 +16,6 @@ public interface CartDAO {
 	public ProductVO getShop(ProductVO vo) ;
 
 	public List<ProductVO> getShopList(List<ProductVO> seq) ;
+	
+
 }

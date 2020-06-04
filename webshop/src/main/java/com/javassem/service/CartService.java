@@ -27,4 +27,6 @@ public interface CartService {
 	List<ProductVO> getShopList(List<ProductVO> seq);
 	
 	LoginVO getmemberInfo(LoginVO vo);
+
+	
 }

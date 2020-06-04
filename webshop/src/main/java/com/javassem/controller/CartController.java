@@ -108,10 +108,22 @@ public class CartController {
 	}
 	
 	@RequestMapping(value="/checkout.do")
-	public ModelAndView checkout(String subtotal,HttpServletResponse response, HttpServletRequest request,HttpSession session)
+	public ModelAndView checkout(String count, String id, String subtotal,HttpServletResponse response, HttpServletRequest request,HttpSession session)
 	{	
-		String userId = (String)session.getAttribute("userId");
 
+		String[] countarray = count.split(",");
+		String[] idarray = id.split(",");
+		ArrayList<String> countlist = new ArrayList<String>();
+		ArrayList<String> idlist = new ArrayList<String>();
+		for(int i=0; i<countarray.length;i++)
+		{
+			countlist.add(countarray[i]);
+			idlist.add(idarray[i]);
+		}
+	     session.setAttribute("countlist",countlist);
+	     session.setAttribute("idlist",idlist);
+		String userId = (String)session.getAttribute("userId");
+		
 		LoginVO vo = new LoginVO();
 		vo.setMid(userId);
 		LoginVO result = service.getmemberInfo(vo);
@@ -122,6 +134,8 @@ public class CartController {
 		mv.addObject("subtotal",subtotal);
 		return mv;
 	}
+	
+	
 
 
 

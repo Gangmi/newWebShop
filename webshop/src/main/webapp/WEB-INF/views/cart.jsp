@@ -11,19 +11,22 @@
 
 <script type="text/javascript">
 $(function(){
+	var count=0;
+	var price=0;
+	var subtotal=0;
+	var deli =0;
     $("#selectall").click(function(){
+        
         var chk = $(this).is(":checked");//.attr('checked');
         if(chk) $(".check").prop('checked', true);
         else  $(".check").prop('checked', false);
-    	var count=0;
-    	var price=0;
-    	var subtotal=0;
+    	
     	$(".check:checked").each(function (index) {  
              count = $(this).parents().prevAll(".quantity").find(".qty-text").val();
              price = $(this).parents().prevAll(".quantity").find(".price").val();
              subtotal += count*price;
         }); 
-  		var deli =0;
+  		
   		if(subtotal<50000)
   		{
   			deli = 2500;
@@ -45,15 +48,13 @@ $(function(){
     });  
 
     $(".quantity").click(function(){
-    	var count=0;
-    	var price=0;
-    	var subtotal=0;
+
     	$(".check:checked").each(function (index) {  
              count = $(this).parents().prevAll(".quantity").find(".qty-text").val();
              price = $(this).parents().prevAll(".quantity").find(".price").val();
              subtotal += count*price;
         }); 
-  		var deli =0;
+
   		if(subtotal<50000)
   		{
   			deli = 2500;
@@ -70,15 +71,13 @@ $(function(){
     $(".check").change(function(){
 
     	if($(this).is(":checked")){
-    		 var count=0;
-         	var price=0;
-         	var subtotal=0;
+
          	$(".check:checked").each(function (index) {  
                   count = $(this).parents().prevAll(".quantity").find(".qty-text").val();
                   price = $(this).parents().prevAll(".quantity").find(".price").val();
                   subtotal += count*price;
              }); 
-       		var deli =0;
+
        		if(subtotal<50000)
        		{
        			deli = 2500;
@@ -93,15 +92,12 @@ $(function(){
 
         }else{
 
-            var count=0;
-        	var price=0;
-        	var subtotal=0;
         	$(".check:checked").each(function (index) {  
                  count = $(this).parents().prevAll(".quantity").find(".qty-text").val();
                  price = $(this).parents().prevAll(".quantity").find(".price").val();
                  subtotal += count*price;
             }); 
-      		var deli =0;
+
       		if(subtotal<50000)
       		{
       			deli = 2500;
@@ -120,7 +116,15 @@ $(function(){
     $('#checkout').click(function(){
     	var to  = $('#subtotal').text().split("$ ");
     	var subtotalresult = to[1];
-    	window.location.href = "checkout.do?subtotal=" + subtotalresult;
+    	var count = new Array();
+    	var id = new Array();
+
+    	$(".check:checked").each(function (index) {  
+            count.push($(this).parents().prevAll(".quantity").find(".qty-text").val());
+            id.push($(this).parents().prevAll(".quantity").find(".p_id").val());
+       });
+
+    	window.location.href = "checkout.do?subtotal="+subtotalresult+"&count="+count+"&id="+id;
         });
 
 	
@@ -287,6 +291,7 @@ int total = subtotal+deli;
                                                 <div class="quantity">
                                                     <span class="qty-minus" onclick="var effect = document.getElementById('qty<%=vo.getP_id() %>'); var qty<%=vo.getP_id() %> = effect.value; if( !isNaN( qty<%=vo.getP_id() %> ) &amp;&amp; qty<%=vo.getP_id() %> &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
                                                     <input type="hidden" value='<%=vo.getP_price() %>' name='p_price' class='price'/>
+                                                    <input type="hidden" value='<%=vo.getP_id() %>' name='p_id' class='p_id'/>
                                                     <input type="number" class="qty-text" id="qty<%=vo.getP_id() %>" step="1" min="1" max="300" name="quantity" value="1">
                                                     <span class="qty-plus" onclick="var effect = document.getElementById('qty<%=vo.getP_id() %>'); var qty<%=vo.getP_id() %> = effect.value; if( !isNaN( qty<%=vo.getP_id() %> )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                                 </div>
