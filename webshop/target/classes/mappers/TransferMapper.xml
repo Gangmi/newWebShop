@@ -10,6 +10,16 @@
 	<selectKey keyProperty="productorderid" resultType="Integer" order="AFTER"> SELECT SEQ_PRODUCTORDER_ID.currval FROM dual </selectKey>
 </insert>
 
+<insert id="orderlist" parameterType="java.util.List" >
+insert into ORDERLIST (OL_ID,O_ID,P_ID,cnt)
+select SEQ_ORDERLIST_ID.nextval, a, b, c
+from
+(<foreach collection="list" index='index' item='test' separator='UNION ALL'>
+SELECT #{test.o_id} as a, #{test.p_id} as b, #{test.cnt} as c FROM DUAL </foreach>)
+   
+</insert>
+
+
 
 
 </mapper>
