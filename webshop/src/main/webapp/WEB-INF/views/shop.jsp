@@ -112,7 +112,7 @@ case "table" :  catNum="5"; break;
 			<nav class="amado-nav">
 				<ul>
 					<li><a href="index.do">Home</a></li>
-					<li class="active"><a href="shop.do?p_cat=chair">Shop</a></li>
+					<li class="active"><a href="shop.do">Shop</a></li>
 
 					<li><a href="cart.do">Cart</a></li>
 					<li><a href="checkout.do">Checkout</a></li>
@@ -153,7 +153,8 @@ case "table" :  catNum="5"; break;
 				<!--  Catagories  -->
 				<div class="catagories-menu">
 					<ul>
-						<li class="active"><a href="shop.do?p_cat=chair">Chairs</a></li>
+						<li class="active"><a href="shop.do">All Products</a></li>
+						<li><a href="shop.do?p_cat=chair">Chairs</a></li>
 						<li><a href="shop.do?p_cat=bed">Beds</a></li>
 						<li><a href="shop.do?p_cat=furniture">Furniture</a></li>
 						<li><a href="shop.do?p_cat=dressings">Dressings</a></li>
@@ -367,7 +368,12 @@ case "table" :  catNum="5"; break;
 								%>
 
 
-								<li class="page-item"><a class="page-link" href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=result.get(0).getP_cat()%><%if(selectcolor!=null){%>&p_color=<%=selectcolor%><%}%>&page=<%=i%>"><%=i%></a></li>
+								<li class="page-item"><a class="page-link" href="shop.do?
+								itemQuan=<%=request.getAttribute("nowquan")%>
+								<%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>
+								<%if(nowcate!=null && !nowcate.equals("null")){%>&p_cat=<%=result.get(0).getP_cat()%><%}%>
+								<%if(selectcolor!=null){%>&p_color=<%=selectcolor%><%}%>
+								&page=<%=i%>"><%=i%></a></li>
 
 								<%
 									}

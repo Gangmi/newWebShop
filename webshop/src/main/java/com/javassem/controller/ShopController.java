@@ -47,12 +47,16 @@ public class ShopController {
 	public ModelAndView viewShop(ModelAndView mv, ProductVO vo) {
 
 		// 카테고리가 들어오지 않았다면
-		if (vo.getP_cat() == null) {
-			// 의자로 기본 카테고리를 지정
-			vo.setP_cat("chair");
+		String cat=vo.getP_cat();
+		System.out.println(cat+"현재 카테고리-----------------------");
 		
-
-		}
+//		if (vo.getP_cat().equals("null")) {
+//			// 의자로 기본 카테고리를 지정
+//			System.out.println("카테고리 값");
+//		
+//
+//		}
+		
 		// 만약 페이지가 들어오지 않았다면,
 		if (vo.getPage() == null) {
 			// 페이지를 1로 지정

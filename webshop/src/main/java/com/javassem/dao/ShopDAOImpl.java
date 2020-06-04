@@ -71,7 +71,7 @@ public class ShopDAOImpl implements ShopDAO {
 			return totalpage = catTot / itemquan;
 		}
 	}
-
+ 
 	// 해당 카테고리의 상품을 가져오기
 	public List<ProductVO> getProductDetail(ProductVO vo) {
 		System.out.println("다오 들어옴");
