@@ -1,6 +1,9 @@
 package com.javassem.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.javassem.dao.TransferDAO;
+import com.javassem.domain.OrderVO;
 
 
 
@@ -40,9 +44,10 @@ public class TransferController {
 	public void checkoutok(String pay,HttpServletResponse response, HttpServletRequest request,HttpSession session) throws Exception
 	{
 		
-		ArrayList<String> idlist = (ArrayList)session.getAttribute("idlist");
-		ArrayList<String> countlist = (ArrayList)session.getAttribute("countlist");
+		List<String> idlist = (ArrayList)session.getAttribute("idlist");
+		List<String> countlist = (ArrayList)session.getAttribute("countlist");
 		String userId = (String)session.getAttribute("userId");
+
 		dao.insertorder(pay,idlist,countlist,userId);
 		
 		
