@@ -34,7 +34,7 @@ public class ShopDAOImpl implements ShopDAO {
 		if (vo.getP_brand() != null) {
 			// 브랜드가 있을 때
 			// string tokenizer로 /를 기준으로 자르기
-			StringTokenizer sc = new StringTokenizer(vo.getP_brand(),"/");
+			StringTokenizer sc = new StringTokenizer(vo.getP_brand(), "/");
 
 			List<String> brandlist = new ArrayList();
 			int i = 0;
@@ -46,11 +46,19 @@ public class ShopDAOImpl implements ShopDAO {
 			map.put("brand", brandlist);
 
 		}
-		//색에 대한 검색이 들어오면
-		if(vo.getP_color()!=null) {
-			//맵퍼에 색을 지정
+		// 색에 대한 검색이 들어오면
+		if (vo.getP_color() != null) {
+			// 맵퍼에 색을 지정
 			map.put("selectcolor", vo.getP_color());
 		}
+		// 값에 대한 검색이 들어오면
+		if (vo.getP_price() != 0) {
+
+			map.put("startprice", vo.getP_price());
+			map.put("endprice", vo.getP_id());
+			System.out.println(vo.getP_price() + "값 조회 카운트 -----------------------");
+		}
+		
 
 		// 전체 갯수를 구하기 위해 맵퍼로 전송
 		catTot = mybatis.selectOne("ShopDAO.getCatTotal", map);
@@ -71,7 +79,7 @@ public class ShopDAOImpl implements ShopDAO {
 			return totalpage = catTot / itemquan;
 		}
 	}
- 
+
 	// 해당 카테고리의 상품을 가져오기
 	public List<ProductVO> getProductDetail(ProductVO vo) {
 		System.out.println("다오 들어옴");
@@ -83,7 +91,6 @@ public class ShopDAOImpl implements ShopDAO {
 		List<String> brandlist = new ArrayList();
 		if (vo.getP_brand() != null) {
 
-			
 			StringTokenizer sc = new StringTokenizer(vo.getP_brand(), "/");
 
 			int i = 0;
@@ -101,8 +108,14 @@ public class ShopDAOImpl implements ShopDAO {
 
 		// 컬러에대한 검색이 있다면,
 		if (vo.getP_color() != null) {
-			
+
 			map.put("selectcol", vo.getP_color());
+		}
+		// 값에 대한 검색이 들어오면
+		if (vo.getP_price() != 0) {
+
+			map.put("startprice", vo.getP_price());
+			map.put("endprice", vo.getP_id());
 		}
 
 		// 가져온 페이지당 갯수를 int로 변환
@@ -128,16 +141,12 @@ public class ShopDAOImpl implements ShopDAO {
 		int end = page * itemquan;
 		int start = end - (itemquan - 1);
 
-		
-
 		map.put("cat", vo.getP_cat());
 		map.put("start", start);
 		map.put("end", end);
 
 		// vo 에 저장된 카테고리에서 , 해당하는 페이지의 해당하는 물품갯수만큼 가져와서 리스트에 저장한다.
 		List<ProductVO> result = mybatis.selectList("ShopDAO.getProductDetail", map);
-		
-		
 
 		return result;
 	}

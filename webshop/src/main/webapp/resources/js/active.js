@@ -1,6 +1,7 @@
 (function($) {
 	'use strict';
 
+	
 	var $window = $(window);
 
 	// :: 1.0 Masonary Gallery Active Code
@@ -100,8 +101,10 @@
 				var min = jQuery(this).data('min');
 				var max = jQuery(this).data('max');
 				var unit = jQuery(this).data('unit');
-				var value_min = jQuery(this).data('value-min');
-				var value_max = jQuery(this).data('value-max');
+				//var value_min = jQuery(this).data('value-min');
+				//var value_max = jQuery(this).data('value-max');
+				var value_min = $("#startprice").val();
+				var value_max = $("#endprice").val();
 				var label_result = jQuery(this).data('label-result');
 				var t = $(this);
 				$(this).slider(
@@ -117,6 +120,10 @@
 								console.log(t);
 								t.closest('.slider-range').find('.range-price')
 										.html(result);
+								// 슬라이더를 움직였을 때 이 값을 hidden input에 저장함
+								$("#startprice").val(ui.values[0]);
+								$("#endprice").val(ui.values[1]);
+
 							}
 						});
 			});
@@ -140,31 +147,32 @@
 				var page = $("#page").val();
 				var selectcolor = $("#selectcolor").val();
 
-				//아이템 갯수 선택시 브랜드 클릭 정보가 있으면
+				// 아이템 갯수 선택시 브랜드 클릭 정보가 있으면
 				if ($("#rawbrand").val() != "null") {
 
 					var brand = $("#rawbrand").val();
 
-					//아이템 갯수 선택시 브랜드 클릭 정보가 있고 색이 있으면
+					// 아이템 갯수 선택시 브랜드 클릭 정보가 있고 색이 있으면
 					if (selectcolor != "null") {
 						window.location.href = "shop.do?" + "p_cat=" + cat
 								+ "&page=" + page + "&itemQuan=" + itemQuan
 								+ "&p_brand=" + brand + "&p_color="
 								+ selectcolor
-						//아이템 갯수 선택시 브랜드 클릭 정보가 있고 색은 없으면
+						// 아이템 갯수 선택시 브랜드 클릭 정보가 있고 색은 없으면
 					} else {
 						window.location.href = "shop.do?" + "p_cat=" + cat
 								+ "&page=" + page + "&itemQuan=" + itemQuan
 								+ "&p_brand=" + brand
 					}
 
-					//아이템 갯수 선택시 브랜드 클릭 정보가 없으면
+					// 아이템 갯수 선택시 브랜드 클릭 정보가 없으면
 				} else if ($("#rawbrand").val() == "null") {
-					//아이템 갯수 선택시 브랜드 클릭정보가 없고 색이 있으면
+					// 아이템 갯수 선택시 브랜드 클릭정보가 없고 색이 있으면
 					if (selectcolor != "null") {
 						window.location.href = "shop.do?" + "p_cat=" + cat
-								+ "&page=" + page + "&itemQuan=" + itemQuan+"&p_color="+selectcolor
-					//아이템 갯수 선택시 브랜드 클릭 정보가 없고 색도 없으면			
+								+ "&page=" + page + "&itemQuan=" + itemQuan
+								+ "&p_color=" + selectcolor
+						// 아이템 갯수 선택시 브랜드 클릭 정보가 없고 색도 없으면
 					} else {
 						window.location.href = "shop.do?" + "p_cat=" + cat
 								+ "&page=" + page + "&itemQuan=" + itemQuan
@@ -177,7 +185,7 @@
 	// 브랜드 별 상품을 보여주기 위한 부분
 	$(".form-check input").click(
 			function() {
-				//브랜드의 체크박스 객체 가져오기
+				// 브랜드의 체크박스 객체 가져오기
 				var chkbox = $(".form-check-input");
 				// 브랜드를 저장할 변수
 				var send_array = "";
@@ -192,40 +200,70 @@
 				// 로케이션 넘길때 사용해야할 변수들
 				var itemQuan = $("#itemQuan").val();
 				var cat = $("#p_cat").val();
-				var selectcolor= $("#selectcolor").val();
+				var selectcolor = $("#selectcolor").val();
 
 				// 만약 브랜드에 체크된 것이 없다면 - 브랜드를 체크했다가 지워서 아무것도 없으면
 				if (send_array == "") {
-					//그런데 그때 선택한 색이 있다면
-					if(selectcolor!="null"){
+					// 그런데 그때 선택한 색이 있다면
+					if (selectcolor != "null") {
 						window.location.href = "shop.do?" + "p_cat=" + cat
-						+ "&itemQuan=" + itemQuan+"&p_color="+selectcolor
-					//브랜드에 체크된것도 없고 색도 없으면	
-					}else{
-					window.location.href = "shop.do?" + "p_cat=" + cat
-							+ "&itemQuan=" + itemQuan
+								+ "&itemQuan=" + itemQuan + "&p_color="
+								+ selectcolor
+						// 브랜드에 체크된것도 없고 색도 없으면
+					} else {
+						window.location.href = "shop.do?" + "p_cat=" + cat
+								+ "&itemQuan=" + itemQuan
 
 					}
 					// 브랜드에 체크된 것이 있으면
 				} else if (send_array != "") {
 
-					//브랜드에 체크된 것이 있고 , 선택된 색도 있으면
-					if(selectcolor!="null"){
+					// 브랜드에 체크된 것이 있고 , 선택된 색도 있으면
+					if (selectcolor != "null") {
 						window.location.href = "shop.do?" + "p_cat=" + cat
-						+ "&itemQuan=" + itemQuan + "&p_brand="
-						+ send_array+"&p_color="+selectcolor
-						
-					
-					//브랜드에 체크된것은 있고 색은 없으면	
-					}else{
-					window.location.href = "shop.do?" + "p_cat=" + cat
-							+ "&itemQuan=" + itemQuan + "&p_brand="
-							+ send_array;
+								+ "&itemQuan=" + itemQuan + "&p_brand="
+								+ send_array + "&p_color=" + selectcolor
+
+						// 브랜드에 체크된것은 있고 색은 없으면
+					} else {
+						window.location.href = "shop.do?" + "p_cat=" + cat
+								+ "&itemQuan=" + itemQuan + "&p_brand="
+								+ send_array;
 
 					}
 				}
 
 			});
+	
+	
+
+	// 가격 조정 슬라이드를 사용하고 아래에 search 를 했을 때
+//	$(".price-search").click(
+//			function() {
+//
+//				window.location.href = "shop.do?"+"p_cat=" + cat
+//				+ "&itemQuan=" + itemQuan + "&p_brand=" + send_array;
+//				alert();
+//
+//				// 시작값 끝 값을 가져옴
+//				var startprice = $("#startprice").val();
+//				var endprice = $("#endprice").val();
+//
+//				alert()
+//				// 넘겨야할 모든 값을 가져옴
+//				var itemQuan = $("#itemQuan").val();
+//				var cat = $("#p_cat").val();
+//				var selectcolor = $("#selectcolor").val();
+//				var brand = $("#rawbrand").val();
+//
+//				// 넘기기
+//				// window.location.href = "shop.do?" + "p_cat=" + cat
+//				// + "&itemQuan=" + itemQuan + "&p_brand="
+//				// +
+//				// send_array+"&p_color="+selectcolor+"&p_price"+startprice+"&p_date"+endprice;
+//			
+//
+//			});
 	// $.ajax({
 	// type:'post', // 원래 포스트 방식
 	// async: true, // 비동기 통신 실행 여부

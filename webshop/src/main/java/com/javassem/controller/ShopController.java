@@ -57,6 +57,18 @@ public class ShopController {
 //
 //		}
 		
+		
+		//만약 가격에 대한 검색이 들어오지 않으면
+//		if(vo.getP_price()==0) {
+//			mv.addObject("startprice",1000);
+//			mv.addObject("endprice",25000);
+//			
+//			System.out.println("가격검색 들어오지않음"+vo.getP_price());
+//			
+//			
+//		}
+		
+		
 		// 만약 페이지가 들어오지 않았다면,
 		if (vo.getPage() == null) {
 			// 페이지를 1로 지정
@@ -115,6 +127,7 @@ public class ShopController {
 
 		int totalpage = service.getCatTotal(vo);
 		
+		System.out.println(totalpage + "토탈 페이지-------------" );
 		
 		//만약 구해온 페이지보다 현재 페이지가 크다면
 		if(Integer.parseInt(vo.getPage())>totalpage) {

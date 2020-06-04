@@ -13,14 +13,30 @@
 <head>
 
 <%
-	
+//전체 페이지	
 int totalpage = (Integer) request.getAttribute("totalpage");
 
-
+//선택된 브랜드들의 리스트
 List<String> select = (List)request.getAttribute("brand");
+
+//브랜드전체목록 한줄로
 String rawbrand = (String)request.getAttribute("rawbrand");
+
+//색을 선택
 String selectcolor = (String)request.getAttribute("selectcolor");
+
+//현재 카테고리
 String nowcate = (String)request.getAttribute("nowcat");
+
+//가격검색에 대한 정보
+
+// int startprice = Integer.parseInt((String)(request.getAttribute("startprice")));
+// int endprice = Integer.parseInt((String)(request.getAttribute("endprice")));	
+ int startprice = 5000;
+ int endprice = 10000;	
+
+
+//결과로 받아온 상품리스트
 List<ProductVO> result = (List) request.getAttribute("details");
 
 /* switch(catNum) {
@@ -59,7 +75,10 @@ case "table" :  catNum="5"; break;
 	<input type="hidden" id="page" value=<%=request.getAttribute("nowpage")%>>
 	<input type="hidden" id="itemQuan" value=<%=request.getAttribute("nowquan")%>>
 	<input type="hidden" id="rawbrand" value="<%=request.getAttribute("rawbrand") %>">
-	<input type="hidden" id="selectcolor" value=<%=selectcolor%>>	
+	<input type="hidden" id="selectcolor" value=<%=selectcolor%>>
+	<input type="hidden" id="startprice" value="5000">
+	<input type="hidden" id="endprice" value="10000">
+		
 	<!-- Search Wrapper Area Start -->
 	<div class="search-wrapper section-padding-100">
 		<div class="search-close">
@@ -121,8 +140,8 @@ case "table" :  catNum="5"; break;
 			</nav>
 			<!-- Button Group -->
 			<div class="amado-btn-group mt-30 mb-100">
-				<a href="#" class="btn amado-btn mb-15">%Discount%</a> <a href="#"
-					class="btn amado-btn active">New this week</a>
+				<a href="#"></a> <a href="#"
+					></a>
 			</div>
 			<!-- Cart Menu -->
 			<div class="cart-fav-search mb-100">
@@ -233,16 +252,28 @@ case "table" :  catNum="5"; break;
 
 				<div class="widget-desc">
 					<div class="slider-range">
-						<div data-min="10" data-max="1000" data-unit="$"
+						<div data-min="1000" data-max="25000" data-unit="$"
 							class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
-							data-value-min="10" data-value-max="1000" data-label-result="">
+				 			data-value-min="1000" data-value-max="25000" data-label-result="">
 							<div class="ui-slider-range ui-widget-header ui-corner-all"></div>
 							<span class="ui-slider-handle ui-state-default ui-corner-all"
 								tabindex="0"></span> <span
 								class="ui-slider-handle ui-state-default ui-corner-all"
 								tabindex="0"></span>
 						</div>
-						<div class="range-price">$10 - $1000</div>
+						<div class="range-price">$<%=startprice %> - $<%=endprice %></div>
+						
+						<form action="shop.do?
+								itemQuan=<%=request.getAttribute("nowquan")%>
+								<%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>
+								<%if(nowcate!=null && !nowcate.equals("null")){%>&p_cat=<%=result.get(0).getP_cat()%><%}%>
+								<%if(selectcolor!=null){%>&p_color=<%=selectcolor%><%}%>
+						">
+						<input id="startprice" name="p_price" type ="hidden" value="1000">
+						<input id="endprice" name="p_id" type ="hidden" value="25000">
+						<input type="submit" class="price-search" value="search">
+						</form>
+						
 					</div>
 				</div>
 			</div>
@@ -269,7 +300,7 @@ case "table" :  catNum="5"; break;
 									<p>Sort by</p>
 									<form action="#" method="get">
 										<select name="select" id="sortBydate">
-											<option value="p_date">Newest</option>
+											<option value="p_date">Newest</option>										
 											<option value="value">Popular</option>
 										</select>
 									</form>
