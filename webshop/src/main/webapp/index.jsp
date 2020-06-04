@@ -70,7 +70,7 @@
             <nav class="amado-nav">
                 <ul>
                     <li class="active"><a href="index.do">Home</a></li>
-                    <li><a href="shop.do">Shop</a></li>
+                    <li><a href="shop.do?p_cat=chair">Shop</a></li>
                  
                     <li><a href="cart.do">Cart</a></li>
                     <li><a href="checkout.do">Checkout</a></li>

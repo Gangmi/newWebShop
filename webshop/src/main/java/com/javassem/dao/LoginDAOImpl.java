@@ -22,9 +22,9 @@ public class LoginDAOImpl implements LoginDAO{
 
 	public LoginVO signInMember(LoginVO vo) {
 		System.out.println("===> Mybatis signinmember() 호출");
-//		System.out.println(vo.getMid() + "/" + vo.getMpass());
+
 		LoginVO result = mybatis.selectOne("LoginDAO.signinmember", vo);
-//		System.out.println(result.getMid() + "/" + result.getMpass());
+
 		return result;
 		
 	}
@@ -32,9 +32,9 @@ public class LoginDAOImpl implements LoginDAO{
 	
 	public LoginVO findId(LoginVO vo) {
 		System.out.println("===> Mybatis findid() 호출");
-//		System.out.println(vo.getMname());
+
 		LoginVO result = mybatis.selectOne("LoginDAO.findid", vo);
-//		System.out.println(vo.getMid());
+
 		return  result;
 	}
 
@@ -42,6 +42,25 @@ public class LoginDAOImpl implements LoginDAO{
 		System.out.println("===> Mybatis findpassword() 호출");
 		LoginVO result = mybatis.selectOne("LoginDAO.findpassword", vo);
 		
+		return result;
+	}
+
+	public LoginVO memberInfo(LoginVO vo) {
+		
+		System.out.println("===> Mybatis memberInfo() 호출");
+		LoginVO result = mybatis.selectOne("LoginDAO.memberInfo", vo);
+		return result;
+	}
+
+	public int updateMember(LoginVO vo) {
+		System.out.println("===> Mybatis memberInfo() 호출");
+		int result = mybatis.update("LoginDAO.updatemember", vo);
+		return result;
+	}
+
+	public int deleteMember(LoginVO vo) {
+		System.out.println("===> Mybatis deleteMember() 호출");
+		int result = mybatis.delete("LoginDAO.deleteMember", vo);
 		return result;
 	}
 

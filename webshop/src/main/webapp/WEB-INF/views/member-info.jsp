@@ -1,3 +1,4 @@
+<%@page import="com.javassem.domain.LoginVO"%>
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -21,6 +22,8 @@
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="css/core-style.css">
     <!-- <link rel="stylesheet" href="style.css"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./resources/js/login-userInput.js"></script>
 
 </head>
 
@@ -78,16 +81,25 @@
                     
                     <li><a href="cart.do">Cart</a></li>
                     <li><a href="checkout.do">Checkout</a></li>
-                    <li class="active"><a href="login.do">Login</a></li>
+                    
                 </ul>
             </nav>
             <!-- Button Group -->
             <div class="amado-btn-group mt-30 mb-100">
-                <a href="#" class="btn amado-btn mb-15">%Discount%</a>
-                <a href="#" class="btn amado-btn active">New this week</a>
+                <a ></a>
+                <a ></a>
             </div>
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
+            	 
+             <% if((String)session.getAttribute("userId")==null){%>                                      
+                   <a href="login.do"> Login</a></li>
+                   
+                    <%}else{ %>
+                     ${userId}님 </li>     
+                    <a href="logout.do" >[ Logout ]</a></li>
+                    <a  href="member-info.do" >[ edit profile ]</a></li>
+                    <%} %> 
                 <a href="cart.do" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(<%= request.getCookies().length-1 %>)</span></a>
                 <a href="wishlist.do" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Favourite</a>
                 <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>
@@ -112,51 +124,57 @@
                                 <h2>Sign-up</h2>
                             </div>
 
-                            <form action="#" method="post">
+                            <form action="update_Member.do" id="updatemember" name="updatemember" method="post">
                                 <div class="row">
+                                <table class="table">
+                                
+                                </table>
+                                	
                                     <div class="col-md-12 mb-3">
-                                        <input type="text" readonly="readonly" class="form-control" id="first_name" value="" placeholder="아이디" value="" required>
+                                        <input type="text" class="form-control" id="mid" name="mid"  readonly="readonly" value="<%=request.getAttribute("mid") %>" placeholder="아이디" required>
                                     </div>
                                     <div class="col-12 mb-3">
-                                        <input type="text" readonly="readonly" class="form-control" id="company" placeholder="비밀번호" value="" required>
+                                        <input type="password" class="form-control" id="mpass" name="mpass" placeholder="비밀번호" value="" required>
                                     </div>
-                                    <div class="col-12 mb-3">
-                                        <input type="email" readonly="readonly" class="form-control" id="email" placeholder="비밀번호확인" value="" required>
+                                     <div class="col-12 mb-3">
+                                        <input type="password" class="form-control" id="mpasshwak" name="mpasshwak" placeholder="비밀번호확인" value="" required>
                                     </div>
+                                    
                                   
                                     <div class="col-12 mb-3">
-                                        <input type="text" readonly="readonly" class="form-control mb-3" id="street_address" placeholder="이름" value="" required>
+                                        <input type="text" class="form-control mb-3" id="mname" name="mname" placeholder="이름" value="<%=request.getAttribute("mname") %>" required>
                                     </div>
                                     <div class="col-12 mb-3">
-                                        <input type="text"  readonly="readonly" class="form-control" id="city" placeholder="이메일" value="" required>
+                                        <input type="email" class="form-control" id="memail"  name="memail" placeholder="이메일" value="<%=request.getAttribute("memail") %>" required>
                                     </div>
                                     <div class="col-12 mb-3">
-                                        <input type="number" readonly="readonly" class="form-control" id="phone_number" min="0" placeholder="휴대폰번호" value="" required>
+                                        <input type="text" class="form-control" id="mtel" name="mtel"  placeholder="휴대폰번호" value="<%=request.getAttribute("mtel") %>" required>
                                     </div>
                                    
                                     
                                    <div class="col-md-6 mb-3">
-                                    <input type="text" readonly="readonly" class="form-control" id="sample6_postcode" placeholder="우편번호" value="">
+                                    <input type="text" class="form-control" id="mpostCode"  name="mpostCode" placeholder="우편번호" value="<%=request.getAttribute("mpostCode") %>">
                                     </div>
                                     <div class="col-md-6 mb-3">
-									<input type="button" readonly="readonly" class="btn amado-btn mb-15" onclick="sample6_execDaumPostcode()" placeholder="우편번호 찾기" value=""><br>
+									<input type="button" class="btn amado-btn mb-15" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
 									</div>
 									 <div class="col-12 mb-3">
-									<input type="text" readonly="readonly" class="form-control" id="sample6_address" placeholder="주소" value=""><br>
+									<input type="text" class="form-control" id="maddr"  name="maddr" placeholder="주소" value="<%=request.getAttribute("maddr") %>"><br>
 									</div>
-									<div class="col-md-6 mb-3">
-									<input type="text" readonly="readonly" class="form-control" id="sample6_detailAddress" placeholder="상세주소" value="">
+									<div class="col-12 mb-3">
+									<input type="text" class="form-control" id="maddrDetail"  name="maddrDetail" placeholder="상세주소" value="<%=request.getAttribute("maddrDetail") %>">
 									</div>
-									<div class="col-md-6 mb-3">
-									<input type="text" readonly="readonly" class="form-control" id="sample6_extraAddress" placeholder="참고항목" value="">
-									</div>
+<!-- 									<div class="col-md-6 mb-3"> -->
+<!-- 									<input type="text" class="form-control" id="sample6_extraAddress" name="" placeholder="참고항목"> -->
+<!-- 									</div> -->
                                     
-                                    
-<!--                                     <div class="amado-btn-group mt-30 mb-100"> -->
+             
                                      <div align="center" class="col-12 mb-3">
-						                <a href="index.do" class="btn amado-btn mb-15">메인화면</a>
-						               	<a href="member-modify.do" class="btn amado-btn mb-15">회원정보수정</a>
+						                <a href="index.do" class="btn amado-btn mb-15">취소</a>
+						               	<a id="update" name="" class="btn amado-btn mb-15">개인정보수정</a>
+						               	<a href="deleteMember.do" name="" class="btn amado-btn mb-15">회원탈퇴</a>
 						            </div>
+						            
 
                                 </div>
                             </form>
@@ -232,9 +250,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                         <li class="nav-item">
                                             <a class="nav-link" href="checkout.do">Checkout</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="login.do">Login</a>
-                                        </li>
+                                        
                                     </ul>
                                 </div>
                             </nav>
@@ -293,17 +309,18 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                         extraAddr = ' (' + extraAddr + ')';
                     }
                     // 조합된 참고항목을 해당 필드에 넣는다.
-                    document.getElementById("sample6_extraAddress").value = extraAddr;
+//                     document.getElementById("sample6_extraAddress").value = extraAddr;
                 
-                } else {
-                    document.getElementById("sample6_extraAddress").value = '';
-                }
+                } 
+//                 else {
+//                     document.getElementById("sample6_extraAddress").value = '';
+//                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('sample6_postcode').value = data.zonecode;
-                document.getElementById("sample6_address").value = addr;
+                document.getElementById('mpostCode').value = data.zonecode;
+                document.getElementById("maddr").value = addr;
                 // 커서를 상세주소 필드로 이동한다.
-                document.getElementById("sample6_detailAddress").focus();
+                document.getElementById("maddrDetail").focus();
             }
         }).open();
     }

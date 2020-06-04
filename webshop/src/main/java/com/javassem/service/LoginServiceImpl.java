@@ -30,5 +30,16 @@ public class LoginServiceImpl implements LoginService {
 		return loginDAO.findPassword(vo);
 	}
 
+	public LoginVO memberInfo(LoginVO vo) {
+		return loginDAO.memberInfo(vo);
+	}
+	
+	public int updateMember(LoginVO vo) {
+		return loginDAO.updateMember(vo);
+	}
 
+	
+	public int deleteMember(LoginVO vo) {
+		return loginDAO.deleteMember(vo);
+	}
 }

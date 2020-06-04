@@ -80,16 +80,25 @@
                     
                     <li><a href="cart.do">Cart</a></li>
                     <li><a href="checkout.do">Checkout</a></li>
-                    <li class="active"><a href="login.do">Login</a></li>
+                   
                 </ul>
             </nav>
             <!-- Button Group -->
             <div class="amado-btn-group mt-30 mb-100">
-                <a href="#" class="btn amado-btn mb-15">%Discount%</a>
-                <a href="#" class="btn amado-btn active">New this week</a>
+                <a ></a>
+                <a ></a>
             </div>
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
+             
+             	<% if((String)session.getAttribute("userId")==null){%>                                      
+                   <a href="login.do"> Login</a></li>
+                   
+                    <%}else{ %>
+                     ${userId}님 </li>     
+                    <a href="logout.do" >[ Logout ]</a></li>
+                    <a  href="member-info.do" >[ edit profile ]</a></li>
+                    <%} %> 
                 <a href="cart.do" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(<%= request.getCookies().length-1 %>)</span></a>
                 <a href="wishlist.do" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Favourite</a>
                 <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>
@@ -157,7 +166,8 @@
 <!-- 									</div> -->
                                     
              
-                                     <div align="center" class="col-12 mb-3">
+                              
+						            <div align="center" class="col-12 mb-3">
 						                <a href="index.do" class="btn amado-btn mb-15">취소</a>
 						               	<a type="button" id="confirm" name="confirm" class="btn amado-btn mb-15">회원가입</a>
 						            </div>
@@ -236,9 +246,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                         <li class="nav-item">
                                             <a class="nav-link" href="checkout.do">Checkout</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="login.do">Login</a>
-                                        </li>
+                                       
                                     </ul>
                                 </div>
                             </nav>

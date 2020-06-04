@@ -42,7 +42,7 @@ public class LoginController {
 		//
 	}
 
-	//
+	//로그인
 	@RequestMapping("/sign_in.do")
 	public ModelAndView sign_in(LoginVO vo, HttpSession session) {
 
@@ -58,6 +58,18 @@ public class LoginController {
 		}
 		return mv;
 	}
+	
+	//로그아웃을 눌렀을때
+		@RequestMapping("/logout.do")
+		public ModelAndView logout(HttpSession session) {
+			//로그아웃을 눌렀을때 세션을 종료한다.
+			session. invalidate();
+			//처음화면으로 돌려버림
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("/index");
+			return mv;
+		}
+		
 //	아이디 찾기
 	@RequestMapping("/find_Id.do")
 	public ModelAndView findId(LoginVO vo) {
@@ -70,23 +82,73 @@ public class LoginController {
 		return mv;
 	}
 
+	
+	//비밀번호를 찾을때
 	@RequestMapping("/find_password.do")
 	public ModelAndView findPassword(LoginVO vo) {
 		LoginVO result = loginservice.findPassword(vo);
 		
 		ModelAndView mv = new ModelAndView();
-		
+		//이메일이 없다면 다시 현재페이지로 리턴
 		if (result == null || result.getMpass() == null) {
 			mv.setViewName("/find-password");
 	
-		}else {
+		}else {//이메일이 있다면 ,저장돼있는 메일로 비밀번호가 담긴 메일을 보냄
 		  gmailSend(result);
 		  mv.setViewName("/find-password-ok");
+		  mv.addObject("email", result.getMemail());
 		}
 		 return mv;		
 	}
-
 	
+	//회원정보 가져와서 보여주는 기능
+	@RequestMapping("/member-info.do")
+	public ModelAndView memberInfo(LoginVO vo,HttpSession session) {
+	
+		vo.setMid((String)session.getAttribute("userId")); 
+		
+
+		LoginVO result = loginservice.memberInfo(vo);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/member-info");
+		mv.addObject("mid", result.getMid());
+		mv.addObject("mpass", result.getMpass());
+		mv.addObject("mtel", result.getMtel());
+		mv.addObject("memail", result.getMemail());
+		mv.addObject("maddr", result.getMaddr());
+		mv.addObject("mpostCode", result.getMpostCode());
+		mv.addObject("maddrDetail", result.getMaddrDetail());
+		mv.addObject("mname", result.getMname());
+		return mv;
+	}
+	
+	@RequestMapping("/update_Member.do")
+	public ModelAndView  updateMember(LoginVO vo) {
+		int result = loginservice.updateMember(vo);
+
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/index");
+		return mv;
+		
+	}
+	
+	@RequestMapping("/deleteMember.do")
+	public ModelAndView deleteMember(LoginVO vo,HttpSession session) {
+		vo.setMid((String)session.getAttribute("userId")); 
+		int result = loginservice.deleteMember(vo);
+		//회원탈퇴을 눌렀을때 세션을 종료한다.
+		session. invalidate();
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/index");
+		return mv;
+	}
+	
+	
+	
+
+	//이메일 보내는 기능
 	public static void gmailSend(LoginVO vo) {
         String user = "junpublic97@gmail.com"; // 네이버일 경우 네이버 계정, gmail경우 gmail 계정
         String password = "Wjdwnsrjatk97!";   // 패스워드

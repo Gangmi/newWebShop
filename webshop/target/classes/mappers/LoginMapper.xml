@@ -40,32 +40,29 @@
 				
 		FROM member 
 		WHERE M_ID= #{mid} 
-
-		
-		
+	
 	</select>
 	
-	
-	<!-- <delete id="deleteshop" parameterType="shop">
+	<select id="memberInfo" parameterType="login" resultType="login">
 		<![CDATA[
-		DELETE shop
-		WHERE SEQ = #{seq}
+		SELECT M_NAME mname, M_EMAIL memail, M_TEL mtel, M_POSTCODE mpostCode, M_ADDR maddr, M_ADDR_DETAIL maddrDetail, M_ID mid
+		FROM MEMBER
+		WHERE M_ID = #{mid}
 		]]>
+	</select>
+	
+	<update id="updatemember" parameterType="login" >
+		UPDATE MEMBER
+		SET M_NAME = #{mname}, M_EMAIL= #{memail}, M_TEL= #{mtel}, M_POSTCODE= #{mpostCode},M_ADDR=#{maddr},M_ADDR_DETAIL=#{maddrDetail},M_PASS=#{mpass}
+		WHERE M_ID = #{mid}
+	</update>
+	
+	<delete id="deleteMember" parameterType="login" >
+		DELETE FROM MEMBER
+		WHERE M_ID = #{mid}
+
 	</delete>
 	
-	<select id="getshop" parameterType="shop" resultType="shop">
-		<![CDATA[
-		SELECT *
-		FROM shop
-		WHERE SEQ = #{seq}
-		]]>
-	</select>
 	
-	<select id="getshopList" resultType="shop">
-		<![CDATA[
-		SELECT *
-		FROM shop
-		ORDER BY SEQ DESC
-		]]>
-	</select>  -->
+	
 </mapper>

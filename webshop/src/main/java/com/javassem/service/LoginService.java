@@ -11,4 +11,10 @@ public interface LoginService {
 	LoginVO findId(LoginVO vo);
 
 	LoginVO findPassword(LoginVO vo);
+
+	LoginVO memberInfo(LoginVO vo);
+
+	int updateMember(LoginVO vo);
+
+	int deleteMember(LoginVO vo);
 }
