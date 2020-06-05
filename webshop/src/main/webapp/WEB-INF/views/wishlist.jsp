@@ -1,7 +1,9 @@
 <%@page contentType="text/html; charset=UTF-8"%>
-
+<%@ page import='com.javassem.domain.ProductVO' %>
+<%@page import="java.util.List"%>
 <!DOCTYPE>
 <html>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
 
@@ -15,6 +17,7 @@ $(function(){
 });
 
 </script>
+
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge; charset=UTF-8">
 <meta name="description" content="">
@@ -34,6 +37,9 @@ $(function(){
 </head>
 
 <body>
+<%
+List<ProductVO> list =(List<ProductVO>) request.getAttribute("list");
+%>
     <!-- Search Wrapper Area Start -->
     <div class="search-wrapper section-padding-100">
         <div class="search-close">
@@ -130,6 +136,37 @@ $(function(){
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <%  for(int i=0;i<list.size();i++){ 
+                                	ProductVO vo = new ProductVO();
+                                	vo = list.get(i);
+                                %>
+                                	
+                                    <tr>
+                                        <td class="cart_product_img">
+                                            <a href="img/product-img/<%=vo.getP_cat()%><%=vo.getP_id()%>_1.jpg"><img src="img/product-img/<%=vo.getP_cat()%><%=vo.getP_id()%>_1.jpg" alt="Product"></a>
+                                        </td>
+                                        <td class="cart_product_desc">
+                                            <h5><%=vo.getP_name() %></h5>
+                                        </td>
+                                        <td class="price" >
+                                            <span>$<%=vo.getP_price() %></span>
+                                        </td>
+                                        <td class="qty">
+                                            <div class="qty-btn d-flex">
+                                                <p>Qty</p>
+                                                <div class="quantity">
+                                                    <span class="qty-minus" onclick="var effect = document.getElementById('qty<%=vo.getP_id() %>'); var qty<%=vo.getP_id() %> = effect.value; if( !isNaN( qty<%=vo.getP_id() %> ) &amp;&amp; qty<%=vo.getP_id() %> &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                                                    <input type="hidden" value='<%=vo.getP_price() %>' name='p_price' class='price'/>
+                                                    <input type="hidden" value='<%=vo.getP_id() %>' name='p_id' class='p_id'/>
+                                                    <input type="number" class="qty-text" id="qty<%=vo.getP_id() %>" step="1" min="1" max="300" name="quantity" value="1">
+                                                    <span class="qty-plus" onclick="var effect = document.getElementById('qty<%=vo.getP_id() %>'); var qty<%=vo.getP_id() %> = effect.value; if( !isNaN( qty<%=vo.getP_id() %> )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                                </div>
+                                                &nbsp;
+                                                <label><input type="checkbox" name="check" class='check'  checked="checked" value='<%=vo.getP_id()%>' ></label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <%  } %>
                                     <tr>
                                         <td class="cart_product_img">
                                             <a href="#"><img src="img/bg-img/cart1.jpg" alt="Product"></a>

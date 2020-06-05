@@ -28,5 +28,13 @@
 	<insert id="insertWishlist" parameterType="hashmap">
 	insert into WISHLIST(W_ID,P_ID,M_ID) values(SEQ_WISHLIST_ID.nextval,#{P_ID},#{M_ID})
 	</insert>
+	<select id="selectWishlist" parameterType="String" resultType="product">
+	<![CDATA[
+	select w.P_ID,p.P_CAT,p.P_PRICE,p.P_NAME
+	from WISHLIST w inner join PRODUCT p
+	on w.P_ID = p.P_ID
+	where w.M_ID = #{value}
+	]]>
+	</select>
 
 </mapper>

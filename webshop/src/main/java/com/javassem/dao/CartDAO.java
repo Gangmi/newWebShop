@@ -17,5 +17,7 @@ public interface CartDAO {
 
 	public List<ProductVO> getShopList(List<ProductVO> seq) ;
 	
+	public List<ProductVO> selectWishlist(String userId);
+	
 
 }

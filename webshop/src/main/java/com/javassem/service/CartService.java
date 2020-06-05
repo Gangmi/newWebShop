@@ -29,6 +29,8 @@ public interface CartService {
 	LoginVO getmemberInfo(LoginVO vo);
 
 	void insertWishlist(String id, String userId);
+	
+	List<ProductVO> selectWishlist(String userId);
 
 	
 }

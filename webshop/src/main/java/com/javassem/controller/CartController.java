@@ -145,11 +145,23 @@ public class CartController {
 
 
 	@RequestMapping("/wishlist.do")
-	public void wishlist(String p_id,HttpSession session)
+	public ModelAndView wishlist(String p_id,HttpSession session)
 	{
 		String userId = (String)session.getAttribute("userId");
-		
+		if(p_id!=null)
+		{
 		service.insertWishlist(p_id,userId);
+		}
+		List<ProductVO> list = service.selectWishlist(userId);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("wishlist");
+		mv.addObject("list",list);
+		
+		
+
+
+		return mv;
 		
 	}
 

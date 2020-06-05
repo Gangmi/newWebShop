@@ -54,14 +54,28 @@ public class CartDAOImpl implements CartDAO{
 	{
 		System.out.println("===> Mybatis insertWishlist() 호출");
 		HashMap wish = new HashMap();
-		System.out.println(id+userId);
+
 		wish.put("P_ID", id);
 		wish.put("M_ID", userId);
-		int result = mybatis.selectOne("CartDAO.insertWishlist",wish);
-		if(result!=0)
+		mybatis.insert("CartDAO.insertWishlist",wish);
+
+	}
+	
+	public List<ProductVO> selectWishlist(String userId)
+	{
+		System.out.println("===> Mybatis selectWishlist() 호출");
+
+		List<ProductVO> result = mybatis.selectList("CartDAO.selectWishlist",userId);
+		if(result!=null)
 		{
-			System.out.println("성공");
+			for(int i=0; i<result.size();i++)
+			{
+				ProductVO vo = new ProductVO();
+				vo = result.get(i);
+				System.out.println(vo.getP_name());
+			}
 		}
+		return result;
 	}
 
 

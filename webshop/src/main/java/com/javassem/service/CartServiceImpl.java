@@ -51,6 +51,14 @@ public class CartServiceImpl implements CartService {
 		CartDAO.insertWishlist(id,userId);
 	}
 
+	@Override
+	public List<ProductVO> selectWishlist(String userId) {
+		
+		return CartDAO.selectWishlist(userId);
+	}
+	
+	
+
 	
 	
 
