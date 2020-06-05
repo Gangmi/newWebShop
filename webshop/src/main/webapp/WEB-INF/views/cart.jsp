@@ -132,7 +132,10 @@ $(function(){
 
 
 </script>
+
 <head>
+
+</style>
 <meta http-equiv="X-UA-Compatible" content="IE=edge; charset=UTF-8">
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -307,7 +310,6 @@ int total = subtotal+deli;
                                         </td>
                                     </tr>
                                     <%  } %>
-                                    
                                 </tbody>
                             </table>
                         </div>

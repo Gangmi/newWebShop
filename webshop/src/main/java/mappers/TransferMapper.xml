@@ -19,6 +19,12 @@ SELECT #{test.o_id} as a, #{test.p_id} as b, #{test.cnt} as c FROM DUAL </foreac
    
 </insert>
 
+<update id="orderlistqty" parameterType="java.util.List">
+ <foreach collection="list" item="vo" index="index">
+        UPDATE PRODUCT SET P_QUAN=P_QUAN-#{vo.cnt} where P_ID=#{vo.p_id}
+</foreach>
+</update>
+
 
 
 

@@ -25,16 +25,7 @@ public class TransferDAOImpl implements TransferDAO {
 	 *  선언적 트랜잭션에서는 런타임 예외가 발생하면 롤백한지만 예외가 발생하지 않거나 체크 예외가 발생하면 커밋한다.
 	 *  그래서 rollbackFor를 이용하여 예외를 지정한다.
 	 */
-	@Transactional(rollbackFor=TransException.class)
-	@Override
-	public void transfer(int subtotal) throws TransException{
-//		int resultSend = sqlSession.update("trans.withdraw", send);
-//		if( resultSend == 0) throw new TransException();
-//		System.out.println("인출");
-//		int resultRecv = sqlSession.update("trans.deposit", recv);
-//		if( resultRecv == 0) throw new TransException();
-//		System.out.println("입금");
-	}
+
 	@Transactional(rollbackFor=TransException.class)
 	@Override
 	public void insertorder(String pay,List<String> idlist,List<String> countlist, String userId) throws TransException{
@@ -65,6 +56,14 @@ public class TransferDAOImpl implements TransferDAO {
 		
 		int resultol = sqlSession.insert("Trans.orderlist", ordervo);
 		if( resultol == 0) throw new TransException();
+		
+		int resultolqty = sqlSession.update("Trans.orderlistqty", ordervo);
+		System.out.println("설마 못들어감?");
+		if( resultolqty == 0) throw new TransException();
+		if(resultolqty>0)
+		{
+			System.out.println("***********성공못함");
+		}
 		
 
 		

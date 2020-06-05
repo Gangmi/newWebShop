@@ -30,18 +30,10 @@ public class TransferController {
 	//2.
 	@Autowired
 	TransferDAO dao;
-	@ResponseBody
-	@RequestMapping(value="/transfer.do",method=RequestMethod.POST,produces="applicaton/text; charset=UTF-8")
-	public ModelAndView addAll(int subtotal)  throws Exception{
 
-		String msg = "주문이 성공적으로 이체되었습니다.";
-		dao.transfer(subtotal);
-		ModelAndView ma = new ModelAndView("cart");
-		ma.addObject("msg", msg);
-		return ma;
-	}
-	
-	@RequestMapping("/checkoutok.do")
+//	@ResponseBody
+//	@RequestMapping(value="/checkoutok.do",method=RequestMethod.POST,produces="applicaton/text; charset=UTF-8")
+	@RequestMapping(value="/checkoutok.do")
 	public void checkoutok(String pay,HttpServletResponse response, HttpServletRequest request,HttpSession session) throws Exception
 	{
 		
