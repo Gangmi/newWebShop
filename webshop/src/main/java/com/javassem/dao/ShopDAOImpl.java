@@ -62,6 +62,12 @@ public class ShopDAOImpl implements ShopDAO {
 
 		// 전체 갯수를 구하기 위해 맵퍼로 전송
 		catTot = mybatis.selectOne("ShopDAO.getCatTotal", map);
+		
+		//전체 갯수만 리턴하고 싶다는 신호가 들어오면
+		
+		if(vo.getConfirm()==1) {
+			return catTot;
+		}
 
 		System.out.println("shopdao 아이템갯수 " + catTot);
 		// 가져온 페이지당 갯수를 int로 변환

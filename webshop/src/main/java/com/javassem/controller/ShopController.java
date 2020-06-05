@@ -147,6 +147,13 @@ public class ShopController {
 			System.out.println("받아온 리스트 없음");
 		}
 		
+		//전체 아이템 갯수를 알기위해 dao에 신호를주기위한 세팅
+		vo.setConfirm(1);
+		int totalitems = service.getCatTotal(vo);
+		
+		//전체 아이템 갯수
+		mv.addObject("totalitems", totalitems);
+		
 		// 다음 페이지 지정
 		mv.setViewName("shop");
 

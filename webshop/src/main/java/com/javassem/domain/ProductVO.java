@@ -13,7 +13,15 @@ public class ProductVO {
 	private String p_color;
 	private String p_detail;
 	private String p_date;
+	private int confirm;
 	
+	
+	public int getConfirm() {
+		return confirm;
+	}
+	public void setConfirm(int confirm) {
+		this.confirm = confirm;
+	}
 	private int startprice;
 	public int getStartprice() {
 		return startprice;
