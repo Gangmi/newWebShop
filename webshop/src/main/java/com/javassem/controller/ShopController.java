@@ -56,17 +56,22 @@ public class ShopController {
 //		
 //
 //		}
-		
+		System.out.println(vo.getStartprice()+"컨트롤러 시작가격");
 		
 		//만약 가격에 대한 검색이 들어오지 않으면
-//		if(vo.getP_price()==0) {
-//			mv.addObject("startprice",1000);
-//			mv.addObject("endprice",25000);
-//			
-//			System.out.println("가격검색 들어오지않음"+vo.getP_price());
-//			
-//			
-//		}
+		if(vo.getStartprice()==0) {
+			vo.setStartprice(1000);
+			vo.setEndprice(25000);
+			
+			mv.addObject("startprice",vo.getStartprice());
+			mv.addObject("endprice",vo.getEndprice());
+			
+			
+			
+			System.out.println("가격검색 들어오지않아서 기본값으로 설정"+vo.getStartprice()+"다시");
+			
+			
+		}
 		
 		
 		// 만약 페이지가 들어오지 않았다면,
@@ -155,6 +160,11 @@ public class ShopController {
 		mv.addObject("nowcat",vo.getP_cat());
 		mv.addObject("nowpage",vo.getPage());
 		mv.addObject("nowquan",vo.getItemQuan());
+		mv.addObject("startprice",vo.getStartprice());
+		mv.addObject("endprice",vo.getEndprice());
+		
+		
+		
 		
 		
 		

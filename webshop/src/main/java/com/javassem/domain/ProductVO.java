@@ -14,6 +14,21 @@ public class ProductVO {
 	private String p_detail;
 	private String p_date;
 	
+	private int startprice;
+	public int getStartprice() {
+		return startprice;
+	}
+	public void setStartprice(int startprice) {
+		this.startprice = startprice;
+	}
+	public int getEndprice() {
+		return endprice;
+	}
+	public void setEndprice(int endprice) {
+		this.endprice = endprice;
+	}
+	private int endprice;
+	
 	
 	
 	

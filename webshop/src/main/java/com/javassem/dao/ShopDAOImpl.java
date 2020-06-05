@@ -52,10 +52,10 @@ public class ShopDAOImpl implements ShopDAO {
 			map.put("selectcolor", vo.getP_color());
 		}
 		// 값에 대한 검색이 들어오면
-		if (vo.getP_price() != 0) {
+		if (vo.getStartprice() != 0) {
 
-			map.put("startprice", vo.getP_price());
-			map.put("endprice", vo.getP_id());
+			map.put("startprice", vo.getStartprice());
+			map.put("endprice", vo.getEndprice());
 			System.out.println(vo.getP_price() + "값 조회 카운트 -----------------------");
 		}
 		
@@ -112,10 +112,10 @@ public class ShopDAOImpl implements ShopDAO {
 			map.put("selectcol", vo.getP_color());
 		}
 		// 값에 대한 검색이 들어오면
-		if (vo.getP_price() != 0) {
+		if (vo.getStartprice() != 0) {
 
-			map.put("startprice", vo.getP_price());
-			map.put("endprice", vo.getP_id());
+			map.put("startprice", vo.getStartprice());
+			map.put("endprice", vo.getEndprice());
 		}
 
 		// 가져온 페이지당 갯수를 int로 변환

@@ -31,25 +31,14 @@ String nowcate = (String)request.getAttribute("nowcat");
 
 //가격검색에 대한 정보
 
-// int startprice = Integer.parseInt((String)(request.getAttribute("startprice")));
-// int endprice = Integer.parseInt((String)(request.getAttribute("endprice")));	
- int startprice = 5000;
- int endprice = 10000;	
+int startprice = (Integer)request.getAttribute("startprice");
+int endprice =  (Integer)request.getAttribute("endprice");
 
 
 //결과로 받아온 상품리스트
 List<ProductVO> result = (List) request.getAttribute("details");
 
-/* switch(catNum) {
 
-case "chair" :  catNum="1"; break;
-case "bed" :  catNum="2"; break;
-case "furniture" :  catNum="3"; break;
-case "dressing" :  catNum="4"; break;
-case "table" :  catNum="5"; break;
-
-}
- */
 %>
 <meta charset="UTF-8">
 <meta name="description" content="">
@@ -59,7 +48,7 @@ case "table" :  catNum="5"; break;
 <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 <!-- Title  -->
-<title><%=request.getRequestURL()+"&p_color=white"%>Amado - Furniture Ecommerce Template | Shop</title>
+<title>Amado - Furniture Ecommerce Template | Shop</title>
 
 <!-- Favicon  -->
 <link rel="icon" href="img/core-img/favicon.ico">
@@ -77,8 +66,8 @@ case "table" :  catNum="5"; break;
 	<input type="hidden" id="itemQuan" value=<%=request.getAttribute("nowquan")%>>
 	<input type="hidden" id="rawbrand" value="<%=request.getAttribute("rawbrand") %>">
 	<input type="hidden" id="selectcolor" value=<%=selectcolor%>>
-	<input type="hidden" id="startprice" value="5000">
-	<input type="hidden" id="endprice" value="10000">
+	<input type="hidden" id="startprice" value=<%=startprice %>>
+	<input type="hidden" id="endprice" value=<%=endprice%>>
 		
 	<!-- Search Wrapper Area Start -->
 	<div class="search-wrapper section-padding-100">
@@ -173,12 +162,12 @@ case "table" :  catNum="5"; break;
 				<!--  Catagories  -->
 				<div class="catagories-menu">
 					<ul>
-						<li class="active"><a href="shop.do">All Products</a></li>
-						<li><a href="shop.do?p_cat=chair">Chairs</a></li>
-						<li><a href="shop.do?p_cat=bed">Beds</a></li>
-						<li><a href="shop.do?p_cat=furniture">Furniture</a></li>
-						<li><a href="shop.do?p_cat=dressings">Dressings</a></li>
-						<li><a href="shop.do?p_cat=table">Tables</a></li>
+						<li class="active"><a href="shop.do?startprice=<%=startprice%>&endprice=<%=endprice%>">All Products</a></li>
+						<li><a href="shop.do?p_cat=chair&startprice=<%=startprice%>&endprice=<%=endprice%>">Chairs</a></li>
+						<li><a href="shop.do?p_cat=bed&startprice=<%=startprice%>&endprice=<%=endprice%>">Beds</a></li>
+						<li><a href="shop.do?p_cat=furniture&startprice=<%=startprice%>&endprice=<%=endprice%>">Furniture</a></li>
+						<li><a href="shop.do?p_cat=dressings&startprice=<%=startprice%>&endprice=<%=endprice%>">Dressings</a></li>
+						<li><a href="shop.do?p_cat=table&startprice=<%=startprice%>&endprice=<%=endprice%>">Tables</a></li>
 					</ul>
 				</div>
 			</div>
@@ -242,7 +231,7 @@ case "table" :  catNum="5"; break;
 						<li><a href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=nowcate%>&page=<%=request.getAttribute("nowpage")%>&p_color=orange" class="orange"></a></li>
 						<li><a href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=nowcate%>&page=<%=request.getAttribute("nowpage")%>&p_color=brown" class="brown"></a></li>
 					</ul>
-					<a href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=nowcate%>&page=<%=request.getAttribute("nowpage")%>">reset</a>
+					<a href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=nowcate%>&page=<%=request.getAttribute("nowpage")%>&startprice=<%=startprice%>&endprice=<%=endprice%>">reset</a>
 				</div>
 			</div>
 
@@ -264,14 +253,15 @@ case "table" :  catNum="5"; break;
 						</div>
 						<div class="range-price">$<%=startprice %> - $<%=endprice %></div>
 						
-						<form action="shop.do?
-								itemQuan=<%=request.getAttribute("nowquan")%>
-								<%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>
-								<%if(nowcate!=null && !nowcate.equals("null")){%>&p_cat=<%=nowcate%><%}%>
-								<%if(selectcolor!=null){%>&p_color=<%=selectcolor%><%}%>
-						">
-						<input id="startprice" name="p_price" type ="hidden" value="1000">
-						<input id="endprice" name="p_id" type ="hidden" value="25000">
+				 
+						<form action="shop.do?">
+						<input name="itemQuan" type ="hidden" value="<%=request.getAttribute("nowquan")%>">
+						<%if(rawbrand!=null){%><input name="p_brand" type ="hidden" value="<%=rawbrand%>"><%}%>
+						<%if(nowcate!=null && !nowcate.equals("null")){%><input name="p_cat" type ="hidden" value="<%=nowcate%>"><%}%>	
+						<input id="startprices" name="startprice" type ="hidden" value=<%=startprice%>>
+						<input id="endprices" name="endprice" type ="hidden" value=<%=endprice%>>
+						<%if(selectcolor!=null){%><input name="p_color" type ="hidden" value=<%=selectcolor%>><%}%>
+						
 						<input type="submit" class="price-search" value="search">
 						</form>
 						
@@ -401,7 +391,8 @@ case "table" :  catNum="5"; break;
 
 
 								<li class="page-item"><a class="page-link" href="shop.do?
-								itemQuan=<%=request.getAttribute("nowquan")%>
+								startprice=<%=startprice%>&endprice=<%=endprice%>
+								&itemQuan=<%=request.getAttribute("nowquan")%>
 								<%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>
 								<%if(nowcate!=null && !nowcate.equals("null")){%>&p_cat=<%=result.get(0).getP_cat()%><%}%>
 								<%if(selectcolor!=null){%>&p_color=<%=selectcolor%><%}%>

@@ -114,6 +114,10 @@
 							max : max,
 							values : [ value_min, value_max ],
 							slide : function(event, ui) {
+								
+								$("#startprices").val(ui.values[0]);
+								$("#endprices").val(ui.values[1]);
+
 								var result = label_result + " " + unit
 										+ ui.values[0] + ' - ' + unit
 										+ ui.values[1];
@@ -121,9 +125,7 @@
 								t.closest('.slider-range').find('.range-price')
 										.html(result);
 								// 슬라이더를 움직였을 때 이 값을 hidden input에 저장함
-								$("#startprice").val(ui.values[0]);
-								$("#endprice").val(ui.values[1]);
-
+							
 							}
 						});
 			});
@@ -201,6 +203,7 @@
 				var itemQuan = $("#itemQuan").val();
 				var cat = $("#p_cat").val();
 				var selectcolor = $("#selectcolor").val();
+				var startprice = $("#startprices").val();
 
 				// 만약 브랜드에 체크된 것이 없다면 - 브랜드를 체크했다가 지워서 아무것도 없으면
 				if (send_array == "") {
@@ -208,7 +211,7 @@
 					if (selectcolor != "null") {
 						window.location.href = "shop.do?" + "p_cat=" + cat
 								+ "&itemQuan=" + itemQuan + "&p_color="
-								+ selectcolor
+								+ selectcolor 
 						// 브랜드에 체크된것도 없고 색도 없으면
 					} else {
 						window.location.href = "shop.do?" + "p_cat=" + cat
