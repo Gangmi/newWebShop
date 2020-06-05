@@ -238,6 +238,10 @@
 
 			});
 	
+	$("#sortitem").change(function(evt){
+		$("#sortitem").submit();
+	});
+	
 	
 
 	// 가격 조정 슬라이드를 사용하고 아래에 search 를 했을 때

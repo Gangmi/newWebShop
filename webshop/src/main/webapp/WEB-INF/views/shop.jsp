@@ -46,7 +46,8 @@ int startrow = (nowquan*nowpage)-nowquan+1;
 int startprice = (Integer)request.getAttribute("startprice");
 int endprice =  (Integer)request.getAttribute("endprice");
 
-
+//선택된 정렬기준
+int selectorder = (Integer)request.getAttribute("selectorder");
 
 //결과로 받아온 상품리스트
 List<ProductVO> result = (List) request.getAttribute("details");
@@ -61,7 +62,7 @@ List<ProductVO> result = (List) request.getAttribute("details");
 <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 <!-- Title  -->
-<title>Amado - Furniture Ecommerce Template | Shop</title>
+<title><%=selectorder %>>Amado - Furniture Ecommerce Template | Shop</title>
 
 <!-- Favicon  -->
 <link rel="icon" href="img/core-img/favicon.ico">
@@ -293,7 +294,7 @@ List<ProductVO> result = (List) request.getAttribute("details");
 							<!-- Total Products -->
 							<div class="total-products">
 							<!--카테고리 , 브랜드 , -->
-								<p>Showing <%if(nowcate!=null){ %><%=nowcate %><% }else{%>All<%}%> <%=startrow%>-<%=nowquan*nowpage%> 0f <%=request.getAttribute("totalitems")%></p>
+								<p>Showing <%if(nowcate!=null&& !nowcate.equals("null")){ %><%=nowcate %><% }else{%>All<%}%> <%=startrow%>- <%if((nowquan*nowpage)<(Integer)request.getAttribute("totalitems")){%><%=nowquan*nowpage%><%}else{%><%=request.getAttribute("totalitems")%><%}%> 0f <%=request.getAttribute("totalitems")%></p>
 								<div class="view d-flex">
 									<a href="#"><i class="fa fa-th-large" aria-hidden="true"></i></a>
 									<a href="#"><i class="fa fa-bars" aria-hidden="true"></i></a>
@@ -303,11 +304,18 @@ List<ProductVO> result = (List) request.getAttribute("details");
 							<div class="product-sorting d-flex">
 								<div class="sort-by-date d-flex align-items-center mr-15">
 									<p>Sort by</p>
-									<form action="#" method="get">
+									<form id="sortitem" action="shop.do" method="get">
 										<select name="select" id="sortBydate">
-											<option value="p_date">Newest</option>										
-											<option value="value">Popular</option>
+											<option name=ordermethod value="0" <% if(selectorder==0){ %>selected="selected"<%} %>>Newest</option>										
+											<option name=ordermethod value="1"<% if(selectorder==1){ %>selected="selected"<%} %>>Popular</option>
 										</select>
+											<input name="itemQuan" type ="hidden" value="<%=request.getAttribute("nowquan")%>">
+											<%if(rawbrand!=null){%><input name="p_brand" type ="hidden" value="<%=rawbrand%>"><%}%>
+											<%if(nowcate!=null && !nowcate.equals("null")){%><input name="p_cat" type ="hidden" value="<%=nowcate%>"><%}%>	
+											<input id="startprices" name="startprice" type ="hidden" value=<%=startprice%>>
+											<input id="endprices" name="endprice" type ="hidden" value=<%=endprice%>>
+											<%if(selectcolor!=null){%><input name="p_color" type ="hidden" value=<%=selectcolor%>><%}%>
+						
 									</form>
 								</div>
 								

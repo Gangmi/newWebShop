@@ -169,7 +169,7 @@ public class ShopController {
 		mv.addObject("nowquan",vo.getItemQuan());
 		mv.addObject("startprice",vo.getStartprice());
 		mv.addObject("endprice",vo.getEndprice());
-		
+		mv.addObject("selectorder",vo.getOrdermethod());
 		
 		
 		
