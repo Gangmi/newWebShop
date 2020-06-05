@@ -121,6 +121,9 @@ public class ShopController {
 			
 		}
 		
+		
+		System.out.println(vo.getOrdermethod()+"색을 눌렀을 때 정렬방법");
+		
 //		
 //		System.out.println(vo.getP_cat());
 //		System.out.println(vo.getItemQuan());

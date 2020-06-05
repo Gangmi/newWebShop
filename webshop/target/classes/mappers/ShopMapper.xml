@@ -8,7 +8,7 @@
 	
 <select id="getProductDetail" parameterType="hashmap" resultType="product">
 	
-select * from (select rownum as rnum,product.p_id,product.p_name,product.p_price,product.p_cat,product.p_quan,product.p_brand,product.p_color from product where 1=1<if test="startprice!=null"> and p_price<![CDATA[>=]]>#{startprice} and p_price<![CDATA[<=]]>#{endprice} </if><if test="cat!=null and !cat.equals('null')"> and product.p_cat=#{cat}</if><if test="selectcol!=null"> and product.p_color=#{selectcol} </if><if test="brand!=null">and product.p_brand in<foreach collection="brand" item="br"  open="(" close=")" separator=",">#{br}</foreach></if> order by<if test="selectcol!=null">product.p_color,</if><if test="ordermethod == null">product.p_date desc</if>)
+select * from (select rownum as rnum,product.p_id,product.p_name,product.p_price,product.p_cat,product.p_quan,product.p_brand,product.p_color from product where 1=1<if test="startprice!=null"> and p_price<![CDATA[>=]]>#{startprice} and p_price<![CDATA[<=]]>#{endprice} </if><if test="cat!=null and !cat.equals('null')"> and product.p_cat=#{cat}</if><if test="selectcol!=null"> and product.p_color=#{selectcol} </if><if test="brand!=null">and product.p_brand in<foreach collection="brand" item="br"  open="(" close=")" separator=",">#{br}</foreach></if><if test="ordermethod == 2">order by product.p_date desc</if><if test="ordermethod == 1">order by product.soldcount desc</if><if test="selectcol!=null">, product.p_color</if>)
 
 
 where <![CDATA[rnum>=]]>#{start} and <![CDATA[rnum<=]]>#{end}<if test="selectcolor!=null"> and p_color=#{selectcol}</if>
@@ -34,6 +34,27 @@ where <![CDATA[rnum>=]]>#{start} and <![CDATA[rnum<=]]>#{end}<if test="selectcol
 
 	
 	</select>
+	
+	<update id="updateproduct" >
+	
+merge into product p
+using(
+	select  po.p_id as p_id ,nvl(count(orderlist.p_id),0) as soldcount
+
+	from orderlist right outer join product po
+
+	on po.p_id = orderlist.p_id
+
+	group by po.p_id )  s
+on (
+      p.p_id =s.p_id
+     )
+when matched then
+        update set p.soldcount = s.soldcount
+	
+	
+	</update>
+	
 	<!-- <insert id="insertshop" parameterType="shop">
 		<![CDATA[
 		INSERT INTO shop(SEQ, TITLE, WRITER, CONTENT, REGDATE, CNT)

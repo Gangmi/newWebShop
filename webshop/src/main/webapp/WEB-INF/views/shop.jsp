@@ -312,8 +312,8 @@ List<ProductVO> result = (List) request.getAttribute("details");
 								<div class="sort-by-date d-flex align-items-center mr-15">
 									<p>Sort by</p>
 									<form id="sortitem" action="shop.do" method="get">
-										<select name="select" id="sortBydate">
-											<option name=ordermethod value="0" <% if(selectorder==0){ %>selected="selected"<%} %>>Newest</option>										
+										<select name="ordermethod" id="sortBydate">
+											<option name=ordermethod value="2" <% if(selectorder==0){ %>selected="selected"<%} %>>Newest</option>										
 											<option name=ordermethod value="1"<% if(selectorder==1){ %>selected="selected"<%} %>>Popular</option>
 										</select>
 											<input name="itemQuan" type ="hidden" value="<%=request.getAttribute("nowquan")%>">

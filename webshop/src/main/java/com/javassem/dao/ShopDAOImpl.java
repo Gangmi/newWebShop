@@ -123,6 +123,17 @@ public class ShopDAOImpl implements ShopDAO {
 			map.put("startprice", vo.getStartprice());
 			map.put("endprice", vo.getEndprice());
 		}
+		
+		//만약 검색 방법이 popular라면, 판매 물품 전체를 업데이트
+		if(vo.getOrdermethod()==1) {
+			System.out.println("업데이트 하러 들어옴");
+			mybatis.update("ShopDAO.updateproduct");
+			
+			System.out.println("업데이트 결과");
+		}
+		
+		
+		
 
 		// 가져온 페이지당 갯수를 int로 변환
 		int itemquan = Integer.parseInt(vo.getItemQuan());
@@ -137,7 +148,7 @@ public class ShopDAOImpl implements ShopDAO {
 
 		// 만약 현재 페이지가 나올 페이지의 값보다 크면,
 		if (page > totpage) {
-			// 페이지를 1로 지정함
+			// 페이지를 1로 지정함 
 			page = 1;
 
 			// 의자 카테고르에서 페이지당 4개로 설정된 2페이지에서 상품을 보고있다고 가정했을 때 이케아를 눌렀는데
@@ -146,7 +157,13 @@ public class ShopDAOImpl implements ShopDAO {
 
 		int end = page * itemquan;
 		int start = end - (itemquan - 1);
-
+		//0으로 들어오면
+		if(vo.getOrdermethod()==0) {
+			//2로 바꿈
+			vo.setOrdermethod(2);
+		
+		}
+		map.put("ordermethod",vo.getOrdermethod());
 		map.put("cat", vo.getP_cat());
 		map.put("start", start);
 		map.put("end", end);
