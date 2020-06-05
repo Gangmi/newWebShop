@@ -72,7 +72,6 @@ public class CartDAOImpl implements CartDAO{
 			{
 				ProductVO vo = new ProductVO();
 				vo = result.get(i);
-				System.out.println(vo.getP_name());
 			}
 		}
 		return result;

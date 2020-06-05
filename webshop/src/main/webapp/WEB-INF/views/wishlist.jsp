@@ -20,10 +20,19 @@ $(function(){
 
     	$(".check:checked").each(function (index) {  
             id.push($(this).parents().prevAll(".quantity").find(".p_id").val());
+            alert($(this).parents().prevAll(".quantity").find(".p_id").val());
        });
 
-    	window.location.href = "cart.do?id="+id;
+    	window.location.href = "wishtocart.do?id="+id;
         });
+
+    $("#delsel").click(function(){
+    	var str="";
+        $(".check:checked").each(function (index) {  
+            str += $(this).val()+",";  
+        });  
+        $("#delstr").val(str);
+    });
 });
 
 </script>
@@ -126,9 +135,17 @@ List<ProductVO> list =(List<ProductVO>) request.getAttribute("list");
                 <div class="row">
                     <div class="col-12 col-lg-8">
                         <div class="cart-title mt-50">
-                            <h2>Wish List  ${id}</h2>
+                            <h2>Wish List</h2>
                         </div>
-
+							<form action="wishlist.do" method="post"> 
+                        	
+							
+							<div style = "float:right;">
+							<input type='submit' id='delsel' value='Delete'  />
+							</div>
+							<input type="hidden" value='hi' id="delstr" name='delstr' class='delstr'/>
+							<br>
+							</form> 
                         <div class="cart-table clearfix">
                             <table class="table table-responsive">
                                 <thead>
@@ -136,7 +153,7 @@ List<ProductVO> list =(List<ProductVO>) request.getAttribute("list");
                                         <th></th>
                                         <th>Name</th>
                                         <th>Price</th>
-                                        <th>Quantity</th>
+                                        <th>Select</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -157,13 +174,12 @@ List<ProductVO> list =(List<ProductVO>) request.getAttribute("list");
                                         </td>
                                         <td class="qty">
                                             <div class="qty-btn d-flex">
-                                                <p>Qty</p>
+                                                
                                                 <div class="quantity">
-                                                    <span class="qty-minus" onclick="var effect = document.getElementById('qty<%=vo.getP_id() %>'); var qty<%=vo.getP_id() %> = effect.value; if( !isNaN( qty<%=vo.getP_id() %> ) &amp;&amp; qty<%=vo.getP_id() %> &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                                                    
                                                     <input type="hidden" value='<%=vo.getP_price() %>' name='p_price' class='price'/>
                                                     <input type="hidden" value='<%=vo.getP_id() %>' name='p_id' class='p_id'/>
-                                                    <input type="number" class="qty-text" id="qty<%=vo.getP_id() %>" step="1" min="1" max="300" name="quantity" value="1">
-                                                    <span class="qty-plus" onclick="var effect = document.getElementById('qty<%=vo.getP_id() %>'); var qty<%=vo.getP_id() %> = effect.value; if( !isNaN( qty<%=vo.getP_id() %> )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                                   
                                                 </div>
                                                 &nbsp;
                                                 <label><input type="checkbox" name="check" class='check'  checked="checked" value='<%=vo.getP_id()%>' ></label>

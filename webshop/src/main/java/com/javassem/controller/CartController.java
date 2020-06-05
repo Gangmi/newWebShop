@@ -36,6 +36,7 @@ public class CartController {
 	@RequestMapping("/cart.do") 
 	public ModelAndView cart(String delstr,String p_id,HttpServletResponse response, HttpServletRequest request) {
 
+		
 		List<ProductVO> seq = new ArrayList<ProductVO>();
 		if(!(p_id==null))
 		{
@@ -145,9 +146,21 @@ public class CartController {
 
 
 	@RequestMapping("/wishlist.do")
-	public ModelAndView wishlist(String p_id,HttpSession session)
+	public ModelAndView wishlist(String delstr,String p_id,HttpSession session)
 	{
 		String userId = (String)session.getAttribute("userId");
+		if(delstr!=null)
+		{
+			String[] array = delstr.split(",");
+
+			//출력				
+			for(int i=0;i<array.length;i++) {
+				service.insertWishlist(array[i],userId);
+				
+			}
+			
+		}
+		
 		if(p_id!=null)
 		{
 		service.insertWishlist(p_id,userId);
@@ -157,11 +170,35 @@ public class CartController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("wishlist");
 		mv.addObject("list",list);
-		
-		
-
 
 		return mv;
+		
+	}
+	
+	@RequestMapping("/wishtocart.do")
+	public void wishtocart(String id,HttpServletResponse response, HttpServletRequest request)
+	{
+		if(id!= null)
+		{
+			String[] idarray = id.split(",");
+			for(int i=0; i<idarray.length;i++)
+			{
+				System.out.println(idarray[i]);
+				Cookie cookie = new Cookie("cart"+idarray[i], idarray[i]);
+				cookie.setPath("/");
+				cookie.setMaxAge(60*60*24*7);
+				response.addCookie(cookie);
+
+
+			}
+			try {
+				response.sendRedirect("cart.do");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
 		
 	}
 
