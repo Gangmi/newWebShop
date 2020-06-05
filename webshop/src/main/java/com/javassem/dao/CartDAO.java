@@ -19,5 +19,7 @@ public interface CartDAO {
 	
 	public List<ProductVO> selectWishlist(String userId);
 	
+	void deleteWishlist(String[] array,String userId);
+	
 
 }

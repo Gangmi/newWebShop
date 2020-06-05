@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.javassem.domain.LoginVO;
+import com.javassem.domain.OrderVO;
 import com.javassem.domain.ProductVO;
 import com.javassem.domain.ShopVO;
 
@@ -75,6 +76,24 @@ public class CartDAOImpl implements CartDAO{
 			}
 		}
 		return result;
+	}
+
+	public void deleteWishlist(String[] array,String userId) {
+		System.out.println("===> Mybatis deleteWishlist() 호출");
+		List<OrderVO> list = new ArrayList();
+		for(int i=0; i<array.length;i++)
+		{
+			OrderVO vo = new OrderVO();
+			vo.setP_id(Integer.parseInt(array[i]));
+			vo.setM_id(userId);
+			list.add(vo);
+		}
+		
+		int result = mybatis.delete("CartDAO.deleteWishlist",list);
+		if(result!=0)
+		{
+			System.out.println("위시 삭제ㅔ 성공");
+		}
 	}
 
 

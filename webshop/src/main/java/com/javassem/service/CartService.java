@@ -31,6 +31,8 @@ public interface CartService {
 	void insertWishlist(String id, String userId);
 	
 	List<ProductVO> selectWishlist(String userId);
+	
+	void deleteWishlist(String[] array,String userId);
 
 	
 }

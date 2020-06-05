@@ -57,6 +57,10 @@ public class CartServiceImpl implements CartService {
 		return CartDAO.selectWishlist(userId);
 	}
 	
+	public void deleteWishlist(String[] array,String userId)
+	{
+		CartDAO.deleteWishlist(array,userId);
+	}
 	
 
 	

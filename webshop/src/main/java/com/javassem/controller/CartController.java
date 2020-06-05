@@ -152,13 +152,7 @@ public class CartController {
 		if(delstr!=null)
 		{
 			String[] array = delstr.split(",");
-
-			//출력				
-			for(int i=0;i<array.length;i++) {
-				service.insertWishlist(array[i],userId);
-				
-			}
-			
+			service.deleteWishlist(array,userId);	
 		}
 		
 		if(p_id!=null)
