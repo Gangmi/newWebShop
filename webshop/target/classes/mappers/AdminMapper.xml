@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AdminDAO">
+
+
+	<select id="inventoryList" parameterType="product" resultType="product">
+		SELECT * FROM PRODUCT
+	</select>
+
+	<select id="memberList" parameterType="member" resultType="member">
+		SELECT m_id,m_pass,m_tel,m_email,m_addr||' '||m_addr_detail
+		m_addr,m_postcode,m_grade,m_sub FROM member WHERE m_grade!='운영자'
+	</select>
+
+	<select id="employeeList" parameterType="member" resultType="member">
+		SELECT m_id,m_pass,m_tel,m_email,m_addr||' '||m_addr_detail
+		m_addr,m_postcode,m_grade,m_sub FROM member WHERE m_grade='운영자'
+	</select>
+
+	<select id="deliveryList" parameterType="delivery" resultType="delivery">
+		select * from delivery
+	</select>
+
+	<select id="productInsert" parameterType="product" resultType="product">
+		INSERT INTO product VALUES(SEQ_PRODUCT_ID.nextval,#{p_name},#{p_cat},#{p_price},#{p_quan},#{p_brand},#{p_color},#{p_detail},sysdate)
+	</select>
+	
+	<select id="productUpdate" parameterType="product" resultType="product">
+		UPDATE product SET P_NAME = #{p_name},P_CAT = #{p_cat},P_PRICE = #{p_price},P_QUAN = #{p_quan},P_BRAND = #{p_brand},P_COLOR = #{p_color},P_DETAIL = #{p_detail} WHERE P_ID = #{p_id}
+	</select>
+
+	<delete id="memberDelete" parameterType="member" >
+		DELETE FROM member WHERE m_id = #{m_id}
+	</delete>
+
+	<select id="salesMonth" parameterType="hashMap" resultType="int">
+		select sum(a) from (select ol.o_id ,ol.ol_id , p.p_id , p.p_name ,p.p_price as a ,to_char(po.o_date,'MM') from orderlist ol , product p , productorder po where ol.p_id = p.p_id and ol.o_id = po.o_id and to_char(po.o_date,'MM')=#{month} order by ol.o_id)
+	</select>
+
+	<select id="salesCategory" parameterType="hashMap" resultType="int">
+		select sum(a) from (select ol.o_id ,ol.ol_id , p.p_id , p.p_name ,p.p_price as a ,to_char(po.o_date,'MM') from orderlist ol , product p , productorder po where ol.p_id = p.p_id and ol.o_id = po.o_id and p.p_cat = #{category} order by ol.o_id)
+	</select>
+
+
+
+
+</mapper>

@@ -1,0 +1,117 @@
+package com.javassem.dao;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.javassem.domain.DeliveryVO;
+import com.javassem.domain.MemberVO;
+import com.javassem.domain.ProductVO;
+
+
+@Repository("adminDAO")
+public class AdminDAOImpl implements AdminDAO {
+
+	@Autowired
+	private SqlSessionTemplate mybatis;
+
+	public List<ProductVO> selectProduct(ProductVO vo) {
+		System.out.println("mybatis inventoryList() 호출");
+		return mybatis.selectList("AdminDAO.inventoryList",vo);
+	}
+	
+	public void showChart() {
+		System.out.println("mybatis showchart() 호출");
+		
+	}
+
+	public List<MemberVO> selectMember(MemberVO vo) {
+		System.out.println("mybatis memberList() 호출");
+		return mybatis.selectList("AdminDAO.memberList",vo);
+	}
+
+	public List<MemberVO> selectEmployee(MemberVO vo) {
+		System.out.println("mybatis employeeList() 호출");
+		return mybatis.selectList("AdminDAO.employeeList",vo);
+	}
+
+	public List<DeliveryVO> selectDelivery(DeliveryVO vo) {
+		System.out.println("mybatis deliveryList() 호출");
+		return mybatis.selectList("AdminDAO.deliveryList",vo);
+	}
+
+	public List<ProductVO> inventoryInsert(ProductVO vo) {
+		System.out.println("mybatis productInsert() 호출");
+		return mybatis.selectList("AdminDAO.productInsert",vo);
+	}
+
+	public List<ProductVO> inventoryUpdate(ProductVO vo) {
+		System.out.println("mybatis productUpdate() 호출");
+		return mybatis.selectList("AdminDAO.productUpdate",vo);
+	}
+
+	public int memberDelete(MemberVO vo) {
+		System.out.println("mybatis memberDelete() 호출");
+		return mybatis.delete("AdminDAO.memberDelete",vo);
+	}
+
+	public int[] salesMonth() {
+		int [] result2 = new int[5] ;
+		System.out.println("mybatis salesMonth() 호출");
+	
+		HashMap<String, Integer> hs = new HashMap<String, Integer>();
+		
+	     for(int i = 1; i<= 5; i++ ){
+	     
+	     hs.put("month",i);
+	     
+	     int j = mybatis.selectOne("AdminDAO.salesMonth", hs);
+	     System.out.println(j);
+	     result2 [i-1] = j;
+	     }
+	     System.out.println("mybatis salesMonth 끝나고나감");
+	     return result2;
+	}
+	
+	// 카테고리 별 매출
+	public int[] salesCategory() {
+		System.out.println("mybatis salesCategory() 호출");
+		int [] result = new int[5] ;
+	
+		HashMap<String, String> hs = new HashMap<String, String>();
+		
+		String[]arr = {"table","bed","furniture","dressings","chair"};
+		
+		System.out.println("");
+	     for(int i = 0; i<= 4; i++ ){
+	    
+	    hs.put("category",arr[i]);
+	     
+	    int j = mybatis.selectOne("AdminDAO.salesCategory", hs);
+	    System.out.println(j);
+	    result [i] = j;
+	    }
+	    System.out.println("mybatis salesCategory 끝나고나감");
+	    return result;
+	}
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+}
