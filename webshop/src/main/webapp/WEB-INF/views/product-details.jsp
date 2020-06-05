@@ -204,7 +204,9 @@
                             </div>
 
                             <!-- Add to Cart Form -->
+                             
                             <form action="cart.do" class="cart clearfix" method="post" >
+              
                                 <div class="cart-btn d-flex mb-50">
                                     <p>Qty</p>
                                     <div class="quantity">
@@ -218,11 +220,12 @@
                                 </div>
                                 <%if (vo.getP_quan()!=0){ %>
                                 <button type="submit" name="addtocart" value="5" class="btn amado-btn">Add to cart</button>
+                               
                                 <%}else{%> 
-                                	<button name="addtocart" value="5" class="btn amado-btn">Sold Out</button>
+                                	<button name="addtocart" value="5" class="btn amado-btn" disabled>Sold Out</button>
                                 <%} %>
-                                
-                            </form>
+                                 </form>
+                            
 
                         </div>
                     </div>
