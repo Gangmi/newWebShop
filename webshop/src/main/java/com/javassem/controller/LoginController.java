@@ -16,9 +16,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.javassem.domain.LoginVO;
+
 import com.javassem.service.LoginService;
 
 
@@ -40,6 +42,15 @@ public class LoginController {
 		return mv;
 		// 회원가입 완료되면 완료됬다는 창으로 보내주기 그리고 거기서 다시 버튼만들어서 다시 메인창으로
 		//
+	}
+	
+	@ResponseBody//***********비동기통신이 가능하게 해준다. 화면이 넘어가는 것을 막아줌
+	@RequestMapping(value="/idCheck.do",produces="application/text;charset=utf-8")
+	public String idcheck(LoginVO vo) {//아이디 하나넘어오지만 vo에 담는다.
+		LoginVO result = loginservice.signInMember(vo);//해당하는 아이디가 있으면 넘겨줌
+		String message = "ID 사용 가능합니다"	;
+		if(result != null)message="중복된 아이디가 있습니다";
+		return message;
 	}
 
 	//로그인
@@ -133,6 +144,7 @@ public class LoginController {
 		
 	}
 	
+	//회원탈퇴
 	@RequestMapping("/deleteMember.do")
 	public ModelAndView deleteMember(LoginVO vo,HttpSession session) {
 		vo.setMid((String)session.getAttribute("userId")); 

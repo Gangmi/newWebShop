@@ -17,4 +17,6 @@ public interface LoginService {
 	int updateMember(LoginVO vo);
 
 	int deleteMember(LoginVO vo);
+
+	
 }

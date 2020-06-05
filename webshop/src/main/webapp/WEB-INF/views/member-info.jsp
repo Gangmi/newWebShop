@@ -80,7 +80,7 @@
                     <li><a href="shop.do">Shop</a></li>
                     
                     <li><a href="cart.do">Cart</a></li>
-                    <li><a href="checkout.do">Checkout</a></li>
+                    
                     
                 </ul>
             </nav>
@@ -172,7 +172,8 @@
                                      <div align="center" class="col-12 mb-3">
 						                <a href="index.do" class="btn amado-btn mb-15">취소</a>
 						               	<a id="update" name="" class="btn amado-btn mb-15">개인정보수정</a>
-						               	<a href="deleteMember.do" name="" class="btn amado-btn mb-15">회원탈퇴</a>
+						               	<a href="delete-member.do" id="deleteMember" class="btn amado-btn mb-15">회원탈퇴</a>
+						               	
 						            </div>
 						            
 
@@ -247,9 +248,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                         <li class="nav-item">
                                             <a class="nav-link" href="cart.do">Cart</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="checkout.do">Checkout</a>
-                                        </li>
+                                        
                                         
                                     </ul>
                                 </div>

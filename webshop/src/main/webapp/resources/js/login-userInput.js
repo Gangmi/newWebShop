@@ -1,12 +1,16 @@
 $(function(){
 	 //회원가입 항목이 비었으면 alert창으로 경고 하고 보냄
+	
+	
 	$('#confirm').click(function(){
 		if( $.trim($("#mid").val()) == '' ){
             alert("아이디를 입력해 주세요.");
             $("#mid").focus();
             return;
         }
-		
+	 
+
+
 		if( $.trim($("#mpass").val()) == '' ){
             alert("비밀번호를 입력해 주시요.");
             $("#mpass").focus();
@@ -44,12 +48,41 @@ $(function(){
             $("#mpostCode").focus();
             return;
         }
+		//정규식들로 형식 체크함
+		var emailRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;//이메일 정규식
+		var telRule = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
+		if(!emailRule.test($("#mid").val())) {            
+			alert("이메일이 형식에 맞지 않습니다.");
+	            return;
+		}
+		
+		if(!telRule.test($("#mtel").val())) {            
+			alert("전화번호에 맞지 않습니다.");
+	            return;
+		}
+
 		//폼아이를 불러와 넣음
 		document.insertmember.submit();
 		
 	});
+	//아이디 중복체크
+	$('#mid').keyup(function(){//키가 눌릴때마다
+        
+		//비동기통신 = ajax
+		$.ajax({
+			type:'post',
+			async:true,
+			url:'idCheck.do',
+			contentType:'application/x-www-form-urlencoded;charset=UTF-8',
+			data :'mid='+$('#mid').val(),
+			success:function(resultData){
+				$('#idCheckResult').html(resultData);
+			}
+		});
+       
+	})
 	
-		 //회원가입 항목이 비었으면 alert창으로 경고 하고 보냄
+		 //회원정보수정 항목이 비었으면 alert창으로 경고 하고 보냄
 		$('#update').click(function(){
 			if( $.trim($("#mid").val()) == '' ){
 	            alert("아이디를 입력해 주세요.");
@@ -94,6 +127,21 @@ $(function(){
 	            $("#mpostCode").focus();
 	            return;
 	        }
+			
+			//정규식들로 형식 체크함
+			var emailRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;//이메일 정규식
+			var telRule = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
+			if(!emailRule.test($("#mid").val())) {            
+				alert("이메일이 형식에 맞지 않습니다.");
+		            return;
+			}
+			
+			if(!telRule.test($("#mtel").val())) {            
+				alert("전화번호에 맞지 않습니다.");
+		            return;
+			}
+
+			
 			//폼아이를 불러와 넣음
 			document.updatemember.submit();
 		});
@@ -202,7 +250,7 @@ $(function(){
 	
 	});
 //==================================================================	
-	
+
 	
 	
 	

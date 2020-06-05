@@ -15,8 +15,10 @@
 		
 		SELECT m_id mid				
 		FROM member
-		 WHERE M_ID= #{mid} AND M_PASS = #{mpass}
-		
+		 WHERE M_ID= #{mid} 
+		 <if test='mpass !=null'>
+		 AND M_PASS = #{mpass}
+		</if>
 		
 	</select>
 	
@@ -58,6 +60,7 @@
 	</update>
 	
 	<delete id="deleteMember" parameterType="login" >
+	
 		DELETE FROM MEMBER
 		WHERE M_ID = #{mid}
 

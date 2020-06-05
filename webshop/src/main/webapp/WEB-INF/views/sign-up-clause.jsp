@@ -81,7 +81,7 @@
                     <li><a href="shop.do">Shop</a></li>
                     
                     <li><a href="cart.do">Cart</a></li>
-                    <li><a href="checkout.do">Checkout</a></li>
+                   
                     
                 </ul>
             </nav>
@@ -451,9 +451,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                         <li class="nav-item">
                                             <a class="nav-link" href="cart.do">Cart</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="checkout.do">Checkout</a>
-                                        </li>
+                                        
                                         
                                     </ul>
                                 </div>

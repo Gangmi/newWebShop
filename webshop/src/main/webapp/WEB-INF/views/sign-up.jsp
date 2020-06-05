@@ -79,8 +79,7 @@
                     <li><a href="shop.do">Shop</a></li>
                     
                     <li><a href="cart.do">Cart</a></li>
-                    <li><a href="checkout.do">Checkout</a></li>
-                   
+                    
                 </ul>
             </nav>
             <!-- Button Group -->
@@ -120,7 +119,7 @@
                         <div class="checkout_details_area mt-50 clearfix">
 
                             <div class="cart-title">
-                                <h2>Sign-up</h2>
+                                <h2>Edit Profile</h2>
                             </div>
 
                             <form action="insertMember.do" id="insertmember" name="insertmember" method="post">
@@ -128,8 +127,12 @@
                                 <table class="table">
                                 
                                 </table>
-                                    <div class="col-md-12 mb-3">
+                                    <div class="col-md-6 mb-3">
                                         <input type="text" class="form-control" id="mid" name="mid" value="" placeholder="아이디" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+<!--                                     <input type="text" class="form-control" id="idCheckResult"  value=""> -->
+                                     <span id="idCheckResult" style="width:150px;color:red"></span>
                                     </div>
                                     <div class="col-12 mb-3">
                                         <input type="password" class="form-control" id="mpass" name="mpass" placeholder="비밀번호" value="" required>
@@ -139,10 +142,10 @@
                                     </div>
                                   
                                     <div class="col-12 mb-3">
-                                        <input type="text" class="form-control mb-3" id="mname" name="mname" placeholder="이름" value="" required>
+                                        <input type="text" class="form-control mb-3" id="mname" name="mname" placeholder="이름"  value="" required>
                                     </div>
                                     <div class="col-12 mb-3">
-                                        <input type="email" class="form-control" id="memail"  name="memail" placeholder="이메일" value="" required>
+                                        <input type="email" class="form-control" id="memail"  name="memail" placeholder="이메일"  value="" required>
                                     </div>
                                     <div class="col-12 mb-3">
                                         <input type="text" class="form-control" id="mtel" name="mtel"  placeholder="휴대폰번호" value="" required>
@@ -243,9 +246,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                         <li class="nav-item">
                                             <a class="nav-link" href="cart.do">Cart</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="checkout.do">Checkout</a>
-                                        </li>
+                                        
                                        
                                     </ul>
                                 </div>

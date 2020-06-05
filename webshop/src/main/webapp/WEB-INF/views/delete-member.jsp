@@ -91,8 +91,8 @@
             </div>
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
-            	 
-             	<% if((String)session.getAttribute("userId")==null){%>                                      
+             
+             		<% if((String)session.getAttribute("userId")==null){%>                                      
                    <a href="login.do"> Login</a></li>
                    
                     <%}else{ %>
@@ -121,19 +121,21 @@
                         <div class="checkout_details_area mt-50 clearfix">
 
                             <div class="ml-100 cart-title">
-                                <h2>Find-id</h2>
+                                <h2>membership withdrawal</h2>
                             </div>
 
-                            <form id ="" name="" action="" method="post">
+                            <form action="find_Id.do" id ="findid" name="findid"  method="get">
                                 <div class="ml-100 mt-100 row">
                                      <div class="col-md-11 mb-3">
-                                        <input type="text" class="form-control" id="mname" class="mname" value="<%=request.getAttribute("id") %>" readonly="readonly" required>
+                                        <input type="text" class="form-control" id="" class="" value="정말 탈퇴하시겠습니까?" >
                                         
                                     </div>
+                            
+<!--                                     <div class="amado-btn-group mt-30 mb-100"> -->
                                      <div class="col-12 mb-3">
 	              
-						               	<a href="find-password.do" class="btn amado-btn mb-15">비밀번호 찾기</a>
-						               	<a href="login.do" class="btn amado-btn mb-15">로그인 하기</a>
+						               	<a href="member-info.do" class="btn amado-btn mb-15">취소</a>
+						               	<a href="deleteMember.do" class="btn amado-btn mb-15">회원탈퇴</a>
 						            </div>
 
                                 </div>
@@ -207,7 +209,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                         <li class="nav-item">
                                             <a class="nav-link" href="cart.do">Cart</a>
                                         </li>
-                                       
+                                        
                                         
                                     </ul>
                                 </div>

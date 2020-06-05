@@ -42,4 +42,6 @@ public class LoginServiceImpl implements LoginService {
 	public int deleteMember(LoginVO vo) {
 		return loginDAO.deleteMember(vo);
 	}
+	
+	
 }
