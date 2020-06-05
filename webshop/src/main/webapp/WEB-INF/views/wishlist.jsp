@@ -14,6 +14,16 @@ $(function(){
         if(chk) $(".check").prop('checked', true);
         else  $(".check").prop('checked', false);
     });
+
+    $('#addtocart').click(function(){
+    	var id = new Array();
+
+    	$(".check:checked").each(function (index) {  
+            id.push($(this).parents().prevAll(".quantity").find(".p_id").val());
+       });
+
+    	window.location.href = "cart.do?id="+id;
+        });
 });
 
 </script>
@@ -92,15 +102,9 @@ List<ProductVO> list =(List<ProductVO>) request.getAttribute("list");
                     <li><a href="shop.do">Shop</a></li>
                   
                     <li><a href="cart.do">Cart</a></li>
-                    <li><a href="checkout.do">Checkout</a></li>
                     <li><a href="login.do">Login</a></li>
                 </ul>
             </nav>
-            <!-- Button Group -->
-            <div class="amado-btn-group mt-30 mb-100">
-                <a href="#" class="btn amado-btn mb-15">%Discount%</a>
-                <a href="#" class="btn amado-btn active">New this week</a>
-            </div>
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
                 <a href="cart.do" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(<%= request.getCookies().length-1 %>)</span></a>
@@ -167,50 +171,6 @@ List<ProductVO> list =(List<ProductVO>) request.getAttribute("list");
                                         </td>
                                     </tr>
                                     <%  } %>
-                                    <tr>
-                                        <td class="cart_product_img">
-                                            <a href="#"><img src="img/bg-img/cart1.jpg" alt="Product"></a>
-                                        </td>
-                                        <td class="cart_product_desc">
-                                            <h5>White Modern Chair</h5>
-                                        </td>
-                                        <td class="price">
-                                            <span>$130</span>
-                                        </td>
-                                        <td class="qty">
-                                            <div class="qty-btn d-flex">
-                                                <p>Qty</p>
-                                                <div class="quantity">
-                                                    <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                                    <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="1">
-                                                    <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                                                </div>&nbsp;
-                                                <label><input type="checkbox" name="check" class='check' value= "id" ></label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="cart_product_img">
-                                            <a href="#"><img src="img/bg-img/cart1.jpg" alt="Product"></a>
-                                        </td>
-                                        <td class="cart_product_desc">
-                                            <h5>White Modern Chair</h5>
-                                        </td>
-                                        <td class="price">
-                                            <span>$130</span>
-                                        </td>
-                                        <td class="qty">
-                                            <div class="qty-btn d-flex">
-                                                <p>Qty</p>
-                                                <div class="quantity">
-                                                    <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                                    <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="1">
-                                                    <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                                                </div>&nbsp;
-                                                <label><input type="checkbox" name="check" class='check' value= ${id } ></label>
-                                            </div>
-                                        </td>
-                                    </tr>
                                     
                                 </tbody>
                             </table>
@@ -223,7 +183,7 @@ List<ProductVO> list =(List<ProductVO>) request.getAttribute("list");
                                 <li> <label><input type="checkbox" name="selectall" id='selectall' value="blue"> All Select</label></li>
                             </ul>
                             <div class="cart-btn mt-100">
-                                <a href="cart.do" class="btn amado-btn w-100">Add To Cart</a>
+                                <a href="cart.do" id ='addtocart' class="btn amado-btn w-100">Add To Cart</a>
                             </div>
                         </div>
                     </div>
@@ -295,9 +255,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                         <li class="nav-item">
                                             <a class="nav-link" href="cart.do">Cart</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="checkout.do">Checkout</a>
-                                        </li>
+                                        
                                         <li class="nav-item">
                                             <a class="nav-link" href="login.do">Login</a>
                                         </li>

@@ -217,7 +217,6 @@ int total = subtotal+deli;
                     <li><a href="index.do">Home</a></li>
                     <li><a href="shop.do?p_cat=chair">Shop</a></li>
                     <li class="active"><a href="cart.do">Cart</a></li>
-                    <li><a href="checkout.do">Checkout</a></li>
                     <li><a href="login.do">Login</a></li>
                 </ul>
             </nav>
@@ -386,9 +385,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                         
                                         <li class="nav-item">
                                             <a class="nav-link" href="cart.do">Cart</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="checkout.do">Checkout</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="login.do">Login</a>

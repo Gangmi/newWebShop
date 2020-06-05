@@ -26,7 +26,9 @@
 		]]>
 	</select>
 	<insert id="insertWishlist" parameterType="hashmap">
-	insert into WISHLIST(W_ID,P_ID,M_ID) values(SEQ_WISHLIST_ID.nextval,#{P_ID},#{M_ID})
+	insert into WISHLIST(W_ID,P_ID,M_ID) 
+	select SEQ_WISHLIST_ID.nextval , #{P_ID},#{M_ID} FROM DUAL A
+	where not exists (select P_ID from WISHLIST where p_id=#{P_ID})
 	</insert>
 	<select id="selectWishlist" parameterType="String" resultType="product">
 	<![CDATA[
