@@ -10,6 +10,8 @@
 		<typeAlias alias="product" type="com.javassem.domain.ProductVO" />
 		<typeAlias alias="login" type="com.javassem.domain.LoginVO" />		
 		<typeAlias alias="order" type="com.javassem.domain.OrderVO" />		
+		<typeAlias alias="member" type="com.javassem.domain.MemberVO" />
+		<typeAlias alias="delivery" type="com.javassem.domain.DeliveryVO" />
 
 	</typeAliases>
 
