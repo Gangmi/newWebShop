@@ -13,7 +13,8 @@
 <head>
 
 <%
-//전체 페이지	
+//전체 페이지
+
 int totalpage = (Integer) request.getAttribute("totalpage");
 
 //선택된 브랜드들의 리스트
@@ -266,7 +267,7 @@ case "table" :  catNum="5"; break;
 						<form action="shop.do?
 								itemQuan=<%=request.getAttribute("nowquan")%>
 								<%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>
-								<%if(nowcate!=null && !nowcate.equals("null")){%>&p_cat=<%=result.get(0).getP_cat()%><%}%>
+								<%if(nowcate!=null && !nowcate.equals("null")){%>&p_cat=<%=nowcate%><%}%>
 								<%if(selectcolor!=null){%>&p_color=<%=selectcolor%><%}%>
 						">
 						<input id="startprice" name="p_price" type ="hidden" value="1000">
