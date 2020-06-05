@@ -12,6 +12,13 @@
 <link href="resources/css/a_css/datepicker3.css" rel="stylesheet">
 <link href="resources/css/a_css/styles.css" rel="stylesheet">
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!-- ***************** new **************** -->
+<link rel="stylesheet" type="text/css" href="resources/css/a_css/animate.css">
+<link rel="stylesheet" type="text/css" href="resources/css/a_css/select2.min.css">
+<link rel="stylesheet" type="text/css" href="resources/css/a_css/perfect-scrollbar.css">
+<link rel="stylesheet" type="text/css" href="resources/css/a_css/util.css">
+<link rel="stylesheet" type="text/css" href="resources/css/a_css/main.css">
+
 <!--Custom Font-->
 <link
 	href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i"
@@ -125,6 +132,8 @@
 	<ul class="nav menu">
 		<li><a href="dashBoard.do"><em class="fa fa-dashboard">&nbsp;</em>
 				Dashboard</a></li>
+		<li><a href="widgets.html"><em class="fa fa-calendar">&nbsp;</em>
+				Widgets</a></li>
 		<li><a href="charts.do"><em class="fa fa-bar-chart">&nbsp;</em>
 				Charts</a></li>
 		<li><a href="memberManagement.do"><em
@@ -307,117 +316,63 @@ var header = {
     }
 </script>
 
-<div class="container" style="margin: 1px;padding:1px">
-<div class="row" style="margin: 1px">
-					
-<!-- 	@@@@@@@@@@@@@@@@@@@@ 삼품 검색 @@@@@@@@@@@@@@@@@@@@ -->
+			<div class="wrap-table100">
+				<div class="table100">
+<!-- 		********************* 검색 창 ****************** -->
+						<div class="col-md-3">
+							<form action="#" method="get">
+								<div class="input-group">
+									<!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
+									<input class="form-control" id="system-search" name="q"
+										placeholder="Search for" required> <span
+										class="input-group-btn">
+										<button type="submit" class="btn btn-default">
+											<i class="glyphicon glyphicon-search"></i>
+										</button>
+									</span>
+								</div>
+							</form>
+						</div>
+						
+<!--		************************* 테이블 *********************** -->
 
+			<div class="wrap-table100">
+				<div class="col-md-9">
+					<table class="table table-list-search">
+						<thead>
+							<tr class="table100-head">
+								<th class="column1">ID</th>
+								<th class="column2">PASSWORD</th>
+								<th class="column3">TEL</th>
+								<th class="column4">EMAIL</th>
+								<th class="column5">ADDRESS</th>
+								<th class="column6">POST_CODE</th>
+								<th class="column7">GRADE</th>
+								<th class="column8">SUBSCRIBE</th>
+								<th class="column9">DELETE</th>
+							</tr>
+						</thead>
 
-상품검색
-<div class="col-md-3">
-	<form action="#" method="get">
-		<div class="input-group">
-			<!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
-			<input class="form-control" id="system-search" name="q"
-				placeholder="Search for" required> <span
-				class="input-group-btn">
-				<button type="submit" class="btn btn-default">
-					<i class="glyphicon glyphicon-search"></i>
-				</button>
-			</span>
-		</div>
-	</form>
-	<br><br>
-	<input id="update" onclick="javascript:header.pageSubmitFn('inventoryUpdate','frm')" style="float:right" type="button" value="UPDATE"/>
-	<input id="insert" onclick="javascript:header.pageSubmitFn('inventoryInsert','frm')" style="float:right" type="button"value="INSERT"/>
-</div>
-
-<!-- <input type="button" value="update"/> -->
-<!-- <input type="button"value="insert"/> -->
-
-<div class="col-md-6">
-
-
-
-
-<div class="col-md-6">
-상품 입고
-	<table class="table table-list-search1">
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>NAME</th>
-				<th>CATEGORY</th>
-				<th>PRICE</th>
-				<th>QUANTITY</th>
-				<th>BRAND</th>
-				<th>COLOR</th>
-				<th>DETAIL</th>
-				<th>DATE</th>
-			</tr>
-		</thead>
-		<form id="frm" id="frmfile" method="post" enctype="multipart/form-data">
-			<tr class="receive">
-				<td><input type="text" style="width:50px;border:none" name="p_id" value="${productVO.p_id}" readonly/></td>
-				<td><input type="text" style="width:150px;border:none" name="p_name"/></td>
-				<td><input type="text" style="width:80px;border:none" name="p_cat"/></td>
-				<td><input type="text" style="width:70px;border:none" name="p_price"/></td>
-				<td><input type="text" style="width:50px;border:none" name="p_quan"/></td>
-				<td><input type="text" style="width:70px;border:none" name="p_brand"/></td>
-				<td><input type="text" style="width:50px;border:none" name="p_color"/></td>
-				<td><input type="text" style="width:70px;border:none" name="p_detail"/></td>
-				<td><input type="text" style="width:160px;border:none" id="txt2" disabled/></td>
-			</tr>
-			<tr>
-				<td colspan="9"><input multiple="multiple" type="file" name="file" maxlength="60" size="40"></td>
-			</tr>
-<!-- 		</form> -->
-<!-- 		<form action="MultiUpload.do" id="frmfile" method="post" enctype="multipart/form-data"> -->
-<!-- 		</form>	 -->
-	</table>
-</div>
-
-
-
-	<table class="table table-list-search">
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>NAME</th>
-				<th>CATEGORY</th>
-				<th>PRICE</th>
-				<th>QUANTITY</th>
-				<th>BRAND</th>
-				<th>COLOR</th>
-				<th>DETAIL</th>
-				<th>DATE</th>
-				<th>SOLD COUNT</th>
-			</tr>
-		</thead>
-
-
-		<c:forEach items="${listVO }" var="list">
-		<tr class="p_vo">
-			<td>${list.p_id}</td>
-			<td>${list.p_name}</td>
-			<td>${list.p_cat}</td>
-			<td>${list.p_price}</td>
-			<td>${list.p_quan}</td>
-			<td>${list.p_brand}</td>
-			<td>${list.p_color}</td>
-			<td>${list.p_detail}</td>
-			<td>${list.p_date}</td>
-			<td>${list.soldcount}</td>
-		</tr>
-		</c:forEach>
-	</table>
-</div>
-
-
-	</div>
-	</div>
-	</div>
-	</div>
+<c:forEach items="${listVO }" var="list">
+	<tr>
+		<td>${list.m_id }</td>
+		<input id="m_id" type="hidden" value="${list.m_id }">
+		<td class="column1">${list.m_pass }</td>
+		<td class="column2">${list.m_tel }</td>
+		<td class="column3">${list.m_email }</td>
+		<td class="column4">${list.m_addr }</td>
+		<td class="column5">${list.m_postcode }</td>
+		<td class="column6">${list.m_grade }</td>
+		<td class="column7">${list.m_sub }</td>
+		<td class="column8"><input id="del" type="button" value="delete"/></td>
+	</tr>
+</c:forEach>
+</table>
+						</div> <!-- ****************** 테이블 end*********************** -->
+						</div>
+					</div>
+				</div>
+			</div>
 	<!-- /.panel-->
 </div>
 <!-- /.col-->
@@ -436,9 +391,14 @@ var header = {
 	<script src="js/a_js/chart.min.js"></script>
 	<script src="js/a_js/chart-data.js"></script>
 	<script src="js/a_js/easypiechart.js"></script>
-	<script src="js/a_js/easypiechart-data.js"></script>
 	<script src="js/a_js/bootstrap-datepicker.js"></script>
 	<script src="js/a_js/custom.js"></script>
-
+<!-- 	*********************************** -->
+	<script src="js/a_js/jquery-3.2.1.min.js"></script>
+	<script src="js/a_js/popper.js"></script>
+	<script src="js/a_js/bootstrap.min.js"></script>
+	<script src="js/a_js/select2.min.js"></script>
+	<script src="js/a_js/main.js"></script>
+	
 </body>
 </html>

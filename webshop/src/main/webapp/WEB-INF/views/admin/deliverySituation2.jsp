@@ -1,162 +1,33 @@
 <%@page contentType="text/html; charset=utf-8"%>
 <% request.setCharacterEncoding("utf-8"); %>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lumino</title>
+<title>Lumino ㅇㅇ</title>
 <link href="resources/css/a_css/bootstrap.min.css" rel="stylesheet">
 <link href="resources/css/a_css/font-awesome.min.css" rel="stylesheet">
 <link href="resources/css/a_css/datepicker3.css" rel="stylesheet">
 <link href="resources/css/a_css/styles.css" rel="stylesheet">
+<!-- ***************** new **************** -->
+<link rel="stylesheet" type="text/css" href="resources/css/a_css/animate.css">
+<link rel="stylesheet" type="text/css" href="resources/css/a_css/select2.min.css">
+<link rel="stylesheet" type="text/css" href="resources/css/a_css/perfect-scrollbar.css">
+<link rel="stylesheet" type="text/css" href="resources/css/a_css/util.css">
+<link rel="stylesheet" type="text/css" href="resources/css/a_css/main.css">
 
-<link rel='stylesheet' type='text/css'
-	href='resources/css/a_css/fullcalendar.css' />
-<script type='text/javascript' src='resources/js/a_js/jquery/jquery.js'></script>
-<script type='text/javascript' src='resources/js/a_js/jquery/jquery-ui-custom.js'></script>
-<script type='text/javascript' src='resources/js/a_js/fullcalendar.min.js'></script>
+
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!--Custom Font-->
 <link
 	href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i"
 	rel="stylesheet">
-
-
-
-
-<script type='text/javascript'>
-	$(document).ready(
-			function() {
-
-				/* initialize the external events
-				-----------------------------------------------------------------*/
-
-				$('#external-events div.external-event').each(function() {
-
-					// create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
-					// it doesn't need to have a start or end
-					var eventObject = {
-						title : $.trim($(this).text())
-					// use the element's text as the event title
-					};
-
-					// store the Event Object in the DOM element so we can get to it later
-					$(this).data('eventObject', eventObject);
-
-					// make the event draggable using jQuery UI
-					$(this).draggable({
-						zIndex : 999,
-						revert : true, // will cause the event to go back to its
-						revertDuration : 0
-
-					});
-
-				});
-				/* initialize the calendar
-				-----------------------------------------------------------------*/
-
-				$('#calendar').fullCalendar(
-						{
-							header : {
-								left : 'prev,next today',
-								center : 'title',
-								right : 'month,agendaWeek,agendaDay'
-							},
-							editable : true,
-							droppable : true, // this allows things to be dropped onto the calendar !!!
-							drop : function(date, allDay) { // this function is called when something is dropped
-
-								// retrieve the dropped element's stored Event Object
-								var originalEventObject = $(this).data(
-										'eventObject');
-
-								// we need to copy it, so that multiple events don't have a reference to the same object
-								var copiedEventObject = $.extend({},
-										originalEventObject);
-
-								// assign it the date that was reported
-								copiedEventObject.start = date;
-								copiedEventObject.allDay = allDay;
-
-								// render the event on the calendar
-								// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-								$('#calendar').fullCalendar('renderEvent',
-										copiedEventObject, true);
-
-								// is the "remove after drop" checkbox checked?
-								if ($('#drop-remove').is(':checked')) {
-									// if so, remove the element from the "Draggable Events" list
-									$(this).remove();
-								}
-
-							}
-						});
-			});
-</script>
-
-
-
-<style type='text/css'>
-body {
-	/* 	margin-top: 40px; */
-	/* 	text-align: left; */
-	/* 	font-size: 14px; */
-	/* 	font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif; */
-	
-}
-
-#wrap {
-	width: 1100px;
-	margin: 0 auto;
-}
-
-#external-events {
-	float: left;
-	width: 150px;
-	padding: 0 10px;
-	border: 1px solid #ccc;
-	background: #eee;
-	text-align: left;
-}
-
-#external-events h4 {
-	font-size: 16px;
-	margin-top: 0;
-	padding-top: 1em;
-}
-
-.external-event { /* try to mimick the look of a real event */
-	margin: 10px 0;
-	padding: 2px 4px;
-	background: #3366CC;
-	color: #fff;
-	font-size: .85em;
-	cursor: pointer;
-}
-
-#external-events p {
-	margin: 1.5em 0;
-	font-size: 11px;
-	color: #666;
-}
-
-#external-events p input {
-	margin: 0;
-	vertical-align: middle;
-}
-
-#calendar {
-	float: right;
-	width: 900px;
-}
-</style>
-
-
-
-
-
-
-
+<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
 </head>
 <body>
 	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
@@ -272,9 +143,9 @@ body {
 					class="fa fa-toggle-off">&nbsp;</em> Employee Management</a></li>
 			<li><a href="inventorySituation.do"><em class="fa fa-clone">&nbsp;</em>
 					Inventory Situation</a></li>
-			<li><a href="deliverySituation.do"><em
+			<li class="active"><a href="deliverySituation.do"><em
 					class="fa fa-bar-chart">&nbsp;</em> Delivery Situation</a></li>
-			<li class="active"><a href="consultingReservation.do"><em
+			<li><a href="consultingReservation.do"><em
 					class="fa fa-bar-chart">&nbsp;</em> Consulting Reservation</a></li>
 			<li><a href="login.html"><em class="fa fa-power-off">&nbsp;</em>
 					Logout</a></li>
@@ -294,45 +165,136 @@ body {
 
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Consulting Reservation</h1>
+				<h1 class="page-header">Delivery Situation</h1>
 			</div>
 		</div>
 		<!--/.row-->
 
-		<!-- 		<div class="row"> -->
-		<!-- 			<div class="col-lg-12"> -->
-		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<div class="row">
+			<div class="col-lg-12">
 
 
 
+				<script>
+					$(document)
+							.ready(
+									function() {
+										var activeSystemClass = $('.list-group-item.active');
 
-		<div id='wrap'>
+										//something is entered in search form
+										$('#system-search')
+												.keyup(
+														function() {
+															var that = this;
+															// affect all table rows on in systems table
+															var tableBody = $('.table-list-search tbody');
+															var tableRowsClass = $('.table-list-search tbody tr');
+															$('.search-sf')
+																	.remove();
+															tableRowsClass
+																	.each(function(
+																			i,
+																			val) {
 
-			<div id='external-events'>
-				<h4>Draggable Events</h4>
-				<div class='external-event'>consulting</div>
-				<div class='external-event'>My Event 2</div>
-				<div class='external-event'>My Event 3</div>
-				<div class='external-event'>My Event 4</div>
-				<div class='external-event'>My Event 5</div>
-				<p>
-					<input type='checkbox' id='drop-remove' /> <label
-						for='drop-remove'>remove after drop</label>
-				</p>
+																		//Lower text for case insensitive
+																		var rowText = $(
+																				val)
+																				.text()
+																				.toLowerCase();
+																		var inputText = $(
+																				that)
+																				.val()
+																				.toLowerCase();
+																		if (inputText != '') {
+																			$(
+																					'.search-query-sf')
+																					.remove();
+																			tableBody
+																					.prepend('<tr class="search-query-sf"><td colspan="6"><strong>Searching for: "'
+																							+ $(
+																									that)
+																									.val()
+																							+ '"</strong></td></tr>');
+																		} else {
+																			$(
+																					'.search-query-sf')
+																					.remove();
+																		}
+
+																		if (rowText
+																				.indexOf(inputText) == -1) {
+																			//hide rows
+																			tableRowsClass
+																					.eq(
+																							i)
+																					.hide();
+
+																		} else {
+																			$(
+																					'.search-sf')
+																					.remove();
+																			tableRowsClass
+																					.eq(
+																							i)
+																					.show();
+																		}
+																	});
+															//all tr elements are hidden
+															if (tableRowsClass
+																	.children(':visible').length == 0) {
+																tableBody
+																		.append('<tr class="search-sf"><td class="text-muted" colspan="6">No entries found.</td></tr>');
+															}
+														});
+									});
+				</script>
+
+			<div class="wrap-table100">
+				<div class="table100">
+<!-- 		********************* 검색 창 ****************** -->
+						<div class="col-md-3">
+							<form action="#" method="get">
+								<div class="input-group">
+									<!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
+									<input class="form-control" id="system-search" name="q"
+										placeholder="Search for" required> <span
+										class="input-group-btn">
+										<button type="submit" class="btn btn-default">
+											<i class="glyphicon glyphicon-search"></i>
+										</button>
+									</span>
+								</div>
+							</form>
+						</div>
+								
+<!--		************************* 테이블 *********************** -->
+			<div class="wrap-table100">
+				<div class="col-md-9">
+					<table class="table table-list-search">
+						<thead>
+								<tr class="table100-head">
+								<th class="column1">DELIVERY NUMBER</th>
+								<th class="column2">ORDER NUMBER</th>
+								<th class="column3">STATE</th>
+								<th class="column4">START DATE</th>
+							</tr>
+						</thead>
+	<c:forEach items="${listVO }" var="list">
+	<tr>
+		<td class="column1">${list.d_id }</td>
+		<td class="column2">${list.o_id }</td>
+		<td class="column3">${list.d_state }</td>
+		<td class="column4">${list.d_startdate }</td>
+	</tr>
+	</c:forEach>
+							</table>
+						</div> <!-- ****************** 테이블 end*********************** -->
+						</div>
+					</div>
+				</div>
 			</div>
-
-			<div id='calendar'></div>
-
-			<div style='clear: both'></div>
+			<!-- /.panel-->
 		</div>
-
-
-
-
-
-		<!-- 			</div> -->
-		<!-- /.panel-->
-		<!-- 		</div> -->
 		<!-- /.col-->
 		<div class="col-sm-12">
 			<p class="back-link">
@@ -344,14 +306,20 @@ body {
 	</div>
 	<!--/.main-->
 
-	<!-- 		<script src="js/jquery-1.11.1.min.js"></script> -->
-	<!-- 	<script src="js/bootstrap.min.js"></script> -->
-	<!-- 	<script src="js/chart.min.js"></script> -->
-	<!-- 	<script src="js/chart-data.js"></script> -->
-	<!-- 	<script src="js/easypiechart.js"></script> -->
-	<!-- 	<script src="js/easypiechart-data.js"></script> -->
-	<!-- 	<script src="js/bootstrap-datepicker.js"></script> -->
-	<!-- 	<script src="js/custom.js"></script> -->
+	<script src="js/a_js/jquery-1.11.1.min.js"></script>
+	<script src="js/a_js/bootstrap.min.js"></script>
+	<script src="js/a_js/chart.min.js"></script>
+	<script src="js/a_js/chart-data.js"></script>
+	<script src="js/a_js/easypiechart.js"></script>
+	<script src="js/a_js/bootstrap-datepicker.js"></script>
+	<script src="js/a_js/custom.js"></script>
+	<!-- 	*********************************** -->
+	<script src="js/a_js/jquery-3.2.1.min.js"></script>
+	<script src="js/a_js/popper.js"></script>
+	<script src="js/a_js/bootstrap.min.js"></script>
+	<script src="js/a_js/select2.min.js"></script>
+	<script src="js/a_js/main.js"></script>
+	
 
 </body>
 </html>

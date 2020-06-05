@@ -80,7 +80,7 @@ public class AdminController {
 		System.out.println("디비 갔다옴");
 		ModelAndView mv = new ModelAndView();
 		System.out.println("mv 객체 생성");
-		mv.setViewName("admin/memberManagement");
+		mv.setViewName("admin/memberManagement2");
 		mv.addObject("listVO",listVO);
 		System.out.println(" list 저장");
 		return mv;
@@ -94,7 +94,7 @@ public class AdminController {
 		System.out.println("디비 갔다옴");
 		ModelAndView mv = new ModelAndView();
 		System.out.println("mv 객체 생성");
-		mv.setViewName("admin/employeeManagement");
+		mv.setViewName("admin/employeeManagement2");
 		mv.addObject("listVO",listVO);
 		System.out.println(" list 저장");
 		return mv;
@@ -122,7 +122,7 @@ public class AdminController {
 		System.out.println("디비 갔다옴");
 		ModelAndView mv = new ModelAndView();
 		System.out.println("mv 객체 생성");
-		mv.setViewName("admin/deliverySituation");
+		mv.setViewName("admin/deliverySituation2");
 		mv.addObject("listVO",listVO);
 		System.out.println(" list 저장");
 		return mv;
@@ -170,7 +170,7 @@ public class AdminController {
 	@RequestMapping(value= "/MultiUpload.do", method=RequestMethod.POST)
 	public String MultifileUp(MultipartHttpServletRequest multi) {
 System.out.println("파일 업로드 실행");
-		String path = "D:\\springwork\\webshop\\src\\main\\webapp\\resources\\img\\new imgs\\";
+		String path = "C:\\Users\\Canon\\source git\\webshop\\src\\main\\webapp\\resources\\img\\new imgs\\";
 		String fileName = ""; // 업로드 되는 파일명
 
 		File dir = new File(path);

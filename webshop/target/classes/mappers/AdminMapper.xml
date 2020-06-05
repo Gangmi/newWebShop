@@ -9,12 +9,12 @@
 	</select>
 
 	<select id="memberList" parameterType="member" resultType="member">
-		SELECT m_id,m_pass,m_tel,m_email,m_addr||' '||m_addr_detail
+		SELECT m_name,m_id,m_pass,m_tel,m_email,m_addr||' '||m_addr_detail
 		m_addr,m_postcode,m_grade,m_sub FROM member WHERE m_grade!='운영자'
 	</select>
 
 	<select id="employeeList" parameterType="member" resultType="member">
-		SELECT m_id,m_pass,m_tel,m_email,m_addr||' '||m_addr_detail
+		SELECT m_name,m_id,m_pass,m_tel,m_email,m_addr||' '||m_addr_detail
 		m_addr,m_postcode,m_grade,m_sub FROM member WHERE m_grade='운영자'
 	</select>
 
@@ -23,7 +23,7 @@
 	</select>
 
 	<select id="productInsert" parameterType="product" resultType="product">
-		INSERT INTO product VALUES(SEQ_PRODUCT_ID.nextval,#{p_name},#{p_cat},#{p_price},#{p_quan},#{p_brand},#{p_color},#{p_detail},sysdate)
+		INSERT INTO product VALUES(SEQ_PRODUCT_ID.nextval,#{p_name},#{p_cat},#{p_price},#{p_quan},#{p_brand},#{p_color},#{p_detail},sysdate,0)
 	</select>
 	
 	<select id="productUpdate" parameterType="product" resultType="product">

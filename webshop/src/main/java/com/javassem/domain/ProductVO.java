@@ -13,8 +13,18 @@ public class ProductVO {
 	private String p_color;
 	private String p_detail;
 	private String p_date;
+	private int soldcount;
 	private int confirm;
 	private int ordermethod;
+
+	
+	public int getSoldcount() {
+		return soldcount;
+	}
+
+	public void setSoldcount(int soldcount) {
+		this.soldcount = soldcount;
+	}
 
 	public int getOrdermethod() {
 		return ordermethod;

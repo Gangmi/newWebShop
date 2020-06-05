@@ -99,7 +99,6 @@
 		</form>
 		<ul class="nav menu">
 			<li><a href="dashBoard.do"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
-			<li><a href="widgets.html"><em class="fa fa-calendar">&nbsp;</em> Widgets</a></li>
 			<li class="active"><a href="charts.do"><em class="fa fa-bar-chart">&nbsp;</em> Charts</a></li>
 			<li><a href="memberManagement.do"><em class="fa fa-toggle-off">&nbsp;</em> Member Management</a></li>
 			<li><a href="employeeManagement.do"><em class="fa fa-toggle-off">&nbsp;</em> Employee Management</a></li>	
