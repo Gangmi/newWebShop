@@ -138,8 +138,7 @@ List<ProductVO> result = (List) request.getAttribute("details");
 					<li class="active"><a href="shop.do">Shop</a></li>
 
 					<li><a href="cart.do">Cart</a></li>
-					<li><a href="checkout.do">Checkout</a></li>
-					<li><a href="login.do">Login</a></li>
+					
 				</ul>
 			</nav>
 			<!-- Button Group -->
@@ -149,6 +148,14 @@ List<ProductVO> result = (List) request.getAttribute("details");
 			</div>
 			<!-- Cart Menu -->
 			<div class="cart-fav-search mb-100">
+				<% if((String)session.getAttribute("userId")==null){%>                                      
+                   <a href="login.do"> Login</a></li>
+                   
+                    <%}else{ %>
+                     ${userId}님 </li>     
+                    <a href="logout.do" >[ Logout ]</a></li>
+                    <a  href="member-info.do" >[ edit profile ]</a></li>
+                    <%} %>
 				<a href="cart.do" class="cart-nav"><img
 					src="img/core-img/cart.png" alt=""> Cart <span>(<%= request.getCookies().length-1 %>)</span></a> <a
 					href="wishlist.do" class="fav-nav"><img
@@ -510,10 +517,9 @@ List<ProductVO> result = (List) request.getAttribute("details");
 
 										<li class="nav-item"><a class="nav-link" href="cart.do">Cart</a>
 										</li>
-										<li class="nav-item"><a class="nav-link"
-											href="checkout.do">Checkout</a></li>
-										<li class="nav-item"><a class="nav-link" href="login.do">Login</a>
-										</li>
+										
+										
+										
 									</ul>
 								</div>
 							</nav>

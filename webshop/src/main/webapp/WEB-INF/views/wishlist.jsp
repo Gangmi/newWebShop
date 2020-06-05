@@ -111,11 +111,24 @@ List<ProductVO> list =(List<ProductVO>) request.getAttribute("list");
                     <li><a href="shop.do">Shop</a></li>
                   
                     <li><a href="cart.do">Cart</a></li>
-                    <li><a href="login.do">Login</a></li>
+                    
                 </ul>
             </nav>
+            <!-- Button Group -->
+             <div class="amado-btn-group mt-30 mb-100">
+                <a ></a>
+                <a ></a>
+            </div>
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
+            		<% if((String)session.getAttribute("userId")==null){%>                                      
+                   <a href="login.do"> Login</a></li>
+                   
+                    <%}else{ %>
+                     ${userId}님 </li>     
+                    <a href="logout.do" >[ Logout ]</a></li>
+                    <a  href="member-info.do" >[ edit profile ]</a></li>
+                    <%} %>
                 <a href="cart.do" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(<%= request.getCookies().length-1 %>)</span></a>
                 <a href="wishlist.do" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Favourite</a>
                 <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>
