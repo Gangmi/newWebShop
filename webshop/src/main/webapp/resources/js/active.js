@@ -241,6 +241,10 @@
 	$("#sortitem").change(function(evt){
 		$("#sortitem").submit();
 	});
+	
+	$(".cart").click(function(){
+		alert();
+	});
 
 	
 

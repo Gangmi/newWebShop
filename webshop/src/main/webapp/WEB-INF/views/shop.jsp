@@ -390,8 +390,9 @@ List<ProductVO> result = (List) request.getAttribute("details");
 											class="fa fa-star" aria-hidden="true"></i>
 									</div>
 									<div class="cart">
-										<a href="cart.do?p_id=<%=result.get(i).getP_id() %>" data-toggle="tooltip"
-											data-placement="left" title="Add to Cart"><img
+										<a data-toggle="tooltip"
+											data-placement="left" title="Add to Cart">
+											<input type="hidden" id="p_id" value="<%=result.get(i).getP_id()%>"><img
 											src="img/core-img/cart.png" alt=""></a>
 									</div>
 								</div>
