@@ -43,5 +43,8 @@ public class LoginServiceImpl implements LoginService {
 		return loginDAO.deleteMember(vo);
 	}
 	
+	public int subemail(LoginVO vo) {
+		return loginDAO.subemail(vo);
+	}
 	
 }

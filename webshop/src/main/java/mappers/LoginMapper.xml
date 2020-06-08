@@ -66,6 +66,13 @@
 
 	</delete>
 	
+	<update id="subemail" parameterType="login" >
+	UPDATE MEMBER
+	SET M_SUB = 'O'
+	WHERE M_ID = #{mid}
+	</update>
+	
+	
 	
 	
 </mapper>
