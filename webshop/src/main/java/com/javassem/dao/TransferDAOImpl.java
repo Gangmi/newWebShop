@@ -56,7 +56,6 @@ public class TransferDAOImpl implements TransferDAO {
 		
 		int resultol = sqlSession.insert("Trans.orderlist", ordervo);
 		if( resultol == 0) throw new TransException();
-
 		
 		
 		int resultolqty = sqlSession.update("Trans.orderlistqty", ordervo);

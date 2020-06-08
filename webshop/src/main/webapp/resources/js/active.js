@@ -244,7 +244,20 @@
 	});
 	
 	$(".cart").click(function(){
-		alert();
+		var p_id = $(this).find($('input[name=p_id]')).val();
+
+		
+		 $.ajax({
+			 type:'post', // 원래 포스트 방식
+			 async: true, // 비동기 통신 실행 여부
+			 url:'cartadd.do',
+			 contentType:'application/x-www-form-urlencoded;charset=UTF-8', //한글 설정
+			 data:"p_id="+p_id,
+			 success:function(resultData){
+			 alert("성공");
+			 }
+			 });
+		
 	});
 
 	
@@ -276,15 +289,6 @@
 //			
 //
 //			});
-	// $.ajax({
-	// type:'post', // 원래 포스트 방식
-	// async: true, // 비동기 통신 실행 여부
-	// url:'shop.do',
-	// contentType:'application/x-www-form-urlencoded;charset=UTF-8', //한글 설정
-	// data:"p_cat="+$("#p_cat").val()+"&p_brand="+send_array,
-	// success:function(resultData){
-	// $('#idCheckResult').html(resultData);
-	// }
-	// });
+
 
 })(jQuery);
