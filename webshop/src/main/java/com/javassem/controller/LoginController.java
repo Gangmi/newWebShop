@@ -58,25 +58,25 @@ public class LoginController {
 
 	//로그인
 	@RequestMapping("/sign_in.do")
-	public ModelAndView sign_in(LoginVO vo, HttpSession session) {
+	public String sign_in(LoginVO vo, HttpSession session) {
 
 		LoginVO id = loginservice.signInMember(vo);
 
 		ModelAndView mv = new ModelAndView();
 		if (id == null || id.getMid() == null) {
-			mv.setViewName("/login");
+			return "/login";
 		} else {// 로그인 성공했다면
 			session.setAttribute("sessionTime", new Date().toLocaleString());
 			session.setAttribute("userId", id.getMid());
 			if(id.getMid().equals("admin")) {
 				System.out.println("성공");
-				mv.setViewName("/admin/dashboard");
+				return "redirect:/dashBoard.do";
 			}else {
 				System.out.println("실패");
-				mv.setViewName("/index");				
+				return "/index";			
 			}
 		}
-		return mv;
+		
 	}
 	
 	//로그아웃을 눌렀을때
