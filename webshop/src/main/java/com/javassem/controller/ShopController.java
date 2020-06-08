@@ -46,9 +46,11 @@ public class ShopController {
 	@RequestMapping("/shop.do")
 	public ModelAndView viewShop(ModelAndView mv, ProductVO vo) {
 
+	
+		
 		// 카테고리가 들어오지 않았다면
 		String cat=vo.getP_cat();
-		System.out.println(cat+"현재 카테고리-----------------------");
+		System.out.println(vo.getSearch()+"현재검색어-----------------------");
 		
 //		if (vo.getP_cat().equals("null")) {
 //			// 의자로 기본 카테고리를 지정
@@ -165,6 +167,10 @@ public class ShopController {
 		
 		// 다음 페이지에 해당하는 물품들을 전달
 		mv.addObject("details", result);
+		
+		//다음페이지에 검색어가 있음을 알림
+		mv.addObject("search",vo.getSearch());
+		
 		
 		//현재 사용자의 카테고리, 페이지 , 페이지당 아이템 갯수의 정보를 저장
 		mv.addObject("nowcat",vo.getP_cat()); //default all

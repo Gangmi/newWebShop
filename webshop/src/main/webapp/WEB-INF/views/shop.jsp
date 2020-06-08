@@ -425,7 +425,7 @@ List<ProductVO> result = (List) request.getAttribute("details");
 								&itemQuan=<%=request.getAttribute("nowquan")%>
 								<%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>
 								<%if(nowcate!=null && !nowcate.equals("null")){%>&p_cat=<%=result.get(0).getP_cat()%><%}%>
-								<%if(selectcolor!=null){%>&p_color=<%=selectcolor%><%}%>
+								<%if(selectcolor!=null){%>&p_color=<%=selectcolor%><%}%><%if(request.getAttribute("search")!=null){%>&search=<%=request.getAttribute("search")%><%}%>
 								&page=<%=i%>"><%=i%></a></li>
 
 								<%

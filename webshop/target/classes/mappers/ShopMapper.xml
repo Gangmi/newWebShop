@@ -8,10 +8,10 @@
 	
 <select id="getProductDetail" parameterType="hashmap" resultType="product">
 	
-select * from (select rownum as rnum,product.p_id,product.p_name,product.p_price,product.p_cat,product.p_quan,product.p_brand,product.p_color from product where 1=1<if test="startprice!=null"> and p_price<![CDATA[>=]]>#{startprice} and p_price<![CDATA[<=]]>#{endprice} </if><if test="cat!=null and !cat.equals('null')"> and product.p_cat=#{cat}</if><if test="selectcol!=null"> and product.p_color=#{selectcol} </if><if test="brand!=null">and product.p_brand in<foreach collection="brand" item="br"  open="(" close=")" separator=",">#{br}</foreach></if><if test="ordermethod == 2">order by product.p_date desc</if><if test="ordermethod == 1">order by product.soldcount desc</if><if test="selectcol!=null">, product.p_color</if>)
+select * from (select rownum as rnum,product.p_id,product.p_name,product.p_price,product.p_cat,product.p_quan,product.p_brand,product.p_color from product where 1=1<if test="startprice!=null"> and p_price<![CDATA[>=]]>#{startprice} and p_price<![CDATA[<=]]>#{endprice} </if><if test="cat!=null and !cat.equals('null')"> and product.p_cat=#{cat}</if><if test="selectcolor!=null"> and product.p_color=#{selectcolor} </if><if test="brand!=null">and product.p_brand in<foreach collection="brand" item="br"  open="(" close=")" separator=",">#{br}</foreach></if><if test="ordermethod == 2">order by product.p_date desc</if><if test="ordermethod == 1">order by product.soldcount desc</if>)
 
 
-where <![CDATA[rnum>=]]>#{start} and <![CDATA[rnum<=]]>#{end}<if test="selectcolor!=null"> and p_color=#{selectcol}</if>
+where <![CDATA[rnum>=]]>#{start} and <![CDATA[rnum<=]]>#{end}<if test="selectcolor!=null"> and p_color=#{selectcolor}</if><if test="search!=null"> and p_name LIKE lower('%'||#{search}||'%')</if>
 
 	
 </select>
@@ -30,7 +30,7 @@ where <![CDATA[rnum>=]]>#{start} and <![CDATA[rnum<=]]>#{end}<if test="selectcol
 	<select id="getCatTotal" parameterType="hashmap" resultType="int">
 	
 	select count(*) from product where 1=1 <if test="startprice!=null"> and p_price<![CDATA[>=]]>#{startprice} and p_price<![CDATA[<=]]>#{endprice} </if><if test="p_cat!=null and !p_cat.equals('null')"> and p_cat=#{p_cat}</if><if test="brand != null"> and p_brand in <foreach collection="brand" item="br"  open="(" close=")" separator=",">#{br}</foreach>
-     </if><if test="selectcolor!=null">and p_color=#{selectcolor}</if>
+     </if><if test="selectcolor!=null">and p_color=#{selectcolor}</if><if test="selectcolor!=null"> and p_color=#{selectcolor}</if><if test="search!=null"> and p_name LIKE lower('%'||#{search}||'%')</if>
 
 	
 	</select>

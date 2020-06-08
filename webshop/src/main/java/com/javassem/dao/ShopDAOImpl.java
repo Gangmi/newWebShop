@@ -25,6 +25,13 @@ public class ShopDAOImpl implements ShopDAO {
 		HashMap map = new HashMap();
 
 		map.put("p_cat", vo.getP_cat());
+		
+		//검색어가 들어오면
+		if(vo.getSearch()!=null) {
+			System.out.println(vo.getSearch()+"검색어 있음---------------------------------");
+			map.put("search",vo.getSearch());
+		}
+
 
 		
 		// 브랜드가 있을 때
@@ -111,7 +118,7 @@ public class ShopDAOImpl implements ShopDAO {
 		// 컬러에대한 검색이 있다면,
 		if (vo.getP_color() != null) {
 
-			map.put("selectcol", vo.getP_color());
+			map.put("selectcolor", vo.getP_color());
 		}
 		// 값에 대한 검색이 들어오면
 		if (vo.getStartprice() != 0) {
@@ -119,7 +126,10 @@ public class ShopDAOImpl implements ShopDAO {
 			map.put("startprice", vo.getStartprice());
 			map.put("endprice", vo.getEndprice());
 		}
-		
+		if(vo.getSearch()!=null) {
+			System.out.println(vo.getSearch()+"검색어 있음---------------------------------");
+			map.put("search",vo.getSearch());
+		}
 		//만약 검색 방법이 popular라면, 판매 물품 전체를 업데이트
 		if(vo.getOrdermethod()==1) {
 			System.out.println("업데이트 하러 들어옴");
@@ -158,6 +168,11 @@ public class ShopDAOImpl implements ShopDAO {
 			//2로 바꿈
 			vo.setOrdermethod(2);
 		
+		}
+		
+		//이름검색이있으면
+		if(vo.getSearch()!=null) {
+			map.put("search",vo.getSearch());
 		}
 		map.put("ordermethod",vo.getOrdermethod());
 		map.put("cat", vo.getP_cat());
