@@ -55,6 +55,15 @@ when matched then
 	
 	</update>
 	
+	
+	<select id="getitembytext" parameterType="String" resultType="product">
+	select * 
+	from product
+	WHERE p_name LIKE '%'||#{search}||'%'
+
+	
+	</select>
+	
 	<!-- <insert id="insertshop" parameterType="shop">
 		<![CDATA[
 		INSERT INTO shop(SEQ, TITLE, WRITER, CONTENT, REGDATE, CNT)

@@ -181,6 +181,22 @@ public class ShopController {
 		return mv;
 
 	}
+	//이름으로 검색
+	@RequestMapping("/search.do")
+	public ModelAndView searchitem(String search) {
+		ModelAndView mv = new ModelAndView();
+		
+		// 받아온 문자열을
+		List<ProductVO> result =service.getitembytext(search);
+		
+		mv.addObject("details",result);
+		
+		mv.setViewName("shop");
+		
+	return mv;
+	}
+	
+	
 
 	// 상품을 클릭해서 해당 상품의 페이지로 넘어갈 때
 	@RequestMapping("/product-details.do")

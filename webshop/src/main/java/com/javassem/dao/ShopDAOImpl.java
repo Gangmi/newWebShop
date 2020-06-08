@@ -181,4 +181,13 @@ public class ShopDAOImpl implements ShopDAO {
 		return result;
 	}
 
+	@Override
+	public List<ProductVO> getitembytext(String search) {
+		
+		List<ProductVO> result = mybatis.selectList("ShopDAO.getitembytext",search);
+		System.out.println(result.get(0).getP_name());
+		
+		return result;
+	}
+
 }

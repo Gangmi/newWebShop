@@ -92,7 +92,7 @@ List<ProductVO> result = (List) request.getAttribute("details");
 			<div class="row">
 				<div class="col-12">
 					<div class="search-content">
-						<form action="#" method="get">
+						<form action="search.do" method="get">
 							<input type="search" name="search" id="search"
 								placeholder="Type your keyword...">
 							<button type="submit">
@@ -390,7 +390,7 @@ List<ProductVO> result = (List) request.getAttribute("details");
 											class="fa fa-star" aria-hidden="true"></i>
 									</div>
 									<div class="cart">
-										<a href="cart.do?p_id=<%=result.get(i).getP_id() %>" data-toggle="tooltip"
+										<a href="cartd.do?p_id=<%=result.get(i).getP_id() %>" data-toggle="tooltip"
 											data-placement="left" title="Add to Cart"><img
 											src="img/core-img/cart.png" alt=""></a>
 									</div>
