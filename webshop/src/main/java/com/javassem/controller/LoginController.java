@@ -1,5 +1,7 @@
 package com.javassem.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 import java.util.Properties;
 
@@ -11,6 +13,7 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,7 +68,13 @@ public class LoginController {
 		} else {// 로그인 성공했다면
 			session.setAttribute("sessionTime", new Date().toLocaleString());
 			session.setAttribute("userId", id.getMid());
-			mv.setViewName("/index");
+			if(id.getMid().equals("admin")) {
+				System.out.println("성공");
+				mv.setViewName("/admin/dashboard");
+			}else {
+				System.out.println("실패");
+				mv.setViewName("/index");				
+			}
 		}
 		return mv;
 	}
@@ -108,6 +117,7 @@ public class LoginController {
 		  gmailSend(result);
 		  mv.setViewName("/find-password-ok");
 		  mv.addObject("email", result.getMemail());
+		  
 		}
 		 return mv;		
 	}
@@ -155,6 +165,32 @@ public class LoginController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/index");
 		return mv;
+	}
+	
+	@RequestMapping("/subemail.do")
+	public ModelAndView subemail(LoginVO vo,HttpSession session,HttpServletResponse response) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		response.setContentType("text/html; charset=UTF-8");
+		 
+		PrintWriter out = response.getWriter();		
+		if(session.getAttribute("userId")!=null) {		
+			vo.setMid((String)session.getAttribute("userId")); 
+			int result = loginservice.subemail(vo);
+			
+			out.println("<script>alert('구독되었습니다.') </script>");			 
+			out.flush();
+			
+			mv.setViewName("/index");
+			return mv;
+		}else {
+			out.println("<script>alert('로그인 후 이용 가능합니다.')</script>");
+			out.flush();
+			mv.setViewName("/index");
+			return mv;
+		}
+		
+			
 	}
 	
 	

@@ -119,7 +119,7 @@
                         <div class="checkout_details_area mt-50 clearfix">
 
                             <div class="cart-title">
-                                <h2>Edit Profile</h2>
+                                <h2>Sign-Up</h2>
                             </div>
 
                             <form action="insertMember.do" id="insertmember" name="insertmember" method="post">
@@ -132,7 +132,7 @@
                                     </div>
                                     <div class="col-md-6 mb-3">
 <!--                                     <input type="text" class="form-control" id="idCheckResult"  value=""> -->
-                                     <span id="idCheckResult" style="width:150px;color:red"></span>
+                                     <span id="idCheckResult" style="width:150px;"></span>
                                     </div>
                                     <div class="col-12 mb-3">
                                         <input type="password" class="form-control" id="mpass" name="mpass" placeholder="비밀번호" value="" required>

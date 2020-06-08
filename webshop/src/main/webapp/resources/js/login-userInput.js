@@ -49,16 +49,16 @@ $(function(){
             return;
         }
 		//정규식들로 형식 체크함
-		var emailRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;//이메일 정규식
-		var telRule = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
-		if(!emailRule.test($("#mid").val())) {            
+		var emailRule =RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
+		var telRule = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-([0-9]{3,4})-([0-9]{4})$/;
+		if(!emailRule.test($("#memail").val())) {  
 			alert("이메일이 형식에 맞지 않습니다.");
-	            return;
+	            return false;
 		}
 		
 		if(!telRule.test($("#mtel").val())) {            
 			alert("전화번호에 맞지 않습니다.");
-	            return;
+	            return false;
 		}
 
 		//폼아이를 불러와 넣음
@@ -129,16 +129,16 @@ $(function(){
 	        }
 			
 			//정규식들로 형식 체크함
-			var emailRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;//이메일 정규식
-			var telRule = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
-			if(!emailRule.test($("#mid").val())) {            
+			var emailRule =RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
+			var telRule = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-([0-9]{3,4})-([0-9]{4})$/;
+			if(!emailRule.test($("#memail").val())) {  
 				alert("이메일이 형식에 맞지 않습니다.");
-		            return;
+		            return false;
 			}
 			
 			if(!telRule.test($("#mtel").val())) {            
 				alert("전화번호에 맞지 않습니다.");
-		            return;
+		            return false;
 			}
 
 			
@@ -250,7 +250,26 @@ $(function(){
 	
 	});
 //==================================================================	
-
+	$('#subemail').click(function(){
+		
+//		var emailRule =RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
+//		
+//		if( $.trim($("#subemail1").val()) == '' ){
+//            alert("이메일을 입력해 주세요.");
+//            $("#subemail1").focus();
+//            return;
+//        }
+//		
+//		if(!emailRule.test($("#subemail1").val())) {  
+//			alert("이메일이 형식에 맞지 않습니다.");
+//	            return ;
+//		}
+		$('#subemail2').submit();
+		//window.location.href = "subemail.do";
+		
+	
+	
+	});
 	
 	
 	

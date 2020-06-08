@@ -18,5 +18,7 @@ public interface LoginService {
 
 	int deleteMember(LoginVO vo);
 
+	int subemail(LoginVO vo);
+
 	
 }

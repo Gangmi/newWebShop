@@ -11,4 +11,14 @@ public interface LoginDAO {
 	public LoginVO signInMember(LoginVO vo);
 	
 	public LoginVO findId(LoginVO vo);
+	
+	public LoginVO findPassword(LoginVO vo);
+	
+	public LoginVO memberInfo(LoginVO vo);
+	
+	public int updateMember(LoginVO vo);
+	
+	public int deleteMember(LoginVO vo);
+	
+	public int subemail(LoginVO vo);
 }
