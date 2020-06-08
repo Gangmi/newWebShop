@@ -56,14 +56,14 @@ public class TransferDAOImpl implements TransferDAO {
 		
 		int resultol = sqlSession.insert("Trans.orderlist", ordervo);
 		if( resultol == 0) throw new TransException();
+
+		
 		
 		int resultolqty = sqlSession.update("Trans.orderlistqty", ordervo);
-		System.out.println("설마 못들어감?");
 		if( resultolqty == 0) throw new TransException();
-		if(resultolqty>0)
-		{
-			System.out.println("***********성공못함");
-		}
+		
+		sqlSession.update("Trans.gradeup",userId);
+		
 		
 
 		

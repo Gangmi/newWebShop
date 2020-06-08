@@ -70,6 +70,8 @@ $(function(){
     });
     $(".check").change(function(){
 
+    	alert('ok');
+		
     	if($(this).is(":checked")){
 
          	$(".check:checked").each(function (index) {  
@@ -126,6 +128,7 @@ $(function(){
 
     	window.location.href = "checkout.do?subtotal="+subtotalresult+"&count="+count+"&id="+id;
         });
+
 
 });
     
@@ -283,7 +286,6 @@ int total = subtotal+deli;
                                 	ProductVO vo = new ProductVO();
                                 	vo = list.get(i);
                                 %>
-                                	
                                     <tr>
                                         <td class="cart_product_img">
                                             <a href="img/product-img/<%=vo.getP_cat()%><%=vo.getP_id()%>_1.jpg"><img src="img/product-img/<%=vo.getP_cat()%><%=vo.getP_id()%>_1.jpg" alt="Product"></a>
@@ -301,7 +303,7 @@ int total = subtotal+deli;
                                                     <span class="qty-minus" onclick="var effect = document.getElementById('qty<%=vo.getP_id() %>'); var qty<%=vo.getP_id() %> = effect.value; if( !isNaN( qty<%=vo.getP_id() %> ) &amp;&amp; qty<%=vo.getP_id() %> &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
                                                     <input type="hidden" value='<%=vo.getP_price() %>' name='p_price' class='price'/>
                                                     <input type="hidden" value='<%=vo.getP_id() %>' name='p_id' class='p_id'/>
-                                                    <input type="number" class="qty-text" id="qty<%=vo.getP_id() %>" step="1" min="1" max="300" name="quantity" value="1">
+                                                    <input type="number" class="qty-text" id="qty<%=vo.getP_id() %>" step="1" min="1" max='<%=vo.getP_quan() %>' name="quantity" value="1">
                                                     <span class="qty-plus" onclick="var effect = document.getElementById('qty<%=vo.getP_id() %>'); var qty<%=vo.getP_id() %> = effect.value; if( !isNaN( qty<%=vo.getP_id() %> )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                                 </div>
                                                 &nbsp;

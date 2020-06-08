@@ -20,9 +20,31 @@ SELECT #{test.o_id} as a, #{test.p_id} as b, #{test.cnt} as c FROM DUAL </foreac
 </insert>
 
 <update id="orderlistqty" parameterType="java.util.List">
- <foreach collection="list" item="vo" index="index">
-        UPDATE PRODUCT SET P_QUAN=P_QUAN-#{vo.cnt} where P_ID=#{vo.p_id}
+ <foreach collection="list" item="item" index="index"  separator=";">
+        UPDATE 
+        PRODUCT
+    	SET
+        P_QUAN=P_QUAN-#{item.cnt}
+    	WHERE
+        P_ID=#{item.p_id}
 </foreach>
+</update>	
+<update id="gradeup" parameterType="String">
+<![CDATA[
+		update MEMBER set M_GRADE=
+		case when 1000000 < (select sum(p.P_PRICE*o.cnt) total
+		from ORDERLIST o inner join PRODUCT p
+		on o.P_ID = p.P_ID
+		where o.O_ID in (select O_ID
+		from PRODUCTORDER
+		where M_ID=#{value})) then '골드' when 500000 < (select sum(p.P_PRICE*o.cnt) total
+		from ORDERLIST o inner join PRODUCT p
+		on o.P_ID = p.P_ID
+		where o.O_ID in (select O_ID
+		from PRODUCTORDER
+		where M_ID=#{value})) then '실버' else '브론즈' end
+		where M_ID=#{value}
+		]]>
 </update>
 
 
