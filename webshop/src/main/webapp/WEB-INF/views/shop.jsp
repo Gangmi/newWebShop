@@ -380,7 +380,7 @@ List<ProductVO> result = (List) request.getAttribute("details");
 										$<%=result.get(i).getP_price()%></p>
 									<a href="product-details.do?p_id=<%=result.get(i).getP_id()%>">
 										<h6><%=result.get(i).getP_name()%></h6>
-										 <a href="#"><%=result.get(i).getP_brand() %></a>
+										 <a href="shop.do?p_brand=<%=result.get(i).getP_brand()%>"><%=result.get(i).getP_brand() %></a>
 
 
 
