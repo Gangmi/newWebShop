@@ -52,12 +52,9 @@ public class ShopController {
 		String cat=vo.getP_cat();
 		System.out.println(vo.getSearch()+"현재검색어-----------------------");
 		
-//		if (vo.getP_cat().equals("null")) {
-//			// 의자로 기본 카테고리를 지정
-//			System.out.println("카테고리 값");
-//		
-//
-//		}
+		
+		
+		
 		System.out.println(vo.getStartprice()+"컨트롤러 시작가격");
 		
 		//만약 가격에 대한 검색이 들어오지 않으면

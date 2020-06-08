@@ -304,7 +304,7 @@ List<ProductVO> result = (List) request.getAttribute("details");
 							<!-- Total Products -->
 							<div class="total-products">
 							<!--카테고리 , 브랜드 , -->
-							<%if(request.getAttribute("search")!=null) { %>
+							<%if(request.getAttribute("search")!=null && !request.getAttribute("search").equals("undefined")) { %>
 							<h3>"<%=request.getAttribute("search") %>" 검색결과</h3>
 							<%} %>
 								<p>Showing <%if(nowcate!=null&& !nowcate.equals("null")){ %><%=nowcate %><% }else{%>All<%}%> <%=startrow%>- <%if((nowquan*nowpage)<(Integer)request.getAttribute("totalitems")){%><%=nowquan*nowpage%><%}else{%><%=request.getAttribute("totalitems")%><%}%> 0f <%=request.getAttribute("totalitems")%></p>
