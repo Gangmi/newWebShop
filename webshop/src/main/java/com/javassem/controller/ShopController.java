@@ -167,9 +167,9 @@ public class ShopController {
 		mv.addObject("details", result);
 		
 		//현재 사용자의 카테고리, 페이지 , 페이지당 아이템 갯수의 정보를 저장
-		mv.addObject("nowcat",vo.getP_cat());
-		mv.addObject("nowpage",vo.getPage());
-		mv.addObject("nowquan",vo.getItemQuan());
+		mv.addObject("nowcat",vo.getP_cat()); //default all
+		mv.addObject("nowpage",vo.getPage()); //default 1
+		mv.addObject("nowquan",vo.getItemQuan()); //default 4
 		mv.addObject("startprice",vo.getStartprice());
 		mv.addObject("endprice",vo.getEndprice());
 		mv.addObject("selectorder",vo.getOrdermethod());
@@ -183,15 +183,19 @@ public class ShopController {
 	}
 	//이름으로 검색
 	@RequestMapping("/search.do")
-	public ModelAndView searchitem(String search) {
+	public ModelAndView searchitem(String search ,ProductVO vo) {
 		ModelAndView mv = new ModelAndView();
 		
-		// 받아온 문자열을
+		// 받아온 문자열을 넘김
 		List<ProductVO> result =service.getitembytext(search);
 		
 		mv.addObject("details",result);
+		vo.setItemQuan("4");
+		int totalpage = service.getCatTotal(vo);
 		
+		mv.addObject("totalpage",totalpage);
 		mv.setViewName("shop");
+		
 		
 	return mv;
 	}
@@ -203,8 +207,13 @@ public class ShopController {
 	public ModelAndView getProductDetails(ProductVO vo) {
 		// 해당 상품의 id를 가져와서 서비스로 보냄
 		ProductVO result = service.getOneProduct(vo);
+		
 		ModelAndView model = new ModelAndView();
+		
 		model.addObject("product", result);
+		
+		
+		
 		model.setViewName("product-details");
 		return model;
 	}

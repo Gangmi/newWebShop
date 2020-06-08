@@ -16,8 +16,17 @@ public class ProductVO {
 	private int soldcount;
 	private int confirm;
 	private int ordermethod;
+	private String search;
 
 	
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
 	public int getSoldcount() {
 		return soldcount;
 	}

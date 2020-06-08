@@ -26,13 +26,9 @@ public class ShopDAOImpl implements ShopDAO {
 
 		map.put("p_cat", vo.getP_cat());
 
-		// 해당하는 카테고리의 전체 갯수를 가져오기(브랜드가 없을 때)
-//		if (vo.getP_brand() == null) {
-//
-//			catTot = mybatis.selectOne("ShopDAO.getCatTotal", map);
-//		} else 
+		
+		// 브랜드가 있을 때
 		if (vo.getP_brand() != null) {
-			// 브랜드가 있을 때
 			// string tokenizer로 /를 기준으로 자르기
 			StringTokenizer sc = new StringTokenizer(vo.getP_brand(), "/");
 
@@ -183,7 +179,7 @@ public class ShopDAOImpl implements ShopDAO {
 
 	@Override
 	public List<ProductVO> getitembytext(String search) {
-		
+		System.out.println(search);
 		List<ProductVO> result = mybatis.selectList("ShopDAO.getitembytext",search);
 		System.out.println(result.get(0).getP_name());
 		
