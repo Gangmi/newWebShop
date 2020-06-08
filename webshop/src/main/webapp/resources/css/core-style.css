@@ -127,7 +127,7 @@ img {
   margin-right: 50px !important; }
   
  .mr-100 {
-  margin-right: 50px !important; }
+  margin-right: 0px !important; }
   
  
 
@@ -1064,7 +1064,7 @@ img {
       height: 100px;
       background-color: #fbb710;
       color: #fff;
-      font-size: 30px;
+      font-size: 35px;
       padding: 0 80px;
       cursor: pointer;
       position: absolute;
