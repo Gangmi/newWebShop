@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpSessionEvent;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -131,10 +133,57 @@ public class AdminDAOImpl implements AdminDAO {
 		return mybatis.selectOne("AdminDAO.memberCount");
 	}
 	
+	public int[] viewCount() {
+		
+		System.out.println("mybatis viewList() 호출");
+		int [] result = new int[1] ;
 	
+		HashMap<String, Integer> hs = new HashMap<String, Integer>();
+		
+	     for(int i = 0; i<= 0; i++ ){
+	    
+	    hs.put("view",i);
+	     
+	    int j = mybatis.selectOne("AdminDAO.viewList", hs);
+	    System.out.println("j : "+j);
+	    result [i] = j;
+	    }
+	    
+	    System.out.println("mybatis viewList 끝나고나감");
+	    return result;
+		
+		
+	}
 	
+	// 세션 방문자 수
+    public void setTotalCount() {
+    	System.out.println("DAO 도착");
+    	
+    	mybatis.selectOne("AdminDAO.visitCount");
+    	
+    	System.out.println("mapper 실행 끝");
+        
+    }
 	
+	public int[] viewList() {
+		
+		System.out.println("mybatis viewList() 호출");
+		int [] result = new int[1] ;
 	
+		HashMap<String, Integer> hs = new HashMap<String, Integer>();
+		
+	     for(int i = 0; i<= 0; i++ ){
+	    
+	    hs.put("view",i);
+	     
+	    int j = mybatis.selectOne("AdminDAO.viewList", hs);
+	    System.out.println(j);
+	    result [i] = j;
+	    }
+	    
+	    System.out.println("mybatis recentSales 끝나고나감");
+	    return result;
+	}
 	
 	
 	

@@ -50,17 +50,22 @@ from (select ol.o_id "주문번호",ol.ol_id "주문목록번호" , p.p_id "상�
       order by ol.o_id)
 	</select>
 
-	<insert id="visitCount" >
-		INSERT INTO VISIT (V_DATE) VALUES (sysdate)
-	</insert>
-
 	<select id="orderCount" resultType="int">
 		select count(o_date) from productorder WHERE to_char(o_date,'yy-mm-dd')=to_char(sysdate,'yy-mm-dd')
 	</select>
 	
-<!-- 	<select id="memberCount" resultType="int"> -->
-<!-- 		select count(m_date) from member WHERE to_char(m_date,'yy-mm-dd')=to_char(sysdate,'yy-mm-dd') -->
-<!-- 	</select> -->
+	<select id="memberCount" resultType="int">
+		select count(m_date) from member WHERE to_char(m_date,'yy-mm-dd')=to_char(sysdate,'yy-mm-dd')
+	</select>
+
+	<insert id="visitCount" >
+		INSERT INTO VISIT (V_DATE) VALUES (sysdate)
+	</insert>
+	
+	<select id="viewList" parameterType="hashMap" resultType="int">
+		select count(v_date) from visit where to_char(v_date,'YY/MM/DD') = to_char(sysdate-#{view},'YY/MM/DD')
+	</select>
+	
 	
 	
 	

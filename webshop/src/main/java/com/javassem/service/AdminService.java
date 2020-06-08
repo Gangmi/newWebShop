@@ -2,6 +2,8 @@ package com.javassem.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSessionEvent;
+
 import com.javassem.domain.DeliveryVO;
 import com.javassem.domain.MemberVO;
 import com.javassem.domain.ProductVO;
@@ -30,11 +32,14 @@ public interface AdminService {
 	int[] salesCategory();
 
 	int[] recentSales();
-
+	
 	int orderCount();
 
 	int memberCount();
 	
+	int[] viewCount();
+		
+	void setTotalCount();
 	
 	
 	

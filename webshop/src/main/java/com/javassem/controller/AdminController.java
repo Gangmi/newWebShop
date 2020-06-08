@@ -1,39 +1,28 @@
 package com.javassem.controller;
 
-import java.io.Console;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.servlet.http.HttpSessionEvent;
-import javax.servlet.http.HttpSessionListener;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.codec.multipart.FilePart;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.javassem.dao.AdminDAO;
-import com.javassem.dao.AdminDAOImpl;
-import com.javassem.dao.VisitCountDAO;
 import com.javassem.domain.DeliveryVO;
 import com.javassem.domain.MemberVO;
 import com.javassem.domain.ProductVO;
 import com.javassem.service.AdminService;
 
 @Controller
-public class AdminController{
+public class AdminController {
 	
 	ProductVO vo;
 	@Autowired
@@ -44,11 +33,13 @@ public class AdminController{
 	public ModelAndView dashBoard() {
 		System.out.println("대시보드 컨트롤 도착");
 		int result1 = service.orderCount();
-//		int result2 = service.memberCount();
+		int result2 = service.memberCount();
+		int[] result3 = service.viewCount();
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("admin/dashboard");
 		mv.addObject("orderCount", result1);
-//		mv.addObject("memberCount", result2);
+		mv.addObject("memberCount", result2);
+		mv.addObject("viewCount", result3);
 		return mv;
 	}
 	
@@ -224,6 +215,13 @@ System.out.println("파일 업로드 실행");
 		return "redirect:/inventorySituation.do";
 	}
 
+	@RequestMapping("/setTotalCount.do")
+	public String setTotalCount() {
+		System.out.println("setTotalCount 실행");
+		
+		service.setTotalCount();
+		return "admin/dashboard.do";
+	}
 	
 	
 	

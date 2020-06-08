@@ -151,7 +151,7 @@
 				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
 					<div class="panel panel-orange panel-widget border-right">
 						<div class="row no-padding"><em class="fa fa-xl fa-users color-teal"></em>
-							<div class="large">¼öÁ¤<%-- ${orderCount} --%></div>
+							<div class="large">${memberCount}</div>
 							<div class="text-muted">New Users</div>
 						</div>
 					</div>
@@ -159,7 +159,7 @@
 				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
 					<div class="panel panel-red panel-widget ">
 						<div class="row no-padding"><em class="fa fa-xl fa-search color-red"></em>
-							<div class="large">25.2k</div>
+							<div class="large">${viewCount[0]}</div>
 							<div class="text-muted">Page Views</div>
 						</div>
 					</div>
@@ -336,6 +336,29 @@
 	<script src="js/a_js/custom.js"></script>
 	<script>
 		window.onload = function () {
+
+
+a = new Array();
+for(var i=2;i>=1;i--){
+	a[2-i] = "DAY-"+i;
+	};
+				
+	var lineChartData = {
+	        labels : a,
+//  	        labels : ["DAY-1","DAY-2","DAY-3","DAY-4","DAY-5","DAY-6","DAY-7","DAY-8","DAY-9","DAY-10","DAY-11","DAY-12","DAY-13","DAY-14","DAY-15","DAY-16","DAY-17","DAY-18","DAY-19","DAY-20","DAY-21","DAY-22","DAY-23","DAY-24","DAY-25","DAY-26","DAY-27","DAY-28","DAY-29","DAY-30"],
+	        datasets : [
+	        	{
+					fillColor : "rgba(48, 164, 255, 0.2)",
+					strokeColor : "rgba(48, 164, 255, 1)",
+					pointColor : "rgba(48, 164, 255, 1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(48, 164, 255, 1)",
+//  	        		data : [${viewCount[30]},${viewCount[29]},${viewCount[28]},${viewCount[27]},${viewCount[26]},${viewCount[25]},${viewCount[24]},${viewCount[23]},${viewCount[22]},${viewCount[21]},${viewCount[20]},${viewCount[19]},${viewCount[18]},${viewCount[17]},${viewCount[16]},${viewCount[15]},${viewCount[14]},${viewCount[13]},${viewCount[12]},${viewCount[11]},${viewCount[10]},${viewCount[9]},${viewCount[8]},${viewCount[7]},${viewCount[6]},${viewCount[5]},${viewCount[4]},${viewCount[3]},${viewCount[2]},${viewCount[1]},${viewCount[0]}]
+	        	data : [30,${viewCount[0]}]
+				}
+	    ]
+	}
 	var chart1 = document.getElementById("line-chart").getContext("2d");
 	window.myLine = new Chart(chart1).Line(lineChartData, {
 	responsive: true,

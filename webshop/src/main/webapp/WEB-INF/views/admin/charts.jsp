@@ -293,10 +293,15 @@
 	<script>
 	window.onload = function () {
 
-// 월별 매출 라인 차트
+// 최근 30일간 매출 라인 차트
+a = new Array();
+for(var i=7;i>=1;i--){
+	a[7-i] = "DAY-"+i;
+	};
+
 	var lineChartData = {
-	        labels : ["DAY-1","DAY-2","DAY-3","DAY-4","DAY-5","DAY-6","DAY-7"],
-// 	        labels : ["DAY-1","DAY-2","DAY-3","DAY-4","DAY-5","DAY-6","DAY-7","DAY-8","DAY-9","DAY-10","DAY-11","DAY-12","DAY-13","DAY-14","DAY-15","DAY-16","DAY-17","DAY-18","DAY-19","DAY-20","DAY-21","DAY-22","DAY-23","DAY-24","DAY-25","DAY-26","DAY-27","DAY-28","DAY-29","DAY-30"],
+// 	        labels : ["DAY-1","DAY-2","DAY-3","DAY-4","DAY-5","DAY-6","DAY-7"],
+	        labels : a,
 	        datasets : [
 	        	{
 					fillColor : "rgba(48, 164, 255, 0.2)",
@@ -305,8 +310,8 @@
 					pointStrokeColor : "#fff",
 					pointHighlightFill : "#fff",
 					pointHighlightStroke : "rgba(48, 164, 255, 1)",
-// 	        		data : [${day[0]},${day[1]},${day[2]},${day[3]},${day[4]},${day[5]},${day[6]},${day[7]},${day[8]},${day[9]},${day[10]},${day[11]},${day[12]},${day[13]},${day[14]},${day[15]},${day[16]},${day[17]},${day[18]},${day[19]},${day[20]},${day[21]},${day[22]},${day[23]},${day[24]},${day[25]},${day[26]},${day[27]},${day[28]},${day[29]},${day[30]}]
-	        	data : [${day[0]},${day[1]},${day[2]},${day[3]},${day[4]},${day[5]},${day[6]}]
+// 	        		data : [${day[30]},${day[29]},${day[28]},${day[27]},${day[26]},${day[25]},${day[24]},${day[23]},${day[22]},${day[21]},${day[20]},${day[19]},${day[18]},${day[17]},${day[16]},${day[15]},${day[14]},${day[13]},${day[12]},${day[11]},${day[10]},${day[9]},${day[8]},${day[7]},${day[6]},${day[5]},${day[4]},${day[3]},${day[2]},${day[1]},${day[0]}]
+	        	data : [${day[6]},${day[5]},${day[4]},${day[3]},${day[2]},${day[1]},${day[0]}]
 				}
 	    ]
 	}
@@ -329,7 +334,7 @@
 				pointStrokeColor : "#fff",
 				pointHighlightFill : "#fff",
 				pointHighlightStroke : "rgba(48, 164, 255, 1)",
-           		data : [${month[0]},${month[1]},${month[2]},${month[3]},${month[4]},${month[5]},${month[6]},${month[7]},${month[8]},${month[9]},${month[10]},${month[11]},${month[12]}]
+           		data : [${month[0]},${month[1]},${month[2]},${month[3]},${month[4]},${month[5]},${month[6]},${month[7]},${month[8]},${month[9]},${month[10]},${month[11]}]
 
             }
 	    ]

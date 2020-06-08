@@ -54,9 +54,10 @@
 	</error-page> -->
 
 
-<listener>
-	<listener-class>com.javassem.controller.SessionController</listener-class>
-</listener>
+<!-- <listener> -->
+<!-- 	<listener-class>com.javassem.controller.SessionController</listener-class> -->
+<!-- 	<listener-class>com.javassem.controller.AdminController</listener-class> -->
+<!-- </listener> -->
 
 
 

@@ -3,6 +3,8 @@ package com.javassem.dao;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSessionEvent;
+
 import com.javassem.domain.DeliveryVO;
 import com.javassem.domain.MemberVO;
 import com.javassem.domain.ProductVO;
@@ -20,4 +22,8 @@ public interface AdminDAO {
 	public int[] salesCategory();
 	public int[] recentSales();
 	public int orderCount();
+	public int memberCount();
+	public int[] viewCount();
+	public void setTotalCount();
+//	public int[] viewList();
 }

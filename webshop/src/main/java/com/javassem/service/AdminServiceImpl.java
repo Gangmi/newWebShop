@@ -2,6 +2,8 @@ package com.javassem.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSessionEvent;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -68,5 +70,19 @@ public class AdminServiceImpl implements AdminService {
 	public int memberCount() {
 		return adminDAO.memberCount();
 	}
+	
+	public int[] viewCount() {
+		return adminDAO.viewCount();
+	}
+
+	public void setTotalCount() {
+		adminDAO.setTotalCount();
+		return;
+	}
+	
+//	public int[] viewList() {
+//		return adminDAO.viewList();
+//	}
+
 	
 }

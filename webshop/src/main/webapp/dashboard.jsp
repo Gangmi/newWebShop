@@ -14,10 +14,17 @@
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<!--[if lt IE 9]>
-	<script src="js/html5shiv.js"></script>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
+
+<script>
+$(document).ready(function(){ 
+	$.ajax({
+		type:"POST",
+		url:"setTotalCount.do",
+       	dataType : "xml"
+    });
+});
+
+</script>
 </head>
 <body>
 
@@ -151,7 +158,7 @@
 				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
 					<div class="panel panel-orange panel-widget border-right">
 						<div class="row no-padding"><em class="fa fa-xl fa-users color-teal"></em>
-							<div class="large">¼öÁ¤<%-- ${memberCount} --%></div>
+							<div class="large">${memberCount}</div>
 							<div class="text-muted">New Users</div>
 						</div>
 					</div>
@@ -159,7 +166,7 @@
 				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
 					<div class="panel panel-red panel-widget ">
 						<div class="row no-padding"><em class="fa fa-xl fa-search color-red"></em>
-							<div class="large">25.2k</div>
+							<div class="large">${viewCount}</div>
 							<div class="text-muted">Page Views</div>
 						</div>
 					</div>

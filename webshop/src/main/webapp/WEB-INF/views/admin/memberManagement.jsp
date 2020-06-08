@@ -25,45 +25,6 @@
 	href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i"
 	rel="stylesheet">
 
-<style type="text/css">
-.dropbtn {
-    background-color: #EFEFFB;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}
-
-.dropbtn:hover, .dropbtn:focus {
-    background-color: #3e8e41;
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown a:hover {background-color: #f1f1f1}
-
-.show {display:block;}
-</style>
 <script>
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
@@ -372,14 +333,7 @@ $(document)
 		<td class="column5">${list.m_email }</td>
 		<td class="column6">${list.m_addr }</td>
 		<td class="column7">${list.m_postcode }</td>
-		<td class="column8"><div class="dropdown">
-<button onclick="myFunction()" class="dropbtn">${list.m_grade }</button>
-  <div id="myDropdown" class="dropdown-content">
-    <a href="#silver">실버</a>
-    <a href="#gold">골드</a>
-    <a href="#dia">다이아</a>
-  </div>
-</div></td>
+		<td class="column8">${list.m_grade }</td>
 		<td class="column9">${list.m_sub }</td>
 		<td class="column10"><input id="del" type="button" value="delete"/></td>
 	</tr>
