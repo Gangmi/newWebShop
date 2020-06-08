@@ -59,13 +59,14 @@ public class AdminDAOImpl implements AdminDAO {
 		return mybatis.delete("AdminDAO.memberDelete",vo);
 	}
 
+	// 월별 매출
 	public int[] salesMonth() {
-		int [] result2 = new int[5] ;
+		int [] result2 = new int[12] ;
 		System.out.println("mybatis salesMonth() 호출");
 	
 		HashMap<String, Integer> hs = new HashMap<String, Integer>();
 		
-	     for(int i = 1; i<= 5; i++ ){
+	     for(int i = 1; i<= 12; i++ ){
 	     
 	     hs.put("month",i);
 	     
@@ -99,10 +100,36 @@ public class AdminDAOImpl implements AdminDAO {
 	    return result;
 	}
 
+	// 최근 30일간 매출
+	public int[] recentSales() {
+		System.out.println("mybatis recentSales() 호출");
+		int [] result = new int[7] ;
+	
+		HashMap<String, Integer> hs = new HashMap<String, Integer>();
+		
+	     for(int i = 1; i<= 7; i++ ){
+	    
+	    hs.put("day",i);
+	     
+	    int j = mybatis.selectOne("AdminDAO.recentSales", hs);
+	    System.out.println(j);
+	    result [i-1] = j;
+	    }
+	     
+	    System.out.println("mybatis recentSales 끝나고나감");
+	    return result;
+	}
+	
+	// 일일 주문량
+	public int orderCount() {
+		
+		return mybatis.selectOne("AdminDAO.orderCount");
+	}
 
-	
-	
-	
+	public int memberCount() {
+		
+		return mybatis.selectOne("AdminDAO.memberCount");
+	}
 	
 	
 	

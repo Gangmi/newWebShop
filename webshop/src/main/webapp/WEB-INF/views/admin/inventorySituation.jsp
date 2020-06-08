@@ -296,7 +296,6 @@ var header = {
            $("#pageName").val(pageName); // input 태그의 value를 설정한다.
             $("#"+form).attr("action",pageName+".do");             
             $("#"+form).submit();
-//             $("#frmfile").submit();
         }
 
 
@@ -312,8 +311,6 @@ var header = {
 					
 <!-- 	@@@@@@@@@@@@@@@@@@@@ 삼품 검색 @@@@@@@@@@@@@@@@@@@@ -->
 
-
-상품검색
 <div class="col-md-3">
 	<form action="#" method="get">
 		<div class="input-group">
@@ -328,8 +325,7 @@ var header = {
 		</div>
 	</form>
 	<br><br>
-	<input id="update" onclick="javascript:header.pageSubmitFn('inventoryUpdate','frm')" style="float:right" type="button" value="UPDATE"/>
-	<input id="insert" onclick="javascript:header.pageSubmitFn('inventoryInsert','frm')" style="float:right" type="button"value="INSERT"/>
+	
 </div>
 
 <!-- <input type="button" value="update"/> -->
@@ -341,7 +337,6 @@ var header = {
 
 
 <div class="col-md-6">
-상품 입고
 	<table class="table table-list-search1">
 		<thead>
 			<tr>
@@ -369,7 +364,9 @@ var header = {
 				<td><input type="text" style="width:160px;border:none" id="txt2" disabled/></td>
 			</tr>
 			<tr>
-				<td colspan="9"><input multiple="multiple" type="file" name="file" maxlength="60" size="40"></td>
+				<td colspan="3"><input multiple="multiple" type="file" name="file" maxlength="60" size="40"></td>
+				<td><input id="update" onclick="javascript:header.pageSubmitFn('inventoryUpdate','frm')" style="float:right" type="button" value="UPDATE"/></td>
+				<td><input id="insert" onclick="javascript:header.pageSubmitFn('inventoryInsert','frm')" style="float:right" type="button"value="INSERT"/></td>
 			</tr>
 <!-- 		</form> -->
 <!-- 		<form action="MultiUpload.do" id="frmfile" method="post" enctype="multipart/form-data"> -->
@@ -379,7 +376,7 @@ var header = {
 
 
 
-	<table class="table table-list-search">
+	<table class="table table-list-search" style="margin:15px">
 		<thead>
 			<tr>
 				<th>ID</th>

@@ -11,6 +11,13 @@
 <link href="resources/css/a_css/font-awesome.min.css" rel="stylesheet">
 <link href="resources/css/a_css/datepicker3.css" rel="stylesheet">
 <link href="resources/css/a_css/styles.css" rel="stylesheet">
+<!-- ***************** new **************** -->
+<link rel="stylesheet" type="text/css" href="resources/css/a_css/animate.css">
+<link rel="stylesheet" type="text/css" href="resources/css/a_css/select2.min.css">
+<link rel="stylesheet" type="text/css" href="resources/css/a_css/perfect-scrollbar.css">
+<link rel="stylesheet" type="text/css" href="resources/css/a_css/util.css">
+<link rel="stylesheet" type="text/css" href="resources/css/a_css/main.css">
+
 
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!--Custom Font-->
@@ -128,8 +135,6 @@
 		<ul class="nav menu">
 			<li><a href="dashBoard.do"><em class="fa fa-dashboard">&nbsp;</em>
 					Dashboard</a></li>
-			<li><a href="widgets.html"><em class="fa fa-calendar">&nbsp;</em>
-					Widgets</a></li>
 			<li><a href="charts.do"><em class="fa fa-bar-chart">&nbsp;</em>
 					Charts</a></li>
 			<li><a href="memberManagement.do"><em
@@ -244,8 +249,9 @@
 									});
 				</script>
 
-				<div class="container">
-					<div class="row">
+			<div class="wrap-table100">
+				<div class="table100">
+<!-- 		********************* 검색 창 ****************** -->
 						<div class="col-md-3">
 							<form action="#" method="get">
 								<div class="input-group">
@@ -260,33 +266,32 @@
 								</div>
 							</form>
 						</div>
-						<div class="col-md-9">
-							<table class="table table-list-search">
-								<thead>
-									<tr>
-										<th>DELIVERY NUMBER</th>
-										<th>ORDER NUMBER</th>
-										<th>STATE</th>
-										<th>START DATE</th>
-									</tr>
-								</thead>
-								<c:forEach items="${listVO }" var="list">
-									<tr>
-										<td>${list.d_id }</td>
-										<td>${list.o_id }</td>
-										<td>${list.d_state }</td>
-										<td>${list.d_startdate }</td>
-									</tr>
-								</c:forEach>
+								
+<!--		************************* 테이블 *********************** -->
+			<div class="wrap-table100">
+				<div class="col-md-9">
+					<table class="table table-list-search">
+						<thead>
+								<tr class="table100-head">
+								<th class="column1">DELIVERY NUMBER</th>
+								<th class="column2">ORDER NUMBER</th>
+								<th class="column3">STATE</th>
+								<th class="column4">START DATE</th>
+							</tr>
+						</thead>
+	<c:forEach items="${listVO }" var="list">
+	<tr>
+		<td class="column1">${list.d_id }</td>
+		<td class="column2">${list.o_id }</td>
+		<td class="column3">${list.d_state }</td>
+		<td class="column4">${list.d_startdate }</td>
+	</tr>
+	</c:forEach>
 							</table>
+						</div> <!-- ****************** 테이블 end*********************** -->
 						</div>
 					</div>
 				</div>
-
-
-
-
-
 			</div>
 			<!-- /.panel-->
 		</div>
@@ -306,9 +311,15 @@
 	<script src="js/a_js/chart.min.js"></script>
 	<script src="js/a_js/chart-data.js"></script>
 	<script src="js/a_js/easypiechart.js"></script>
-	<script src="js/a_js/easypiechart-data.js"></script>
 	<script src="js/a_js/bootstrap-datepicker.js"></script>
 	<script src="js/a_js/custom.js"></script>
+	<!-- 	*********************************** -->
+	<script src="js/a_js/jquery-3.2.1.min.js"></script>
+	<script src="js/a_js/popper.js"></script>
+	<script src="js/a_js/bootstrap.min.js"></script>
+	<script src="js/a_js/select2.min.js"></script>
+	<script src="js/a_js/main.js"></script>
+	
 
 </body>
 </html>

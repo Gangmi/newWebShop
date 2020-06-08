@@ -28,8 +28,12 @@ public interface AdminService {
 	int[] salesMonth();
 
 	int[] salesCategory();
-	
-	
+
+	int[] recentSales();
+
+	int orderCount();
+
+	int memberCount();
 	
 	
 	

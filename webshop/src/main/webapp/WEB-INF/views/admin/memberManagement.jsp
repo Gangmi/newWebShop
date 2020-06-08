@@ -11,16 +11,81 @@
 <link href="resources/css/a_css/font-awesome.min.css" rel="stylesheet">
 <link href="resources/css/a_css/datepicker3.css" rel="stylesheet">
 <link href="resources/css/a_css/styles.css" rel="stylesheet">
+<!-- ***************** new **************** -->
+<link rel="stylesheet" type="text/css" href="resources/css/a_css/animate.css">
+<link rel="stylesheet" type="text/css" href="resources/css/a_css/select2.min.css">
+<link rel="stylesheet" type="text/css" href="resources/css/a_css/perfect-scrollbar.css">
+<link rel="stylesheet" type="text/css" href="resources/css/a_css/util.css">
+<link rel="stylesheet" type="text/css" href="resources/css/a_css/main.css">
+
 
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!--Custom Font-->
 <link
 	href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i"
 	rel="stylesheet">
-<!--[if lt IE 9]>
-	<script src="js/html5shiv.js"></script>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
+
+<style type="text/css">
+.dropbtn {
+    background-color: #EFEFFB;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #3e8e41;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #f1f1f1}
+
+.show {display:block;}
+</style>
+<script>
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
 </head>
 <body>
 	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
@@ -128,8 +193,6 @@
 		<ul class="nav menu">
 			<li><a href="dashBoard.do"><em class="fa fa-dashboard">&nbsp;</em>
 					Dashboard</a></li>
-			<li><a href="widgets.html"><em class="fa fa-calendar">&nbsp;</em>
-					Widgets</a></li>
 			<li><a href="charts.do"><em class="fa fa-bar-chart">&nbsp;</em>
 					Charts</a></li>
 			<li class="active"><a href="memberManagement.do"><em
@@ -172,75 +235,75 @@
 
 <script>
 $(document)
-.ready(
-function() {
-	var activeSystemClass = $('.list-group-item.active');
+		.ready(
+				function() {
+					var activeSystemClass = $('.list-group-item.active');
 
-	//something is entered in search form
-	$('#system-search')
-			.keyup(
-					function() {
-						var that = this;
-						// affect all table rows on in systems table
-						var tableBody = $('.table-list-search tbody');
-						var tableRowsClass = $('.table-list-search tbody tr');
-						$('.search-sf')
-								.remove();
-						tableRowsClass
-								.each(function(
-										i,
-										val) {
-
-									//Lower text for case insensitive
-									var rowText = $(
-											val)
-											.text()
-											.toLowerCase();
-									var inputText = $(
-											that)
-											.val()
-											.toLowerCase();
-									if (inputText != '') {
-										$(
-												'.search-query-sf')
-												.remove();
-										tableBody
-												.prepend('<tr class="search-query-sf"><td colspan="6"><strong>Searching for: "'
-														+ $(
-																that)
-																.val()
-														+ '"</strong></td></tr>');
-									} else {
-										$(
-												'.search-query-sf')
-												.remove();
-									}
-
-									if (rowText
-											.indexOf(inputText) == -1) {
-										//hide rows
-										tableRowsClass
-												.eq(
-														i)
-												.hide();
-
-									} else {
-										$(
-												'.search-sf')
+					//something is entered in search form
+					$('#system-search')
+							.keyup(
+									function() {
+										var that = this;
+										// affect all table rows on in systems table
+										var tableBody = $('.table-list-search tbody');
+										var tableRowsClass = $('.table-list-search tbody tr');
+										$('.search-sf')
 												.remove();
 										tableRowsClass
-												.eq(
-														i)
-												.show();
-									}
-								});
-						//all tr elements are hidden
-						if (tableRowsClass
-								.children(':visible').length == 0) {
-							tableBody
-									.append('<tr class="search-sf"><td class="text-muted" colspan="6">No entries found.</td></tr>');
-						}
-					});
+												.each(function(
+														i,
+														val) {
+
+													//Lower text for case insensitive
+													var rowText = $(
+															val)
+															.text()
+															.toLowerCase();
+													var inputText = $(
+															that)
+															.val()
+															.toLowerCase();
+													if (inputText != '') {
+														$(
+																'.search-query-sf')
+																.remove();
+														tableBody
+																.prepend('<tr class="search-query-sf"><td colspan="6"><strong>Searching for: "'
+																		+ $(
+																				that)
+																				.val()
+																		+ '"</strong></td></tr>');
+													} else {
+														$(
+																'.search-query-sf')
+																.remove();
+													}
+
+													if (rowText
+															.indexOf(inputText) == -1) {
+														//hide rows
+														tableRowsClass
+																.eq(
+																		i)
+																.hide();
+
+													} else {
+														$(
+																'.search-sf')
+																.remove();
+														tableRowsClass
+																.eq(
+																		i)
+																.show();
+													}
+												});
+										//all tr elements are hidden
+										if (tableRowsClass
+												.children(':visible').length == 0) {
+											tableBody
+													.append('<tr class="search-sf"><td class="text-muted" colspan="6">No entries found.</td></tr>');
+										}
+									});
 
 
 
@@ -248,18 +311,22 @@ function() {
 										
 	$(document).on("click","#del",function(evt){
 
-		window.location.href="memberDelete.do?m_id="+$(evt.target).parent().siblings().eq(0).text()
+		window.location.href="memberDelete.do?m_id="+$(evt.target).parent().siblings().eq(0).val()
 
 		$("#mem").submit();
 
 	})
 
 
-										});
-				</script>
 
-				<div class="container">
-					<div class="row">
+
+});
+
+</script>
+
+<!-- 			<div class="wrap-table100"> -->
+<!-- 				<div class="table100"> -->
+<!-- 		********************* 검색 창 ****************** -->
 						<div class="col-md-3">
 							<form action="#" method="get">
 								<div class="input-group">
@@ -275,40 +342,53 @@ function() {
 							</form>
 						</div>
 						
-						
-						<div class="col-md-9">
-							<table class="table table-list-search">
-								<thead>
-									<tr>
-										<th>ID</th>
-										<th>PASSWORD</th>
-										<th>TEL</th>
-										<th>EMAIL</th>
-										<th>ADDRESS</th>
-										<th>POST_CODE</th>
-										<th>GRADE</th>
-										<th>SUBSCRIBE</th>
-									</tr>
-								</thead>
+<!--		************************* 테이블 *********************** -->
+
+			<div class="wrap-table100">
+				<div class="col-md-9">
+					<table class="table table-list-search">
+						<thead>
+							<tr class="table100-head">
+								<th class="column1">NAME</th>
+								<th class="column2">ID</th>
+								<th class="column3">PASSWORD</th>
+								<th class="column4">TEL</th>
+								<th class="column5">EMAIL</th>
+								<th class="column6">ADDRESS</th>
+								<th class="column7">POST_CODE</th>
+								<th class="column8">GRADE</th>
+								<th class="column9">SUBSCRIBE</th>
+								<th class="column10">DELETE</th>
+							</tr>
+						</thead>
 
 <c:forEach items="${listVO }" var="list">
 	<tr>
-		<td>${list.m_id }</td>
-		<input id="m_id" type="hidden" value="${list.m_id }">
-		<td>${list.m_pass }</td>
-		<td>${list.m_tel }</td>
-		<td>${list.m_email }</td>
-		<td>${list.m_addr }</td>
-		<td>${list.m_postcode }</td>
-		<td>${list.m_grade }</td>
-		<td>${list.m_sub }</td>
-		<td><input id="del" type="button" value="delete"/></td>
+		<input id="m_id" type="hidden" value="${list.m_id }"/>
+		<td class="column1">${list.m_name }</td>
+		<td class="column2">${list.m_id }</td>
+		<td class="column3">${list.m_pass }</td>
+		<td class="column4">${list.m_tel }</td>
+		<td class="column5">${list.m_email }</td>
+		<td class="column6">${list.m_addr }</td>
+		<td class="column7">${list.m_postcode }</td>
+		<td class="column8"><div class="dropdown">
+<button onclick="myFunction()" class="dropbtn">${list.m_grade }</button>
+  <div id="myDropdown" class="dropdown-content">
+    <a href="#silver">실버</a>
+    <a href="#gold">골드</a>
+    <a href="#dia">다이아</a>
+  </div>
+</div></td>
+		<td class="column9">${list.m_sub }</td>
+		<td class="column10"><input id="del" type="button" value="delete"/></td>
 	</tr>
 </c:forEach>
-							</table>
+</table>
+						</div> <!-- ****************** 테이블 end*********************** -->
 						</div>
-					</div>
-				</div>
+<!-- 					</div> -->
+<!-- 				</div> -->
 			</div>
 			<!-- /.panel-->
 		</div>
@@ -328,9 +408,14 @@ function() {
 	<script src="js/a_js/chart.min.js"></script>
 	<script src="js/a_js/chart-data.js"></script>
 	<script src="js/a_js/easypiechart.js"></script>
-	<script src="js/a_js/easypiechart-data.js"></script>
 	<script src="js/a_js/bootstrap-datepicker.js"></script>
 	<script src="js/a_js/custom.js"></script>
+<!-- 	*********************************** -->
+	<script src="js/a_js/jquery-3.2.1.min.js"></script>
+	<script src="js/a_js/popper.js"></script>
+	<script src="js/a_js/bootstrap.min.js"></script>
+	<script src="js/a_js/select2.min.js"></script>
+	<script src="js/a_js/main.js"></script>
 
 </body>
 </html>

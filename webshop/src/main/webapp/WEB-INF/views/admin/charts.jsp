@@ -126,41 +126,10 @@
 		</div><!--/.row-->
 		
 		<div class="row">
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<div class="easypiechart" id="easypiechart-teal" data-percent="56" ><span class="percent">56%</span></div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<div class="easypiechart" id="easypiechart-blue" data-percent="92" ><span class="percent">92%</span></div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<div class="easypiechart" id="easypiechart-orange" data-percent="65" ><span class="percent">65%</span></div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<div class="easypiechart" id="easypiechart-red" data-percent="27" ><span class="percent">27%</span></div>
-					</div>
-				</div>
-			</div>
-		</div><!--/.row-->
-		
-		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						Line Chart
+						최근 일간 매출
 						<ul class="pull-right panel-settings panel-button-tab-right">
 							<li class="dropdown"><a class="pull-right dropdown-toggle" data-toggle="dropdown" href="#">
 								<em class="fa fa-cogs"></em>
@@ -198,7 +167,7 @@
 			<div class="col-lg-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						Bar Chart
+						월별 매출
 						<ul class="pull-right panel-settings panel-button-tab-right">
 							<li class="dropdown"><a class="pull-right dropdown-toggle" data-toggle="dropdown" href="#">
 								<em class="fa fa-cogs"></em>
@@ -236,7 +205,7 @@
 			<div class="col-md-6">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						Pie Chart
+						카테고리 매출
 						<ul class="pull-right panel-settings panel-button-tab-right">
 							<li class="dropdown"><a class="pull-right dropdown-toggle" data-toggle="dropdown" href="#">
 								<em class="fa fa-cogs"></em>
@@ -271,7 +240,7 @@
 			<div class="col-md-6">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						Doughnut Chart
+						카테고리 매출
 						<ul class="pull-right panel-settings panel-button-tab-right">
 							<li class="dropdown"><a class="pull-right dropdown-toggle" data-toggle="dropdown" href="#">
 								<em class="fa fa-cogs"></em>
@@ -305,81 +274,7 @@
 			</div>
 		</div><!--/.row-->
 		
-		<div class="row">
-			<div class="col-md-6">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						Radar Chart
-						<ul class="pull-right panel-settings panel-button-tab-right">
-							<li class="dropdown"><a class="pull-right dropdown-toggle" data-toggle="dropdown" href="#">
-								<em class="fa fa-cogs"></em>
-							</a>
-								<ul class="dropdown-menu dropdown-menu-right">
-									<li>
-										<ul class="dropdown-settings">
-											<li><a href="#">
-												<em class="fa fa-cog"></em> Settings 1
-											</a></li>
-											<li class="divider"></li>
-											<li><a href="#">
-												<em class="fa fa-cog"></em> Settings 2
-											</a></li>
-											<li class="divider"></li>
-											<li><a href="#">
-												<em class="fa fa-cog"></em> Settings 3
-											</a></li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-						</ul>
-						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
-					<div class="panel-body">
-						<div class="canvas-wrapper">
-							<canvas class="chart" id="radar-chart" ></canvas>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						Polar Area Chart
-						<ul class="pull-right panel-settings panel-button-tab-right">
-							<li class="dropdown"><a class="pull-right dropdown-toggle" data-toggle="dropdown" href="#">
-								<em class="fa fa-cogs"></em>
-							</a>
-								<ul class="dropdown-menu dropdown-menu-right">
-									<li>
-										<ul class="dropdown-settings">
-											<li><a href="#">
-												<em class="fa fa-cog"></em> Settings 1
-											</a></li>
-											<li class="divider"></li>
-											<li><a href="#">
-												<em class="fa fa-cog"></em> Settings 2
-											</a></li>
-											<li class="divider"></li>
-											<li><a href="#">
-												<em class="fa fa-cog"></em> Settings 3
-											</a></li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-						</ul>
-						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
-					<div class="panel-body">
-						<div class="canvas-wrapper">
-							<canvas class="chart" id="polar-area-chart" ></canvas>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-12">
-				<p class="back-link">Lumino Theme by <a href="https://www.medialoot.com">Medialoot</a></p>
-			</div>
-		</div><!--/.row-->
+
 	</div>	<!--/.main-->
 	  
 
@@ -400,7 +295,8 @@
 
 // 월별 매출 라인 차트
 	var lineChartData = {
-	        labels : ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],
+	        labels : ["DAY-1","DAY-2","DAY-3","DAY-4","DAY-5","DAY-6","DAY-7"],
+// 	        labels : ["DAY-1","DAY-2","DAY-3","DAY-4","DAY-5","DAY-6","DAY-7","DAY-8","DAY-9","DAY-10","DAY-11","DAY-12","DAY-13","DAY-14","DAY-15","DAY-16","DAY-17","DAY-18","DAY-19","DAY-20","DAY-21","DAY-22","DAY-23","DAY-24","DAY-25","DAY-26","DAY-27","DAY-28","DAY-29","DAY-30"],
 	        datasets : [
 	        	{
 					fillColor : "rgba(48, 164, 255, 0.2)",
@@ -409,7 +305,8 @@
 					pointStrokeColor : "#fff",
 					pointHighlightFill : "#fff",
 					pointHighlightStroke : "rgba(48, 164, 255, 1)",
-					data : [${month[0]},${month[1]},${month[2]},${month[3]},${month[4]}]
+// 	        		data : [${day[0]},${day[1]},${day[2]},${day[3]},${day[4]},${day[5]},${day[6]},${day[7]},${day[8]},${day[9]},${day[10]},${day[11]},${day[12]},${day[13]},${day[14]},${day[15]},${day[16]},${day[17]},${day[18]},${day[19]},${day[20]},${day[21]},${day[22]},${day[23]},${day[24]},${day[25]},${day[26]},${day[27]},${day[28]},${day[29]},${day[30]}]
+	        	data : [${day[0]},${day[1]},${day[2]},${day[3]},${day[4]},${day[5]},${day[6]}]
 				}
 	    ]
 	}
@@ -432,8 +329,8 @@
 				pointStrokeColor : "#fff",
 				pointHighlightFill : "#fff",
 				pointHighlightStroke : "rgba(48, 164, 255, 1)",
-                data : [${month[0]},${month[1]},${month[2]},${month[3]},${month[4]}]
-//             data : [${month[0]},${month[1]},${month[2]},${month[3]},${month[4]},${month[5]},${month[6]},${month[7]},${month[8]},${month[9]},${month[10]},${month[11]}]
+           		data : [${month[0]},${month[1]},${month[2]},${month[3]},${month[4]},${month[5]},${month[6]},${month[7]},${month[8]},${month[9]},${month[10]},${month[11]},${month[12]}]
+
             }
 	    ]
 	}
@@ -525,20 +422,7 @@
 	});
 
 	
-	var chart5 = document.getElementById("radar-chart").getContext("2d");
-	window.myRadarChart = new Chart(chart5).Radar(radarData, {
-	responsive: true,
-	scaleLineColor: "rgba(0,0,0,.05)",
-	angleLineColor: "rgba(0,0,0,.2)"
-	});
 
-	
-	var chart6 = document.getElementById("polar-area-chart").getContext("2d");
-	window.myPolarAreaChart = new Chart(chart6).PolarArea(polarData, {
-	responsive: true,
-	scaleLineColor: "rgba(0,0,0,.2)",
-	segmentShowStroke: false
-	});
 };
 	</script>	
 </body>
