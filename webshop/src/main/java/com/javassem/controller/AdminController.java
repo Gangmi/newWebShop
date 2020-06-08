@@ -7,24 +7,33 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSessionEvent;
+import javax.servlet.http.HttpSessionListener;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.codec.multipart.FilePart;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.javassem.dao.AdminDAO;
+import com.javassem.dao.AdminDAOImpl;
+import com.javassem.dao.VisitCountDAO;
 import com.javassem.domain.DeliveryVO;
 import com.javassem.domain.MemberVO;
 import com.javassem.domain.ProductVO;
 import com.javassem.service.AdminService;
 
 @Controller
-public class AdminController {
+public class AdminController{
 	
 	ProductVO vo;
 	@Autowired
@@ -32,8 +41,15 @@ public class AdminController {
 
 	// 대시보드
 	@RequestMapping("/dashBoard.do")
-	public String dashBoard() {
-		return "admin/dashboard";
+	public ModelAndView dashBoard() {
+		System.out.println("대시보드 컨트롤 도착");
+		int result1 = service.orderCount();
+//		int result2 = service.memberCount();
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("admin/dashboard");
+		mv.addObject("orderCount", result1);
+//		mv.addObject("memberCount", result2);
+		return mv;
 	}
 	
 	// 회원 삭제
@@ -51,24 +67,20 @@ public class AdminController {
 		return mv;
 	}
 	
-//	@RequestMapping("/charts.do")
-//	public String charts() {
-//		return "admin/charts";
-//	}
-	
 	// 차트
 	@RequestMapping("/charts.do")
 	public ModelAndView charts() {
 		System.out.println("차트 컨트롤 도착");
 		int[] category = service.salesCategory();
 		int[] month = service.salesMonth();
+		int[] day = service.recentSales();
 		System.out.println("디비 갔다옴 차트");
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("admin/charts");
 		mv.addObject("month", month);
 		mv.addObject("category", category);
-		
+		mv.addObject("day", day);
 		return mv;
 	}
 	
@@ -80,7 +92,7 @@ public class AdminController {
 		System.out.println("디비 갔다옴");
 		ModelAndView mv = new ModelAndView();
 		System.out.println("mv 객체 생성");
-		mv.setViewName("admin/memberManagement2");
+		mv.setViewName("admin/memberManagement");
 		mv.addObject("listVO",listVO);
 		System.out.println(" list 저장");
 		return mv;
@@ -94,7 +106,7 @@ public class AdminController {
 		System.out.println("디비 갔다옴");
 		ModelAndView mv = new ModelAndView();
 		System.out.println("mv 객체 생성");
-		mv.setViewName("admin/employeeManagement2");
+		mv.setViewName("admin/employeeManagement");
 		mv.addObject("listVO",listVO);
 		System.out.println(" list 저장");
 		return mv;
@@ -122,7 +134,7 @@ public class AdminController {
 		System.out.println("디비 갔다옴");
 		ModelAndView mv = new ModelAndView();
 		System.out.println("mv 객체 생성");
-		mv.setViewName("admin/deliverySituation2");
+		mv.setViewName("admin/deliverySituation");
 		mv.addObject("listVO",listVO);
 		System.out.println(" list 저장");
 		return mv;
@@ -212,8 +224,6 @@ System.out.println("파일 업로드 실행");
 		return "redirect:/inventorySituation.do";
 	}
 
-
-	
 	
 	
 	

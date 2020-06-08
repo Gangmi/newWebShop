@@ -18,4 +18,6 @@ public interface AdminDAO {
 	public int memberDelete(MemberVO vo);
 	public int[] salesMonth();
 	public int[] salesCategory();
+	public int[] recentSales();
+	public int orderCount();
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.javassem.dao.AdminDAO;
 import com.javassem.dao.AdminDAOImpl;
 import com.javassem.domain.DeliveryVO;
 import com.javassem.domain.MemberVO;
@@ -54,6 +55,18 @@ public class AdminServiceImpl implements AdminService {
 	
 	public int[] salesCategory() {
 		return adminDAO.salesCategory();
+	}
+
+	public int[] recentSales() {
+		return adminDAO.recentSales();
+	}
+
+	public int orderCount() {
+		return adminDAO.orderCount();
+	}
+	
+	public int memberCount() {
+		return adminDAO.memberCount();
 	}
 	
 }

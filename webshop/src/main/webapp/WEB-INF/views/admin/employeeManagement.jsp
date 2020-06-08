@@ -11,6 +11,12 @@
 <link href="resources/css/a_css/font-awesome.min.css" rel="stylesheet">
 <link href="resources/css/a_css/datepicker3.css" rel="stylesheet">
 <link href="resources/css/a_css/styles.css" rel="stylesheet">
+<!-- ***************** new **************** -->
+<link rel="stylesheet" type="text/css" href="resources/css/a_css/animate.css">
+<link rel="stylesheet" type="text/css" href="resources/css/a_css/select2.min.css">
+<link rel="stylesheet" type="text/css" href="resources/css/a_css/perfect-scrollbar.css">
+<link rel="stylesheet" type="text/css" href="resources/css/a_css/util.css">
+<link rel="stylesheet" type="text/css" href="resources/css/a_css/main.css">
 
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!--Custom Font-->
@@ -128,8 +134,6 @@
 		<ul class="nav menu">
 			<li><a href="dashBoard.do"><em class="fa fa-dashboard">&nbsp;</em>
 					Dashboard</a></li>
-			<li><a href="widgets.html"><em class="fa fa-calendar">&nbsp;</em>
-					Widgets</a></li>
 			<li><a href="charts.do"><em class="fa fa-bar-chart">&nbsp;</em>
 					Charts</a></li>
 			<li><a href="memberManagement.do"><em
@@ -241,11 +245,24 @@
 																		.append('<tr class="search-sf"><td class="text-muted" colspan="6">No entries found.</td></tr>');
 															}
 														});
-									});
+
+
+										
+$(document).on("click","#del",function(evt){
+alert("dd")
+window.location.href="memberDelete.do?m_id="+$(evt.target).parent().siblings().eq(0).val()
+
+
+
+})
+
+
+});
 				</script>
 
-				<div class="container">
-					<div class="row">
+<!-- 			<div class="wrap-table100"> -->
+<!-- 				<div class="table100"> -->
+<!-- 		********************* 검색 창 ****************** -->
 						<div class="col-md-3">
 							<form action="#" method="get">
 								<div class="input-group">
@@ -260,37 +277,47 @@
 								</div>
 							</form>
 						</div>
+						
+<!--		************************* 테이블 *********************** -->
+
+			<div class="wrap-table100">
 						<div class="col-md-9">
 							<table class="table table-list-search">
 								<thead>
-									<tr>
-										<th>ID</th>
-										<th>PASSWORD</th>
-										<th>TEL</th>
-										<th>EMAIL</th>
-										<th>ADDRESS</th>
-										<th>POST_CODE</th>
-										<th>GRADE</th>
-										<th>SUBSCRIBE</th>
-									</tr>
+							<tr class="table100-head">
+								<th class="column1">NAME</th>
+								<th class="column2">ID</th>
+								<th class="column3">PASSWORD</th>
+								<th class="column4">TEL</th>
+								<th class="column5">EMAIL</th>
+								<th class="column6">ADDRESS</th>
+								<th class="column7">POST_CODE</th>
+								<th class="column8">GRADE</th>
+								<th class="column9">SUBSCRIBE</th>
+								<th class="column10">DELETE</th>
+							</tr>
 								</thead>
-								<c:forEach items="${listVO }" var="list">
+<c:forEach items="${listVO }" var="list">
 								
-									<tr>
-										<td>${list.m_id }</td>
-										<td>${list.m_pass }</td>
-										<td>${list.m_tel }</td>
-										<td>${list.m_email }</td>
-										<td>${list.m_addr }</td>
-										<td>${list.m_postcode }</td>
-										<td>${list.m_grade }</td>
-										<td>${list.m_sub }</td>
-									</tr>
-								</c:forEach>
+	<tr>
+		<input id="m_id" type="hidden" value="${list.m_id }"/>
+		<td class="column1">${list.m_name }</td>
+		<td class="column2">${list.m_id }</td>
+		<td class="column3">${list.m_pass }</td>
+		<td class="column4">${list.m_tel }</td>
+		<td class="column5">${list.m_email }</td>
+		<td class="column6">${list.m_addr }</td>
+		<td class="column7">${list.m_postcode }</td>
+		<td class="column8">${list.m_grade }</td>
+		<td class="column9">${list.m_sub }</td>
+		<td class="column10"><input id="del" type="button" value="delete"/></td>
+	</tr>
+</c:forEach>
 							</table>
+						</div> <!-- ****************** 테이블 end*********************** -->
 						</div>
-					</div>
-				</div>
+<!-- 					</div> -->
+<!-- 				</div> -->
 			</div>
 			<!-- /.panel-->
 		</div>
@@ -310,9 +337,13 @@
 	<script src="js/a_js/chart.min.js"></script>
 	<script src="js/a_js/chart-data.js"></script>
 	<script src="js/a_js/easypiechart.js"></script>
-	<script src="js/a_js/easypiechart-data.js"></script>
 	<script src="js/a_js/bootstrap-datepicker.js"></script>
 	<script src="js/a_js/custom.js"></script>
-
+<!-- 	*********************************** -->
+	<script src="js/a_js/jquery-3.2.1.min.js"></script>
+	<script src="js/a_js/popper.js"></script>
+	<script src="js/a_js/bootstrap.min.js"></script>
+	<script src="js/a_js/select2.min.js"></script>
+	<script src="js/a_js/main.js"></script>
 </body>
 </html>

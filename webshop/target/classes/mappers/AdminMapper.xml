@@ -42,7 +42,27 @@
 		select sum(a) from (select ol.o_id ,ol.ol_id , p.p_id , p.p_name ,p.p_price as a ,to_char(po.o_date,'MM') from orderlist ol , product p , productorder po where ol.p_id = p.p_id and ol.o_id = po.o_id and p.p_cat = #{category} order by ol.o_id)
 	</select>
 
+	<select id="recentSales" parameterType="hashMap" resultType="int">
+select sum(a)
+from (select ol.o_id "주문번호",ol.ol_id "주문목록번호" , p.p_id "상품아이디" , p.p_name "상품이름" ,p.p_price as a ,to_char(po.o_date,'MM') "주문 날짜"
+      from orderlist ol , product p , productorder po
+      where ol.p_id = p.p_id and ol.o_id = po.o_id AND to_char(po.o_date,'mm-dd')=to_char(sysdate-#{day},'mm-dd')
+      order by ol.o_id)
+	</select>
 
+	<insert id="visitCount" >
+		INSERT INTO VISIT (V_DATE) VALUES (sysdate)
+	</insert>
 
+	<select id="orderCount" resultType="int">
+		select count(o_date) from productorder WHERE to_char(o_date,'yy-mm-dd')=to_char(sysdate,'yy-mm-dd')
+	</select>
+	
+<!-- 	<select id="memberCount" resultType="int"> -->
+<!-- 		select count(m_date) from member WHERE to_char(m_date,'yy-mm-dd')=to_char(sysdate,'yy-mm-dd') -->
+<!-- 	</select> -->
+	
+	
+	
 
 </mapper>
