@@ -136,11 +136,11 @@ public class AdminDAOImpl implements AdminDAO {
 	public int[] viewCount() {
 		
 		System.out.println("mybatis viewList() 호출");
-		int [] result = new int[1] ;
+		int [] result = new int[31] ;
 	
 		HashMap<String, Integer> hs = new HashMap<String, Integer>();
 		
-	     for(int i = 0; i<= 0; i++ ){
+	     for(int i = 0; i<= 30; i++ ){
 	    
 	    hs.put("view",i);
 	     
@@ -149,7 +149,7 @@ public class AdminDAOImpl implements AdminDAO {
 	    result [i] = j;
 	    }
 	    
-	    System.out.println("mybatis viewList 끝나고나감");
+	    System.out.println("mybatis viewList 끝나고나감1");
 	    return result;
 		
 		
@@ -165,25 +165,7 @@ public class AdminDAOImpl implements AdminDAO {
         
     }
 	
-	public int[] viewList() {
-		
-		System.out.println("mybatis viewList() 호출");
-		int [] result = new int[1] ;
-	
-		HashMap<String, Integer> hs = new HashMap<String, Integer>();
-		
-	     for(int i = 0; i<= 0; i++ ){
-	    
-	    hs.put("view",i);
-	     
-	    int j = mybatis.selectOne("AdminDAO.viewList", hs);
-	    System.out.println(j);
-	    result [i] = j;
-	    }
-	    
-	    System.out.println("mybatis recentSales 끝나고나감");
-	    return result;
-	}
+
 	
 	
 	

@@ -15,16 +15,15 @@
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<script>
-$(document).ready(function(){ 
-	$.ajax({
-		type:"POST",
-		url:"setTotalCount.do",
-       	dataType : "xml"
-    });
-});
-
-</script>
+<!-- <script> -->
+<!-- $(document).ready(function(){  -->
+<!-- 	$.ajax({ -->
+<!-- 		type:"POST", -->
+<!-- 		url:"setTotalCount.do", -->
+<!--        	dataType : "xml" -->
+<!--     }); -->
+<!-- }); -->
+<!-- </script> -->
 
 </head>
 <body>
@@ -47,7 +46,7 @@ $(document).ready(function(){
 				<img src="http://placehold.it/50/30a5ff/fff" class="img-responsive" alt="">
 			</div>
 			<div class="profile-usertitle">
-				<div class="profile-usertitle-name">Username</div>
+				<div class="profile-usertitle-name">ADMIN</div>
 				<div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
 			</div>
 			<div class="clear"></div>
@@ -136,13 +135,12 @@ $(document).ready(function(){
 
 
 a = new Array();
-for(var i=2;i>=1;i--){
-	a[2-i] = "DAY-"+i;
+for(var i=30;i>=0;i--){
+	a[30-i] = "DAY-"+i;
 	};
 
 	var lineChartData = {
 	        labels : a,
-//  	        labels : ["DAY-1","DAY-2","DAY-3","DAY-4","DAY-5","DAY-6","DAY-7","DAY-8","DAY-9","DAY-10","DAY-11","DAY-12","DAY-13","DAY-14","DAY-15","DAY-16","DAY-17","DAY-18","DAY-19","DAY-20","DAY-21","DAY-22","DAY-23","DAY-24","DAY-25","DAY-26","DAY-27","DAY-28","DAY-29","DAY-30"],
 	        datasets : [
 	        	{
 					fillColor : "rgba(48, 164, 255, 0.2)",
@@ -151,8 +149,7 @@ for(var i=2;i>=1;i--){
 					pointStrokeColor : "#fff",
 					pointHighlightFill : "#fff",
 					pointHighlightStroke : "rgba(48, 164, 255, 1)",
-//  	        		data : [${viewCount[30]},${viewCount[29]},${viewCount[28]},${viewCount[27]},${viewCount[26]},${viewCount[25]},${viewCount[24]},${viewCount[23]},${viewCount[22]},${viewCount[21]},${viewCount[20]},${viewCount[19]},${viewCount[18]},${viewCount[17]},${viewCount[16]},${viewCount[15]},${viewCount[14]},${viewCount[13]},${viewCount[12]},${viewCount[11]},${viewCount[10]},${viewCount[9]},${viewCount[8]},${viewCount[7]},${viewCount[6]},${viewCount[5]},${viewCount[4]},${viewCount[3]},${viewCount[2]},${viewCount[1]},${viewCount[0]}]
-	        	data : [30,${viewCount[0]}]
+ 	        		data : [${viewCount[30]},${viewCount[29]},${viewCount[28]},${viewCount[27]},${viewCount[26]},${viewCount[25]},${viewCount[24]},${viewCount[23]},${viewCount[22]},${viewCount[21]},${viewCount[20]},${viewCount[19]},${viewCount[18]},${viewCount[17]},${viewCount[16]},${viewCount[15]},${viewCount[14]},${viewCount[13]},${viewCount[12]},${viewCount[11]},${viewCount[10]},${viewCount[9]},${viewCount[8]},${viewCount[7]},${viewCount[6]},${viewCount[5]},${viewCount[4]},${viewCount[3]},${viewCount[2]},${viewCount[1]},${viewCount[0]}]
 				}
 	    ]
 	}
