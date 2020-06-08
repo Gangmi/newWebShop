@@ -148,6 +148,7 @@
 				var cat = $("#p_cat").val();
 				var page = $("#page").val();
 				var selectcolor = $("#selectcolor").val();
+				var search = $("#search").val();
 
 				// 아이템 갯수 선택시 브랜드 클릭 정보가 있으면
 				if ($("#rawbrand").val() != "null") {
@@ -157,13 +158,13 @@
 					// 아이템 갯수 선택시 브랜드 클릭 정보가 있고 색이 있으면
 					if (selectcolor != "null") {
 						window.location.href = "shop.do?" + "p_cat=" + cat
-								+ "&page=" + page + "&itemQuan=" + itemQuan
+								+ "&page=" + page + "&itemQuan=" + itemQuan+"&search="+search
 								+ "&p_brand=" + brand + "&p_color="
 								+ selectcolor
 						// 아이템 갯수 선택시 브랜드 클릭 정보가 있고 색은 없으면
 					} else {
 						window.location.href = "shop.do?" + "p_cat=" + cat
-								+ "&page=" + page + "&itemQuan=" + itemQuan
+								+ "&page=" + page + "&itemQuan=" + itemQuan+"&search="+search
 								+ "&p_brand=" + brand
 					}
 
@@ -172,12 +173,12 @@
 					// 아이템 갯수 선택시 브랜드 클릭정보가 없고 색이 있으면
 					if (selectcolor != "null") {
 						window.location.href = "shop.do?" + "p_cat=" + cat
-								+ "&page=" + page + "&itemQuan=" + itemQuan
+								+ "&page=" + page + "&itemQuan=" + itemQuan+"&search="+search
 								+ "&p_color=" + selectcolor
 						// 아이템 갯수 선택시 브랜드 클릭 정보가 없고 색도 없으면
 					} else {
 						window.location.href = "shop.do?" + "p_cat=" + cat
-								+ "&page=" + page + "&itemQuan=" + itemQuan
+								+ "&page=" + page + "&itemQuan=" + itemQuan +"&search="+search
 
 					}
 				}

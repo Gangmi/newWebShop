@@ -82,7 +82,10 @@ List<ProductVO> result = (List) request.getAttribute("details");
 	<input type="hidden" id="selectcolor" value=<%=selectcolor%>>
 	<input type="hidden" id="startprice" value=<%=startprice %>>
 	<input type="hidden" id="endprice" value=<%=endprice%>>
-		
+	<% if(request.getAttribute("search")!=null){%>
+	<input type="hidden" id="search" value="<%=request.getAttribute("search")%>">
+			
+	<%} %>
 	<!-- Search Wrapper Area Start -->
 	<div class="search-wrapper section-padding-100">
 		<div class="search-close">
@@ -92,8 +95,8 @@ List<ProductVO> result = (List) request.getAttribute("details");
 			<div class="row">
 				<div class="col-12">
 					<div class="search-content">
-						<form action="#" method="get">
-							<input type="search" name="search" id="search"
+						<form action="shop.do" method="get">
+							<input type="search" name="search" 
 								placeholder="Type your keyword...">
 							<button type="submit">
 								<img src="img/core-img/search.png" alt="">
@@ -301,10 +304,13 @@ List<ProductVO> result = (List) request.getAttribute("details");
 							<!-- Total Products -->
 							<div class="total-products">
 							<!--카테고리 , 브랜드 , -->
+							<%if(request.getAttribute("search")!=null) { %>
+							<h3>"<%=request.getAttribute("search") %>" 검색결과</h3>
+							<%} %>
 								<p>Showing <%if(nowcate!=null&& !nowcate.equals("null")){ %><%=nowcate %><% }else{%>All<%}%> <%=startrow%>- <%if((nowquan*nowpage)<(Integer)request.getAttribute("totalitems")){%><%=nowquan*nowpage%><%}else{%><%=request.getAttribute("totalitems")%><%}%> 0f <%=request.getAttribute("totalitems")%></p>
 								<div class="view d-flex">
 									<a href="#"><i class="fa fa-th-large" aria-hidden="true"></i></a>
-									<a href="#"><i class="fa fa-bars" aria-hidden="true"></i></a>
+									
 								</div>
 							</div>
 							<!-- Sorting -->

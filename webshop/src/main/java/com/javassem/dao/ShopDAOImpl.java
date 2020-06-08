@@ -28,7 +28,7 @@ public class ShopDAOImpl implements ShopDAO {
 		
 		//검색어가 들어오면
 		if(vo.getSearch()!=null) {
-			System.out.println(vo.getSearch()+"검색어 있음---------------------------------");
+			System.out.println(vo.getSearch()+"검색어 있음---------------------------------카운트");
 			map.put("search",vo.getSearch());
 		}
 
@@ -72,7 +72,7 @@ public class ShopDAOImpl implements ShopDAO {
 			return catTot;
 		}
 
-		System.out.println("shopdao 아이템갯수 " + catTot);
+		System.out.println("shopdao 카운트의 최종 아이템갯수 " + catTot);
 		// 가져온 페이지당 갯수를 int로 변환
 		int itemquan = Integer.parseInt(vo.getItemQuan());
 
@@ -127,7 +127,7 @@ public class ShopDAOImpl implements ShopDAO {
 			map.put("endprice", vo.getEndprice());
 		}
 		if(vo.getSearch()!=null) {
-			System.out.println(vo.getSearch()+"검색어 있음---------------------------------");
+			System.out.println(vo.getSearch()+"검색어 있음---------------------------------디테일");
 			map.put("search",vo.getSearch());
 		}
 		//만약 검색 방법이 popular라면, 판매 물품 전체를 업데이트
@@ -162,7 +162,10 @@ public class ShopDAOImpl implements ShopDAO {
 		}
 
 		int end = page * itemquan;
+		System.out.println(end+ "열의 끝##################################");
+		
 		int start = end - (itemquan - 1);
+		System.out.println(start+ "열의 시작##################");
 		//0으로 들어오면
 		if(vo.getOrdermethod()==0) {
 			//2로 바꿈
@@ -172,6 +175,7 @@ public class ShopDAOImpl implements ShopDAO {
 		
 		//이름검색이있으면
 		if(vo.getSearch()!=null) {
+			System.out.println("이름검색 있음 ---------$$$$$$$$$디테일");
 			map.put("search",vo.getSearch());
 		}
 		map.put("ordermethod",vo.getOrdermethod());
@@ -192,13 +196,5 @@ public class ShopDAOImpl implements ShopDAO {
 		return result;
 	}
 
-	@Override
-	public List<ProductVO> getitembytext(String search) {
-		System.out.println(search);
-		List<ProductVO> result = mybatis.selectList("ShopDAO.getitembytext",search);
-		System.out.println(result.get(0).getP_name());
-		
-		return result;
-	}
 
 }

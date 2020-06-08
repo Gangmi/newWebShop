@@ -15,15 +15,6 @@ public interface ShopService {
 	
 	int getCatTotal (ProductVO vo);
 	
-	List<ProductVO> getitembytext(String search);
 	
-	/*
-	 * // 글 수정 void updateShop(ShopVO vo);
-	 * 
-	 * // 글 삭제 void deleteShop(ShopVO vo);
-	 * 
-	 * // 글 상세 조회 ShopVO getShop(ShopVO vo);
-	 * 
-	 * // 글 목록 조회 List<ShopVO> getShopList(ShopVO vo);
-	 */
+	
 }

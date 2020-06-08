@@ -151,6 +151,7 @@ public class ShopController {
 		if(result.size()==0) {
 			System.out.println("받아온 리스트 없음");
 		}
+		System.out.println(result.size() + " 컨트롤러에서 다시 받아온 리스트 갯수");
 		
 		//전체 아이템 갯수를 알기위해 dao에 신호를주기위한 세팅
 		vo.setConfirm(1);
@@ -187,24 +188,7 @@ public class ShopController {
 		return mv;
 
 	}
-	//이름으로 검색
-	@RequestMapping("/search.do")
-	public ModelAndView searchitem(String search ,ProductVO vo) {
-		ModelAndView mv = new ModelAndView();
-		
-		// 받아온 문자열을 넘김
-		List<ProductVO> result =service.getitembytext(search);
-		
-		mv.addObject("details",result);
-		vo.setItemQuan("4");
-		int totalpage = service.getCatTotal(vo);
-		
-		mv.addObject("totalpage",totalpage);
-		mv.setViewName("shop");
-		
-		
-	return mv;
-	}
+	
 	
 	
 

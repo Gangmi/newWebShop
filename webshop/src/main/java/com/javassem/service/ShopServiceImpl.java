@@ -49,11 +49,6 @@ public class ShopServiceImpl implements ShopService {
 		return shopDAO.getCatTotal(vo); 
 	}
 
-	@Override
-	public List<ProductVO> getitembytext(String search) {
-		
-		return shopDAO.getitembytext(search);
-	}
-
+	
 
 }

@@ -12,7 +12,6 @@ public interface ShopDAO {
 	
 	public int getCatTotal(ProductVO vo);
 	
-	public List<ProductVO>getitembytext(String search);
-
+	
 	
 }
