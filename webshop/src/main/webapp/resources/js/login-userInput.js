@@ -252,23 +252,20 @@ $(function(){
 //==================================================================	
 	$('#subemail').click(function(){
 		
-//		var emailRule =RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
-//		
-//		if( $.trim($("#subemail1").val()) == '' ){
-//            alert("이메일을 입력해 주세요.");
-//            $("#subemail1").focus();
-//            return;
-//        }
-//		
-//		if(!emailRule.test($("#subemail1").val())) {  
-//			alert("이메일이 형식에 맞지 않습니다.");
-//	            return ;
-//		}
-		$('#subemail2').submit();
-		//window.location.href = "subemail.do";
+		//비동기통신 = ajax
+		$.ajax({
+			type:'post',
+			async:true,
+			url:'subemail.do',
+//			data :'mid='+$('#mid').val(),
+			success:function(resultData){
+				alert(resultData);
+			}
+		});
 		
-	
-	
+
+//		$('#subemail2').submit();
+
 	});
 	
 	

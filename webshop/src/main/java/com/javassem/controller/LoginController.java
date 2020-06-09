@@ -177,46 +177,74 @@ public class LoginController {
 		return mv;
 	}
 	
+	
+//	//구독
+//	@RequestMapping("/subemail.do")
+//	public ModelAndView subemail(LoginVO vo,HttpSession session,HttpServletResponse response,HttpServletRequest request) throws Exception {
+//		ModelAndView mv = new ModelAndView();
+//		
+//		String referer = request.getHeader("Referer");
+//		session.setAttribute("repage", referer);
+//		
+//		response.setContentType("text/html; charset=UTF-8");
+//		 
+//		//로그인 안하고 구독하려고 하면 경고창나옴, 
+//		PrintWriter out = response.getWriter();		
+//		if(session.getAttribute("userId")!=null) {		
+//			vo.setMid((String)session.getAttribute("userId")); 
+//			LoginVO result =loginservice.checkcoupon(vo);
+//			//쿠폰테이블에서 구독여부 확인
+//			//이미 구독했다면 이미 구독했다고 나오게함
+//			if(result.getMsub().equals("O")) {
+//				out.println("<script>alert('이미 구독하셨습니다.') </script>");			 
+//				out.flush();
+//				
+//				
+//			}else{
+//
+//				loginservice.subemail(vo);
+//				
+//				out.println("<script>alert('구독되었습니다.') </script>");			 
+//				out.flush();				
+//			}
+//
+//			mv.setViewName("/index");//구독하기 전페이지로 전환
+//			return mv;
+//		}else {
+//			out.println("<script>alert('로그인 후 이용 가능합니다.')</script>");
+//			out.flush();
+//			mv.setViewName("/index");//구독하기 전페이지로 전환
+//			return mv;
+//		}
+//		
+//			
+//	}
+	
 	//구독
-	@RequestMapping("/subemail.do")
-	public ModelAndView subemail(LoginVO vo,HttpSession session,HttpServletResponse response) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		
-		response.setContentType("text/html; charset=UTF-8");
-		 
-		//로그인 안하고 구독하려고 하면 경고창나옴, 
-		PrintWriter out = response.getWriter();		
-		if(session.getAttribute("userId")!=null) {		
-			vo.setMid((String)session.getAttribute("userId")); 
-			LoginVO result =loginservice.checkcoupon(vo);
-			//쿠폰테이블에서 구독여부 확인
-			//이미 구독했다면 이미 구독했다고 나오게함
-			System.out.println(result.getMsub());
-			if(result.getMsub().equals("O")) {
-				out.println("<script>alert('이미 구독하셨습니다.') </script>");			 
-				out.flush();
+		@RequestMapping(value="/subemail.do",produces="application/text;charset=utf-8")
+		@ResponseBody
+		public String subemail(LoginVO vo,HttpSession session) throws Exception {
+			String message = null;
+			if(session.getAttribute("userId")!=null) {		
+				vo.setMid((String)session.getAttribute("userId")); 
+				LoginVO result =loginservice.checkcoupon(vo);
 				
-				
-			}else{
-
-				loginservice.subemail(vo);
-				
-				out.println("<script>alert('구독되었습니다.') </script>");			 
-				out.flush();
-				
+				//쿠폰테이블에서 구독여부 확인
+				//이미 구독했다면 이미 구독했다고 나오게함
+				if(result.getMsub().equals("O")) {
+					message = "이미 구독 하셨습니다.";
+					return message;	
+					
+				}else{
+					loginservice.subemail(vo);
+					message = "구독되었습니다.";			
+					return message;	
+				}
+			}else {
+				message = "로그인 후 사용 가능합니다.";
 			}
-
-			mv.setViewName("/index");//구독하기 전페이지로 전환
-			return mv;
-		}else {
-			out.println("<script>alert('로그인 후 이용 가능합니다.')</script>");
-			out.flush();
-			mv.setViewName("/index");//구독하기 전페이지로 전환
-			return mv;
+			return message;				
 		}
-		
-			
-	}
 	
 	
 	
