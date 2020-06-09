@@ -146,11 +146,9 @@ ProductVO vo = (ProductVO) request.getAttribute("product");
 					<div class="col-12">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb mt-50">
-								<li class="breadcrumb-item"><a href="#">Home</a></li>
-								<li class="breadcrumb-item"><a href="#">Furniture</a></li>
-								<li class="breadcrumb-item"><a href="#">Chairs</a></li>
-								<li class="breadcrumb-item active" aria-current="page">white
-									modern chair</li>
+								<li class="breadcrumb-item"><a href="index.do">Home</a></li>
+								<li class="breadcrumb-item"><a href="shop.do?p_cat=<%=vo.getP_cat() %>"><%=vo.getP_cat() %></a></li>
+								<li class="breadcrumb-item"><%=vo.getP_name() %></li>
 							</ol>
 						</nav>
 					</div>
@@ -224,7 +222,7 @@ ProductVO vo = (ProductVO) request.getAttribute("product");
 											class="fa fa-star" aria-hidden="true"></i>
 									</div>
 									<div class="review">
-										<a href="#"><%=vo.getP_brand()%></a>
+										<a href="shop.do?p_brand=<%=vo.getP_brand()%>"><%=vo.getP_brand()%></a>
 									</div>
 								</div>
 								<!-- Avaiable -->
