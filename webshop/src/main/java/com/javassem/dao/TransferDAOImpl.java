@@ -30,13 +30,17 @@ public class TransferDAOImpl implements TransferDAO {
 	@Override
 	public void insertorder(String pay,String coupon,List<String> idlist,List<String> countlist, String userId) throws TransException{
 		System.out.println("===> Mybatis insertorder() 호출");
-		
+		System.out.println(coupon);
 		HashMap porder = new HashMap();
 
 		porder.put("M_ID", userId);
 		porder.put("O_PAYMENT", pay);
 		int resultpo = sqlSession.insert("Trans.productorder", porder);
 		if( resultpo == 0) throw new TransException();
+		if( resultpo > 0)
+		{
+			System.out.println("productorder 성공");
+		}
 		int o_id = (int) porder.get("productorderid");
 		
 		List<OrderVO> ordervo = new ArrayList<OrderVO>();
@@ -50,6 +54,10 @@ public class TransferDAOImpl implements TransferDAO {
 			vo.setO_id(o_id);
 			int resultolqty = sqlSession.update("Trans.orderlistqty", vo);
 			if( resultolqty == 0) throw new TransException();
+			if( resultolqty > 0)
+			{
+				System.out.println("orderlistqty 성공");
+			}
 
 			ordervo.add(vo);
 			
@@ -57,17 +65,30 @@ public class TransferDAOImpl implements TransferDAO {
 
 		int resultol = sqlSession.insert("Trans.orderlist", ordervo);
 		if( resultol == 0) throw new TransException();
-
+		if( resultol > 0)
+		{
+			System.out.println("orderlist 성공");
+		}
 		if(Integer.parseInt(coupon)>0)
 		{
 			HashMap coumap = new HashMap();
 			coumap.put("coupon", Integer.parseInt(coupon));
 			coumap.put("M_ID", userId);
 			coumap.put("o_id", o_id);
+			System.out.println(o_id);
 			int resultcou = sqlSession.update("Trans.couponupdate", coumap);
 			if( resultcou == 0) throw new TransException();
+			if( resultcou > 0)
+			{
+				System.out.println("couponupdate 성공");
+			}
 		}
-		sqlSession.update("Trans.gradeup",userId);
+		int resultgrade = sqlSession.update("Trans.gradeup",userId);
+		if( resultgrade == 0) throw new TransException();
+		if( resultgrade > 0)
+		{
+			System.out.println("gradeup 성공");
+		}
 		
 		
 

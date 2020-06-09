@@ -48,9 +48,14 @@
 	    </where>
 	</delete>
 	<select id="selectmemcoupon" parameterType="login" resultType="coupon">
-		select *
-		from COUPON
-		where M_ID=#{mid}
+		SELECT nvl(MAX(cou_id),0) cou_id
+  FROM COUPON
+ WHERE M_ID = #{mid}
+	</select>
+	<select id="selectmemcouponvo" parameterType="coupon" resultType="coupon">
+	SELECT *
+FROM COUPON
+WHERE COU_ID = #{cou_id}
 	</select>
 
 </mapper>

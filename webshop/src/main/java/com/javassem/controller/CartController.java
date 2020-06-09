@@ -33,12 +33,12 @@ public class CartController {
 	@Autowired	
 	private CartService service;
 	
-	@ExceptionHandler(RuntimeException.class)
-	public String exceptionHandler(Model model, Exception e){
-	model.addAttribute("exception", e);
-	return "login";
-
-	}
+//	@ExceptionHandler(RuntimeException.class)
+//	public String exceptionHandler(Model model, Exception e){
+//	model.addAttribute("exception", e);
+//	return "login";
+//
+//	}
 	
 	@RequestMapping("/cartadd.do")
 	public void cartadd(String p_id,String p_quan,HttpServletResponse response)
@@ -161,7 +161,11 @@ public class CartController {
 		ModelAndView mv=new ModelAndView();
 		mv.setViewName("checkout");
 		mv.addObject("result",result);
-		mv.addObject("couvo",couvo);
+		if(couvo!=null)
+		{
+			mv.addObject("couvo",couvo);
+		}
+		
 		mv.addObject("subtotal",subtotal);
 		return mv;
 	}

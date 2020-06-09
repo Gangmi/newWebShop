@@ -100,7 +100,23 @@ public class CartDAOImpl implements CartDAO{
 	public CouponVO getmembercoupon(LoginVO vo)
 	{
 		System.out.println("===> Mybatis getmembercoupon() 호출");
-		return mybatis.selectOne("CartDAO.selectmemcoupon",vo);
+		CouponVO couvo = mybatis.selectOne("CartDAO.selectmemcoupon",vo);
+		System.out.println(couvo.getCou_id());
+		
+		CouponVO resultvo = new CouponVO();
+		if(couvo.getCou_id()>0)
+		{
+			resultvo = mybatis.selectOne("CartDAO.selectmemcouponvo",couvo);
+		}
+		else
+		{
+			resultvo.setCou_id(0);
+			resultvo.setUsed("0");
+		}
+		
+		return resultvo;
+		
+		
 	}
 	
 
