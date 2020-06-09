@@ -245,14 +245,14 @@
 	
 	$(".cart").click(function(){
 		var p_id = $(this).find($('input[name=p_id]')).val();
-
+		var p_quan = $(this).find($('input[name=p_quan]')).val();
 		
 		 $.ajax({
 			 type:'post', // 원래 포스트 방식
 			 async: true, // 비동기 통신 실행 여부
 			 url:'cartadd.do',
 			 contentType:'application/x-www-form-urlencoded;charset=UTF-8', //한글 설정
-			 data:"p_id="+p_id,
+			 data:"p_id="+p_id+"&p_quan="+p_quan,
 			 success:function(resultData){
 			 alert("성공");
 			 }

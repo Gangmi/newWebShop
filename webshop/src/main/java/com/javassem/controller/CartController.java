@@ -41,13 +41,16 @@ public class CartController {
 	}
 	
 	@RequestMapping("/cartadd.do")
-	public void cartadd(String p_id,HttpServletResponse response)
+	public void cartadd(String p_id,String p_quan,HttpServletResponse response)
 	{
+		if(Integer.parseInt(p_quan)>0)
+		{
 		Cookie cookie = new Cookie("cart"+p_id, p_id);
 
 		cookie.setPath("/");
 		cookie.setMaxAge(60*60*24*7);
 		response.addCookie(cookie);
+		}
 	}
 
 
