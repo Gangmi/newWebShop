@@ -61,9 +61,13 @@ $(function(){
 				pay= $(this).val();
 
 		   });
-			   alert($("#discount:checked").val());
+			   var couid = 0;
+			   if($("#discount:checked").val()>0)
+				   {
+				   		couid=$("#discount:checked").val();
+				   }
 
-			window.location.href = "checkoutok.do?pay="+pay+"&coupon="+$("#discount:checked").val();
+			window.location.href = "checkoutok.do?pay="+pay+"&coupon="+couid;
 			});
 		
 	
