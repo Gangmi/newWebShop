@@ -309,7 +309,7 @@
 	        contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
 	        success : function(data){
 	        	var dat =eval(data);
-	        	alert(dat[0].commentary)
+	        
 	            var html = "";
 	            var cCnt = data.length;
 	            
