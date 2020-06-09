@@ -17,9 +17,9 @@ public class LoginDAOImpl implements LoginDAO{
 
 	public int insertMember(LoginVO vo) {
 		System.out.println("===> Mybatis insertMember() 호출");
-		System.out.println("===> Mybatis insertcoupon() 호출");
+		
 		int result= mybatis.insert("LoginDAO.insertmember", vo);
-		 mybatis.insert("LoginDAO.insertcoupon", vo);
+		
 		return result;
 	}
 
@@ -69,6 +69,8 @@ public class LoginDAOImpl implements LoginDAO{
 
 	public int subemail(LoginVO vo) {
 		System.out.println("===> Mybatis subemail() 호출");
+		System.out.println("===> Mybatis insertcoupon() 호출");
+		 mybatis.insert("LoginDAO.insertcoupon", vo);
 		int result = mybatis.update("LoginDAO.subemail", vo);
 		return result;
 	}

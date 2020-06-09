@@ -187,17 +187,18 @@ public class LoginController {
 		PrintWriter out = response.getWriter();		
 		if(session.getAttribute("userId")!=null) {		
 			vo.setMid((String)session.getAttribute("userId")); 
-			
+			LoginVO result =loginservice.checkcoupon(vo);
 			//쿠폰테이블에서 구독여부 확인
 			//이미 구독했다면 이미 구독했다고 나오게함
-			if(loginservice.checkcoupon(vo).equals("O")) {
+			System.out.println(result.getMsub());
+			if(result.getMsub().equals("O")) {
 				out.println("<script>alert('이미 구독하셨습니다.') </script>");			 
 				out.flush();
 				
 				
-			}else {
-				
-				int result = loginservice.subemail(vo);
+			}else{
+
+				loginservice.subemail(vo);
 				
 				out.println("<script>alert('구독되었습니다.') </script>");			 
 				out.flush();

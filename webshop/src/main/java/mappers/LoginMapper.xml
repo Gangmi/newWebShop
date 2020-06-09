@@ -81,8 +81,8 @@
 	
 	<select id="checkcoupon" parameterType="login" resultType="login">
 		<![CDATA[
-		SELECT 
-		FROM COUPON
+		SELECT M_SUB msub
+		FROM MEMBER
 		WHERE M_ID = #{mid}
 		]]>
 	</select>
