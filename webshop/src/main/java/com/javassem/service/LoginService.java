@@ -20,5 +20,7 @@ public interface LoginService {
 
 	int subemail(LoginVO vo);
 
+	LoginVO checkcoupon(LoginVO vo);
+
 	
 }

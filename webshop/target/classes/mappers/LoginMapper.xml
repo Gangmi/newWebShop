@@ -7,7 +7,7 @@
 	<insert id="insertmember" parameterType="login">
 		
 			INSERT INTO member
-			VALUES(#{mid},#{mpass},#{mtel},#{memail},#{maddr},'브론즈','X',#{mpostCode},#{maddrDetail},#{mname},sysdate)
+			VALUES(#{mid},#{mpass},#{mtel},#{memail},#{maddr},'브론즈','X',#{mpostCode},#{maddrDetail},#{mname},sysdate,#{mage})
 
 	</insert>
 	
@@ -72,11 +72,20 @@
 
 	</delete>
 	
+	<!-- 구독 -->
 	<update id="subemail" parameterType="login" >
 	UPDATE MEMBER
 	SET M_SUB = 'O'
 	WHERE M_ID = #{mid}
 	</update>
+	
+	<select id="checkcoupon" parameterType="login" resultType="login">
+		<![CDATA[
+		SELECT 
+		FROM COUPON
+		WHERE M_ID = #{mid}
+		]]>
+	</select>
 	
 	
 	

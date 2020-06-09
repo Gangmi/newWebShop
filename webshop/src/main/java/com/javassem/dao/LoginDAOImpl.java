@@ -73,6 +73,12 @@ public class LoginDAOImpl implements LoginDAO{
 		return result;
 	}
 
+	public LoginVO checkcoupon(LoginVO vo) {
+		System.out.println("===> Mybatis checkcoupon() 호출");
+		LoginVO result = mybatis.selectOne("LoginDAO.checkcoupon", vo);
+		return result;
+	}
+
 	
 
 }

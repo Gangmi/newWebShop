@@ -145,6 +145,9 @@
                                         <input type="text" class="form-control mb-3" id="mname" name="mname" placeholder="이름"  value="" required>
                                     </div>
                                     <div class="col-12 mb-3">
+                                        <input type="text" class="form-control mb-3" id="mage" name="mage" placeholder="나이"  value="" required>
+                                    </div>
+                                    <div class="col-12 mb-3">
                                         <input type="email" class="form-control" id="memail"  name="memail" placeholder="이메일"  value="" required>
                                     </div>
                                     <div class="col-12 mb-3">

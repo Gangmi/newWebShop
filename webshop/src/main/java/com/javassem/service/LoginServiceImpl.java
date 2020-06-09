@@ -47,4 +47,9 @@ public class LoginServiceImpl implements LoginService {
 		return loginDAO.subemail(vo);
 	}
 	
+	public LoginVO checkcoupon(LoginVO vo) {
+		return loginDAO.checkcoupon(vo);
+		
+	}
+	
 }

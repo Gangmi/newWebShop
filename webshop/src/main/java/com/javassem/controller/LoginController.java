@@ -176,26 +176,40 @@ public class LoginController {
 		return mv;
 	}
 	
+	//구독
 	@RequestMapping("/subemail.do")
 	public ModelAndView subemail(LoginVO vo,HttpSession session,HttpServletResponse response) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
 		response.setContentType("text/html; charset=UTF-8");
 		 
+		//로그인 안하고 구독하려고 하면 경고창나옴, 
 		PrintWriter out = response.getWriter();		
 		if(session.getAttribute("userId")!=null) {		
 			vo.setMid((String)session.getAttribute("userId")); 
-			int result = loginservice.subemail(vo);
 			
-			out.println("<script>alert('구독되었습니다.') </script>");			 
-			out.flush();
-			
-			mv.setViewName("/index");
+			//쿠폰테이블에서 구독여부 확인
+			//이미 구독했다면 이미 구독했다고 나오게함
+			if(loginservice.checkcoupon(vo).equals("O")) {
+				out.println("<script>alert('이미 구독하셨습니다.') </script>");			 
+				out.flush();
+				
+				
+			}else {
+				
+				int result = loginservice.subemail(vo);
+				
+				out.println("<script>alert('구독되었습니다.') </script>");			 
+				out.flush();
+				
+			}
+
+			mv.setViewName("/index");//구독하기 전페이지로 전환
 			return mv;
 		}else {
 			out.println("<script>alert('로그인 후 이용 가능합니다.')</script>");
 			out.flush();
-			mv.setViewName("/index");
+			mv.setViewName("/index");//구독하기 전페이지로 전환
 			return mv;
 		}
 		

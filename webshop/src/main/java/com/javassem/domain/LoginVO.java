@@ -11,8 +11,15 @@ public class LoginVO {
 	private String mpostCode;
 	private String maddrDetail;
 	private String mname;
+	private String mage;
 	
 	
+	public String getMage() {
+		return mage;
+	}
+	public void setMage(String mage) {
+		this.mage = mage;
+	}
 	public String getMname() {
 		return mname;
 	}

@@ -21,4 +21,6 @@ public interface LoginDAO {
 	public int deleteMember(LoginVO vo);
 	
 	public int subemail(LoginVO vo);
+	
+	public LoginVO checkcoupon(LoginVO vo);
 }
