@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Lumino - Charts</title>
 	<link href="resources/css/a_css/bootstrap.min.css" rel="stylesheet">
-	<link href="resources/css/a_css/font-awesome.min.css" rel="stylesheet">
+	<link href="resources/css/font-awesome.min.css" rel="stylesheet">
 	<link href="resources/css/a_css/datepicker3.css" rel="stylesheet">
 	<link href="resources/css/a_css/styles.css" rel="stylesheet">
 	
@@ -138,14 +138,14 @@
 
 // 최근 30일간 매출 라인 차트
 a = new Array();
-for(var i=7;i>=1;i--){
-	a[7-i] = "DAY-"+i;
+for(var i=30;i>=0;i--){
+	a[30-i] = "DAY-"+i;
 	};
 
 	var lineChartData = {
 // 	        labels : ["DAY-1","DAY-2","DAY-3","DAY-4","DAY-5","DAY-6","DAY-7"],
 	        labels : a,
-	        datasets : [
+	        datasets : [ 
 	        	{
 					fillColor : "rgba(48, 164, 255, 0.2)",
 					strokeColor : "rgba(48, 164, 255, 1)",
@@ -153,8 +153,8 @@ for(var i=7;i>=1;i--){
 					pointStrokeColor : "#fff",
 					pointHighlightFill : "#fff",
 					pointHighlightStroke : "rgba(48, 164, 255, 1)",
-// 	        		data : [${day[30]},${day[29]},${day[28]},${day[27]},${day[26]},${day[25]},${day[24]},${day[23]},${day[22]},${day[21]},${day[20]},${day[19]},${day[18]},${day[17]},${day[16]},${day[15]},${day[14]},${day[13]},${day[12]},${day[11]},${day[10]},${day[9]},${day[8]},${day[7]},${day[6]},${day[5]},${day[4]},${day[3]},${day[2]},${day[1]},${day[0]}]
-	        	data : [${day[6]},${day[5]},${day[4]},${day[3]},${day[2]},${day[1]},${day[0]}]
+	        		data : [${day[30]},${day[29]},${day[28]},${day[27]},${day[26]},${day[25]},${day[24]},${day[23]},${day[22]},${day[21]},${day[20]},${day[19]},${day[18]},${day[17]},${day[16]},${day[15]},${day[14]},${day[13]},${day[12]},${day[11]},${day[10]},${day[9]},${day[8]},${day[7]},${day[6]},${day[5]},${day[4]},${day[3]},${day[2]},${day[1]},${day[0]}]
+// 	        	data : [${day[6]},${day[5]},${day[4]},${day[3]},${day[2]},${day[1]},${day[0]}]
 				}
 	    ]
 	}
