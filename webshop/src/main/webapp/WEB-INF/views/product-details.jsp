@@ -3,7 +3,7 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
+<% response.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE>
 
 <head>
@@ -312,15 +312,17 @@ ProductVO vo = (ProductVO) request.getAttribute("product");
 									id="comment" name="comment" placeholder="댓글을 입력하세요"></textarea>
 								<br>
 								<div>
-									<a href='#' onClick="fn_comment('${result.code }')"
-										class="btn pull-right btn-warning" style="color:white;">등록</a>
+									<button type="submit" class="btn pull-right btn-warning"
+										style="color: white;">등록</button>
 								</div></td>
 						</tr>
 					</table>
 				</div>
 			</div>
-			<input type="hidden" id="b_code" name="b_code"
-				value="${result.code }" />
+			<!--상품의 id와 , 작성자를 가져옴  -->
+			<input type="hidden" id="m_id" name="m_id"
+				value="<%=session.getAttribute("userId")%>" /> 
+			<input type="hidden" id="p_id" name="p_id" value="<%=vo.getP_id()%>" />
 		</form>
 	</div>
 	<div class="container">
