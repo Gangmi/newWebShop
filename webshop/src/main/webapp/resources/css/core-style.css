@@ -572,6 +572,7 @@ img {
         order: 2; } }
   .main-content-wrapper .amado_product_area {
     position: relative;
+    left : 50px;
     z-index: 1;
     -webkit-box-flex: 0;
     -ms-flex: 0 0 calc(95% - 550px);
@@ -1079,6 +1080,7 @@ img {
 /* :: 7.0 Popular Products Area CSS */
 .single-product-wrapper {
   position: relative;
+  width: 85%;
   z-index: 1;
   margin-bottom: 50px;
   overflow: hidden;
@@ -1088,7 +1090,7 @@ img {
     z-index: 1;
     overflow: hidden; }
     .single-product-wrapper .product-img img {
-      width: 70%;
+      width: 90%;
       -webkit-transition-duration: 500ms;
       transition-duration: 500ms; }
     .single-product-wrapper .product-img .hover-img {
@@ -1097,7 +1099,7 @@ img {
       position: absolute;
       top: 0;
       left: 0;
-      width: 75%;
+      width: 100%;
       z-index: 10;
       opacity: 0;
       visibility: hidden; }
@@ -1293,6 +1295,7 @@ img {
 
 .product-topbar {
   position: relative;
+  width: 90%;
   z-index: 100;
   margin-bottom: 40px; }
   @media only screen and (min-width: 992px) and (max-width: 1199px) {
