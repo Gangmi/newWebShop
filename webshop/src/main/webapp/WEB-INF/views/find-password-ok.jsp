@@ -100,7 +100,7 @@
                     <a  href="member-info.do" >[ edit profile ]</a></li>
                     <%} %> 
                 <a href="cart.do" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(<%= request.getCookies().length-1 %>)</span></a>
-                <a href="wishlist.do" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Favourite</a>
+                <a href="wishlist.do" class="fav-nav"><img src="img/core-img/favorites1.png" alt=""> Favourite</a>
                 <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>
             </div>
             <!-- Social Button -->
