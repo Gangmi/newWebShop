@@ -32,8 +32,8 @@ public class TransferController {
 	TransferDAO dao;
 
 //	@ResponseBody
-//	@RequestMapping(value="/checkoutok.do",method=RequestMethod.POST,produces="applicaton/text; charset=UTF-8")
-	@RequestMapping(value="/checkoutok.do")
+//@RequestMapping(value="/checkoutok.do",method=RequestMethod.POST,produces="applicaton/text; charset=UTF-8")
+	@RequestMapping(value="/checkoutok.do",produces="applicaton/text; charset=UTF-8")
 	public void checkoutok(String pay,HttpServletResponse response, HttpServletRequest request,HttpSession session) throws Exception
 	{
 		

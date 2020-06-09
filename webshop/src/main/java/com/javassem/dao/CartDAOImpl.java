@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.javassem.domain.CouponVO;
 import com.javassem.domain.LoginVO;
 import com.javassem.domain.OrderVO;
 import com.javassem.domain.ProductVO;
@@ -95,6 +96,13 @@ public class CartDAOImpl implements CartDAO{
 			System.out.println("위시 삭제ㅔ 성공");
 		}
 	}
+	
+	public CouponVO getmembercoupon(LoginVO vo)
+	{
+		System.out.println("===> Mybatis getmembercoupon() 호출");
+		return mybatis.selectOne("CartDAO.selectmemcoupon",vo);
+	}
+	
 
 
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.javassem.dao.CartDAOImpl;
 import com.javassem.dao.ShopDAOImpl;
+import com.javassem.domain.CouponVO;
 import com.javassem.domain.LoginVO;
 import com.javassem.domain.ProductVO;
 import com.javassem.domain.ShopVO;
@@ -46,12 +47,13 @@ public class CartServiceImpl implements CartService {
 		return CartDAO.getmemberInfo(vo);
 	}
 	
+	
+	
 	public void insertWishlist(String id,String userId)
 	{
 		CartDAO.insertWishlist(id,userId);
 	}
 
-	@Override
 	public List<ProductVO> selectWishlist(String userId) {
 		
 		return CartDAO.selectWishlist(userId);
@@ -60,6 +62,10 @@ public class CartServiceImpl implements CartService {
 	public void deleteWishlist(String[] array,String userId)
 	{
 		CartDAO.deleteWishlist(array,userId);
+	}
+
+	public CouponVO getmembercoupon(LoginVO vo) {
+		return CartDAO.getmembercoupon(vo);
 	}
 	
 

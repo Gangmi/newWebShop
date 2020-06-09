@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.javassem.domain.CouponVO;
 import com.javassem.domain.LoginVO;
 import com.javassem.domain.ProductVO;
 import com.javassem.service.CartService;
@@ -134,6 +135,8 @@ public class CartController {
 	@RequestMapping(value="/checkout.do")
 	public ModelAndView checkout(String count, String id, String subtotal,HttpServletResponse response, HttpServletRequest request,HttpSession session)
 	{	
+		
+		
 
 		String[] countarray = count.split(",");
 		String[] idarray = id.split(",");
@@ -151,10 +154,11 @@ public class CartController {
 		LoginVO vo = new LoginVO();
 		vo.setMid(userId);
 		LoginVO result = service.getmemberInfo(vo);
-
+		CouponVO couvo = service.getmembercoupon(vo);
 		ModelAndView mv=new ModelAndView();
 		mv.setViewName("checkout");
 		mv.addObject("result",result);
+		mv.addObject("couvo",couvo);
 		mv.addObject("subtotal",subtotal);
 		return mv;
 	}

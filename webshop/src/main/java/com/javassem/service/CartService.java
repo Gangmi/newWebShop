@@ -3,6 +3,7 @@ package com.javassem.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.javassem.domain.CouponVO;
 import com.javassem.domain.LoginVO;
 import com.javassem.domain.ProductVO;
 
@@ -33,6 +34,8 @@ public interface CartService {
 	List<ProductVO> selectWishlist(String userId);
 	
 	void deleteWishlist(String[] array,String userId);
+	
+	CouponVO getmembercoupon(LoginVO vo);
 
 	
 }

@@ -47,5 +47,10 @@
 	    </foreach>
 	    </where>
 	</delete>
+	<select id="selectmemcoupon" parameterType="login" resultType="coupon">
+		select *
+		from COUPON
+		where M_ID=#{mid}
+	</select>
 
 </mapper>

@@ -12,7 +12,7 @@
 		<typeAlias alias="order" type="com.javassem.domain.OrderVO" />		
 		<typeAlias alias="member" type="com.javassem.domain.MemberVO" />
 		<typeAlias alias="delivery" type="com.javassem.domain.DeliveryVO" />
-
+		<typeAlias alias="coupon" type="com.javassem.domain.CouponVO" />
 		<typeAlias alias="visitcount" type="com.javassem.domain.VisitCountVO" />
 	</typeAliases>
 

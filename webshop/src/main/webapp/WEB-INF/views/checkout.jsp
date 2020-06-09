@@ -2,12 +2,20 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page import='com.javassem.domain.LoginVO' %>
+<%@ page import='com.javassem.domain.CouponVO' %>
 <%@ page import="java.util.*"%>
 
 
 <!DOCTYPE html>
 <html lang="en">
 <% LoginVO vo = (LoginVO)request.getAttribute("result");
+CouponVO couvo = (CouponVO)request.getAttribute("couvo");
+String couname="notcou";
+if(couvo!=null)
+{
+couname = couvo.getCou_name();
+}
+
  int subtotal = Integer.parseInt((String)request.getAttribute("subtotal"));
 int deli =0;
 if(subtotal<50000)
@@ -25,6 +33,18 @@ ArrayList<String> countlist = (ArrayList)session.getAttribute("countlist");
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(function(){
+
+	if ($("#discount").val() == "25_dis") // 활성화
+	   {
+	    $("#discount").removeAttr("disabled");
+	    $("#discount").removeAttr("disabled");
+	   }
+	   else // 비활성화
+	   {
+	    $("#discount").attr("disabled", true);
+	    $("#discount").attr("disabled", true);
+	   }   
+
 
 		$('#checkoutok').click(function(){
 			var pay = "";
@@ -196,6 +216,10 @@ $(function(){
                             </ul>
 
                             <div class="payment-method">
+                            <div class="custom-control custom-checkbox mr-sm-2">
+                                    <input type="checkbox" class="custom-control-input" value='<%=couname%>' id="discount">
+                                    <label class="custom-control-label" for="discount">25% discount</label>
+                                </div>
                                 <!-- Cash on delivery -->
                                 <div class="custom-control custom-checkbox mr-sm-2">
                                     <input type="checkbox" class="custom-control-input" value='cash' id="cod" checked>

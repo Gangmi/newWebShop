@@ -19,16 +19,14 @@ SELECT #{test.o_id} as a, #{test.p_id} as b, #{test.cnt} as c FROM DUAL </foreac
    
 </insert>
 
-<update id="orderlistqty" parameterType="java.util.List">
- <foreach collection="list" item="item" index="index"  separator=";">
-        UPDATE 
-        PRODUCT
-    	SET
-        P_QUAN=P_QUAN-#{item.cnt}
-    	WHERE
-        P_ID=#{item.p_id}
+<update id="orderlistqty" parameterType="order">
+ <foreach collection="list" item="offer"  index="index"  separator=";" >
+        update Product
+        set P_QUAN = P_QUAN-#{offer.cnt}
+        where p_id = #{offer.p_id}
 </foreach>
 </update>	
+
 <update id="gradeup" parameterType="String">
 <![CDATA[
 		update MEMBER set M_GRADE=

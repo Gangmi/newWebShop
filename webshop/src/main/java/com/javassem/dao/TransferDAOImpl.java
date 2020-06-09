@@ -60,7 +60,10 @@ public class TransferDAOImpl implements TransferDAO {
 		
 		int resultolqty = sqlSession.update("Trans.orderlistqty", ordervo);
 		if( resultolqty == 0) throw new TransException();
-		
+		if( resultolqty > 0)
+		{
+			System.out.println("요건 성공");
+		}
 		sqlSession.update("Trans.gradeup",userId);
 		
 		
