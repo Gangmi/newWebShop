@@ -10,10 +10,10 @@
 <html lang="en">
 <% LoginVO vo = (LoginVO)request.getAttribute("result");
 CouponVO couvo = (CouponVO)request.getAttribute("couvo");
-String couname="notcou";
-if(couvo!=null)
+int couname=0;
+if(couvo!=null&&couvo.getUsed().equals("NY"))
 {
-couname = couvo.getCou_name();
+couname = couvo.getCou_id();
 }
 
  int subtotal = Integer.parseInt((String)request.getAttribute("subtotal"));
@@ -34,7 +34,7 @@ ArrayList<String> countlist = (ArrayList)session.getAttribute("countlist");
 <script type="text/javascript">
 $(function(){
 
-	if ($("#discount").val() == "25_dis") // 활성화
+	if ($("#discount").val() >0) // 활성화
 	   {
 	    $("#discount").removeAttr("disabled");
 	    $("#discount").removeAttr("disabled");
@@ -44,6 +44,15 @@ $(function(){
 	    $("#discount").attr("disabled", true);
 	    $("#discount").attr("disabled", true);
 	   }   
+	 //radio버튼처럼 checkbox name값 설정
+    $('.custom-control-input').click(function(){
+        //click 이벤트가 발생했는지 체크
+        if ($(this).prop('checked')) {
+            //checkbox 전체를 checked 해제후 click한 요소만 true지정
+            $('.custom-control-input').prop('checked', false);
+            $(this).prop('checked', true);
+        }
+    });
 
 
 		$('#checkoutok').click(function(){
@@ -52,8 +61,9 @@ $(function(){
 				pay= $(this).val();
 
 		   });
+			   alert($("#discount:checked").val());
 
-			window.location.href = "checkoutok.do?pay="+pay;
+			window.location.href = "checkoutok.do?pay="+pay+"&coupon="+$("#discount:checked").val();
 			});
 		
 	
@@ -217,8 +227,8 @@ $(function(){
 
                             <div class="payment-method">
                             <div class="custom-control custom-checkbox mr-sm-2">
-                                    <input type="checkbox" class="custom-control-input" value='<%=couname%>' id="discount">
-                                    <label class="custom-control-label" for="discount">25% discount</label>
+                                    <input type="checkbox" class="discount" value='<%=couname%>' id="discount">
+                                    <label class="discount" for="discount">25% discount</label>
                                 </div>
                                 <!-- Cash on delivery -->
                                 <div class="custom-control custom-checkbox mr-sm-2">

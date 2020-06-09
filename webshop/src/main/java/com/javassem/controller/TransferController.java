@@ -34,14 +34,14 @@ public class TransferController {
 //	@ResponseBody
 //@RequestMapping(value="/checkoutok.do",method=RequestMethod.POST,produces="applicaton/text; charset=UTF-8")
 	@RequestMapping(value="/checkoutok.do",produces="applicaton/text; charset=UTF-8")
-	public void checkoutok(String pay,HttpServletResponse response, HttpServletRequest request,HttpSession session) throws Exception
+	public void checkoutok(String pay,String coupon,HttpServletResponse response, HttpServletRequest request,HttpSession session) throws Exception
 	{
 		
 		List<String> idlist = (ArrayList)session.getAttribute("idlist");
 		List<String> countlist = (ArrayList)session.getAttribute("countlist");
 		String userId = (String)session.getAttribute("userId");
 
-		dao.insertorder(pay,idlist,countlist,userId);
+		dao.insertorder(pay,coupon,idlist,countlist,userId);
 		for(int i=0; i<idlist.size();i++)
 		{
 			Cookie delcookie = new Cookie("cart"+idlist.get(i), null);

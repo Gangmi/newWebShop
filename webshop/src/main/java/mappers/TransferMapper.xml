@@ -16,15 +16,12 @@ select SEQ_ORDERLIST_ID.nextval, a, b, c
 from
 (<foreach collection="list" index='index' item='test' separator='UNION ALL'>
 SELECT #{test.o_id} as a, #{test.p_id} as b, #{test.cnt} as c FROM DUAL </foreach>)
-   
 </insert>
 
 <update id="orderlistqty" parameterType="order">
- <foreach collection="list" item="offer"  index="index"  separator=";" >
         update Product
-        set P_QUAN = P_QUAN-#{offer.cnt}
-        where p_id = #{offer.p_id}
-</foreach>
+        set P_QUAN = P_QUAN-#{cnt}
+        where p_id = #{p_id}
 </update>	
 
 <update id="gradeup" parameterType="String">
@@ -43,6 +40,12 @@ SELECT #{test.o_id} as a, #{test.p_id} as b, #{test.cnt} as c FROM DUAL </foreac
 		where M_ID=#{value})) then '실버' else '브론즈' end
 		where M_ID=#{value}
 		]]>
+</update>
+
+<update id="couponupdate" parameterType="hashmap">
+		update COUPON
+        set O_ID = #{o_id},USED='USED'
+        where COU_ID = #{coupon}
 </update>
 
 
