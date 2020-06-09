@@ -153,12 +153,19 @@ public class CartController {
 	     session.setAttribute("countlist",countlist);
 	     session.setAttribute("idlist",idlist);
 		String userId = (String)session.getAttribute("userId");
-		
+		System.out.println("****************id값"+userId);
+		ModelAndView mv=new ModelAndView();
+		if(userId==null)
+		{
+			mv.setViewName("redirect:login.do");
+			return mv;
+		}
+		else {
 		LoginVO vo = new LoginVO();
 		vo.setMid(userId);
 		LoginVO result = service.getmemberInfo(vo);
 		CouponVO couvo = service.getmembercoupon(vo);
-		ModelAndView mv=new ModelAndView();
+		
 		mv.setViewName("checkout");
 		mv.addObject("result",result);
 		if(couvo!=null)
@@ -167,7 +174,7 @@ public class CartController {
 		}
 		
 		mv.addObject("subtotal",subtotal);
-		return mv;
+		return mv;}
 	}
 	
 	
