@@ -5,10 +5,16 @@
 
 	<!-- 회원가입 -->
 	<insert id="insertmember" parameterType="login">
-		<![CDATA[
-		INSERT INTO member
-		VALUES(#{mid},#{mpass},#{mtel},#{memail},#{maddr},'브론즈','X',#{mpostCode},#{maddrDetail},#{mname})
-		]]>
+		
+			INSERT INTO member
+			VALUES(#{mid},#{mpass},#{mtel},#{memail},#{maddr},'브론즈','X',#{mpostCode},#{maddrDetail},#{mname},sysdate)
+
+	</insert>
+	
+	<insert id="insertcoupon" parameterType="login">
+			INSERT INTO COUPON(COU_ID,M_ID,COU_NAME,COU_DATE)
+			VALUES(SEQ_COUPON_ID.NEXTVAL,#{mid},'25_dis',sysdate)
+		
 	</insert>
 	<!-- 로그인 -->
 	 <select id="signinmember" parameterType="login" resultType="login">

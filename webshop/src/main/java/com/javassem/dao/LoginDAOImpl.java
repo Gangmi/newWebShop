@@ -17,7 +17,10 @@ public class LoginDAOImpl implements LoginDAO{
 
 	public int insertMember(LoginVO vo) {
 		System.out.println("===> Mybatis insertMember() 호출");
-		return mybatis.insert("LoginDAO.insertmember", vo);
+		System.out.println("===> Mybatis insertcoupon() 호출");
+		int result= mybatis.insert("LoginDAO.insertmember", vo);
+		 mybatis.insert("LoginDAO.insertcoupon", vo);
+		return result;
 	}
 
 	public LoginVO signInMember(LoginVO vo) {

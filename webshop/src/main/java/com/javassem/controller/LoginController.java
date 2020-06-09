@@ -13,6 +13,7 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -43,8 +44,7 @@ public class LoginController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/index");
 		return mv;
-		// 회원가입 완료되면 완료됬다는 창으로 보내주기 그리고 거기서 다시 버튼만들어서 다시 메인창으로
-		//
+		
 	}
 	
 	@ResponseBody//***********비동기통신이 가능하게 해준다. 화면이 넘어가는 것을 막아줌
@@ -55,13 +55,22 @@ public class LoginController {
 		if(result != null)message="중복된 아이디가 있습니다";
 		return message;
 	}
+	
+	//로그인 텝을 누르면 이전 페이지를 세션에 저장해놓는다.
+	@RequestMapping("/login.do")
+	public String loGin( HttpSession session,HttpServletRequest request) {
+		String referer = request.getHeader("Referer");
+		session.setAttribute("repage", referer);
+		return "/login";
+		
+	}
 
 	//로그인
 	@RequestMapping("/sign_in.do")
-	public String sign_in(LoginVO vo, HttpSession session) {
+	public String  sign_in(LoginVO vo, HttpSession session,HttpServletRequest request) {
 
 		LoginVO id = loginservice.signInMember(vo);
-
+//		String referer = request.getHeader("Referer");
 		ModelAndView mv = new ModelAndView();
 		if (id == null || id.getMid() == null) {
 			return "/login";
@@ -69,11 +78,11 @@ public class LoginController {
 			session.setAttribute("sessionTime", new Date().toLocaleString());
 			session.setAttribute("userId", id.getMid());
 			if(id.getMid().equals("admin")) {
-				System.out.println("성공");
+				
 				return "redirect:/dashBoard.do";
 			}else {
-				System.out.println("실패");
-				return "/index";			
+				System.out.println("로그인성공");
+				return "redirect:"+session.getAttribute("repage");//로그인창이 뜨기 전 창으로 보냄			
 			}
 		}
 		
