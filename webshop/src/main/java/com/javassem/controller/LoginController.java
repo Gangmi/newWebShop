@@ -90,13 +90,14 @@ public class LoginController {
 	
 	//로그아웃을 눌렀을때
 		@RequestMapping("/logout.do")
-		public ModelAndView logout(HttpSession session) {
+		public String logout(HttpSession session) {
 			//로그아웃을 눌렀을때 세션을 종료한다.
 			session. invalidate();
 			//처음화면으로 돌려버림
-			ModelAndView mv = new ModelAndView();
-			mv.setViewName("/index");
-			return mv;
+//			ModelAndView mv = new ModelAndView();
+//			mv.setViewName("/index");
+			
+			return "redirect:/index.do";
 		}
 		
 //	아이디 찾기
