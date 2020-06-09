@@ -105,17 +105,17 @@ public class AdminDAOImpl implements AdminDAO {
 	// 최근 30일간 매출
 	public int[] recentSales() {
 		System.out.println("mybatis recentSales() 호출");
-		int [] result = new int[7] ;
+		int [] result = new int[31] ;
 	
 		HashMap<String, Integer> hs = new HashMap<String, Integer>();
 		
-	     for(int i = 1; i<= 7; i++ ){
+	     for(int i = 0; i<= 30; i++ ){
 	    
 	    hs.put("day",i);
 	     
 	    int j = mybatis.selectOne("AdminDAO.recentSales", hs);
 	    System.out.println(j);
-	    result [i-1] = j;
+	    result [i] = j;
 	    }
 	     
 	    System.out.println("mybatis recentSales 끝나고나감");

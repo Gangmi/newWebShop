@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lumino - MemberManagement</title>
 <link href="resources/css/a_css/bootstrap.min.css" rel="stylesheet">
-<link href="resources/css/a_css/font-awesome.min.css" rel="stylesheet">
+<link href="resources/css/font-awesome.min.css" rel="stylesheet">
 <link href="resources/css/a_css/datepicker3.css" rel="stylesheet">
 <link href="resources/css/a_css/styles.css" rel="stylesheet">
 <!-- ***************** new **************** -->

@@ -173,7 +173,7 @@ public class AdminController {
 	@RequestMapping(value= "/MultiUpload.do", method=RequestMethod.POST)
 	public String MultifileUp(MultipartHttpServletRequest multi) {
 System.out.println("파일 업로드 실행");
-		String path = "C:\\Users\\Canon\\source git\\webshop\\src\\main\\webapp\\resources\\img\\new imgs\\";
+		String path = "C:\\Users\\Canon\\source git\\webshop\\src\\main\\webapp\\resources\\img\\product-img\\";
 		String fileName = ""; // 업로드 되는 파일명
 
 		File dir = new File(path);
