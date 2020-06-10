@@ -151,32 +151,60 @@
                                 <tbody>
                                  <% List<OrderVO> list= (List<OrderVO>)request.getAttribute("orderlist"); %>
                                 <%  for(int i=0;i<list.size();i++){ 
-                                	OrderVO vo = new OrderVO();                              
+                                	OrderVO vo = new OrderVO();
+                                	OrderVO check = new OrderVO();
                                 	vo = list.get(i);
+                                	int sum = 0;
+                                	if((i-1)>=0){
+                                		check = list.get(i-1);
+                                	}else{
+                                		check.setO_id(0);
+                                	}
                                 	%>
                                     <tr>
                                     	
                                         <td class="cart_product_desc">
-                                       
-                                          <%=vo.getO_id() %>
+                                       	<%if(vo.getO_id()==check.getO_id()){%>
+                                       	
+                                       	<%}else{%>
+                                       	 <%=vo.getO_id() %>
+                                         
+                                		<% }%>
                                         
                                         </td>
                                         <td class="cart_product_desc">
-                                        
+                                        <%if(vo.getO_id()==check.getO_id()){%>
+                                       	
+                                       	<%}else{%>
                                             <%=vo.getO_date().substring(0,10) %>
-                                         
+                                         <% }%>
                                         </td>
                                         <td class="cart_product_desc" >
+                                             <%=vo.getP_name() %>
+                                        </td>
+                                        <td class="cart_product_desc">
+                                            
                                             <%=vo.getP_price() %>
                                         </td>
                                         <td class="cart_product_desc">
-                                            <%=vo.getO_delivery() %>
-                                        </td>
-                                        <td class="cart_product_desc">
-                                            <%=vo.getP_name() %>
-                                        </td>
-                                        <td class="cart_product_desc">
+                                           
                                             <%=vo.getCnt() %>
+                                        </td>
+                                        <td class="cart_product_desc">
+                                         <%if(vo.getO_id()==check.getO_id()){%>
+                                       	
+                                       	<%}else{%>
+                                            
+                                            <%=vo.getO_delivery() %>
+                                           <% }%>
+                                        </td>
+                                        <td class="cart_product_desc">
+                                         <%if(vo.getO_id()==check.getO_id()){%>
+                                       		<%sum+=vo.getP_price()*vo.getCnt(); %>
+                                       	<%}else{%>
+<%-- 										 	<%=sum %> --%>
+                                           <% }%>
+                                        	 
                                         </td>
                                     </tr>
                                    <%}//end of for %>
