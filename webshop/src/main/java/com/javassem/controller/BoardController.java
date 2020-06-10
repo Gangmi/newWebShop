@@ -34,6 +34,7 @@ public class BoardController {
 	                hm.put("com_id", commentVO.get(i).getCom_id());
 	                hm.put("commentary", commentVO.get(i).getCommentary());
 	                hm.put("m_id", commentVO.get(i).getM_id());
+	                hm.put("com_date", commentVO.get(i).getCom_date());
 	                
 	                hmlist.add(hm);
 	            }

@@ -6,6 +6,13 @@ public class BoardVO {
 	private String commentary;
 	private int p_id;
 	private String m_id;
+	public String getCom_date() {
+		return com_date;
+	}
+	public void setCom_date(String com_date) {
+		this.com_date = com_date;
+	}
+	private String com_date;
 	
 	public int getCom_id() {
 		return com_id;

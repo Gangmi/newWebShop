@@ -259,11 +259,14 @@
 			 });
 		
 	});
-	
+	//댓글작성을 눌렀을 때
 	$("#commentForm").submit(function(){
-		alert($("#m_id").val())
+
 		
-		alert($("#comment").val())
+		if($("#m_id").val()=="null"){
+			alert("로그인이 필요한 서비스 입니다.");
+			return;
+		}
 	
 		
 		  $.ajax({
@@ -317,9 +320,11 @@
 	                
 	                for(var i=0; i<data.length; i++){
 	                    html += "<div>";
-	                    html += "<div><table class='table'><h6><strong>"+dat[i].m_id+"</strong></h6>";
+	                    html += "<div><table class='table'><h6><strong>"+dat[i].m_id+"</strong>"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+data[i].com_date+"</h6>";
 	                    html += dat[i].commentary + "<tr><td></td></tr>";
+	                    
 	                    html += "</table></div>";
+	                    
 	                    html += "</div>";
 	                }
 	                
