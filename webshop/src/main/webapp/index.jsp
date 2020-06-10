@@ -124,117 +124,117 @@ $(document).ready(function(){
                
                      <!-- Single Catagory -->
                 <div class="single-products-catagory clearfix">
-                    <a href="shop.do">
-                        <img src="img/bg-img/1.jpg" alt="">
+                    <a href="product-details.do?p_id=21">
+                        <img src="img/product-img/table21_2.jpg" alt="">
                         <!-- Hover Content -->
                         <div class="hover-content">
                             <div class="line"></div>
-                            <p>From $180</p>
-                            <h4>Modern Chair</h4>
+                            <p>Price $7000</p>
+                            <h4>Square Checked Box Table</h4>
                         </div>
                     </a>
                 </div>
 
                 <!-- Single Catagory -->
                 <div class="single-products-catagory clearfix">
-                    <a href="shop.do">
-                        <img src="img/bg-img/2.jpg" alt="">
+                    <a href="product-details.do?p_id=19">
+                        <img src="img/product-img/table19_6.jpg" alt="">
                         <!-- Hover Content -->
                         <div class="hover-content">
                             <div class="line"></div>
-                            <p>From $180</p>
-                            <h4>Minimalistic Plant Pot</h4>
+                            <p>Price $5000</p>
+                            <h4>Modern White Table</h4>
                         </div>
                     </a>
                 </div>
 
                 <!-- Single Catagory -->
                 <div class="single-products-catagory clearfix">
-                    <a href="shop.do">
-                        <img src="img/bg-img/3.jpg" alt="">
+                    <a href="product-details.do?p_id=25">
+                        <img src="img/product-img/dress2.jpg" alt="">
                         <!-- Hover Content -->
                         <div class="hover-content">
                             <div class="line"></div>
-                            <p>From $180</p>
-                            <h4>Modern Chair</h4>
+                            <p>Price $7000</p>
+                            <h4>Double Full-Wodden Hanger </h4>
                         </div>
                     </a>
                 </div>
 
                 <!-- Single Catagory -->
                 <div class="single-products-catagory clearfix">
-                    <a href="shop.do">
-                        <img src="img/bg-img/4.jpg" alt="">
+                    <a href="product-details.do?p_id=24">
+                        <img src="img/product-img/dressings24_3.jpg" alt="">
                         <!-- Hover Content -->
                         <div class="hover-content">
                             <div class="line"></div>
-                            <p>From $180</p>
-                            <h4>Night Stand</h4>
+                            <p>Price $6000</p>
+                            <h4>Full-Wodden Hanger</h4>
                         </div>
                     </a>
                 </div>
 
                 <!-- Single Catagory -->
                 <div class="single-products-catagory clearfix">
-                    <a href="shop.do">
-                        <img src="img/bg-img/5.jpg" alt="">
+                    <a href="product-details.do?p_id=20">
+                        <img src="img/product-img/table20_2.jpg" alt="">
                         <!-- Hover Content -->
                         <div class="hover-content">
                             <div class="line"></div>
-                            <p>From $18</p>
-                            <h4>Plant Pot</h4>
+                            <p>Price $6000</p>
+                            <h4>Mulbow Wodden Table</h4>
                         </div>
                     </a>
                 </div>
 
                 <!-- Single Catagory -->
                 <div class="single-products-catagory clearfix">
-                    <a href="shop.do">
-                        <img src="img/bg-img/6.jpg" alt="">
+                    <a href="product-details.do?p_id=25">
+                        <img src="img/product-img/dressings25_2.jpg" alt="">
                         <!-- Hover Content -->
                         <div class="hover-content">
                             <div class="line"></div>
-                            <p>From $320</p>
-                            <h4>Small Table</h4>
+                            <p>Price $7000</p>
+                            <h4>Double Full-Wodden Hanger </h4>
                         </div>
                     </a>
                 </div>
 
                 <!-- Single Catagory -->
                 <div class="single-products-catagory clearfix">
-                    <a href="shop.do">
-                        <img src="img/bg-img/7.jpg" alt="">
+                    <a href="product-details.do?p_id=21">
+                        <img src="img/product-img/table21_6.jpg" alt="">
                         <!-- Hover Content -->
                         <div class="hover-content">
                             <div class="line"></div>
-                            <p>From $318</p>
-                            <h4>Metallic Chair</h4>
+                            <p>Price $7000</p>
+                            <h4>Square Checked Box Table</h4>
                         </div>
                     </a>
                 </div>
 
                 <!-- Single Catagory -->
                 <div class="single-products-catagory clearfix">
-                    <a href="shop.do">
-                        <img src="img/bg-img/8.jpg" alt="">
+                    <a href="product-details.do?p_id=14">
+                        <img src="img/product-img/bed14_5.jpg" alt="">
                         <!-- Hover Content -->
                         <div class="hover-content">
                             <div class="line"></div>
-                            <p>From $318</p>
-                            <h4>Modern Rocking Chair</h4>
+                            <p>Price $8000</p>
+                            <h4>Souffle Bed</h4>
                         </div>
                     </a>
                 </div>
 
                 <!-- Single Catagory -->
                 <div class="single-products-catagory clearfix">
-                    <a href="shop.do">
-                        <img src="img/bg-img/9.jpg" alt="">
+                    <a href="product-details.do?p_id=28">
+                        <img src="img/product-img/furniture28_2.jpg" alt="">
                         <!-- Hover Content -->
                         <div class="hover-content">
                             <div class="line"></div>
-                            <p>From $318</p>
-                            <h4>Home Deco</h4>
+                            <p>Price $6000</p>
+                            <h4>Amado Gray Fabric Sofa</h4>
                         </div>
                     </a>
                 </div>
