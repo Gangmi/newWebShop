@@ -25,6 +25,8 @@ $(document).ready(function(){
 		url:"setTotalCount.do",
        	dataType : "xml"
     });
+	
+    
 });
 </script>
 
@@ -40,7 +42,7 @@ $(document).ready(function(){
             <div class="row">
                 <div class="col-12">
                     <div class="search-content">
-                        <form action="#" method="get">
+                        <form action="shop.do" method="get">
                             <input type="search" name="search" id="search" placeholder="Type your keyword...">
                             <button type="submit"><img src="img/core-img/search.png" alt=""></button>
                         </form>
@@ -119,12 +121,11 @@ $(document).ready(function(){
         <div class="products-catagories-area clearfix">
             <div class="amado-pro-catagory clearfix">
 
-                <!-- Single Catagory -->
+               
+                     <!-- Single Catagory -->
                 <div class="single-products-catagory clearfix">
-                
                     <a href="shop.do">
-                        <!-- <img src="img/bg-img/1.jpg" alt=""> -->
-                        <img src="img/product-img/dressings1_5.jpg" alt="">
+                        <img src="img/bg-img/1.jpg" alt="">
                         <!-- Hover Content -->
                         <div class="hover-content">
                             <div class="line"></div>
