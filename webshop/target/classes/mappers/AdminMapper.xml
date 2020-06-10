@@ -18,8 +18,8 @@
 		m_addr,m_postcode,m_grade,m_sub FROM member WHERE m_grade='운영자'
 	</select>
 
-	<select id="deliveryList" parameterType="delivery" resultType="delivery">
-		select * from delivery
+	<select id="deliveryList" parameterType="order" resultType="order">
+		select * from productorder
 	</select>
 
 	<select id="productInsert" parameterType="product" resultType="product">
@@ -78,6 +78,17 @@ from (select ol.o_id "주문번호",ol.ol_id "주문목록번호" , p.p_id "상�
       order by ol.o_id)
 	</select>
 	
-	
+	<update id="updateDeli" parameterType="order">
+		update productorder set o_delivery=#{o_delivery} where o_id=#{o_id}
+	</update>
+
+
+
+
+
+
+
+
+
 
 </mapper>

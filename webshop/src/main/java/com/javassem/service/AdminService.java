@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSessionEvent;
 
 import com.javassem.domain.DeliveryVO;
 import com.javassem.domain.MemberVO;
+import com.javassem.domain.OrderVO;
 import com.javassem.domain.ProductVO;
 
 
@@ -19,7 +20,7 @@ public interface AdminService {
 
 	List<MemberVO> selectEmployee(MemberVO vo);
 
-	List<DeliveryVO> selectDelivery(DeliveryVO vo);
+	List<OrderVO> selectDelivery(OrderVO vo);
 
 	List<ProductVO> inventoryInsert(ProductVO vo);
 
@@ -45,6 +46,6 @@ public interface AdminService {
 
 	int[] salesAge();
 	
-	
+	int updateDeli(OrderVO vo);
 	
 }

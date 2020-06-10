@@ -12,12 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.javassem.domain.DeliveryVO;
 import com.javassem.domain.MemberVO;
+import com.javassem.domain.OrderVO;
 import com.javassem.domain.ProductVO;
 import com.javassem.service.AdminService;
 
@@ -123,9 +125,9 @@ public class AdminController {
 
 	// 배송 현황
 	@RequestMapping("/deliverySituation.do")
-	public ModelAndView deliverySituation(DeliveryVO vo) {
+	public ModelAndView deliverySituation(OrderVO vo) {
 		System.out.println("컨트롤 도착");
-		List<DeliveryVO> listVO = service.selectDelivery(vo);
+		List<OrderVO> listVO = service.selectDelivery(vo);
 		System.out.println("디비 갔다옴");
 		ModelAndView mv = new ModelAndView();
 		System.out.println("mv 객체 생성");
@@ -228,7 +230,20 @@ System.out.println("파일 업로드 실행");
 	}
 
 
-
+	 @ResponseBody
+	 @RequestMapping(value="/updateDeli.do"  ,produces = "application/text; charset=UTF-8")
+	public void updateDeli(OrderVO vo) {
+		System.out.println("updateDeli 실행");
+		
+		int result = service.updateDeli(vo);
+		
+		if(result > 0) {
+			System.out.println("배송상태 변경성공");
+		}else {
+			System.out.println("배송상태 변경실패");
+		}
+		return ;
+	}
 
 
 

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.javassem.domain.DeliveryVO;
 import com.javassem.domain.MemberVO;
+import com.javassem.domain.OrderVO;
 import com.javassem.domain.ProductVO;
 
 
@@ -41,7 +42,7 @@ public class AdminDAOImpl implements AdminDAO {
 		return mybatis.selectList("AdminDAO.employeeList",vo);
 	}
 
-	public List<DeliveryVO> selectDelivery(DeliveryVO vo) {
+	public List<OrderVO> selectDelivery(OrderVO vo) {
 		System.out.println("mybatis deliveryList() 호출");
 		return mybatis.selectList("AdminDAO.deliveryList",vo);
 	}
@@ -192,7 +193,12 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 	
 	
-	
+	public int updateDeli(OrderVO vo) {
+		System.out.println("updateDeli DAO 도착");
+		
+		return mybatis.update("AdminDAO.updateDeli",vo);
+		
+	}
 	
 	
 

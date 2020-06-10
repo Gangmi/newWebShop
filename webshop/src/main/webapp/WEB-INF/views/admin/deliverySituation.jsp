@@ -1,22 +1,29 @@
 <%@page contentType="text/html; charset=utf-8"%>
-<% request.setCharacterEncoding("utf-8"); %>
+<%
+	request.setCharacterEncoding("utf-8");
+%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lumino ㅇㅇ</title>
+<title>Coziness</title>
 <link href="resources/css/a_css/bootstrap.min.css" rel="stylesheet">
 <link href="resources/css/font-awesome.min.css" rel="stylesheet">
 <link href="resources/css/a_css/datepicker3.css" rel="stylesheet">
 <link href="resources/css/a_css/styles.css" rel="stylesheet">
 <!-- ***************** new **************** -->
-<link rel="stylesheet" type="text/css" href="resources/css/a_css/animate.css">
-<link rel="stylesheet" type="text/css" href="resources/css/a_css/select2.min.css">
-<link rel="stylesheet" type="text/css" href="resources/css/a_css/perfect-scrollbar.css">
-<link rel="stylesheet" type="text/css" href="resources/css/a_css/util.css">
-<link rel="stylesheet" type="text/css" href="resources/css/a_css/main.css">
+<link rel="stylesheet" type="text/css"
+	href="resources/css/a_css/animate.css">
+<link rel="stylesheet" type="text/css"
+	href="resources/css/a_css/select2.min.css">
+<link rel="stylesheet" type="text/css"
+	href="resources/css/a_css/perfect-scrollbar.css">
+<link rel="stylesheet" type="text/css"
+	href="resources/css/a_css/util.css">
+<link rel="stylesheet" type="text/css"
+	href="resources/css/a_css/main.css">
 
 
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -24,10 +31,7 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i"
 	rel="stylesheet">
-<!--[if lt IE 9]>
-	<script src="js/html5shiv.js"></script>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
+
 </head>
 <body>
 	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
@@ -39,7 +43,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#"><span>Lumino</span>Admin</a>
+				<a class="navbar-brand" style="padding:3px"><img src="img/core-img/logo3.png" alt=""/></a>
 
 			</div>
 		</div>
@@ -63,20 +67,21 @@
 
 		<ul class="nav menu">
 			<li><a href="dashBoard.do"><em class="fa fa-dashboard">&nbsp;</em>
-					Dashboard</a></li>
+					대시보드</a></li>
 			<li><a href="charts.do"><em class="fa fa-bar-chart">&nbsp;</em>
-					Charts</a></li>
-			<li><a href="memberManagement.do"><em
-					class="fa fa-clone">&nbsp;</em> Member Management</a></li>
-			<li><a href="employeeManagement.do"><em
-					class="fa fa-clone">&nbsp;</em> Employee Management</a></li>
+					차트</a></li>
+			<li><a href="memberManagement.do"><em class="fa fa-clone">&nbsp;</em>
+					회원 관리</a></li>
+			<li><a href="employeeManagement.do"><em class="fa fa-clone">&nbsp;</em>
+					사원 관리</a></li>
 			<li><a href="inventorySituation.do"><em class="fa fa-clone">&nbsp;</em>
-					Inventory Situation</a></li>
+					재고 현황</a></li>
 			<li class="active"><a href="deliverySituation.do"><em
-					class="fa fa-clone">&nbsp;</em> Delivery Situation</a></li>
+					class="fa fa-clone">&nbsp;</em> 주문 현황</a></li>
 			<li><a href="consultingReservation.do"><em
 					class="fa fa-clone">&nbsp;</em> Consulting Reservation</a></li>
-			<li><a href="index.do"><em class="fa fa-toggle-off">&nbsp;</em> shop</a></li>
+			<li><a href="index.do"><em class="fa fa-toggle-off">&nbsp;</em>
+					홈으로</a></li>
 			<li><a href="logout.do"><em class="fa fa-power-off">&nbsp;</em>
 					Logout</a></li>
 		</ul>
@@ -87,7 +92,7 @@
 
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Delivery Situation</h1>
+				<h1 class="page-header">Order Situation</h1>
 			</div>
 		</div>
 		<!--/.row-->
@@ -168,12 +173,49 @@
 																		.append('<tr class="search-sf"><td class="text-muted" colspan="6">No entries found.</td></tr>');
 															}
 														});
+
+										$('.selectbox')
+												.on(
+														"change",
+														function() {
+															// 해당하는 주문의 id값 가져오기
+															alert($(this)
+																	.parent()
+																	.siblings()
+																	.eq(0)
+																	.text())
+
+															$
+																	.ajax({
+																		type : 'GET',
+																		url : "updateDeli.do",
+
+																		data : "o_delivery="
+																				+ $(
+																						this)
+																						.val()
+																				+ "&o_id="
+																				+ $(
+																						this)
+																						.parent()
+																						.siblings()
+																						.eq(
+																								0)
+																						.text(),
+																		contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+																		success : function(
+																				data) {
+
+																		}
+																	})
+														})
+
 									});
 				</script>
 
-			<div class="wrap-table100">
-				<div class="table100">
-<!-- 		********************* 검색 창 ****************** -->
+				<div class="wrap-table100">
+					<div class="table100">
+						<!-- 		********************* 검색 창 ****************** -->
 						<div class="col-md-3">
 							<form action="#" method="get">
 								<div class="input-group">
@@ -188,29 +230,38 @@
 								</div>
 							</form>
 						</div>
-								
-<!--		************************* 테이블 *********************** -->
-			<div class="wrap-table100">
-				<div class="col-md-9">
-					<table class="table table-list-search">
-						<thead>
-								<tr class="table100-head">
-								<th class="column1">DELIVERY NUMBER</th>
-								<th class="column2">ORDER NUMBER</th>
-								<th class="column3">STATE</th>
-								<th class="column4">START DATE</th>
-							</tr>
-						</thead>
-	<c:forEach items="${listVO }" var="list">
-	<tr>
-		<td class="column1">${list.d_id }</td>
-		<td class="column2">${list.o_id }</td>
-		<td class="column3">${list.d_state }</td>
-		<td class="column4">${list.d_startdate }</td>
-	</tr>
-	</c:forEach>
-							</table>
-						</div> <!-- ****************** 테이블 end*********************** -->
+
+						<!--		************************* 테이블 *********************** -->
+						<div class="wrap-table100">
+							<div class="col-md-9">
+								<table class="table table-list-search">
+									<thead>
+										<tr class="table100-head">
+											<th class="column1">주문번호</th>
+											<th class="column2">주문날짜</th>
+											<th class="column3">회원아이디</th>
+											<th class="column4">결제방법</th>
+											<th class="column5">배송상태</th>
+										</tr>
+									</thead>
+									<c:forEach items="${listVO }" var="list">
+										<tr>
+											<td class="column1">${list.o_id }</td>
+											<td class="column2">${list.o_date }</td>
+											<td class="column3">${list.m_id }</td>
+											<td class="column4">${list.o_payment }</td>
+											<td class="column5"><select name="delivery"
+												class="selectbox">
+													<option selected disabled hidden value="">${list.o_delivery }</option>
+													<option value="배송전">배송전</option>
+													<option value="배송중">배송중</option>
+													<option value="배송완료">배송완료</option>
+											</select></td>
+										</tr>
+									</c:forEach>
+								</table>
+							</div>
+							<!-- ****************** 테이블 end*********************** -->
 						</div>
 					</div>
 				</div>
@@ -237,7 +288,7 @@
 	<script src="js/a_js/bootstrap.min.js"></script>
 	<script src="js/a_js/select2.min.js"></script>
 	<script src="js/a_js/main.js"></script>
-	
+
 
 </body>
 </html>

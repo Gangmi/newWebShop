@@ -11,6 +11,7 @@ import com.javassem.dao.AdminDAO;
 import com.javassem.dao.AdminDAOImpl;
 import com.javassem.domain.DeliveryVO;
 import com.javassem.domain.MemberVO;
+import com.javassem.domain.OrderVO;
 import com.javassem.domain.ProductVO;
 
 @Service("adminService")
@@ -35,7 +36,7 @@ public class AdminServiceImpl implements AdminService {
 		return adminDAO.selectEmployee(vo);
 	}
 
-	public List<DeliveryVO> selectDelivery(DeliveryVO vo) {
+	public List<OrderVO> selectDelivery(OrderVO vo) {
 		return adminDAO.selectDelivery(vo);
 	}
 
@@ -87,6 +88,10 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int[] salesAge() {
 		return adminDAO.salesAge();
+	}
+
+	public int updateDeli(OrderVO vo) {
+		return adminDAO.updateDeli(vo);
 	}
 
 	

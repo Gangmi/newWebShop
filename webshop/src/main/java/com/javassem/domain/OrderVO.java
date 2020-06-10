@@ -8,6 +8,23 @@ public class OrderVO {
 	private int ol_id;
 	private int p_id;
 	private int cnt;
+	private String o_date;
+	private String o_delivery;
+	
+	
+	
+	public String getO_date() {
+		return o_date;
+	}
+	public void setO_date(String o_date) {
+		this.o_date = o_date;
+	}
+	public String getO_delivery() {
+		return o_delivery;
+	}
+	public void setO_delivery(String o_delivery) {
+		this.o_delivery = o_delivery;
+	}
 	public int getO_id() {
 		return o_id;
 	}

@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lumino ㅇㅁㅁㅁ</title>
+<title>Coziness</title>
 <link href="resources/css/a_css/bootstrap.min.css" rel="stylesheet">
 <link href="resources/css/font-awesome.min.css" rel="stylesheet">
 <link href="resources/css/a_css/datepicker3.css" rel="stylesheet">
@@ -29,7 +29,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#"><span>Lumino</span>Admin</a>
+				<a class="navbar-brand" style="padding:3px"><img src="img/core-img/logo3.png" alt=""/></a>
 
 			</div>
 		</div>
@@ -207,9 +207,6 @@ function fileSubmit(){
 
 
 
-
-
-
 });
 </script>
 <script>
@@ -219,9 +216,6 @@ var header = {
             $("#"+form).attr("action",pageName+".do");             
             $("#"+form).submit();
         }
-
-
-
 
 
 
@@ -302,9 +296,8 @@ var header = {
 			</tr>
 		</thead>
 
-
 		<c:forEach items="${listVO }" var="list">
-		<tr class="p_vo">
+		<tr style="height:10px" class="p_vo">
 			<td>${list.p_id}</td>
 			<td>${list.p_name}</td>
 			<td>${list.p_cat}</td>
@@ -312,14 +305,13 @@ var header = {
 			<td>${list.p_quan}</td>
 			<td>${list.p_brand}</td>
 			<td>${list.p_color}</td>
-			<td>${list.p_detail}</td>
+			<td style="overflow:hidden;height:10px">${list.p_detail}</td>
 			<td>${list.p_date}</td>
 			<td>${list.soldcount}</td>
 		</tr>
 		</c:forEach>
 	</table>
 </div>
-
 
 	</div>
 	</div>
