@@ -307,7 +307,7 @@ List<ProductVO> result = (List) request.getAttribute("details");
 							<%if(request.getAttribute("search")!=null && !request.getAttribute("search").equals("undefined")) { %>
 							<h3>"<%=request.getAttribute("search") %>" 검색결과</h3>
 							<%} %>
-								<p>Showing <%if(nowcate!=null&& !nowcate.equals("null")){ %><%=nowcate %><% }else{%>All<%}%> <%=startrow%>- <%if((nowquan*nowpage)<(Integer)request.getAttribute("totalitems")){%><%=nowquan*nowpage%><%}else{%><%=request.getAttribute("totalitems")%><%}%> 0f <%=request.getAttribute("totalitems")%></p>
+								<p><h6>Showing <%if(nowcate!=null&& !nowcate.equals("null")){ %><%=nowcate %><% }else{%>All<%}%> <%=startrow%>- <%if((nowquan*nowpage)<(Integer)request.getAttribute("totalitems")){%><%=nowquan*nowpage%><%}else{%><%=request.getAttribute("totalitems")%><%}%> 0f <%=request.getAttribute("totalitems")%><h6></p>
 								<div class="view d-flex">
 									<a href="#"><i class="fa fa-th-large" aria-hidden="true"></i></a>
 									
@@ -379,8 +379,8 @@ List<ProductVO> result = (List) request.getAttribute("details");
 									<p class="product-price">
 										$<%=result.get(i).getP_price()%></p>
 									<a href="product-details.do?p_id=<%=result.get(i).getP_id()%>">
-										<h6><%=result.get(i).getP_name()%></h6>
-										 <a href="shop.do?p_brand=<%=result.get(i).getP_brand()%>"><%=result.get(i).getP_brand() %></a>
+										<h3><%=result.get(i).getP_name()%></h3>
+										 <a href="shop.do?p_brand=<%=result.get(i).getP_brand()%>"><h6><%=result.get(i).getP_brand() %><h6></a>
 
 
 
