@@ -11,6 +11,8 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.xml.ws.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -199,7 +201,7 @@ public class ShopController {
 
 	// 상품을 클릭해서 해당 상품의 페이지로 넘어갈 때
 	@RequestMapping("/product-details.do")
-	public ModelAndView getProductDetails(ProductVO vo) {
+	public ModelAndView getProductDetails(ProductVO vo,HttpSession session) {
 		// 해당 상품의 id를 가져와서 서비스로 보냄
 		ProductVO result = service.getOneProduct(vo);
 		
@@ -215,7 +217,12 @@ public class ShopController {
 		
 		model.addObject("product", result);
 		
-		
+		String userId = (String)session.getAttribute("userId");
+		if(userId!=null)
+		{
+			List<ProductVO> wish = service.getwish(userId);
+			model.addObject("wish", wish);
+		}
 		
 		model.setViewName("product-details");
 		return model;

@@ -15,6 +15,8 @@ public interface ShopService {
 	
 	int getCatTotal (ProductVO vo);
 	
+	List<ProductVO> getwish(String userId);
+	
 	
 	
 }

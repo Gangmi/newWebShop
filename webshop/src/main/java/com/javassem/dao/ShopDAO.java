@@ -12,6 +12,8 @@ public interface ShopDAO {
 	
 	public int getCatTotal(ProductVO vo);
 	
+	public List<ProductVO> getwish(String userId);
+	
 	
 	
 }

@@ -49,6 +49,11 @@ public class ShopServiceImpl implements ShopService {
 		return shopDAO.getCatTotal(vo); 
 	}
 
+	public List<ProductVO> getwish(String userId) {
+
+		return shopDAO.getwish(userId);
+	}
+
 	
 
 }

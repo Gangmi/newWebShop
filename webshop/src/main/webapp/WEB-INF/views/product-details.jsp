@@ -1,5 +1,5 @@
 <%@page import="com.javassem.domain.ProductVO"%>
-
+<%@page import="java.util.List"%>
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -36,6 +36,21 @@
 	//request.setCharacterEncoding("UTF-8");
 
 ProductVO vo = (ProductVO) request.getAttribute("product");
+
+List<ProductVO> wish = (List<ProductVO>)request.getAttribute("wish");
+int wishlist=1;
+if(wish!=null)
+{
+	for(int i=0; i<wish.size();i++)
+	{
+		ProductVO wvo = new ProductVO();
+		wvo = wish.get(i);
+		if(wvo.getP_id()==vo.getP_id())
+		{
+			wishlist=2;
+		}
+	}
+}
 %>
 
 
@@ -265,7 +280,7 @@ ProductVO vo = (ProductVO) request.getAttribute("product");
 									&nbsp; &nbsp; &nbsp;
 									<div>
 										<a href="wishlist.do?p_id=<%=vo.getP_id()%>" class="fav-nav"><img
-											src="img/core-img/favorites1.png" alt=""></a>
+											src="img/core-img/favorites<%=wishlist %>.png" alt=""></a>
 									</div>
 								</div>
 								<%

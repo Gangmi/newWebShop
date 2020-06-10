@@ -105,7 +105,11 @@ when matched then
 		]]>
 	</select> -->
 	
-	
+	<select id="getwish" parameterType="String" resultType="product">
+	select p_id
+	from wishlist
+	where m_id=#{value}
+	</select>
 	
 	
 	

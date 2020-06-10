@@ -196,5 +196,9 @@ public class ShopDAOImpl implements ShopDAO {
 		return result;
 	}
 
+	public List<ProductVO> getwish(String userId)
+	{
+		return mybatis.selectList("ShopDAO.getwish", userId);
+	}
 
 }
