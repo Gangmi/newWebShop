@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,14 +35,15 @@ public class TransferController {
 //	@ResponseBody
 //@RequestMapping(value="/checkoutok.do",method=RequestMethod.POST,produces="applicaton/text; charset=UTF-8")
 	@RequestMapping(value="/checkoutok.do",produces="applicaton/text; charset=UTF-8")
-	public void checkoutok(String pay,String coupon,HttpServletResponse response, HttpServletRequest request,HttpSession session) throws Exception
+	public ModelAndView checkoutok(String pay,String coupon,HttpServletResponse response, HttpServletRequest request,HttpSession session) throws Exception
 	{
 		
 		List<String> idlist = (ArrayList)session.getAttribute("idlist");
 		List<String> countlist = (ArrayList)session.getAttribute("countlist");
 		String userId = (String)session.getAttribute("userId");
 
-		dao.insertorder(pay,coupon,idlist,countlist,userId);
+		int resultorder = dao.insertorder(pay,coupon,idlist,countlist,userId);
+
 		for(int i=0; i<idlist.size();i++)
 		{
 			Cookie delcookie = new Cookie("cart"+idlist.get(i), null);
@@ -49,9 +51,12 @@ public class TransferController {
 			delcookie.setPath("/");
 			response.addCookie(delcookie);
 		}
-		
-		
-		response.sendRedirect("cart.do");
+
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:cart.do?resultorder="+resultorder);
+
+        return mv;
+
 		
 
 	}

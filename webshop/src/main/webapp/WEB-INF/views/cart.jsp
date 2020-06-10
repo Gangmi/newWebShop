@@ -2,6 +2,28 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@ page import='com.javassem.domain.ProductVO' %>
 
+
+<%
+String resultorder = (String)request.getAttribute("resultorder");
+int resulto=0;
+if(resultorder!=null)
+{
+	System.out.print(resultorder+"**********gkgk");
+	resulto = Integer.parseInt(resultorder);
+}
+List<ProductVO> list =(List<ProductVO>) request.getAttribute("list");
+int subtotal = (int)request.getAttribute("total");
+int deli =0;
+if(subtotal<50000)
+{
+	deli = 2500;
+	}
+else{
+		deli =0;
+	}
+int total = subtotal+deli;
+
+%>
 <!DOCTYPE>
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -13,6 +35,10 @@
 
 <script type="text/javascript">
 $(function(){
+	if($("#resultorder").val()>0)
+		{
+			alert("주문완료");
+		}
 	var count=0;
 	var price=0;
 	var subtotal=0;
@@ -178,21 +204,8 @@ $(function(){
 </head>
 
 <body>
-<%
-List<ProductVO> list =(List<ProductVO>) request.getAttribute("list");
-int subtotal = (int)request.getAttribute("total");
-int deli =0;
-if(subtotal<50000)
-{
-	deli = 2500;
-	}
-else{
-		deli =0;
-	}
-int total = subtotal+deli;
 
-%>
-
+<input type='hidden' value=<%=resulto%> id='resultorder'>
     <!-- Search Wrapper Area Start -->
     <div class="search-wrapper section-padding-100">
         <div class="search-close">

@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.annotation.SessionScope;
@@ -56,7 +57,7 @@ public class CartController {
 
 
 	@RequestMapping("/cart.do") 
-	public ModelAndView cart(String delstr,String p_id,HttpServletResponse response, HttpServletRequest request) {
+	public ModelAndView cart(String resultorder, String delstr,String p_id,HttpServletResponse response, HttpServletRequest request) {
 
 		
 		List<ProductVO> seq = new ArrayList<ProductVO>();
@@ -125,11 +126,21 @@ public class CartController {
 			}
 			
 		}
+		
+		
 
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("cart");
 		mv.addObject("list",list);
 		mv.addObject("total", total);
+
+		if(resultorder!=null)
+		{
+			if(Integer.parseInt(resultorder)>0)
+			{
+			mv.addObject("resultorder", resultorder);
+			}
+		}
 
 		return mv;
 
