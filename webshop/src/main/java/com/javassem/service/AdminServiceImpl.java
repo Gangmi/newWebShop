@@ -84,6 +84,11 @@ public class AdminServiceImpl implements AdminService {
 		return adminDAO.getNextid();
 	}
 
+	@Override
+	public int[] salesAge() {
+		return adminDAO.salesAge();
+	}
+
 	
 
 	

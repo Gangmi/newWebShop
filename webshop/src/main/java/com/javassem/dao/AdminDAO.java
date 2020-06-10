@@ -26,4 +26,5 @@ public interface AdminDAO {
 	public int[] viewCount();
 	public void setTotalCount();
 	public int getNextid();
+	public int[] salesAge();
 }

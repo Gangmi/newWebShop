@@ -15,16 +15,6 @@
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<!-- <script> -->
-<!-- $(document).ready(function(){  -->
-<!-- 	$.ajax({ -->
-<!-- 		type:"POST", -->
-<!-- 		url:"setTotalCount.do", -->
-<!--        	dataType : "xml" -->
-<!--     }); -->
-<!-- }); -->
-<!-- </script> -->
-
 </head>
 <body>
 
@@ -57,11 +47,12 @@
 		<ul class="nav menu">
 			<li class="active"><a href="dashBoard.do"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
 			<li><a href="charts.do"><em class="fa fa-bar-chart">&nbsp;</em> Charts</a></li>
-			<li><a href="memberManagement.do"><em class="fa fa-toggle-off">&nbsp;</em> Member Management</a></li>
-			<li><a href="employeeManagement.do"><em class="fa fa-toggle-off">&nbsp;</em> Employee Management</a></li>	
+			<li><a href="memberManagement.do"><em class="fa fa-clone">&nbsp;</em> Member Management</a></li>
+			<li><a href="employeeManagement.do"><em class="fa fa-clone">&nbsp;</em> Employee Management</a></li>	
 			<li><a href="inventorySituation.do"><em class="fa fa-clone">&nbsp;</em> Inventory Situation</a></li>
-			<li><a href="deliverySituation.do"><em class="fa fa-bar-chart">&nbsp;</em> Delivery Situation</a></li>
-			<li><a href="consultingReservation.do"><em class="fa fa-bar-chart">&nbsp;</em> Consulting Reservation</a></li>
+			<li><a href="deliverySituation.do"><em class="fa fa-clone">&nbsp;</em> Delivery Situation</a></li>
+			<li><a href="consultingReservation.do"><em class="fa fa-clone">&nbsp;</em> Consulting Reservation</a></li>
+			<li><a href="index.do"><em class="fa fa-toggle-off">&nbsp;</em> shop</a></li>
 			<li><a href="logout.do"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
 		</ul>
 	</div><!--/.sidebar-->

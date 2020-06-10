@@ -43,11 +43,12 @@
 		<ul class="nav menu">
 			<li><a href="dashBoard.do"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
 			<li class="active"><a href="charts.do"><em class="fa fa-bar-chart">&nbsp;</em> Charts</a></li>
-			<li><a href="memberManagement.do"><em class="fa fa-toggle-off">&nbsp;</em> Member Management</a></li>
-			<li><a href="employeeManagement.do"><em class="fa fa-toggle-off">&nbsp;</em> Employee Management</a></li>	
+			<li><a href="memberManagement.do"><em class="fa fa-clone">&nbsp;</em> Member Management</a></li>
+			<li><a href="employeeManagement.do"><em class="fa fa-clone">&nbsp;</em> Employee Management</a></li>	
 			<li><a href="inventorySituation.do"><em class="fa fa-clone">&nbsp;</em> Inventory Situation</a></li>
-			<li><a href="deliverySituation.do"><em class="fa fa-bar-chart">&nbsp;</em> Delivery Situation</a></li>
-			<li><a href="consultingReservation.do"><em class="fa fa-bar-chart">&nbsp;</em> Consulting Reservation</a></li>
+			<li><a href="deliverySituation.do"><em class="fa fa-clone">&nbsp;</em> Delivery Situation</a></li>
+			<li><a href="consultingReservation.do"><em class="fa fa-clone">&nbsp;</em> Consulting Reservation</a></li>
+			<li><a href="index.do"><em class="fa fa-toggle-off">&nbsp;</em> shop</a></li>
 			<li><a href="logout.do"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
 		</ul>
 	</div><!--/.sidebar-->
@@ -106,7 +107,7 @@
 			<div class="col-md-6">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						카테고리 매출
+						연령 매출
 </div>
 					<div class="panel-body">
 						<div class="canvas-wrapper">
@@ -193,34 +194,40 @@ for(var i=30;i>=0;i--){
 // 도넛 차트 카테고리 별 매출
 	var doughnutData = [
 		{
-			value: ${category[0]},
+			value: ${age[0]},
 			color:"#30a5ff",
 			highlight: "#62b9fb",
-			label: "table"
+			label: "10대"
 		},
 		{
-			value: ${category[1]},
+			value: ${age[1]},
 			color:"#CC2EFA",
 			highlight: "#BE81F7",
-			label: "bed"
+			label: "20대"
 		},
 		{
-			value: ${category[2]},
+			value: ${age[2]},
 			color: "#ffb53e",
 			highlight: "#fac878",
-			label: "furniture"
+			label: "30대"
 		},
 		{
-			value: ${category[3]},
+			value: ${age[3]},
 			color: "#1ebfae",
 			highlight: "#3cdfce",
-			label: "dressings"
+			label: "40대"
 		},
 		{
-			value: ${category[4]},
+			value: ${age[4]},
 			color: "#f9243f",
 			highlight: "#f6495f",
-			label: "chair"
+			label: "50대"
+		},
+		{
+			value: ${age[5]},
+			color: "#642EFE",
+			highlight: "#8181F7",
+			label: "60대 이상"
 		}
 
 	];

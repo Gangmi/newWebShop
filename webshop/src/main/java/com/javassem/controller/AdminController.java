@@ -65,6 +65,7 @@ public class AdminController {
 		int[] category = service.salesCategory();
 		int[] month = service.salesMonth();
 		int[] day = service.recentSales();
+		int[] age = service.salesAge();
 		System.out.println("디비 갔다옴 차트");
 		
 		ModelAndView mv = new ModelAndView();
@@ -72,6 +73,7 @@ public class AdminController {
 		mv.addObject("month", month);
 		mv.addObject("category", category);
 		mv.addObject("day", day);
+		mv.addObject("age", age);
 		return mv;
 	}
 	
@@ -175,7 +177,7 @@ public class AdminController {
 	@RequestMapping(value= "/MultiUpload.do", method=RequestMethod.POST)
 	public String MultifileUp(MultipartHttpServletRequest multi) {
 System.out.println("파일 업로드 실행");
-		String path = "C:\\Users\\Canon\\Documents\\newWebShop\\webshop\\src\\main\\webapp\\resources\\img\\new\\";
+		String path = "C:\\Users\\Canon\\Documents\\newWebShop\\webshop\\src\\main\\webapp\\resources\\img\\product-img\\";
 		String fileName = ""; // 업로드 되는 파일명
 
 		File dir = new File(path);

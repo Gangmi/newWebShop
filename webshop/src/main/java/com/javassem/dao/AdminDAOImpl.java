@@ -73,7 +73,6 @@ public class AdminDAOImpl implements AdminDAO {
 	     hs.put("month",i);
 	     
 	     int j = mybatis.selectOne("AdminDAO.salesMonth", hs);
-	     System.out.println(j);
 	     result2 [i-1] = j;
 	     }
 	     System.out.println("mybatis salesMonth 끝나고나감");
@@ -95,7 +94,6 @@ public class AdminDAOImpl implements AdminDAO {
 	    hs.put("category",arr[i]);
 	     
 	    int j = mybatis.selectOne("AdminDAO.salesCategory", hs);
-	    System.out.println(j);
 	    result [i] = j;
 	    }
 	    System.out.println("mybatis salesCategory 끝나고나감");
@@ -114,7 +112,6 @@ public class AdminDAOImpl implements AdminDAO {
 	    hs.put("day",i);
 	     
 	    int j = mybatis.selectOne("AdminDAO.recentSales", hs);
-	    System.out.println(j);
 	    result [i] = j;
 	    }
 	     
@@ -145,7 +142,6 @@ public class AdminDAOImpl implements AdminDAO {
 	    hs.put("view",i);
 	     
 	    int j = mybatis.selectOne("AdminDAO.viewList", hs);
-	    System.out.println("j : "+j);
 	    result [i] = j;
 	    }
 	    
@@ -169,6 +165,30 @@ public class AdminDAOImpl implements AdminDAO {
 		int result = mybatis.selectOne("AdminDAO.getNextid");
 		
 		return result;
+	}
+
+	// 나이대 매출
+	public int[] salesAge() {
+		System.out.println("salesAge DAO 도착");
+		
+		
+		int [] result = new int[6] ;
+		
+		HashMap<String, Integer> hs = new HashMap<String, Integer>();
+		
+//		String[]arr = {"m.m_age >= 10 and 20 > m.m_age","m.m_age >= 20 and 30 > m.m_age","m.m_age >= 30 and 40 > m.m_age","m.m_age >= 40 and 50 > m.m_age","m.m_age >= 50 and 60 > m.m_age","m.m_age >= 60"};
+		
+	    for(int i = 0; i< 6; i++ ){
+	    
+	    hs.put("age",i+1);
+	     
+	    int j = mybatis.selectOne("AdminDAO.salesAge", hs);
+	    System.out.println(j);
+	    result [i] = j;
+	    }
+	    System.out.println("mybatis salesAge 끝나고나감");
+	    return result;
+		
 	}
 	
 	

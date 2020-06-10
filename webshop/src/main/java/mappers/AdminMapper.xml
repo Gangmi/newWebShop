@@ -70,6 +70,14 @@ from (select ol.o_id "주문번호",ol.ol_id "주문목록번호" , p.p_id "상�
 		select SEQ_PRODUCT_ID.nextval from dual
 	</select>
 	
+	<select id="salesAge" parameterType="hashMap" resultType="int">
+	select sum(a)
+from (select ol.o_id "주문번호",ol.ol_id "주문목록번호" , p.p_id "상품아이디" , p.p_name "상품이름" ,p.p_price as a ,to_char(po.o_date,'MM') "주문 날짜"
+      from orderlist ol , product p , productorder po , member m
+      where ol.p_id = p.p_id and ol.o_id = po.o_id and m.m_id = po.m_id and m_age like #{age}||'%'
+      order by ol.o_id)
+	</select>
+	
 	
 
 </mapper>

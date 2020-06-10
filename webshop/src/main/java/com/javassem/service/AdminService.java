@@ -42,6 +42,8 @@ public interface AdminService {
 	void setTotalCount();
 
 	int getNextid();
+
+	int[] salesAge();
 	
 	
 	
