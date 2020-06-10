@@ -151,8 +151,6 @@ public class AdminDAOImpl implements AdminDAO {
 	    
 	    System.out.println("mybatis viewList 끝나고나감1");
 	    return result;
-		
-		
 	}
 	
 	// 세션 방문자 수
@@ -162,10 +160,16 @@ public class AdminDAOImpl implements AdminDAO {
     	mybatis.selectOne("AdminDAO.visitCount");
     	
     	System.out.println("mapper 실행 끝");
-        
     }
 	
-
+    // 인벤토리 nextval 가져오기
+	public int getNextid() {
+		System.out.println("nextval p_id DAO 도착");
+		
+		int result = mybatis.selectOne("AdminDAO.getNextid");
+		
+		return result;
+	}
 	
 	
 	

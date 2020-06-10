@@ -94,7 +94,7 @@ window.onclick = function(event) {
 					class="fa fa-bar-chart">&nbsp;</em> Delivery Situation</a></li>
 			<li><a href="consultingReservation.do"><em
 					class="fa fa-bar-chart">&nbsp;</em> Consulting Reservation</a></li>
-			<li><a href="login.html"><em class="fa fa-power-off">&nbsp;</em>
+			<li><a href="logout.do"><em class="fa fa-power-off">&nbsp;</em>
 					Logout</a></li>
 		</ul>
 	</div>

@@ -249,14 +249,7 @@ var header = {
 	
 </div>
 
-<!-- <input type="button" value="update"/> -->
-<!-- <input type="button"value="insert"/> -->
-
 <div class="col-md-6">
-
-
-
-
 <div class="col-md-6">
 	<table class="table table-list-search1">
 		<thead>
@@ -274,7 +267,7 @@ var header = {
 		</thead>
 		<form id="frm" id="frmfile" method="post" enctype="multipart/form-data">
 			<tr class="receive">
-				<td><input type="text" style="width:50px;border:none" name="p_id" value="${productVO.p_id}" readonly/></td>
+				<td><input type="text" style="width:50px;border:none" name="p_id" value="${nextval}" readonly/></td>
 				<td><input type="text" style="width:150px;border:none" name="p_name"/></td>
 				<td><input type="text" style="width:80px;border:none" name="p_cat"/></td>
 				<td><input type="text" style="width:70px;border:none" name="p_price"/></td>
@@ -289,13 +282,8 @@ var header = {
 				<td><input id="update" onclick="javascript:header.pageSubmitFn('inventoryUpdate','frm')" style="float:right" type="button" value="UPDATE"/></td>
 				<td><input id="insert" onclick="javascript:header.pageSubmitFn('inventoryInsert','frm')" style="float:right" type="button"value="INSERT"/></td>
 			</tr>
-<!-- 		</form> -->
-<!-- 		<form action="MultiUpload.do" id="frmfile" method="post" enctype="multipart/form-data"> -->
-<!-- 		</form>	 -->
 	</table>
 </div>
-
-
 
 	<table class="table table-list-search" style="margin:15px">
 		<thead>

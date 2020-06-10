@@ -79,10 +79,12 @@ public class AdminServiceImpl implements AdminService {
 		adminDAO.setTotalCount();
 		return;
 	}
+
+	public int getNextid() {
+		return adminDAO.getNextid();
+	}
+
 	
-//	public int[] viewList() {
-//		return adminDAO.viewList();
-//	}
 
 	
 }

@@ -40,6 +40,8 @@ public interface AdminService {
 	int[] viewCount();
 		
 	void setTotalCount();
+
+	int getNextid();
 	
 	
 	

@@ -108,11 +108,13 @@ public class AdminController {
 	public ModelAndView inventorySituation(ProductVO vo) {
 		System.out.println("inventorySituation 컨트롤 도착");
 		List<ProductVO> listVO = service.selectProduct(vo);
+		int nextval = service.getNextid();
 		System.out.println("디비 갔다옴");
 		ModelAndView mv = new ModelAndView();
 		System.out.println("mv 객체 생성");
 		mv.setViewName("admin/inventorySituation");
 		mv.addObject("listVO",listVO);
+		mv.addObject("nextval",nextval);
 		System.out.println(" list 저장");
 		return mv;
 	}
@@ -173,7 +175,7 @@ public class AdminController {
 	@RequestMapping(value= "/MultiUpload.do", method=RequestMethod.POST)
 	public String MultifileUp(MultipartHttpServletRequest multi) {
 System.out.println("파일 업로드 실행");
-		String path = "C:\\Users\\Canon\\source git\\webshop\\src\\main\\webapp\\resources\\img\\product-img\\";
+		String path = "C:\\Users\\Canon\\Documents\\newWebShop\\webshop\\src\\main\\webapp\\resources\\img\\new\\";
 		String fileName = ""; // 업로드 되는 파일명
 
 		File dir = new File(path);
@@ -222,12 +224,13 @@ System.out.println("파일 업로드 실행");
 		service.setTotalCount();
 		return "admin/dashboard.do";
 	}
-	
-	
-	
-	
-	
-	
 
+
+
+
+
+
+
+	
 
 }

@@ -66,7 +66,9 @@ from (select ol.o_id "주문번호",ol.ol_id "주문목록번호" , p.p_id "상�
 		select count(v_date) from visit where to_char(v_date,'YY/MM/DD') = to_char(sysdate-#{view},'YY/MM/DD')
 	</select>
 	
-	
+	<select id="getNextid" resultType="int">
+		select SEQ_PRODUCT_ID.nextval from dual
+	</select>
 	
 	
 

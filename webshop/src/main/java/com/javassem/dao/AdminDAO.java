@@ -25,5 +25,5 @@ public interface AdminDAO {
 	public int memberCount();
 	public int[] viewCount();
 	public void setTotalCount();
-//	public int[] viewList();
+	public int getNextid();
 }
