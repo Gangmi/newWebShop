@@ -185,6 +185,12 @@ public class CartController {
 	public ModelAndView wishlist(String delstr,String p_id,HttpSession session)
 	{
 		String userId = (String)session.getAttribute("userId");
+		ModelAndView mvid=new ModelAndView();
+		if(userId==null)
+		{
+			mvid.setViewName("redirect:login.do");
+			return mvid;
+		}
 		if(delstr!=null)
 		{
 			String[] array = delstr.split(",");
