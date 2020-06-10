@@ -17,7 +17,7 @@
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="css/core-style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="./resources/js/login-userInput.js"></script>
+   
 
 <script>
 $(document).ready(function(){ 
@@ -30,7 +30,7 @@ $(document).ready(function(){
     
 });
 </script>
-
+<script src="./resources/js/login-userInput.js"></script>
 </head>
 
 <body>
@@ -102,12 +102,13 @@ $(document).ready(function(){
                     <%}else if(session.getAttribute("userId").equals("admin")) {%>
                      ${userId}님 </li>     
                     <a href="logout.do" >[ Logout ]</a></li>
-                    <a href="managerwindow.do" >[ manager window ]</a></li>
+                    <a href="managerwindow.do" >[ manage ]</a></li>
                     
                     <% }else{ %>
                      ${userId}님 </li>     
                     <a href="logout.do" >[ Logout ]</a></li>
                     <a  href="member-info.do" >[ edit profile ]</a></li>
+                    <a  href="my-order.do" >[ my order ]</a></li>
                     <%}//end of if %> 
                 <a href="cart.do" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(<%= request.getCookies().length-1 %>)</span></a>
                 <a href="wishlist.do" class="fav-nav"><img src="img/core-img/favorites1.png" alt=""> Favourite</a>

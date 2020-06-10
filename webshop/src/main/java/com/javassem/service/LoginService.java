@@ -1,26 +1,31 @@
 package com.javassem.service;
 
+import java.util.List;
+
 import com.javassem.domain.LoginVO;
+import com.javassem.domain.OrderVO;
 
 public interface LoginService {
 
-	int insertMember(LoginVO vo);
+	public int insertMember(LoginVO vo);
 
-	LoginVO signInMember(LoginVO vo);
+	public LoginVO signInMember(LoginVO vo);
 
-	LoginVO findId(LoginVO vo);
+	public LoginVO findId(LoginVO vo);
 
-	LoginVO findPassword(LoginVO vo);
+	public LoginVO findPassword(LoginVO vo);
 
-	LoginVO memberInfo(LoginVO vo);
+	public LoginVO memberInfo(LoginVO vo);
 
-	int updateMember(LoginVO vo);
+	public int updateMember(LoginVO vo);
 
-	int deleteMember(LoginVO vo);
+	public int deleteMember(LoginVO vo);
 
-	int subemail(LoginVO vo);
+	public int subemail(LoginVO vo);
 
-	LoginVO checkcoupon(LoginVO vo);
+	public LoginVO checkcoupon(LoginVO vo);
+
+	public List<OrderVO> myorder(OrderVO vo);
 
 	
 }

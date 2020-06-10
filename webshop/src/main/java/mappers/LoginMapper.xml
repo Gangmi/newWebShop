@@ -28,6 +28,21 @@
 		
 	</select>
 	
+	<!-- 구매목록 -->
+	<select id="myorder" parameterType="order" resultType="order">
+		
+		SELECT pro_order.o_id o_id,pro_order.o_date o_date,pro_order.o_delivery o_delivery,pro.p_name p_name,pro.p_price p_price,orderl.cnt cnt
+		FROM  PRODUCTORDER pro_order
+		INNER JOIN ORDERLIST orderL
+		ON pro_order.o_id = orderL.o_id
+		INNER JOIN PRODUCT pro
+		ON pro.P_ID = orderL.P_ID
+		WHERE pro_order.m_id = #{m_id}
+		ORDER BY pro_order.o_id
+		
+	</select>
+	
+	
 	<!-- 아이디찾기-->
 	 <select id="findid" parameterType="login" resultType="login">
 		

@@ -1,15 +1,27 @@
+<%@page import="com.javassem.domain.OrderVO"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html; charset=UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page import='com.javassem.domain.ProductVO' %>
 
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- <script src="../../resources/js/jquery/jquery.cookie.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./resources/js/login-userInput.js"></script>
+
+<script type="text/javascript">
+
+</script>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+</style>
+<meta http-equiv="X-UA-Compatible" content="IE=edge; charset=UTF-8">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
@@ -21,13 +33,12 @@
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="css/core-style.css">
     <!-- <link rel="stylesheet" href="style.css"> -->
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="./resources/js/login-userInput.js"></script>
 
 </head>
 
 <body>
+
+
     <!-- Search Wrapper Area Start -->
     <div class="search-wrapper section-padding-100">
         <div class="search-close">
@@ -77,10 +88,8 @@
             <nav class="amado-nav">
                 <ul>
                     <li><a href="index.do">Home</a></li>
-                    <li><a href="shop.do">Shop</a></li>
-                    
-                    <li><a href="cart.do">Cart</a></li>
-                    
+                    <li><a href="shop.do?p_cat=chair">Shop</a></li>
+                    <li class="active"><a href="cart.do">Cart</a></li>
                     
                 </ul>
             </nav>
@@ -90,8 +99,8 @@
                 <a ></a>
             </div>
             <!-- Cart Menu -->
-            <div class="cart-fav-search mb-100"> 
-             <% if((String)session.getAttribute("userId")==null){%>                                      
+            <div class="cart-fav-search mb-100">
+           		<% if((String)session.getAttribute("userId")==null){%>                                      
                    <a href="login.do"> Login</a></li>
                    
                     <%}else if(session.getAttribute("userId").equals("admin")) {%>
@@ -105,7 +114,7 @@
                     <a  href="member-info.do" >[ edit profile ]</a></li>
                     <a  href="my-order.do" >[ my order ]</a></li>
                     <%}//end of if %> 
-                <a href="cart.do" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(<%= request.getCookies().length-1 %>)</span></a>
+                <a href="cart.do" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>()</span></a>
                 <a href="wishlist.do" class="fav-nav"><img src="img/core-img/favorites1.png" alt=""> Favourite</a>
                 <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>
             </div>
@@ -123,27 +132,60 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 col-lg-8">
-                        <div class="checkout_details_area mt-50 clearfix">
-
-                            <div class="ml-100 cart-title">
-                                <h2>Find-Password</h2>
-                            </div>
-
-                            <form id ="" name="" action="" method="post">
-                                <div class="ml-100 mt-100 row">
-                                     <div class="col-md-11 mb-3">
-                                        <input type="text" class="form-control" id="" class="" value="비밀번호를 가입하신 메일로 전송했습니다." readonly="readonly" required>
-                                          <input type="text" class="form-control" id="" class="" value="<%=request.getAttribute("email") %>" readonly="readonly" required>
-                                    </div>
-                                     <div class="col-12 mb-3">
-	              
-						               	<a href="login.do" class="btn amado-btn mb-15">로그인 하기</a>
-						            </div>
-
-                                </div>
-                            </form>
+                        <div class="cart-title mt-50">
+                            <h2>My Order</h2>
                         </div>
+                        
+                        <div class="cart-table clearfix">
+                            <table class="table table-responsive" id='table'>
+                                <thead>
+                                    <tr>
+                                        <th>Order number</th>
+                                        <th>Date</th>                             
+                                        <th>Name</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>                                     
+                                        <th>State</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                 <% List<OrderVO> list= (List<OrderVO>)request.getAttribute("orderlist"); %>
+                                <%  for(int i=0;i<list.size();i++){ 
+                                	OrderVO vo = new OrderVO();                              
+                                	vo = list.get(i);
+                                	%>
+                                    <tr>
+                                    	
+                                        <td class="cart_product_desc">
+                                       
+                                          <%=vo.getO_id() %>
+                                        
+                                        </td>
+                                        <td class="cart_product_desc">
+                                        
+                                            <%=vo.getO_date().substring(0,10) %>
+                                         
+                                        </td>
+                                        <td class="cart_product_desc" >
+                                            <%=vo.getP_price() %>
+                                        </td>
+                                        <td class="cart_product_desc">
+                                            <%=vo.getO_delivery() %>
+                                        </td>
+                                        <td class="cart_product_desc">
+                                            <%=vo.getP_name() %>
+                                        </td>
+                                        <td class="cart_product_desc">
+                                            <%=vo.getCnt() %>
+                                        </td>
+                                    </tr>
+                                   <%}//end of for %>
+                                </tbody>
+                            </table>
+                        </div>
+                         
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -164,7 +206,7 @@
                 <!-- Newsletter Form -->
                 <div class="col-12 col-lg-6 col-xl-5">
                      <div class="newsletter-form mb-200 mr-100 ">
-                         <form  name="subemail2" id='subemail2' method="post">          
+                       <form  name="subemail2" id='subemail2' method="post">          
                             <input   type="submit" id="subemail" value="Subscribe">
                         </form>
                     </div>
@@ -187,8 +229,9 @@
                         </div>
                         <!-- Copywrite Text -->
                         <p class="copywrite"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> & Re-distributed by <a href="https://themewagon.com/" target="_blank">Themewagon</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->& Re-distributed by <a href="https://themewagon.com/" target="_blank">Themewagon</a>
+</p>
                     </div>
                 </div>
                 <!-- Single Widget Area -->
@@ -210,7 +253,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                         <li class="nav-item">
                                             <a class="nav-link" href="cart.do">Cart</a>
                                         </li>
-                                      
                                         
                                     </ul>
                                 </div>

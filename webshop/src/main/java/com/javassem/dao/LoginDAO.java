@@ -3,6 +3,7 @@ package com.javassem.dao;
 import java.util.List;
 
 import com.javassem.domain.LoginVO;
+import com.javassem.domain.OrderVO;
 
 
 public interface LoginDAO {
@@ -23,4 +24,6 @@ public interface LoginDAO {
 	public int subemail(LoginVO vo);
 	
 	public LoginVO checkcoupon(LoginVO vo);
+	
+	public List<OrderVO> myorder(OrderVO vo);
 }

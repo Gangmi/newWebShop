@@ -31,7 +31,7 @@ int total = subtotal+deli;
 <!-- <script src="../../resources/js/jquery/jquery.cookie.js"></script> -->
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="./resources/js/login-userInput.js"></script>
+
 
 <script type="text/javascript">
 $(function(){
@@ -182,7 +182,7 @@ $(function(){
 
 
 </script>
-
+<script> src="./resources/js/login-userInput.js"></script>
 <head>
 
 </style>
@@ -279,7 +279,8 @@ $(function(){
                      ${userId}님 </li>     
                     <a href="logout.do" >[ Logout ]</a></li>
                     <a  href="member-info.do" >[ edit profile ]</a></li>
-                    <%}//end of if %> 
+                    <a  href="my-order.do" >[ my order ]</a></li>
+                    <%}//end of if %>  
                 <a href="cart.do" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(<%=list.size() %>)</span></a>
                 <a href="wishlist.do" class="fav-nav"><img src="img/core-img/favorites1.png" alt=""> Favourite</a>
                 <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>

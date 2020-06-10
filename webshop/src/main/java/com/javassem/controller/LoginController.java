@@ -3,6 +3,7 @@ package com.javassem.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -24,7 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.javassem.domain.LoginVO;
-
+import com.javassem.domain.OrderVO;
 import com.javassem.service.LoginService;
 
 
@@ -56,17 +57,6 @@ public class LoginController {
 		return message;
 	}
 	
-	/*
-	 * //로그인 텝을 누르면 이전 페이지를 세션에 저장해놓는다.
-	 * 
-	 * @RequestMapping("/login.do") public String loGin( HttpSession
-	 * session,HttpServletRequest request) { String referer =
-	 * request.getHeader("Referer"); session.setAttribute("repage", referer); return
-	 * "/login";
-	 * 
-	 * }
-	 */
-
 	//로그인
 	@RequestMapping("/sign_in.do")
 	public String  sign_in(LoginVO vo, HttpSession session,HttpServletRequest request) {
@@ -78,17 +68,26 @@ public class LoginController {
 		} else {// 로그인 성공했다면
 			session.setAttribute("sessionTime", new Date().toLocaleString());
 			session.setAttribute("userId", id.getMid());
-//			if(id.getMid().equals("admin")) {
-//				
-//				return "redirect:/dashBoard.do";
-//			}else {
+
 				System.out.println("로그인성공");
 				return "redirect:/index.do";		
-//			}
 		}
 		
 	}
 	
+	@RequestMapping("/my-order.do")
+	public ModelAndView myorder(OrderVO vo, HttpSession session) {
+		vo.setM_id((String)session.getAttribute("userId"));
+		List<OrderVO> list = loginservice.myorder(vo);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/order-list");
+		mv.addObject("orderlist", list);
+		return mv;
+		
+	}
+	
+	//관리자창
 	@RequestMapping("/managerwindow.do")
 	public String managerwindow() {
 		return "redirect:/dashBoard.do";
@@ -99,11 +98,7 @@ public class LoginController {
 		@RequestMapping("/logout.do")
 		public String logout(HttpSession session) {
 			//로그아웃을 눌렀을때 세션을 종료한다.
-			session. invalidate();
-			//처음화면으로 돌려버림
-//			ModelAndView mv = new ModelAndView();
-//			mv.setViewName("/index");
-			
+			session. invalidate();			
 			return "redirect:/index.do";
 		}
 		
@@ -184,48 +179,6 @@ public class LoginController {
 		return mv;
 	}
 	
-	
-//	//구독
-//	@RequestMapping("/subemail.do")
-//	public ModelAndView subemail(LoginVO vo,HttpSession session,HttpServletResponse response,HttpServletRequest request) throws Exception {
-//		ModelAndView mv = new ModelAndView();
-//		
-//		String referer = request.getHeader("Referer");
-//		session.setAttribute("repage", referer);
-//		
-//		response.setContentType("text/html; charset=UTF-8");
-//		 
-//		//로그인 안하고 구독하려고 하면 경고창나옴, 
-//		PrintWriter out = response.getWriter();		
-//		if(session.getAttribute("userId")!=null) {		
-//			vo.setMid((String)session.getAttribute("userId")); 
-//			LoginVO result =loginservice.checkcoupon(vo);
-//			//쿠폰테이블에서 구독여부 확인
-//			//이미 구독했다면 이미 구독했다고 나오게함
-//			if(result.getMsub().equals("O")) {
-//				out.println("<script>alert('이미 구독하셨습니다.') </script>");			 
-//				out.flush();
-//				
-//				
-//			}else{
-//
-//				loginservice.subemail(vo);
-//				
-//				out.println("<script>alert('구독되었습니다.') </script>");			 
-//				out.flush();				
-//			}
-//
-//			mv.setViewName("/index");//구독하기 전페이지로 전환
-//			return mv;
-//		}else {
-//			out.println("<script>alert('로그인 후 이용 가능합니다.')</script>");
-//			out.flush();
-//			mv.setViewName("/index");//구독하기 전페이지로 전환
-//			return mv;
-//		}
-//		
-//			
-//	}
 	
 	//구독
 		@RequestMapping(value="/subemail.do",produces="application/text;charset=utf-8")

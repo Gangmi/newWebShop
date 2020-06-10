@@ -8,8 +8,12 @@ public class OrderVO {
 	private int ol_id;
 	private int p_id;
 	private int cnt;
+	
 	private String o_date;
 	private String o_delivery;
+	private String p_name;
+	private int p_price;
+	
 	
 	
 	
@@ -24,6 +28,18 @@ public class OrderVO {
 	}
 	public void setO_delivery(String o_delivery) {
 		this.o_delivery = o_delivery;
+	}
+	public String getP_name() {
+		return p_name;
+	}
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
+	}
+	public int getP_price() {
+		return p_price;
+	}
+	public void setP_price(int p_price) {
+		this.p_price = p_price;
 	}
 	public int getO_id() {
 		return o_id;

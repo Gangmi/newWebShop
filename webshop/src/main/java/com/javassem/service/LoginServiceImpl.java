@@ -1,10 +1,13 @@
 package com.javassem.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.javassem.dao.LoginDAOImpl;
 import com.javassem.domain.LoginVO;
+import com.javassem.domain.OrderVO;
 
 @Service("loginService")
 public class LoginServiceImpl implements LoginService {
@@ -50,6 +53,9 @@ public class LoginServiceImpl implements LoginService {
 	public LoginVO checkcoupon(LoginVO vo) {
 		return loginDAO.checkcoupon(vo);
 		
+	}
+	public List<OrderVO> myorder(OrderVO vo){
+		return loginDAO.myorder(vo);
 	}
 	
 }

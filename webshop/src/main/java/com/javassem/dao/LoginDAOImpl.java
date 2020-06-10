@@ -1,10 +1,13 @@
 package com.javassem.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.javassem.domain.LoginVO;
+import com.javassem.domain.OrderVO;
 
 
 
@@ -78,6 +81,12 @@ public class LoginDAOImpl implements LoginDAO{
 	public LoginVO checkcoupon(LoginVO vo) {
 		System.out.println("===> Mybatis checkcoupon() 호출");
 		LoginVO result = mybatis.selectOne("LoginDAO.checkcoupon", vo);
+		return result;
+	}
+
+	public List<OrderVO> myorder(OrderVO vo) {
+		System.out.println("===> Mybatis myorder() 호출");
+		List<OrderVO> result = mybatis.selectList("LoginDAO.myorder", vo);
 		return result;
 	}
 
