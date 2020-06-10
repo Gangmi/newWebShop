@@ -235,7 +235,7 @@ if(wish!=null)
 											class="fa fa-star" aria-hidden="true"></i>
 									</div>
 									<div class="review">
-										<a href="shop.do?p_brand=<%=vo.getP_brand()%>"><%=vo.getP_brand()%></a>
+										<a href="shop.do?p_brand=<%=vo.getP_brand()%>"><h6><%=vo.getP_brand()%></h6></a>
 									</div>
 								</div>
 								<!-- Avaiable -->
