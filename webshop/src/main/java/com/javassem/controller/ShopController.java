@@ -163,6 +163,14 @@ public class ShopController {
 		//총 페이지 지정
 		mv.addObject("totalpage",totalpage);
 		
+		//db에서 꺼내온 데이터들의 이름의 첫 글자를 대문자로 변환
+		for(int i=0; i<result.size(); i++) {
+			String trans=result.get(i).getP_name().substring(0,1);
+			trans=trans.toUpperCase();
+			result.get(i).setP_name(trans+result.get(i).getP_name().substring(1));
+			
+		}
+		
 		// 다음 페이지에 해당하는 물품들을 전달
 		mv.addObject("details", result);
 		
@@ -196,6 +204,14 @@ public class ShopController {
 		ProductVO result = service.getOneProduct(vo);
 		
 		ModelAndView model = new ModelAndView();
+		
+		
+	
+			String trans=result.getP_name().substring(0,1);
+			trans=trans.toUpperCase();
+			result.setP_name(trans+result.getP_name().substring(1));
+			
+		
 		
 		model.addObject("product", result);
 		
