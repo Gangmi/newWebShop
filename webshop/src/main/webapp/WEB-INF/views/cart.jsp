@@ -68,6 +68,26 @@ $(function(){
   		$("#subtotal").attr("value",subtotal);
 
     });
+    $('.check').parents().prevAll(".quantity").find(".qty-text").change(function(){
+    	subtotal=0;
+    	$(".check:checked").each(function (index) {  
+            count = $(this).parents().prevAll(".quantity").find(".qty-text").val();
+            price = $(this).parents().prevAll(".quantity").find(".price").val();
+            subtotal += count*price;
+       }); 
+ 		
+ 		if(subtotal<50000)
+ 		{
+ 			deli = 2500;
+ 		}else{
+ 				deli =0;
+ 			}
+ 		var total = subtotal+deli;
+ 		$("#subtotal").text("$ "+subtotal);
+ 		$("#subtotal").attr("value",subtotal);
+ 		$("#deli").text("$ "+deli);
+ 		$("#total").text("$ "+total);
+        });
     $(".check").change(function(){
     	subtotal=0;
 		
