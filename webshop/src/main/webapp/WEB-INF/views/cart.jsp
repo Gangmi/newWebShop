@@ -16,7 +16,7 @@ $(function(){
 	var subtotal=0;
 	var deli =0;
     $("#selectall").click(function(){
-        
+    	subtotal=0;
         var chk = $(this).is(":checked");//.attr('checked');
         if(chk) $(".check").prop('checked', true);
         else  $(".check").prop('checked', false);
@@ -48,7 +48,7 @@ $(function(){
     });  
 
     $(".quantity").click(function(){
-
+    	subtotal=0;
     	$(".check:checked").each(function (index) {  
              count = $(this).parents().prevAll(".quantity").find(".qty-text").val();
              price = $(this).parents().prevAll(".quantity").find(".price").val();
@@ -69,8 +69,7 @@ $(function(){
 
     });
     $(".check").change(function(){
-
-    	alert('ok');
+    	subtotal=0;
 		
     	if($(this).is(":checked")){
 
