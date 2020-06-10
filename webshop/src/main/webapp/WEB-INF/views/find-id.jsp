@@ -92,14 +92,19 @@
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
              
-             		<% if((String)session.getAttribute("userId")==null){%>                                      
+             		 <% if((String)session.getAttribute("userId")==null){%>                                      
                    <a href="login.do"> Login</a></li>
                    
-                    <%}else{ %>
+                    <%}else if(session.getAttribute("userId").equals("admin")) {%>
+                     ${userId}님 </li>     
+                    <a href="logout.do" >[ Logout ]</a></li>
+                    <a href="managerwindow.do" >[ manager window ]</a></li>
+                    
+                    <% }else{ %>
                      ${userId}님 </li>     
                     <a href="logout.do" >[ Logout ]</a></li>
                     <a  href="member-info.do" >[ edit profile ]</a></li>
-                    <%} %> 
+                    <%}//end of if %> 
                 <a href="cart.do" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(<%= request.getCookies().length-1 %>)</span></a>
                 <a href="wishlist.do" class="fav-nav"><img src="img/core-img/favorites1.png" alt=""> Favourite</a>
                 <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>
@@ -168,9 +173,8 @@
                 <!-- Newsletter Form -->
                 <div class="col-12 col-lg-6 col-xl-5">
                      <div class="newsletter-form mb-200 mr-100 ">
-                        <form action="subemail.do" name="subemail2" id='subemail2' method="post">
-<!--                             <input type="email" id="subemail1" name="subemail1" class="nl-email" placeholder="Your E-mail"> -->
-                            <input  action="subemail.do" type="submit" id="subemail" value="Subscribe">
+                       <form  name="subemail2" id='subemail2' method="post">          
+                            <input   type="submit" id="subemail" value="Subscribe">
                         </form>
                     </div>
                 </div>

@@ -56,35 +56,42 @@ public class LoginController {
 		return message;
 	}
 	
-	//로그인 텝을 누르면 이전 페이지를 세션에 저장해놓는다.
-	@RequestMapping("/login.do")
-	public String loGin( HttpSession session,HttpServletRequest request) {
-		String referer = request.getHeader("Referer");
-		session.setAttribute("repage", referer);
-		return "/login";
-		
-	}
+	/*
+	 * //로그인 텝을 누르면 이전 페이지를 세션에 저장해놓는다.
+	 * 
+	 * @RequestMapping("/login.do") public String loGin( HttpSession
+	 * session,HttpServletRequest request) { String referer =
+	 * request.getHeader("Referer"); session.setAttribute("repage", referer); return
+	 * "/login";
+	 * 
+	 * }
+	 */
 
 	//로그인
 	@RequestMapping("/sign_in.do")
 	public String  sign_in(LoginVO vo, HttpSession session,HttpServletRequest request) {
 
 		LoginVO id = loginservice.signInMember(vo);
-//		String referer = request.getHeader("Referer");
 		ModelAndView mv = new ModelAndView();
 		if (id == null || id.getMid() == null) {
 			return "/login";
 		} else {// 로그인 성공했다면
 			session.setAttribute("sessionTime", new Date().toLocaleString());
 			session.setAttribute("userId", id.getMid());
-			if(id.getMid().equals("admin")) {
-				
-				return "redirect:/dashBoard.do";
-			}else {
+//			if(id.getMid().equals("admin")) {
+//				
+//				return "redirect:/dashBoard.do";
+//			}else {
 				System.out.println("로그인성공");
-				return "redirect:"+session.getAttribute("repage");//로그인창이 뜨기 전 창으로 보냄			
-			}
+				return "redirect:/index.do";		
+//			}
 		}
+		
+	}
+	
+	@RequestMapping("/managerwindow.do")
+	public String managerwindow() {
+		return "redirect:/dashBoard.do";
 		
 	}
 	

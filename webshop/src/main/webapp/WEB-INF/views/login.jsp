@@ -95,11 +95,16 @@
              <% if((String)session.getAttribute("userId")==null){%>                                      
                    <a href="login.do"> Login</a></li>
                    
-                    <%}else{ %>
+                    <%}else if(session.getAttribute("userId").equals("admin")) {%>
+                     ${userId}님 </li>     
+                    <a href="logout.do" >[ Logout ]</a></li>
+                    <a href="managerwindow.do" >[ manager window ]</a></li>
+                    
+                    <% }else{ %>
                      ${userId}님 </li>     
                     <a href="logout.do" >[ Logout ]</a></li>
                     <a  href="member-info.do" >[ edit profile ]</a></li>
-                    <%} %> 
+                    <%}//end of if %> 
                 <a href="cart.do" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(<%= request.getCookies().length-1 %>)</span></a>
                 <a href="wishlist.do" class="fav-nav"><img src="img/core-img/favorites1.png" alt=""> Favourite</a>
                 <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>
@@ -135,7 +140,7 @@
                                      <a id="conf"  name="conf" class="btn amado-btn mb-15">로그인</a>
                                      </div>
                                      <div class="col-md-11 mb-3">
-                                        <input type="text" class="form-control" id="mpass" name="mpass" placeholder="비밀번호" value="" required>
+                                        <input type="password" class="form-control" id="mpass" name="mpass" placeholder="비밀번호" value="" required>
                                     </div>
                  
 <!--                                     <div class="amado-btn-group mt-30 mb-100"> -->
@@ -171,9 +176,7 @@
                 <div class="col-12 col-lg-6 col-xl-5">
                     <div class="newsletter-form mb-200 mr-100 ">
                         <form  name="subemail2" id='subemail2' method="post">
-<!--                             <input type="email" id="subemail1" name="subemail1" class="nl-email" placeholder="Your E-mail"> -->
                             <input  type="submit" id="subemail" value="Subscribe">
-<!--                             <input  action="subemail.do" type="submit" id="subemail" value="Subscribe"> -->
                         </form>
                     </div>
                 </div>
