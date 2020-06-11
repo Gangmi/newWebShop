@@ -209,8 +209,8 @@
                                             <%=vo.getCnt() %>
                                         </td>
                                         <td class="cart_product_desc">
+                                        
                                          <%if(vo.getO_id()==check.getO_id()){%>
-                                       	
                                        	<%}else{%>
                                             <hr> 
                                             <%=vo.getO_delivery() %>
