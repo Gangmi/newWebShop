@@ -162,7 +162,7 @@
 	                                	}
                                 	%> 
                                     <tr>   
-                                      <%if(vo.getO_id()==check.getO_id()){%>
+                                      <%-- <%if(vo.getO_id()==check.getO_id()){%>
                                    
                                     <%}else{ %> 
                                      <tr> 
@@ -171,11 +171,12 @@
                                       </td> 
                                       </tr>                                  
                                      
-                                    <%} %>                        	
+                                    <%} %>   --%>                      	
                                         <td class="cart_product_desc">
                                        	<%if(vo.getO_id()==check.getO_id()){%>
                                        	
                                        	<%}else{%>
+                                       	<hr> 
                                        	 <%=vo.getO_id() %>                                          
                                 		<% }//end of if%>
                                            
@@ -184,25 +185,33 @@
                                         <%if(vo.getO_id()==check.getO_id()){%>
                                        	
                                        	<%}else{%>
+                                       	<hr> 
                                             <%=vo.getO_date().substring(0,10) %>
                                          <% }//end of if%>
                                         </td>
                                         <td class="cart_product_desc" >
+                                        	<%if(vo.getO_id()!=check.getO_id()){%>
+                                       	 	<hr>                                        
+                                			<% }//end of if%>
                                              <%=vo.getP_name() %>
                                         </td>
                                         <td class="cart_product_desc">
-                                            
+                                            <%if(vo.getO_id()!=check.getO_id()){%>
+                                       	 	<hr>                                        
+                                			<% }//end of if%>
                                             <%=vo.getP_price() %>
                                         </td>
                                         <td class="cart_product_desc">
-                                           
+                                           	<%if(vo.getO_id()!=check.getO_id()){%>
+                                       	 	<hr>                                        
+                                			<% }//end of if%>
                                             <%=vo.getCnt() %>
                                         </td>
                                         <td class="cart_product_desc">
                                          <%if(vo.getO_id()==check.getO_id()){%>
                                        	
                                        	<%}else{%>
-                                            
+                                            <hr> 
                                             <%=vo.getO_delivery() %>
                                            <% }//end of if%>
                                         </td>  
