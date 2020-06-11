@@ -19,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.servlet.ModelAndView;
@@ -40,11 +41,11 @@ public class CartController {
 //	return "login";
 //
 //	}
-	
-	@RequestMapping("/cartadd.do")
-	public int cartadd(String p_id,String p_quan,HttpServletResponse response)
+	@ResponseBody
+	@RequestMapping(value="/cartadd.do",method=RequestMethod.POST,produces="applicaton/text; charset=UTF-8")
+	public String cartadd(String p_id,String p_quan,HttpServletResponse response)
 	{
-		int result=0;
+		String result="재고가 없습니다~ㅜㅜ 다른 상품 살펴주세요~";
 		if(Integer.parseInt(p_quan)>0)
 		{
 		Cookie cookie = new Cookie("cart"+p_id, p_id);
@@ -52,7 +53,7 @@ public class CartController {
 		cookie.setPath("/");
 		cookie.setMaxAge(60*60*24*7);
 		response.addCookie(cookie);
-		result=1;
+		result="장바구니 담기 성공!";
 		}
 		return result;
 	}
