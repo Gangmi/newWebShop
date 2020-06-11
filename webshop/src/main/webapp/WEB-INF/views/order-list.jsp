@@ -147,6 +147,7 @@
                                         <th>Price</th>
                                         <th>Quantity</th>                                     
                                         <th>State</th>
+                                         <th>Total</th>
                                     </tr>
                                 </thead>
                                 <tbody>
