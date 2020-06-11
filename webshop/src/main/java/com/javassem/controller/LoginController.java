@@ -14,6 +14,7 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -76,13 +77,14 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/my-order.do")
-	public ModelAndView myorder(OrderVO vo, HttpSession session) {
+	public ModelAndView myorder(OrderVO vo, HttpSession session, HttpServletRequest request) {
 		vo.setM_id((String)session.getAttribute("userId"));
 		List<OrderVO> list = loginservice.myorder(vo);
-		
+		Cookie[] cookies = request.getCookies();
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/order-list");
 		mv.addObject("orderlist", list);
+		mv.addObject("cookies", cookies);
 		return mv;
 		
 	}

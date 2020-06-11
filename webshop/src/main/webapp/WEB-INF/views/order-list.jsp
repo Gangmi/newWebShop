@@ -114,7 +114,8 @@
                     <a  href="member-info.do" >[ edit profile ]</a></li>
                     <a  href="my-order.do" >[ my order ]</a></li>
                     <%}//end of if %> 
-                <a href="cart.do" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>()</span></a>
+                    <%Cookie[] cookies = (Cookie[])request.getAttribute("cookies"); %>
+                <a href="cart.do" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(<%=cookies.length-1 %>)</span></a>
                 <a href="wishlist.do" class="fav-nav"><img src="img/core-img/favorites1.png" alt=""> Favourite</a>
                 <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>
             </div>
