@@ -11,7 +11,7 @@
 
 
 <head>
-
+<script src="./resources/js/login-userInput.js"></script>
 <%
 //전체 페이지
 
