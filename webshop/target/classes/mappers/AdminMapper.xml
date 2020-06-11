@@ -4,82 +4,117 @@
 <mapper namespace="AdminDAO">
 
 
-	<select id="inventoryList" parameterType="product" resultType="product">
+	<select id="inventoryList" parameterType="product"
+		resultType="product">
 		SELECT * FROM PRODUCT
 	</select>
 
-	<select id="memberList" parameterType="member" resultType="member">
-		SELECT m_name,m_id,m_pass,m_tel,m_email,m_addr||' '||m_addr_detail
-		m_addr,m_postcode,m_grade,m_sub FROM member WHERE m_grade!='운영자'
+	<select id="memberList" parameterType="member"
+		resultType="member">
+		SELECT m_name,m_id,m_pass,m_tel,m_email,m_addr||'
+		'||m_addr_detail
+		m_addr,m_postcode,m_grade,m_sub FROM member WHERE
+		m_grade!='운영자'
 	</select>
 
-	<select id="employeeList" parameterType="member" resultType="member">
-		SELECT m_name,m_id,m_pass,m_tel,m_email,m_addr||' '||m_addr_detail
-		m_addr,m_postcode,m_grade,m_sub FROM member WHERE m_grade='운영자'
+	<select id="employeeList" parameterType="member"
+		resultType="member">
+		SELECT m_name,m_id,m_pass,m_tel,m_email,m_addr||'
+		'||m_addr_detail
+		m_addr,m_postcode,m_grade,m_sub FROM member WHERE
+		m_grade='운영자'
 	</select>
 
-	<select id="deliveryList" parameterType="order" resultType="order">
+	<select id="deliveryList" parameterType="order"
+		resultType="order">
 		select * from productorder
 	</select>
 
-	<select id="productInsert" parameterType="product" resultType="product">
-		INSERT INTO product VALUES(SEQ_PRODUCT_ID.nextval,#{p_name},#{p_cat},#{p_price},#{p_quan},#{p_brand},#{p_color},#{p_detail},sysdate,0)
-	</select>
-	
-	<select id="productUpdate" parameterType="product" resultType="product">
-		UPDATE product SET P_NAME = #{p_name},P_CAT = #{p_cat},P_PRICE = #{p_price},P_QUAN = #{p_quan},P_BRAND = #{p_brand},P_COLOR = #{p_color},P_DETAIL = #{p_detail} WHERE P_ID = #{p_id}
+	<select id="productInsert" parameterType="product"
+		resultType="product">
+		INSERT INTO product
+		VALUES(SEQ_PRODUCT_ID.nextval,#{p_name},#{p_cat},#{p_price},#{p_quan},#{p_brand},#{p_color},#{p_detail},sysdate,0)
 	</select>
 
-	<delete id="memberDelete" parameterType="member" >
-		DELETE FROM member WHERE m_id = #{m_id}
+	<select id="productUpdate" parameterType="product"
+		resultType="product">
+		UPDATE product SET P_NAME = #{p_name},P_CAT =
+		#{p_cat},P_PRICE = #{p_price},P_QUAN = #{p_quan},P_BRAND =
+		#{p_brand},P_COLOR = #{p_color},P_DETAIL = #{p_detail} WHERE P_ID =
+		#{p_id}
+	</select>
+
+	<delete id="memberDelete" parameterType="member">
+		DELETE FROM
+		member WHERE m_id = #{m_id}
 	</delete>
 
 	<select id="salesMonth" parameterType="hashMap" resultType="int">
-		select sum(a) from (select ol.o_id ,ol.ol_id , p.p_id , p.p_name ,p.p_price as a ,to_char(po.o_date,'MM') from orderlist ol , product p , productorder po where ol.p_id = p.p_id and ol.o_id = po.o_id and to_char(po.o_date,'MM')=#{month} order by ol.o_id)
+		select sum(a) from (select ol.o_id ,ol.ol_id , p.p_id , p.p_name
+		,p.p_price as a ,to_char(po.o_date,'MM') from orderlist ol , product p
+		, productorder po where ol.p_id = p.p_id and ol.o_id = po.o_id and
+		to_char(po.o_date,'MM')=#{month} order by ol.o_id)
 	</select>
 
-	<select id="salesCategory" parameterType="hashMap" resultType="int">
-		select sum(a) from (select ol.o_id ,ol.ol_id , p.p_id , p.p_name ,p.p_price as a ,to_char(po.o_date,'MM') from orderlist ol , product p , productorder po where ol.p_id = p.p_id and ol.o_id = po.o_id and p.p_cat = #{category} order by ol.o_id)
+	<select id="salesCategory" parameterType="hashMap"
+		resultType="int">
+		select sum(a) from (select ol.o_id ,ol.ol_id , p.p_id ,
+		p.p_name ,p.p_price as a ,to_char(po.o_date,'MM') from orderlist ol ,
+		product p , productorder po where ol.p_id = p.p_id and ol.o_id =
+		po.o_id and p.p_cat = #{category} order by ol.o_id)
 	</select>
 
-	<select id="recentSales" parameterType="hashMap" resultType="int">
-select sum(a)
-from (select ol.o_id "주문번호",ol.ol_id "주문목록번호" , p.p_id "상품아이디" , p.p_name "상품이름" ,p.p_price as a ,to_char(po.o_date,'MM') "주문 날짜"
-      from orderlist ol , product p , productorder po
-      where ol.p_id = p.p_id and ol.o_id = po.o_id AND to_char(po.o_date,'mm-dd')=to_char(sysdate-#{day},'mm-dd')
-      order by ol.o_id)
+	<select id="recentSales" parameterType="hashMap"
+		resultType="int">
+		select sum(a)
+		from (select ol.o_id "주문번호",ol.ol_id "주문목록번호" , p.p_id "상품아이디" , p.p_name
+		"상품이름" ,p.p_price as a ,to_char(po.o_date,'MM') "주문 날짜"
+		from orderlist ol , product p , productorder po
+		where ol.p_id = p.p_id and ol.o_id = po.o_id AND
+		to_char(po.o_date,'mm-dd')=to_char(sysdate-#{day},'mm-dd')
+		order by ol.o_id)
 	</select>
 
 	<select id="orderCount" resultType="int">
-		select count(o_date) from productorder WHERE to_char(o_date,'yy-mm-dd')=to_char(sysdate,'yy-mm-dd')
-	</select>
-	
-	<select id="memberCount" resultType="int">
-		select count(m_date) from member WHERE to_char(m_date,'yy-mm-dd')=to_char(sysdate,'yy-mm-dd')
+		select count(o_date) from
+		productorder WHERE
+		to_char(o_date,'yy-mm-dd')=to_char(sysdate,'yy-mm-dd')
 	</select>
 
-	<insert id="visitCount" >
-		INSERT INTO VISIT (V_DATE) VALUES (sysdate)
+	<select id="memberCount" resultType="int">
+		select count(m_date) from
+		member WHERE to_char(m_date,'yy-mm-dd')=to_char(sysdate,'yy-mm-dd')
+	</select>
+
+	<insert id="visitCount">
+		INSERT INTO VISIT (V_DATE) VALUES
+		(sysdate)
 	</insert>
-	
+
 	<select id="viewList" parameterType="hashMap" resultType="int">
-		select count(v_date) from visit where to_char(v_date,'YY/MM/DD') = to_char(sysdate-#{view},'YY/MM/DD')
+		select
+		count(v_date) from visit where to_char(v_date,'YY/MM/DD') =
+		to_char(sysdate-#{view},'YY/MM/DD')
 	</select>
-	
+
 	<select id="getNextid" resultType="int">
-		select SEQ_PRODUCT_ID.nextval from dual
+		select SEQ_PRODUCT_ID.nextval
+		from dual
 	</select>
-	
+
 	<select id="salesAge" parameterType="hashMap" resultType="int">
-	select sum(a)
-from (select ol.o_id "주문번호",ol.ol_id "주문목록번호" , p.p_id "상품아이디" , p.p_name "상품이름" ,p.p_price as a ,to_char(po.o_date,'MM') "주문 날짜"
-      from orderlist ol , product p , productorder po , member m
-      where ol.p_id = p.p_id and ol.o_id = po.o_id and m.m_id = po.m_id and m_age like #{age}||'%'
-      order by ol.o_id)
+		select sum(a)
+		from (select ol.o_id "주문번호",ol.ol_id "주문목록번호" , p.p_id "상품아이디" , p.p_name
+		"상품이름" ,p.p_price as a ,to_char(po.o_date,'MM') "주문 날짜"
+		from orderlist ol , product p , productorder po , member m
+		where ol.p_id = p.p_id and ol.o_id = po.o_id and m.m_id = po.m_id and m_age
+		like #{age}||'%'
+		order by ol.o_id)
 	</select>
-	
+
 	<update id="updateDeli" parameterType="order">
-		update productorder set o_delivery=#{o_delivery} where o_id=#{o_id}
+		update productorder set
+		o_delivery=#{o_delivery} where o_id=#{o_id}
 	</update>
 
 

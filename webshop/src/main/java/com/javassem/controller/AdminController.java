@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +23,7 @@ import com.javassem.service.AdminService;
 
 @Controller
 public class AdminController {
-	
+
 	ProductVO vo;
 	@Autowired
 	private AdminService service;
@@ -44,7 +42,7 @@ public class AdminController {
 		mv.addObject("viewCount", result3);
 		return mv;
 	}
-	
+
 	// 회원 삭제
 	@RequestMapping("/memberDelete.do")
 	public ModelAndView memberDelete(MemberVO vo) {
@@ -54,12 +52,12 @@ public class AdminController {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("mv 객체 생성");
 		mv.setViewName("admin/memberManagement");
-		mv.addObject("result",result);
+		mv.addObject("result", result);
 		System.out.println(" list 저장");
-		
+
 		return mv;
 	}
-	
+
 	// 차트
 	@RequestMapping("/charts.do")
 	public ModelAndView charts() {
@@ -69,7 +67,7 @@ public class AdminController {
 		int[] day = service.recentSales();
 		int[] age = service.salesAge();
 		System.out.println("디비 갔다옴 차트");
-		
+
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("admin/charts");
 		mv.addObject("month", month);
@@ -78,7 +76,7 @@ public class AdminController {
 		mv.addObject("age", age);
 		return mv;
 	}
-	
+
 	// 회원 관리
 	@RequestMapping("/memberManagement.do")
 	public ModelAndView memberManagement(MemberVO vo) {
@@ -88,21 +86,21 @@ public class AdminController {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("mv 객체 생성");
 		mv.setViewName("admin/memberManagement");
-		mv.addObject("listVO",listVO);
+		mv.addObject("listVO", listVO);
 		System.out.println(" list 저장");
 		return mv;
 	}
 
 	// 사원 관리
 	@RequestMapping("/employeeManagement.do")
-	public ModelAndView employeeManagement (MemberVO vo) {
+	public ModelAndView employeeManagement(MemberVO vo) {
 		System.out.println("컨트롤 도착");
 		List<MemberVO> listVO = service.selectEmployee(vo);
 		System.out.println("디비 갔다옴");
 		ModelAndView mv = new ModelAndView();
 		System.out.println("mv 객체 생성");
 		mv.setViewName("admin/employeeManagement");
-		mv.addObject("listVO",listVO);
+		mv.addObject("listVO", listVO);
 		System.out.println(" list 저장");
 		return mv;
 	}
@@ -117,8 +115,8 @@ public class AdminController {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("mv 객체 생성");
 		mv.setViewName("admin/inventorySituation");
-		mv.addObject("listVO",listVO);
-		mv.addObject("nextval",nextval);
+		mv.addObject("listVO", listVO);
+		mv.addObject("nextval", nextval);
 		System.out.println(" list 저장");
 		return mv;
 	}
@@ -132,7 +130,7 @@ public class AdminController {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("mv 객체 생성");
 		mv.setViewName("admin/deliverySituation");
-		mv.addObject("listVO",listVO);
+		mv.addObject("listVO", listVO);
 		System.out.println(" list 저장");
 		return mv;
 	}
@@ -151,7 +149,7 @@ public class AdminController {
 		System.out.println("디비 갔다옴2222");
 		this.vo = vo;
 		MultifileUp(multi);
-		
+
 		return "redirect:/inventorySituation.do";
 	}
 
@@ -163,51 +161,51 @@ public class AdminController {
 		System.out.println("디비 갔다옴11111111111");
 		this.vo = vo;
 		System.out.println("vo에 저장");
-		
+
 		MultifileUp(multi);
-		
+
 		return "redirect:/inventorySituation.do";
 	}
 
 	// ajaxUpload
-	@RequestMapping(value="/ajaxUpload.do",method=RequestMethod.GET)
+	@RequestMapping(value = "/ajaxUpload.do", method = RequestMethod.GET)
 	public void ajaxUpload() {
 		System.out.println("ajax 옴");
 	}
-	
+
 	// 파일 업로드
-	@RequestMapping(value= "/MultiUpload.do", method=RequestMethod.POST)
+	@RequestMapping(value = "/MultiUpload.do", method = RequestMethod.POST)
 	public String MultifileUp(MultipartHttpServletRequest multi) {
-System.out.println("파일 업로드 실행");
+		System.out.println("파일 업로드 실행");
 		String path = "C:\\Users\\Canon\\Documents\\newWebShop\\webshop\\src\\main\\webapp\\resources\\img\\product-img\\";
 		String fileName = ""; // 업로드 되는 파일명
 
 		File dir = new File(path);
-		if(!dir.isDirectory()) {
+		if (!dir.isDirectory()) {
 			dir.mkdir();
 		}
 		Iterator<String> files = multi.getFileNames();
 		MultipartFile mpf = multi.getFile(files.next());
 
-		if(mpf == null || mpf.getSize() <= 0) {
+		if (mpf == null || mpf.getSize() <= 0) {
 			System.out.println("파일용랑 x");
 			return "fileSubmit";
 		}
 
 		List<MultipartFile> fileList = multi.getFiles("file");
-		int i=0;
-		for(MultipartFile filePart : fileList) {
+		int i = 0;
+		for (MultipartFile filePart : fileList) {
 			fileName = filePart.getOriginalFilename(); // 원본 파일명
-			
+
 			System.out.println("실제  파일 이름 : " + fileName);
-			
+
 			i++;
-			
-			fileName = vo.getP_cat()+vo.getP_id()+"_"+i+".jpg";
-		    
+
+			fileName = vo.getP_cat() + vo.getP_id() + "_" + i + ".jpg";
+
 			long fileSize = filePart.getSize(); // 파일 사이즈
 
-			if(!fileName.equals("")) { // 파일 쓰기
+			if (!fileName.equals("")) { // 파일 쓰기
 				try {
 					FileOutputStream fs = new FileOutputStream(path + fileName);
 					fs.write(filePart.getBytes());
@@ -224,30 +222,25 @@ System.out.println("파일 업로드 실행");
 	@RequestMapping("/setTotalCount.do")
 	public String setTotalCount() {
 		System.out.println("setTotalCount 실행");
-		
+
 		service.setTotalCount();
 		return "admin/dashboard.do";
 	}
 
-
-	 @ResponseBody
-	 @RequestMapping(value="/updateDeli.do"  ,produces = "application/text; charset=UTF-8")
+	// 배송상태 변경update
+	@ResponseBody
+	@RequestMapping(value = "/updateDeli.do", produces = "application/text; charset=UTF-8")
 	public void updateDeli(OrderVO vo) {
 		System.out.println("updateDeli 실행");
-		
+
 		int result = service.updateDeli(vo);
-		
-		if(result > 0) {
+
+		if (result > 0) {
 			System.out.println("배송상태 변경성공");
-		}else {
+		} else {
 			System.out.println("배송상태 변경실패");
 		}
-		return ;
+		return;
 	}
-
-
-
-
-	
 
 }

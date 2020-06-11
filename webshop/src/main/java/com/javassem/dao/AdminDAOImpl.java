@@ -177,8 +177,6 @@ public class AdminDAOImpl implements AdminDAO {
 		
 		HashMap<String, Integer> hs = new HashMap<String, Integer>();
 		
-//		String[]arr = {"m.m_age >= 10 and 20 > m.m_age","m.m_age >= 20 and 30 > m.m_age","m.m_age >= 30 and 40 > m.m_age","m.m_age >= 40 and 50 > m.m_age","m.m_age >= 50 and 60 > m.m_age","m.m_age >= 60"};
-		
 	    for(int i = 0; i< 6; i++ ){
 	    
 	    hs.put("age",i+1);

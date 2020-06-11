@@ -473,9 +473,9 @@ List<ProductVO> result = (List) request.getAttribute("details");
 				<!-- Newsletter Form -->
 				<div class="col-12 col-lg-6 col-xl-5">
 					 <div class="newsletter-form mb-200 mr-100 ">
-                        <form action="subemail.do" name="subemail2" id='subemail2' method="post">
+                        <form name="subemail2" id='subemail2' method="post">
 <!--                             <input type="email" id="subemail1" name="subemail1" class="nl-email" placeholder="Your E-mail"> -->
-                            <input  action="subemail.do" type="submit" id="subemail" value="Subscribe">
+                            <input type="submit" id="subemail" value="Subscribe">
                         </form>
                     </div>
 				</div>
