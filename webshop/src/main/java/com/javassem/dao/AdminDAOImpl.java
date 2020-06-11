@@ -22,6 +22,7 @@ public class AdminDAOImpl implements AdminDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 
+	// 제품 리스트
 	public List<ProductVO> selectProduct(ProductVO vo) {
 		System.out.println("mybatis inventoryList() 호출");
 		return mybatis.selectList("AdminDAO.inventoryList",vo);
@@ -29,34 +30,34 @@ public class AdminDAOImpl implements AdminDAO {
 	
 	public void showChart() {
 		System.out.println("mybatis showchart() 호출");
-		
 	}
-
+	// 회원 리스트
 	public List<MemberVO> selectMember(MemberVO vo) {
 		System.out.println("mybatis memberList() 호출");
 		return mybatis.selectList("AdminDAO.memberList",vo);
 	}
-
+	// 사원 리스트
 	public List<MemberVO> selectEmployee(MemberVO vo) {
 		System.out.println("mybatis employeeList() 호출");
 		return mybatis.selectList("AdminDAO.employeeList",vo);
 	}
-
+	// 주문 리스트 (delivery에서 수정)
 	public List<OrderVO> selectDelivery(OrderVO vo) {
 		System.out.println("mybatis deliveryList() 호출");
 		return mybatis.selectList("AdminDAO.deliveryList",vo);
 	}
-
+	// 재고 인썰트
 	public List<ProductVO> inventoryInsert(ProductVO vo) {
 		System.out.println("mybatis productInsert() 호출");
 		return mybatis.selectList("AdminDAO.productInsert",vo);
 	}
-
+	// 재고 업데이트
 	public List<ProductVO> inventoryUpdate(ProductVO vo) {
 		System.out.println("mybatis productUpdate() 호출");
 		return mybatis.selectList("AdminDAO.productUpdate",vo);
 	}
 
+	// 회원 삭제 버튼
 	public int memberDelete(MemberVO vo) {
 		System.out.println("mybatis memberDelete() 호출");
 		return mybatis.delete("AdminDAO.memberDelete",vo);
@@ -120,7 +121,7 @@ public class AdminDAOImpl implements AdminDAO {
 	    return result;
 	}
 	
-	// 일일 주문량
+	// 일일 주문건 수
 	public int orderCount() {
 		
 		return mybatis.selectOne("AdminDAO.orderCount");
@@ -131,6 +132,7 @@ public class AdminDAOImpl implements AdminDAO {
 		return mybatis.selectOne("AdminDAO.memberCount");
 	}
 	
+	// 대시보드 방문자 수
 	public int[] viewCount() {
 		
 		System.out.println("mybatis viewList() 호출");
@@ -190,7 +192,7 @@ public class AdminDAOImpl implements AdminDAO {
 		
 	}
 	
-	
+	// 배송상태 변경
 	public int updateDeli(OrderVO vo) {
 		System.out.println("updateDeli DAO 도착");
 		

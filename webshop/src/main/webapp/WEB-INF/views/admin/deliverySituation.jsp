@@ -67,21 +67,21 @@
 
 		<ul class="nav menu">
 			<li><a href="dashBoard.do"><em class="fa fa-dashboard">&nbsp;</em>
-					대시보드</a></li>
+					Dashboard</a></li>
 			<li><a href="charts.do"><em class="fa fa-bar-chart">&nbsp;</em>
-					차트</a></li>
+					Charts</a></li>
 			<li><a href="memberManagement.do"><em class="fa fa-clone">&nbsp;</em>
-					회원 관리</a></li>
+					Member Management</a></li>
 			<li><a href="employeeManagement.do"><em class="fa fa-clone">&nbsp;</em>
-					사원 관리</a></li>
+					Employee Management</a></li>
 			<li><a href="inventorySituation.do"><em class="fa fa-clone">&nbsp;</em>
-					재고 현황</a></li>
+					Inventory Situation</a></li>
 			<li class="active"><a href="deliverySituation.do"><em
-					class="fa fa-clone">&nbsp;</em> 주문 현황</a></li>
+					class="fa fa-clone">&nbsp;</em> Order Situation</a></li>
 			<li><a href="consultingReservation.do"><em
 					class="fa fa-clone">&nbsp;</em> Consulting Reservation</a></li>
 			<li><a href="index.do"><em class="fa fa-toggle-off">&nbsp;</em>
-					홈으로</a></li>
+					Shop</a></li>
 			<li><a href="logout.do"><em class="fa fa-power-off">&nbsp;</em>
 					Logout</a></li>
 		</ul>

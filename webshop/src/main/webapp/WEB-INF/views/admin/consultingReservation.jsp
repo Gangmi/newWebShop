@@ -202,7 +202,7 @@ body {
 			<li><a href="inventorySituation.do"><em class="fa fa-clone">&nbsp;</em>
 					Inventory Situation</a></li>
 			<li><a href="deliverySituation.do"><em
-					class="fa fa-clone">&nbsp;</em> Delivery Situation</a></li>
+					class="fa fa-clone">&nbsp;</em> Order Situation</a></li>
 			<li class="active"><a href="consultingReservation.do"><em
 					class="fa fa-clone">&nbsp;</em> Consulting Reservation</a></li>
 			<li><a href="index.do"><em class="fa fa-toggle-off">&nbsp;</em> shop</a></li>

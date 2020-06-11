@@ -121,7 +121,7 @@ public class AdminController {
 		return mv;
 	}
 
-	// 배송 현황
+	// 주문 리스트
 	@RequestMapping("/deliverySituation.do")
 	public ModelAndView deliverySituation(OrderVO vo) {
 		System.out.println("컨트롤 도착");
@@ -219,6 +219,7 @@ public class AdminController {
 		return "redirect:/inventorySituation.do";
 	}
 
+	// 페이지 로딩 시 방문자 수 1 db에 올림
 	@RequestMapping("/setTotalCount.do")
 	public String setTotalCount() {
 		System.out.println("setTotalCount 실행");

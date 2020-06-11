@@ -63,7 +63,7 @@
 		<li class="active"><a href="inventorySituation.do"><em
 				class="fa fa-clone">&nbsp;</em> Inventory Situation</a></li>
 		<li><a href="deliverySituation.do"><em
-				class="fa fa-clone">&nbsp;</em> Delivery Situation</a></li>
+				class="fa fa-clone">&nbsp;</em> Order Situation</a></li>
 		<li><a href="consultingReservation.do"><em
 				class="fa fa-clone">&nbsp;</em> Consulting Reservation</a></li>
 		<li><a href="index.do"><em class="fa fa-toggle-off">&nbsp;</em> shop</a></li>
@@ -297,7 +297,7 @@ var header = {
 		</thead>
 
 		<c:forEach items="${listVO }" var="list">
-		<tr style="height:10px" class="p_vo">
+		<tr class="p_vo">
 			<td>${list.p_id}</td>
 			<td>${list.p_name}</td>
 			<td>${list.p_cat}</td>
@@ -305,7 +305,7 @@ var header = {
 			<td>${list.p_quan}</td>
 			<td>${list.p_brand}</td>
 			<td>${list.p_color}</td>
-			<td style="overflow:hidden;height:10px">${list.p_detail}</td>
+			<td>${list.p_detail}</td>
 			<td>${list.p_date}</td>
 			<td>${list.soldcount}</td>
 		</tr>

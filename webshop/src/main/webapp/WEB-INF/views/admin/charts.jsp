@@ -51,7 +51,7 @@
 			<div class="clear"></div>
 		</div>
 		<div class="divider"></div>
-		// 네비게이션 탭 ********************
+<!-- 		 네비게이션 탭 ******************** -->
 		<ul class="nav menu">
 			<li><a href="dashBoard.do"><em class="fa fa-dashboard">&nbsp;</em>
 					Dashboard</a></li>
@@ -64,7 +64,7 @@
 			<li><a href="inventorySituation.do"><em class="fa fa-clone">&nbsp;</em>
 					Inventory Situation</a></li>
 			<li><a href="deliverySituation.do"><em class="fa fa-clone">&nbsp;</em>
-					Delivery Situation</a></li>
+					Order Situation</a></li>
 			<li><a href="consultingReservation.do"><em
 					class="fa fa-clone">&nbsp;</em> Consulting Reservation</a></li>
 			<li><a href="index.do"><em class="fa fa-toggle-off">&nbsp;</em>
