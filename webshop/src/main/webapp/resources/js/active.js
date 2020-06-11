@@ -254,7 +254,15 @@
 			 contentType:'application/x-www-form-urlencoded;charset=UTF-8', //한글 설정
 			 data:"p_id="+p_id+"&p_quan="+p_quan,
 			 success:function(resultData){
-			 alert("성공");
+			 if(resultData>0)
+				 {
+				 	alert("장바구니 담겼습니다.");
+				 }
+			 else
+				 {
+				 	alert("재고가 없습니다~ㅜㅜ 다른 상품 살펴주세요~.");
+				 }
+				 
 			 }
 			 });
 		
