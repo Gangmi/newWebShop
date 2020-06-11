@@ -182,7 +182,7 @@ $(function(){
 
 
 </script>
-<script> src="./resources/js/login-userInput.js"></script>
+<script src="./resources/js/login-userInput.js"></script>
 <head>
 
 </style>
