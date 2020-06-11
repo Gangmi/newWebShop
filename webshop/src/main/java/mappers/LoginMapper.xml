@@ -41,6 +41,20 @@
 		ORDER BY pro_order.o_id
 		
 	</select>
+	<select id="myorder_sum" parameterType="order" resultType="order">	
+	SELECT o_id,sum(sum1) p_price
+	FROM(
+		SELECT pro_order.o_id o_id,pro.p_price*orderl.cnt sum1
+		FROM  PRODUCTORDER pro_order
+		INNER JOIN ORDERLIST orderL
+		ON pro_order.o_id = orderL.o_id
+		INNER JOIN PRODUCT pro
+		ON pro.P_ID = orderL.P_ID
+		WHERE pro_order.m_id = #{m_id}
+		ORDER BY pro_order.o_id)
+	GROUP BY o_id
+	ORDER BY o_id
+	</select>	
 	
 	
 	<!-- 아이디찾기-->

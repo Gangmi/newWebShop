@@ -150,12 +150,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <!-- 리스트들을 가져온다. -->
                                  <% List<OrderVO> list= (List<OrderVO>)request.getAttribute("orderlist"); %>
-                                <%  for(int i=0;i<list.size();i++){ 
+                                 <% List<OrderVO> listsum= (List<OrderVO>)request.getAttribute("orderlist_sum"); %>
+                                <%  
+                                OrderVO list_sum = new OrderVO();
+								int cnt=0;
+                                for(int i=0;i<list.size();i++){ 
+                                	//출력리스트
                                 	OrderVO vo = new OrderVO();
+                                	
+                                	//원본 i번째와 i-1값을 검사할때 쓰임
                                 	OrderVO check = new OrderVO();
+                                	
                                 	vo = list.get(i);
                                 	int sum = 0;
+                                		//검사할때 필요함
 	                                	if((i-1)>=0){
 	                                		check = list.get(i-1);
 	                                	}else{
@@ -163,20 +173,11 @@
 	                                	}
                                 	%> 
                                     <tr>   
-                                      <%-- <%if(vo.getO_id()==check.getO_id()){%>
-                                   
-                                    <%}else{ %> 
-                                     <tr> 
-                                      <td colspan="6" class="cart_product_desc">
-                                     <hr>
-                                      </td> 
-                                      </tr>                                  
-                                     
-                                    <%} %>   --%>                      	
+                                                       	
                                         <td class="cart_product_desc">
-                                       	<%if(vo.getO_id()==check.getO_id()){%>
+                                       	<%if(vo.getO_id()==check.getO_id()){//아이디가 같으면 아무것도 안찍음%>
                                        	
-                                       	<%}else{%>
+                                       	<%}else{//아이디가 달라지면 찍음%>
                                        	<hr> 
                                        	 <%=vo.getO_id() %>                                          
                                 		<% }//end of if%>
@@ -216,6 +217,16 @@
                                             <%=vo.getO_delivery() %>
                                            <% }//end of if%>
                                         </td>  
+                                         <td class="cart_product_desc">
+                                        
+                                         <%if(vo.getO_id()==check.getO_id()){%>
+                                         
+                                       	<%}else{%>
+                                            <hr> 
+                                            <%=listsum.get(cnt).getP_price() %>
+                                            <%cnt++;//아이디가 달라지는 순간 증가시켜서 주문번호에 맞는 총합을 가져옴 %>
+                                           <% }//end of if%>
+                                        </td> 
                                   
                                   
                                     <%}//end of for %> 

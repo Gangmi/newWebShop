@@ -27,5 +27,7 @@ public interface LoginService {
 
 	public List<OrderVO> myorder(OrderVO vo);
 
+	public List<OrderVO> myorder_sum(OrderVO vo);
+
 	
 }

@@ -80,10 +80,12 @@ public class LoginController {
 	public ModelAndView myorder(OrderVO vo, HttpSession session, HttpServletRequest request) {
 		vo.setM_id((String)session.getAttribute("userId"));
 		List<OrderVO> list = loginservice.myorder(vo);
+		List<OrderVO> list_sum = loginservice.myorder_sum(vo);
 		Cookie[] cookies = request.getCookies();
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/order-list");
 		mv.addObject("orderlist", list);
+		mv.addObject("orderlist_sum", list_sum);
 		mv.addObject("cookies", cookies);
 		return mv;
 		

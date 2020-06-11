@@ -90,6 +90,12 @@ public class LoginDAOImpl implements LoginDAO{
 		return result;
 	}
 
+	public List<OrderVO> myorder_sum(OrderVO vo) {
+		System.out.println("===> Mybatis myorder_sum() 호출");
+		List<OrderVO> result = mybatis.selectList("LoginDAO.myorder_sum", vo);
+		return result;
+	}
+
 	
 
 }

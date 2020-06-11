@@ -26,4 +26,6 @@ public interface LoginDAO {
 	public LoginVO checkcoupon(LoginVO vo);
 	
 	public List<OrderVO> myorder(OrderVO vo);
+	
+	public List<OrderVO> myorder_sum(OrderVO vo);
 }
