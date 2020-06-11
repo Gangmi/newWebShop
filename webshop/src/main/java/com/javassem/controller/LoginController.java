@@ -160,12 +160,14 @@ public class LoginController {
 		return mv;
 	}
 	
+	//회원정보 수정
 	@RequestMapping("/update_Member.do")
 	public ModelAndView  updateMember(LoginVO vo) {
+		//회원정보를 수정함
 		int result = loginservice.updateMember(vo);
 
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/index");
+		mv.setViewName("/index");//메인 화면으로 리턴
 		return mv;
 		
 	}
@@ -179,7 +181,7 @@ public class LoginController {
 		session. invalidate();
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/index");
+		mv.setViewName("/index");//메인 화면으로 리턴
 		return mv;
 	}
 	
@@ -215,8 +217,8 @@ public class LoginController {
 
 	//이메일 보내는 기능
 	public static void gmailSend(LoginVO vo) {
-        String user = "junpublic97@gmail.com"; // 네이버일 경우 네이버 계정, gmail경우 gmail 계정
-        String password = "Wjdwnsrjatk97!";   // 패스워드
+        String user = "cozinessimh@gmail.com"; // 네이버일 경우 네이버 계정, gmail경우 gmail 계정
+        String password = "coziness1!";   // 패스워드
 
         // SMTP 서버 정보를 설정한다.
         Properties prop = new Properties();
