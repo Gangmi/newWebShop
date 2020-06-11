@@ -240,10 +240,10 @@ public class LoginController {
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(vo.getMemail())); 
 
             // Subject
-            message.setSubject("정준주식회사 비밀번호찾기"); //메일 제목을 입력
+            message.setSubject("Coziness 비밀번호"); //메일 제목을 입력
 
             // Text
-            message.setText("=================================================\n"+vo.getMid()+" 님의 비밀번호는 '"+vo.getMpass()+"'입니다 .\n"+"=================================================\n");//메일 내용을 입력
+            message.setText("Coziness 비밀번호찾기 결과입니다.\n=================================================\n"+vo.getMid()+" 님의 비밀번호는 '"+vo.getMpass()+"'입니다 .\n"+"=================================================\n");//메일 내용을 입력
               
            
             // send the message
