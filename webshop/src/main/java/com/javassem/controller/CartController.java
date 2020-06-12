@@ -41,15 +41,18 @@ public class CartController {
 //	return "login";
 //
 //	}
+	
+	// shop에서 장바구니 버튼 눌렀을때
 	@ResponseBody
 	@RequestMapping(value="/cartadd.do",method=RequestMethod.POST,produces="applicaton/text; charset=UTF-8")
 	public String cartadd(String p_id,String p_quan,HttpServletResponse response)
 	{
+		// 재고량에 따른 alert창 글귀
 		String result="재고가 없습니다~ㅜㅜ 다른 상품 살펴주세요~";
 		if(Integer.parseInt(p_quan)>0)
 		{
 		Cookie cookie = new Cookie("cart"+p_id, p_id);
-
+		//cookie로 장바구니 입력
 		cookie.setPath("/");
 		cookie.setMaxAge(60*60*24*7);
 		response.addCookie(cookie);
@@ -60,19 +63,22 @@ public class CartController {
 
 
 
+	//장바구니
 	@RequestMapping("/cart.do") 
 	public ModelAndView cart(String resultorder, String delstr,String p_id,HttpServletResponse response, HttpServletRequest request) {
 
-		
 		List<ProductVO> seq = new ArrayList<ProductVO>();
+		// add to cart 시 상품의 아이디를 가지고 있을 경우
 		if(!(p_id==null))
 		{
+			//cookie로 장바구니 입력
 			Cookie cookie = new Cookie("cart"+p_id, p_id);
-
+			
 			cookie.setPath("/");
 			cookie.setMaxAge(60*60*24*7);
 			response.addCookie(cookie);
 			ProductVO vo = new ProductVO();
+			//새로 추가된 장바구니 상품 리스트에 추가하여 디비에서 화면에 출력할 상품아이디 입력
 			vo.setP_id(Integer.parseInt(p_id));
 			seq.add(vo);
 			try {
@@ -82,13 +88,16 @@ public class CartController {
 				e.printStackTrace();
 			}
 		}
+		//장바구니 삭제시
 		if(delstr!=null)
 		{
+			//장바구니 삭제 상품아이디 배열에 담아 가지고 옴
 			String[] array = delstr.split(",");
 
 			//출력				
 			for(int i=0;i<array.length;i++) {
 
+				//쿠키에서 장바구니 목록 삭제
 				Cookie delcookie = new Cookie("cart"+array[i], null);
 				delcookie.setMaxAge(0);
 				delcookie.setPath("/");
@@ -104,6 +113,7 @@ public class CartController {
 			}
 		}
 		
+		//장바구니 출력화면 보여주기 위한 쿠키 값들 가져오기
 		Cookie[] cookies = request.getCookies(); //request로 받고
 		List<ProductVO> list =new ArrayList<ProductVO>();
 		int total=0;
@@ -112,16 +122,18 @@ public class CartController {
 			
 			for(int i=1; i<cookies.length; i++) //모든 쿠키 출력
 			{
+				//장바구니 화면에 출력할 정보들 가져오기 위한 상품아이디들 리스트에 입력
 				ProductVO vo = new ProductVO();
 				vo.setP_id(Integer.parseInt(cookies[i].getValue()));
 				seq.add(vo);
 
 			} //cookieN에 대한 정보가 다 사라져있어야 함
+			//mapper에서 상품 정보를 디비에서 select
 			list = service.getShopList(seq);
 
 			//System.out.println(list.getP_cat());
 
-			
+			//가져온 상품정보 중 가격을 가지고 장바구니에 총합계 표시하기 위한 for문
 			for(int i=0; i<list.size();i++)
 			{
 				ProductVO result = new ProductVO();
@@ -130,16 +142,16 @@ public class CartController {
 			}
 			
 		}
-		
-		
-
+		//cart.jsp 에 가지고 갈 정보들 입력
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("cart");
 		mv.addObject("list",list);
 		mv.addObject("total", total);
 
+		//만약 cart에서 checkout시 성공을 한다면 resultorder가 0보다 크게 설정해놓음
 		if(resultorder!=null)
 		{
+			// cart로 전환될때 주문 완료 alert창을 띄우기 위한 구분
 			if(Integer.parseInt(resultorder)>0)
 			{
 			mv.addObject("resultorder", resultorder);
@@ -149,13 +161,11 @@ public class CartController {
 		return mv;
 
 	}
-	
+	//cart에서 checkout했을 때 실행하는 컨트롤러
 	@RequestMapping(value="/checkout.do")
 	public ModelAndView checkout(String count, String id, String subtotal,HttpServletResponse response, HttpServletRequest request,HttpSession session)
 	{	
-		
-		
-
+		//카트에서 수량과 상품아이디들을 가지고 옴
 		String[] countarray = count.split(",");
 		String[] idarray = id.split(",");
 		ArrayList<String> countlist = new ArrayList<String>();
@@ -165,37 +175,41 @@ public class CartController {
 			countlist.add(countarray[i]);
 			idlist.add(idarray[i]);
 		}
+		// 세션에 수량과 상품아이디를 저장시킴
 	     session.setAttribute("countlist",countlist);
 	     session.setAttribute("idlist",idlist);
+	     
+	     // 만약 세션에 로그인 아이디가 없다면
 		String userId = (String)session.getAttribute("userId");
-		System.out.println("****************id값"+userId);
 		ModelAndView mv=new ModelAndView();
 		if(userId==null)
 		{
+			//login창으로 전환시킴
 			mv.setViewName("redirect:login.do");
 			return mv;
 		}
 		else {
+			//로그인이 되어 있다면 
 		LoginVO vo = new LoginVO();
 		vo.setMid(userId);
+		//mapper에서 로그인 아이디를 가지고 있는 회원 정보를 가지고 옴
 		LoginVO result = service.getmemberInfo(vo);
+		//mapper에서 로그인 아이디를 가지고 있는 상품정보를 가지고 옴
 		CouponVO couvo = service.getmembercoupon(vo);
 		
+		//checkout 페이지 전환 하면서 상품들의 정보를 가지고 감
 		mv.setViewName("checkout");
 		mv.addObject("result",result);
 		if(couvo!=null)
 		{
+			//만약 쿠폰이 있다면 쿠폰의 정보도 넘김
 			mv.addObject("couvo",couvo);
 		}
 		
 		mv.addObject("subtotal",subtotal);
 		return mv;}
 	}
-	
-	
-
-
-
+	// wishlist 
 	@RequestMapping("/wishlist.do")
 	public ModelAndView wishlist(String delstr,String p_id,HttpSession session)
 	{
