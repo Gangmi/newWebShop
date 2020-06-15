@@ -61,9 +61,11 @@ public class ShopController {
 		
 		//만약 가격에 대한 검색이 들어오지 않으면
 		if(vo.getStartprice()==0) {
+			//시작가격과 끝 가격을 지정해줌
 			vo.setStartprice(1000);
 			vo.setEndprice(25000);
 			
+			//model에 추가
 			mv.addObject("startprice",vo.getStartprice());
 			mv.addObject("endprice",vo.getEndprice());
 			
@@ -125,12 +127,7 @@ public class ShopController {
 		
 		System.out.println(vo.getOrdermethod()+"색을 눌렀을 때 정렬방법");
 		
-//		
-//		System.out.println(vo.getP_cat());
-//		System.out.println(vo.getItemQuan());
-//		System.out.println(vo.getP_brand());
-//		
-		
+
 	
 		// 해당하는 카테고리의 전체 갯수를 가져와서 몇 페이지를 할 지 결정
 

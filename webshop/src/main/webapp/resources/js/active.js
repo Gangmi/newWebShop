@@ -95,36 +95,41 @@
 		$.preventDefault();
 	});
 
-	// :: 11.0 Slider Range Price Active Code
+	// 가격슬라이더에서 변화가 일어났을 때 , 실행되는 코드
 	$('.slider-range-price').each(
 			function() {
+				//슬라이더의 초기 값 설정
 				var min = jQuery(this).data('min');
 				var max = jQuery(this).data('max');
 				var unit = jQuery(this).data('unit');
-				//var value_min = jQuery(this).data('value-min');
-				//var value_max = jQuery(this).data('value-max');
+			
+				//만약 가격검색을 해서 저장된 값이 있다면 가져오는 부분
 				var value_min = $("#startprice").val();
 				var value_max = $("#endprice").val();
 				var label_result = jQuery(this).data('label-result');
 				var t = $(this);
+				//슬라이더 속성을 사용
 				$(this).slider(
 						{
 							range : true,
 							min : min,
 							max : max,
 							values : [ value_min, value_max ],
+							//슬라이딩이 발생했을 때
 							slide : function(event, ui) {
+								//그때 사용자가 설정한 값을 화면의 Startprice 와 endprice로 설정
 								
 								$("#startprices").val(ui.values[0]);
 								$("#endprices").val(ui.values[1]);
 
+								//화면에 보여줄 값을 설정
 								var result = label_result + " " + unit
 										+ ui.values[0] + ' - ' + unit
 										+ ui.values[1];
-								console.log(t);
+								// 슬라이더를 움직였을 때 해당 값을 화면에 html로 추가
 								t.closest('.slider-range').find('.range-price')
 										.html(result);
-								// 슬라이더를 움직였을 때 이 값을 hidden input에 저장함
+								
 							
 							}
 						});
@@ -352,34 +357,6 @@
 	 
 
 	
-
-	// 가격 조정 슬라이드를 사용하고 아래에 search 를 했을 때
-//	$(".price-search").click(
-//			function() {
-//
-//				window.location.href = "shop.do?"+"p_cat=" + cat
-//				+ "&itemQuan=" + itemQuan + "&p_brand=" + send_array;
-//				alert();
-//
-//				// 시작값 끝 값을 가져옴
-//				var startprice = $("#startprice").val();
-//				var endprice = $("#endprice").val();
-//
-//				alert()
-//				// 넘겨야할 모든 값을 가져옴
-//				var itemQuan = $("#itemQuan").val();
-//				var cat = $("#p_cat").val();
-//				var selectcolor = $("#selectcolor").val();
-//				var brand = $("#rawbrand").val();
-//
-//				// 넘기기
-//				// window.location.href = "shop.do?" + "p_cat=" + cat
-//				// + "&itemQuan=" + itemQuan + "&p_brand="
-//				// +
-//				// send_array+"&p_color="+selectcolor+"&p_price"+startprice+"&p_date"+endprice;
-//			
-//
-//			});
 
 
 })(jQuery);

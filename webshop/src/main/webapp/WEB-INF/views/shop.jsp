@@ -249,11 +249,17 @@ List<ProductVO> result = (List) request.getAttribute("details");
 				<h6 class="widget-title mb-30">Color</h6>
 				
 				<div class="widget-desc">
+				<!--색을 클릭했을 때 선택한 색을 now를 통해 표시하는 부분  -->
 					<ul class="d-flex">
 						<%if(selectcolor!=null){ %>
 						<li>now<a class="<%=selectcolor%>"></a></li><li></li><li><li>
 						<%} %>
-						<li><a href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=nowcate%>&page=<%=request.getAttribute("nowpage")%>&p_color=white" class="white"></a></li>
+						<!--색을 클릭시 요청하는 url의 parameter 설정  -->
+						<li><a href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%>
+						<%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>
+						&p_cat=<%=nowcate%>
+						&page=<%=request.getAttribute("nowpage")%>
+						&p_color=white" class="white"></a></li>
 						<li><a href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=nowcate%>&page=<%=request.getAttribute("nowpage")%>&p_color=gray" class="gray"></a></li>
 						<li><a href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=nowcate%>&page=<%=request.getAttribute("nowpage")%>&p_color=black" class="black"></a></li>
 						<li><a href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=nowcate%>&page=<%=request.getAttribute("nowpage")%>&p_color=blue" class="blue"></a></li>
@@ -434,12 +440,14 @@ List<ProductVO> result = (List) request.getAttribute("details");
 								%>
 
 
+								<!--동적 페이지 구현 부분  -->
 								<li class="page-item"><a class="page-link" href="shop.do?
 								startprice=<%=startprice%>&endprice=<%=endprice%>
 								&itemQuan=<%=request.getAttribute("nowquan")%>
 								<%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>
 								<%if(nowcate!=null && !nowcate.equals("null")){%>&p_cat=<%=result.get(0).getP_cat()%><%}%>
-								<%if(selectcolor!=null){%>&p_color=<%=selectcolor%><%}%><%if(request.getAttribute("search")!=null){%>&search=<%=request.getAttribute("search")%><%}%>
+								<%if(selectcolor!=null){%>&p_color=<%=selectcolor%><%}%>
+								<%if(request.getAttribute("search")!=null){%>&search=<%=request.getAttribute("search")%><%}%>
 								&page=<%=i%>"><%=i%></a></li>
 
 								<%

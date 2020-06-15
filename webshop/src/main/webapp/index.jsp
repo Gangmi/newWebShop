@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="css/core-style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./resources/js/login-userInput.js"></script>
-
+<!--조회수 상승을위한 ajax사용  -->
 <script>
 $(document).ready(function(){ 
 	$.ajax({
