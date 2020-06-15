@@ -35,7 +35,7 @@ public class TransferController {
 //	@ResponseBody
 //@RequestMapping(value="/checkoutok.do",method=RequestMethod.POST,produces="applicaton/text; charset=UTF-8")
 	@RequestMapping(value="/checkoutok.do",produces="applicaton/text; charset=UTF-8")
-	public ModelAndView checkoutok(String pay,String coupon,HttpServletResponse response, HttpServletRequest request,HttpSession session) throws Exception
+	public ModelAndView checkoutok(String pay,String coupon,HttpServletResponse response,HttpSession session) throws Exception
 	{
 		//checkout페이지에서 session으로 담은 id와 수량을 가지고 옴
 		List<String> idlist = (ArrayList)session.getAttribute("idlist");
@@ -47,7 +47,7 @@ public class TransferController {
 		//성공적으로 mapper가 완료 했는지 구분하기 위한 값 가지고 옴
 		int resultorder = dao.insertorder(pay,coupon,idlist,countlist,userId);
 
-		//주문이 성공했다면 장바구니의 모든 쿠키 삭제
+		//주문이 성공했다면 장바구니의 선택된 쿠키 삭제
 		for(int i=0; i<idlist.size();i++)
 		{
 			Cookie delcookie = new Cookie("cart"+idlist.get(i), null);
