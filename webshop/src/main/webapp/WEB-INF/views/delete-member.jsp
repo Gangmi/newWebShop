@@ -133,13 +133,14 @@
                             <form action="find_Id.do" id ="findid" name="findid"  method="get">
                                 <div class="ml-100 mt-100 row">
                                      <div class="col-md-11 mb-3">
+                                     <!-- 다시한번 확인하는 문구 -->
                                         <input type="text" class="form-control" id="" class="" value="정말 탈퇴하시겠습니까?" >
                                         
                                     </div>
                             
 <!--                                     <div class="amado-btn-group mt-30 mb-100"> -->
                                      <div class="col-12 mb-3">
-	              
+	              						<!-- 취소 또는 탈퇴하는 버튼 -->
 						               	<a href="member-info.do" class="btn amado-btn mb-15">취소</a>
 						               	<a href="deleteMember.do" class="btn amado-btn mb-15">회원탈퇴</a>
 						            </div>

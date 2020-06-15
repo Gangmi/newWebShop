@@ -1,7 +1,6 @@
 $(function(){
 	 //회원가입 항목이 비었으면 alert창으로 경고 하고 보냄
 	
-	
 	$('#confirm').click(function(){
 		if( $.trim($("#mid").val()) == '' ){
             alert("아이디를 입력해 주세요.");
@@ -9,22 +8,19 @@ $(function(){
             return;
         }
 	 
-
-
 		if( $.trim($("#mpass").val()) == '' ){
             alert("비밀번호를 입력해 주시요.");
             $("#mpass").focus();
             return;
         }
 		
-
+		//비밀번호 확인 비밀번호가 맞지않으면 경고창
     	if($.trim($('#mpass').val()) != $.trim($('#mpasshwak').val())){
     		alert("비밀번호가 일치하지 않습니다..");
     		$('#mpasshwak').focus();
     		return;
     	}
-    	
-		
+    			
 		if( $.trim($("#mname").val()) == '' ){
             alert("이름를 입력해 주세요.");
             $("#mname").focus();
@@ -250,6 +246,7 @@ $(function(){
 	
 	});
 //==================================================================	
+	//구독을 했는지 안했는지 비동기통신으로 경고창을 띄워줌
 	$('#subemail').click(function(){
 		
 		//비동기통신 = ajax
@@ -257,15 +254,11 @@ $(function(){
 			type:'post',
 			async:true,
 			url:'subemail.do',
-//			data :'mid='+$('#mid').val(),
 			success:function(resultData){
 				alert(resultData);
 			}
 		});
 		
-
-//		$('#subemail2').submit();
-
 	});
 	
 	

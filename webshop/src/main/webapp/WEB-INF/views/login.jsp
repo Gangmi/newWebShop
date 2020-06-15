@@ -134,19 +134,22 @@
                             
                                 <div class="ml-100 mt-100 row">
                                      <div class="col-md-11 mb-3">
+                                     <!-- 아이디 입력하는 곳 -->
                                         <input type="text" class="form-control" id="mid" name="mid" value="" placeholder="아이디" required>
                                         <!--  -->
                                     </div>
+                                    <!-- 누르면 세션에 아이디가 저장된다. -->
                                      <div class="col-md-1 mb-3">
                                      <a id="conf"  name="conf" class="btn amado-btn mb-15">로그인</a>
                                      </div>
                                      <div class="col-md-11 mb-3">
+                                     	<!-- 비밀번호 입력하는 곳 -->
                                         <input type="password" class="form-control" id="mpass" name="mpass" placeholder="비밀번호" value="" required>
                                     </div>
                  
 <!--                                     <div class="amado-btn-group mt-30 mb-100"> -->
                                      <div  class="col-12 mb-3">
-						                
+						                <!-- 회원가입창으로 가는 버튼& 아이디 찾는 창으로 가는 버튼 & 비밀번호 찾는 창으로 가는 버튼 -->
 						               	<a href="sign-up-clause.do" class="btn amado-btn mb-15">회원가입</a>
 						               	<a href="find-id.do" class="btn amado-btn mb-15">아이디 찾기</a>
 						               	<a href="find-password.do" class="btn amado-btn mb-15">비밀번호 찾기</a>

@@ -135,12 +135,12 @@
                                 <div class="col-12 mb-3"> 
                                 <tr>
    <td align="left"><font size="2" >이용약관, 개인정보 수집 및 이용에 모두 동의합니다.&nbsp&nbsp&nbsp</font></td>
-   <td><input type="checkbox" name="allcheck" id="allcheck"></td><hr/>
+   <td><input type="checkbox" name="allcheck" id="allcheck"></td><hr/><!-- 전체체크창 , 체크하면 전체체크되고 취소하면 전체 취소됨 -->
   </tr>
   </div> 
   <br/>
     <div class="col-12 mb-3">                    
-   <td><textarea readonly="readonly" rows="7" cols="66">
+   <td><textarea readonly="readonly" rows="7" cols="66"><!-- 가입할때 나오는 약관들이 나옴 -->
 제1조(목적)
 
 표준약관 제10023호
@@ -361,10 +361,11 @@
    </textarea>
  	</div>    
     <div class="col-12 mb-3"> 
+    <!-- 약관동의 체크창 -->
    <h3><font size="2">이용약관 동의(필수)&nbsp&nbsp&nbsp</font><input type="checkbox" name="c1" id="c1"/></a></h3>
       </div>    
       <div class="col-12 mb-3">  
-      <td><textarea readonly="readonly" rows="5" cols="66">                         
+      <td><textarea readonly="readonly" rows="5" cols="66"><!-- 가입할때 나오는 약관들이 나옴 -->                         
 1. - 목적 : 이용자 식별 및 본인여부 확인
 - 항목 : 이름, 아이디, 비밀번호
 - 보유 및 이용기간 : 회원탈퇴 후 5일까지
@@ -379,10 +380,12 @@
            </textarea>
            </div> 
         	 <div class="col-12 mb-3"> 
-   			<h3><font size="2">개인정보수집 동의(필수)&nbsp&nbsp&nbsp</font><input type="checkbox" name="c2" id="c2"/></a></h3>
+        	  <!-- 약관동의 체크창 -->
+   			<h3><font size="2">개인정보수집 동의(필수)&nbsp&nbsp&nbsp</font><input type="checkbox" name="c2" id="c2"/></a></h3><!--  -->
       		</div>                           
                                      <div class="col-12 mb-3">
 						                <a href="login.do" class="btn amado-btn mb-15">이전단계</a>
+						                <!-- 전체 항목에 체크를 해야 다음단계로 넘어가짐 -->
 						               	<a id="allcheckNext" name="allcheckNext" href="sign-up.do" class="btn amado-btn mb-15">다음단계</a>
 						            </div>
 

@@ -41,6 +41,7 @@ public class LoginController {
 	// 회원가입
 	@RequestMapping("/insertMember.do")
 	public ModelAndView insesrtMember(LoginVO vo) {
+		//입력받은 회원정보를 db에 넣음
 		int result = loginservice.insertMember(vo);
 
 		ModelAndView mv = new ModelAndView();
@@ -66,26 +67,27 @@ public class LoginController {
 		ModelAndView mv = new ModelAndView();
 		if (id == null || id.getMid() == null) {
 			return "/login";
-		} else {// 로그인 성공했다면
+		} else {// 로그인 성공했다면 세션에 로그인한 시간이랑 아이디를 저장
 			session.setAttribute("sessionTime", new Date().toLocaleString());
 			session.setAttribute("userId", id.getMid());
 
 				System.out.println("로그인성공");
-				return "redirect:/index.do";		
+				return "redirect:/index.do";//메인 화면으로 전환		
 		}
 		
 	}
 	
+	//주문한 목록을 가져옴
 	@RequestMapping("/my-order.do")
 	public ModelAndView myorder(OrderVO vo, HttpSession session, HttpServletRequest request) {
 		vo.setM_id((String)session.getAttribute("userId"));
-		List<OrderVO> list = loginservice.myorder(vo);
-		List<OrderVO> list_sum = loginservice.myorder_sum(vo);
+		List<OrderVO> list = loginservice.myorder(vo);//주문내역
+		List<OrderVO> list_sum = loginservice.myorder_sum(vo);//주문번호의 총 가격
 		Cookie[] cookies = request.getCookies();
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/order-list");
-		mv.addObject("orderlist", list);
-		mv.addObject("orderlist_sum", list_sum);
+		mv.addObject("orderlist", list);//주문내역 세션에 저장해서 넘김
+		mv.addObject("orderlist_sum", list_sum);//주문내역 총합 세션에 저장해서 넘김
 		mv.addObject("cookies", cookies);
 		return mv;
 		
@@ -94,7 +96,7 @@ public class LoginController {
 	//관리자창
 	@RequestMapping("/managerwindow.do")
 	public String managerwindow() {
-		return "redirect:/dashBoard.do";
+		return "redirect:/dashBoard.do";//관리자창으로 넘김
 		
 	}
 	
@@ -109,12 +111,12 @@ public class LoginController {
 //	아이디 찾기
 	@RequestMapping("/find_Id.do")
 	public ModelAndView findId(LoginVO vo) {
-
+		//이름과 전화번오에 맞는 아이디를 가져옴
 		LoginVO result = loginservice.findId(vo);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/find-id-ok");
-		mv.addObject("id", result.getMid());
+		mv.addObject("id", result.getMid());//검색한 아이디를 세션에 저장해서 넘겨서 화면에 찍음
 		return mv;
 	}
 
@@ -122,7 +124,7 @@ public class LoginController {
 	//비밀번호를 찾을때
 	@RequestMapping("/find_password.do")
 	public ModelAndView findPassword(LoginVO vo) {
-		LoginVO result = loginservice.findPassword(vo);
+		LoginVO result = loginservice.findPassword(vo);//아이디를 보냄 아이디에 맞는 비밀번호를 가져옴
 		
 		ModelAndView mv = new ModelAndView();
 		//이메일이 없다면 다시 현재페이지로 리턴
@@ -130,9 +132,9 @@ public class LoginController {
 			mv.setViewName("/find-password");
 	
 		}else {//이메일이 있다면 ,저장돼있는 메일로 비밀번호가 담긴 메일을 보냄
-		  gmailSend(result);
+		  gmailSend(result);//저장되어있는 메일로 비밀번호 보냄
 		  mv.setViewName("/find-password-ok");
-		  mv.addObject("email", result.getMemail());
+		  mv.addObject("email", result.getMemail());//이메일을 넘겨서 화면에 찍어줌
 		  
 		}
 		 return mv;		
@@ -142,11 +144,12 @@ public class LoginController {
 	@RequestMapping("/member-info.do")
 	public ModelAndView memberInfo(LoginVO vo,HttpSession session) {
 	
-		vo.setMid((String)session.getAttribute("userId")); 
+		vo.setMid((String)session.getAttribute("userId"));//로그인한 아이디를 가져와서 vo에 저장함
 		
 
-		LoginVO result = loginservice.memberInfo(vo);
+		LoginVO result = loginservice.memberInfo(vo); //로그인한 아이디에 맞는 회원정보를 불러옴
 		
+		//회원정보를 넘김
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/member-info");
 		mv.addObject("mid", result.getMid());
@@ -175,8 +178,8 @@ public class LoginController {
 	//회원탈퇴
 	@RequestMapping("/deleteMember.do")
 	public ModelAndView deleteMember(LoginVO vo,HttpSession session) {
-		vo.setMid((String)session.getAttribute("userId")); 
-		int result = loginservice.deleteMember(vo);
+		vo.setMid((String)session.getAttribute("userId")); //로그인한 아이디를 가져와 vo에 저장
+		int result = loginservice.deleteMember(vo);//아이디가 맞는 개인정보를 삭제함
 		//회원탈퇴을 눌렀을때 세션을 종료한다.
 		session. invalidate();
 		
@@ -206,7 +209,7 @@ public class LoginController {
 					message = "구독되었습니다.";			
 					return message;	
 				}
-			}else {
+			}else {//로그인을 안했다면 나오는 경고창
 				message = "로그인 후 사용 가능합니다.";
 			}
 			return message;				

@@ -131,7 +131,7 @@
                             <form action="insertMember.do" id="insertmember" name="insertmember" method="post">
                                 <div class="row">
                                 <table class="table">
-                                
+                                <!-- 회원가입시 필요한 항목들 작성하는 것들 -->
                                 </table>
                                     <div class="col-md-6 mb-3">
                                         <input type="text" class="form-control" id="mid" name="mid" value="" placeholder="아이디" required>
@@ -181,6 +181,7 @@
                               
 						            <div align="center" class="col-12 mb-3">
 						                <a href="index.do" class="btn amado-btn mb-15">취소</a>
+						                <!-- 페턴이 맞다면 넘어가짐 -->
 						               	<a type="button" id="confirm" name="confirm" class="btn amado-btn mb-15">회원가입</a>
 						            </div>
 

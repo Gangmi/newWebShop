@@ -133,11 +133,12 @@
                             <form id ="" name="" action="" method="post">
                                 <div class="ml-100 mt-100 row">
                                      <div class="col-md-11 mb-3">
+                                     <!-- 찾은 아이디를 가져와서 띄워줌 -->
                                         <input type="text" class="form-control" id="mname" class="mname" value="<%=request.getAttribute("id") %>" readonly="readonly" required>
                                         
                                     </div>
                                      <div class="col-12 mb-3">
-	              
+	              						<!-- 비밀번호 찾기 창으로 넘어가는 버튼 & 로그인 창으로 넘어가는 버튼 -->
 						               	<a href="find-password.do" class="btn amado-btn mb-15">비밀번호 찾기</a>
 						               	<a href="login.do" class="btn amado-btn mb-15">로그인 하기</a>
 						            </div>

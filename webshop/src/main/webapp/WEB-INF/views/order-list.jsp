@@ -100,15 +100,15 @@
             </div>
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
-           		<% if((String)session.getAttribute("userId")==null){%>                                      
+           		<% if((String)session.getAttribute("userId")==null){//로그인 안했다면 나옴%>                                      
                    <a href="login.do"> Login</a></li>
                    
-                    <%}else if(session.getAttribute("userId").equals("admin")) {%>
+                    <%}else if(session.getAttribute("userId").equals("admin")) {//관리자로 접속했다면 로그아웃이랑 관리창으로 가는 텝 만듬%>
                      ${userId}님 </li>     
                     <a href="logout.do" >[ Logout ]</a></li>
                     <a href="managerwindow.do" >[ manage ]</a></li>
                     
-                    <% }else{ %>
+                    <% }else{//회원이  로그인 했을때  로그아웃, 회원정보수정, 주문내역텝들을 보이게함%>
                      ${userId}님 </li>     
                     <a href="logout.do" >[ Logout ]</a></li>
                     <a  href="member-info.do" >[ edit profile ]</a></li>
@@ -128,7 +128,7 @@
             </div>
         </header>
         <!-- Header Area End -->
-
+        
         <div class="cart-table-area section-padding-100">
             <div class="container-fluid">
                 <div class="row">
@@ -147,13 +147,13 @@
                                         <th>Price</th>
                                         <th>Quantity</th>                                     
                                         <th>State</th>
-                                         <th>Total</th>
+                                        <th>Total</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 <!-- 리스트들을 가져온다. -->
-                                 <% List<OrderVO> list= (List<OrderVO>)request.getAttribute("orderlist"); %>
-                                 <% List<OrderVO> listsum= (List<OrderVO>)request.getAttribute("orderlist_sum"); %>
+                                 <% List<OrderVO> list= (List<OrderVO>)request.getAttribute("orderlist");//주문내역리스트를 가져옴 %>
+                                 <% List<OrderVO> listsum= (List<OrderVO>)request.getAttribute("orderlist_sum");//주문내역들의 총합을 가져옴 %>
                                 <%  
                                 OrderVO list_sum = new OrderVO();
 								int cnt=0;
@@ -166,7 +166,7 @@
                                 	
                                 	vo = list.get(i);
                                 	int sum = 0;
-                                		//검사할때 필요함
+                                		//검사할때 필요함 오류 안나게하려고 함
 	                                	if((i-1)>=0){
 	                                		check = list.get(i-1);
 	                                	}else{
@@ -176,43 +176,43 @@
                                     <tr>   
                                                        	
                                         <td class="cart_product_desc">
-                                       	<%if(vo.getO_id()==check.getO_id()){//아이디가 같으면 아무것도 안찍음%>
+                                       	<%if(vo.getO_id()==check.getO_id()){//주문번호가 같으면 아무것도 안찍음=> 깔끔하게 보이게 하기 위해 한번만 찍는다.%>
                                        	
-                                       	<%}else{//아이디가 달라지면 찍음%>
+                                       	<%}else{//아이디가 달라지면 찍음//주문번호가 바뀔때 줄표시를 해준다.%>
                                        	<hr> 
                                        	 <%=vo.getO_id() %>                                          
                                 		<% }//end of if%>
                                            
                                         </td>
                                         <td class="cart_product_desc">
-                                        <%if(vo.getO_id()==check.getO_id()){%>
+                                        <%if(vo.getO_id()==check.getO_id()){//주문번호가 같으면 아무것도 안찍음=> 깔끔하게 보이게 하기 위해 한번만 찍는다.%>
                                        	
-                                       	<%}else{%>
+                                       	<%}else{//아이디가 달라지면 찍음//주문번호가 바뀔때 줄표시를 해준다.%>
                                        	<hr> 
                                             <%=vo.getO_date().substring(0,10) %>
                                          <% }//end of if%>
                                         </td>
                                         <td class="cart_product_desc" >
-                                        	<%if(vo.getO_id()!=check.getO_id()){%>
+                                        	<%if(vo.getO_id()!=check.getO_id()){//주문번호가 바뀔때 줄표시를 해준다.%>
                                        	 	<hr>                                        
                                 			<% }//end of if%>
                                              <%=vo.getP_name() %>
                                         </td>
                                         <td class="cart_product_desc">
-                                            <%if(vo.getO_id()!=check.getO_id()){%>
+                                            <%if(vo.getO_id()!=check.getO_id()){//주문번호가 바뀔때 줄표시를 해준다.%>
                                        	 	<hr>                                        
                                 			<% }//end of if%>
                                             <%=vo.getP_price() %>
                                         </td>
                                         <td class="cart_product_desc">
-                                           	<%if(vo.getO_id()!=check.getO_id()){%>
+                                           	<%if(vo.getO_id()!=check.getO_id()){//주문번호가 바뀔때 줄표시를 해준다.%>
                                        	 	<hr>                                        
                                 			<% }//end of if%>
                                             <%=vo.getCnt() %>
                                         </td>
                                         <td class="cart_product_desc">
                                         
-                                         <%if(vo.getO_id()==check.getO_id()){%>
+                                         <%if(vo.getO_id()==check.getO_id()){//주문번호가 바뀔때 줄표시를 해준다.%>
                                        	<%}else{%>
                                             <hr> 
                                             <%=vo.getO_delivery() %>
@@ -220,7 +220,7 @@
                                         </td>  
                                          <td class="cart_product_desc">
                                         
-                                         <%if(vo.getO_id()==check.getO_id()){%>
+                                         <%if(vo.getO_id()==check.getO_id()){//주문번호가 바뀔때 줄표시를 해준다.%>
                                          
                                        	<%}else{%>
                                             <hr> 

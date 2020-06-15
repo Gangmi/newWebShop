@@ -134,12 +134,15 @@
                             <form action="find_password.do" id="findPassword" name="findPassword" method="post">
                                 <div class="ml-100 mt-100 row">
                                      <div class="col-md-11 mb-3">
+                                     <!-- 사용자가 찾으려는 아이디를 입력하는 곳 -->
                                         <input type="text" class="form-control" id="mid" name="mid" value="" placeholder="아이디" required>                                      
                                     </div>
                                     <div class="col-12  newsletter-text mb-3">
+                                    <!-- 아이디를 모른다면 아이디 찾는 창으로 이동 -->
                                     <p>아이디를 모르시나요?   <a href="find-id.do">아이디 찾기</a></p>
                                     </div>
                       
+                      					<!-- 아이디를 입력하고 다음을 누르면 비밀번호가 이메일이 보내지고 확인창으로 넘어가는 버튼 -->
                                      <div class="col-12 mb-3">						              					        
 						               	<a id="findPasswordNext" class="btn amado-btn mb-15">다음</a>
 						            </div>

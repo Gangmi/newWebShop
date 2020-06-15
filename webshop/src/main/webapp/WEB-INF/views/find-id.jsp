@@ -133,19 +133,23 @@
                             <form action="find_Id.do" id ="findid" name="findid"  method="get">
                                 <div class="ml-100 mt-100 row">
                                      <div class="col-md-11 mb-3">
+                                     <!-- 회원 이름을 입력하는 곳 -->
                                         <input type="text" class="form-control" id="mname" class="mname" value="" placeholder="이름" required>
                                         
                                     </div>
                                      <div class="col-md-1 mb-3">
+                                     <!-- 아이디 찾기 기능을 실행 -->
                                      <a id="id_conf" name="id_conf" class="btn amado-btn mb-15">아이디 찾기</a>
                                      </div>
                                      <div class="col-md-11 mb-3">
+                                     <!-- 회원 전화번호를 입력하는 곳 -->
                                         <input type="text" class="form-control" id="mtel" class="mtel" placeholder="가입휴대폰번호" value="" required>
                                     </div>
                                
 <!--                                     <div class="amado-btn-group mt-30 mb-100"> -->
                                      <div class="col-12 mb-3">
-	              
+	              						
+	              						<!-- 비밀번호 찾기 창으로 가는 버튼 & 로그인 창으로 가는 버튼 -->
 						               	<a href="find-password.do" class="btn amado-btn mb-15">비밀번호 찾기</a>
 						               	<a href="login.do" class="btn amado-btn mb-15">로그인 하기</a>
 						            </div>

@@ -135,7 +135,7 @@
                                 <table class="table">
                                 
                                 </table>
-                                	
+                                	<!-- 가져온 회원정보를 띄워주는 곳 -->
                                     <div class="col-md-12 mb-3">
                                         <input type="text" class="form-control" id="mid" name="mid"  readonly="readonly" value="<%=request.getAttribute("mid") %>" placeholder="아이디" required>
                                     </div>
@@ -176,9 +176,9 @@
                                     
              
                                      <div align="center" class="col-12 mb-3">
-						                <a href="index.do" class="btn amado-btn mb-15">취소</a>
-						               	<a id="update" name="" class="btn amado-btn mb-15">개인정보수정</a>
-						               	<a href="delete-member.do" id="deleteMember" class="btn amado-btn mb-15">회원탈퇴</a>
+						                <a href="index.do" class="btn amado-btn mb-15">취소</a><!-- 메인페이지로 다시 돌아가는 버튼 -->
+						               	<a id="update" name="" class="btn amado-btn mb-15">개인정보수정</a><!-- 사용자가 수정한 정보들을 db에 저장하는 버튼 -->
+						               	<a href="delete-member.do" id="deleteMember" class="btn amado-btn mb-15">회원탈퇴</a><!-- 회원탈퇴 창으로 이동 -->
 						               	
 						            </div>
 						            
