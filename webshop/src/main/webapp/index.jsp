@@ -42,6 +42,7 @@ $(document).ready(function(){
             <div class="row">
                 <div class="col-12">
                     <div class="search-content">
+                    <!-- 글자로 검색하는 부분에서 search 를 눌렀을때 전송되는 form  -->
                         <form action="shop.do" method="get">
                             <input type="search" name="search" id="search" placeholder="Type your keyword...">
                             <button type="submit"><img src="img/core-img/search.png" alt=""></button>
