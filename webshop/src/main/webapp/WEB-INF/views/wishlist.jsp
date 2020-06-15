@@ -10,23 +10,23 @@
 
 
 $(function(){
+	//all select 눌렀을때 모두 check 눌린상태로 이벤트 처리
     $("#selectall").click(function(){
         var chk = $(this).is(":checked");//.attr('checked');
         if(chk) $(".check").prop('checked', true);
         else  $(".check").prop('checked', false);
     });
-
+	// addtocart눌렀을때 수량 array에 담아 controller에 보냄
     $('#addtocart').click(function(){
     	var id = new Array();
 
     	$(".check:checked").each(function (index) {  
             id.push($(this).parents().prevAll(".quantity").find(".p_id").val());
-            alert($(this).parents().prevAll(".quantity").find(".p_id").val());
        });
 
     	window.location.href = "wishtocart.do?id="+id;
         });
-
+	// 삭제 버튼 눌렀을때 상품 아이디를 wishlist.do controller에 array텍스트로 보냄
     $("#delsel").click(function(){
     	var str="";
         $(".check:checked").each(function (index) {  
@@ -177,7 +177,9 @@ List<ProductVO> list =(List<ProductVO>) request.getAttribute("list");
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <%  for(int i=0;i<list.size();i++){ 
+                                <%  
+                                	// 동적 테이블 출력
+                                	for(int i=0;i<list.size();i++){ 
                                 	ProductVO vo = new ProductVO();
                                 	vo = list.get(i);
                                 %>

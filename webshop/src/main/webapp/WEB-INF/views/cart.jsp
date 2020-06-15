@@ -4,16 +4,21 @@
 
 
 <%
+// 주문완료한 후 cart페이지에 왔다면 주문완료 alert출력하기 위한 정보
 String resultorder = (String)request.getAttribute("resultorder");
 int resulto=0;
+// 주문성공했다면
 if(resultorder!=null)
 {
-	System.out.print(resultorder+"**********gkgk");
+	// 0이었던 변수에 받아온 값 대입
 	resulto = Integer.parseInt(resultorder);
 }
+// 쿠키에 있던 상품아이디들의 정보를 출력
 List<ProductVO> list =(List<ProductVO>) request.getAttribute("list");
+// 쿠키창에 총 금액을 입력하기 위한 값
 int subtotal = (int)request.getAttribute("total");
 int deli =0;
+// 만약 총금액이 50000이 넘는다면 배송료 Free찍기 위한 값 대입
 if(subtotal<50000)
 {
 	deli = 2500;
@@ -21,6 +26,7 @@ if(subtotal<50000)
 else{
 		deli =0;
 	}
+// 최종금액은 총금액과 배송료를 더한값
 int total = subtotal+deli;
 
 %>
@@ -35,6 +41,7 @@ int total = subtotal+deli;
 
 <script type="text/javascript">
 $(function(){
+	//만약 주문완료가 성공했다면 주문완료 alert창
 	if($("#resultorder").val()>0)
 		{
 			alert("주문완료");
@@ -43,6 +50,7 @@ $(function(){
 	var price=0;
 	var subtotal=0;
 	var deli =0;
+	// 모두 선택을 눌렀을 때의 값의 변동이벤트
     $("#selectall").click(function(){
     	subtotal=0;
         var chk = $(this).is(":checked");//.attr('checked');
@@ -67,6 +75,7 @@ $(function(){
   		$("#deli").text("$ "+deli);
   		$("#total").text("$ "+total);
     });
+    // 상품을 delete 할때 선택된 상품아이디들의 값을 controller에 보내주기 위한 input value 지정
     $("#delsel").click(function(){
     	var str="";
         $(".check:checked").each(function (index) {  
@@ -75,6 +84,7 @@ $(function(){
         $("#delstr").val(str);
     });  
 
+    // 수량 + -를 눌렀을때 값 변동 이벤트
     $(".quantity").click(function(){
     	subtotal=0;
     	$(".check:checked").each(function (index) {  
@@ -96,6 +106,7 @@ $(function(){
   		$("#subtotal").attr("value",subtotal);
 
     });
+    // 수량의 값이 변동이 있을때 총금액 변동이벤트
     $('.check').parents().prevAll(".quantity").find(".qty-text").change(function(){
     	subtotal=0;
     	$(".check:checked").each(function (index) {  
@@ -116,6 +127,7 @@ $(function(){
  		$("#deli").text("$ "+deli);
  		$("#total").text("$ "+total);
         });
+    // 선택 checkbox의 변동이 있을 때 총금액 이벤트
     $(".check").change(function(){
     	subtotal=0;
 		
@@ -162,12 +174,14 @@ $(function(){
 
         });
 
+    //주문하기 버튼을 눌렀을 때 선택된 상품의 아이디와 수량을 가지고 controller로 이동
     $('#checkout').click(function(){
     	var to  = $('#subtotal').text().split("$ ");
     	var subtotalresult = to[1];
     	var count = new Array();
     	var id = new Array();
 
+    	//a,b,c 처럼 상품아이디를 보내기위해 array에 담음
     	$(".check:checked").each(function (index) {  
             count.push($(this).parents().prevAll(".quantity").find(".qty-text").val());
             id.push($(this).parents().prevAll(".quantity").find(".p_id").val());
@@ -322,7 +336,9 @@ $(function(){
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <%  for(int i=0;i<list.size();i++){ 
+                                <%  
+                                	// 동적으로 테이블 만듦
+                                	for(int i=0;i<list.size();i++){ 
                                 	ProductVO vo = new ProductVO();
                                 	vo = list.get(i);
                                 %>

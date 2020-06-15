@@ -38,16 +38,20 @@
 
 ProductVO vo = (ProductVO) request.getAttribute("product");
 
+// 회원이 로그인했을 때 위시리스트의 값을 받음
 List<ProductVO> wish = (List<ProductVO>)request.getAttribute("wish");
 int wishlist=1;
 if(wish!=null)
 {
+	// 위시리스트가 있다면 
 	for(int i=0; i<wish.size();i++)
 	{
+		// 현재페이지의 상품아이디와 가지고 있는 위시리스트의 상품리스트를 비교
 		ProductVO wvo = new ProductVO();
 		wvo = wish.get(i);
 		if(wvo.getP_id()==vo.getP_id())
 		{
+			// 위시리스트의 아이콘을 바꾸기 위한 변수 설정
 			wishlist=2;
 		}
 	}

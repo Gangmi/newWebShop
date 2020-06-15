@@ -243,6 +243,7 @@
 		$("#sortitem").submit();
 	});
 	
+	// shop에서 장바구니 아이콘을 눌렀을때 재고의 유무에 따른 이벤트 처리
 	$(".cart").click(function(){
 		var p_id = $(this).find($('input[name=p_id]')).val();
 		var p_quan = $(this).find($('input[name=p_quan]')).val();

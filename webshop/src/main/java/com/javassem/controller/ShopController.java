@@ -217,6 +217,7 @@ public class ShopController {
 		
 		model.addObject("product", result);
 		
+		//회원이 로그인한 상태라면 회원의 wishlist 내역을 product-details에 보냄
 		String userId = (String)session.getAttribute("userId");
 		if(userId!=null)
 		{

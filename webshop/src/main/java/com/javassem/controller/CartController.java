@@ -54,6 +54,7 @@ public class CartController {
 		Cookie cookie = new Cookie("cart"+p_id, p_id);
 		//cookie로 장바구니 입력
 		cookie.setPath("/");
+		//7일동안 사용가능
 		cookie.setMaxAge(60*60*24*7);
 		response.addCookie(cookie);
 		result="장바구니 담기 성공!";
@@ -75,6 +76,7 @@ public class CartController {
 			Cookie cookie = new Cookie("cart"+p_id, p_id);
 			
 			cookie.setPath("/");
+			//7일동안 사용가능
 			cookie.setMaxAge(60*60*24*7);
 			response.addCookie(cookie);
 			ProductVO vo = new ProductVO();
@@ -99,6 +101,7 @@ public class CartController {
 
 				//쿠키에서 장바구니 목록 삭제
 				Cookie delcookie = new Cookie("cart"+array[i], null);
+				//쿠키 만료
 				delcookie.setMaxAge(0);
 				delcookie.setPath("/");
 				
@@ -215,23 +218,28 @@ public class CartController {
 	{
 		String userId = (String)session.getAttribute("userId");
 		ModelAndView mvid=new ModelAndView();
+		// session에 등록된 아이디가 없다면 로그인 페이지 이동하여 로그인 후 wishlist 사용하도록 유도
 		if(userId==null)
 		{
 			mvid.setViewName("redirect:login.do");
 			return mvid;
 		}
+		// 삭제할 상품아이디들을 받아서 wishlist db 내역 삭제
 		if(delstr!=null)
 		{
 			String[] array = delstr.split(",");
 			service.deleteWishlist(array,userId);	
 		}
-		
+		// wishlist 에 담을 상품아이디가 있다면 
 		if(p_id!=null)
 		{
+			//wishlist 상품을 db에 추가
 		service.insertWishlist(p_id,userId);
 		}
+		//db에 있는 list 페이지에 띄우기
 		List<ProductVO> list = service.selectWishlist(userId);
 		
+		//list 담아서 wishlist.jsp페이지 이동
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("wishlist");
 		mv.addObject("list",list);
@@ -240,14 +248,17 @@ public class CartController {
 		
 	}
 	
+	//wishlist에 있는 목록 중 선택한 상품 아이디 cart로 보내기
 	@RequestMapping("/wishtocart.do")
 	public void wishtocart(String id,HttpServletResponse response, HttpServletRequest request)
 	{
+		// 상품 아이디가 있다면
 		if(id!= null)
 		{
 			String[] idarray = id.split(",");
 			for(int i=0; i<idarray.length;i++)
 			{
+				// 상품들 cookie 생성
 				System.out.println(idarray[i]);
 				Cookie cookie = new Cookie("cart"+idarray[i], idarray[i]);
 				cookie.setPath("/");
@@ -257,6 +268,7 @@ public class CartController {
 
 			}
 			try {
+				//cart페이지 보이기
 				response.sendRedirect("cart.do");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
