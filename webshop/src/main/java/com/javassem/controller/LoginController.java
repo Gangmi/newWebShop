@@ -113,11 +113,16 @@ public class LoginController {
 	public ModelAndView findId(LoginVO vo) {
 		//이름과 전화번오에 맞는 아이디를 가져옴
 		LoginVO result = loginservice.findId(vo);
-		
 		ModelAndView mv = new ModelAndView();
+		if(result == null) {
+			mv.setViewName("redirect:/find-id.do");
+			return mv;
+		}else {
+		
 		mv.setViewName("/find-id-ok");
 		mv.addObject("id", result.getMid());//검색한 아이디를 세션에 저장해서 넘겨서 화면에 찍음
 		return mv;
+		}
 	}
 
 	
