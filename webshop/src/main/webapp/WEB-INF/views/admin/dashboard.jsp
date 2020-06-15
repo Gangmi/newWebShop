@@ -53,7 +53,7 @@
 		</div>
 		<div class="divider"></div>
 
-		<!-- 		@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 네비게이션 탭 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- 		@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 네비게이션 탭  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 		<ul class="nav menu">
 			<li class="active"><a href="dashBoard.do"><em
 					class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
@@ -85,14 +85,14 @@
 			</div>
 		</div>
 		<!--/.row-->
-
-
+		
 		<div class="panel panel-container">
 			<div class="row">
 				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
 					<div class="panel panel-teal panel-widget border-right">
 						<div class="row no-padding">
 							<em class="fa fa-xl fa-shopping-cart color-blue"></em>
+<!-- 							상단 - 오늘 주문건 수 -->
 							<div class="large">${orderCount}</div>
 							<div class="text-muted">New Orders</div>
 						</div>
@@ -102,6 +102,7 @@
 					<div class="panel panel-orange panel-widget border-right">
 						<div class="row no-padding">
 							<em class="fa fa-xl fa-users color-teal"></em>
+<!-- 							상단 - 오늘 회원가입 수 -->
 							<div class="large">${memberCount}</div>
 							<div class="text-muted">New Users</div>
 						</div>
@@ -111,6 +112,7 @@
 					<div class="panel panel-red panel-widget ">
 						<div class="row no-padding">
 							<em class="fa fa-xl fa-search color-red"></em>
+<!-- 							상단 - 오늘 페이지 뷰 -->
 							<div class="large">${viewCount[0]}</div>
 							<div class="text-muted">Page Views</div>
 						</div>
@@ -119,6 +121,7 @@
 			</div>
 			<!--/.row-->
 		</div>
+<!-- 		최근 30일 방문자수 라인 차트 -->
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
@@ -175,7 +178,7 @@ for(var i=30;i>=0;i--){
 	scaleFontColor: "#c5c7cc"
 	});
 
-
+// 	to-do-list
 	$("#btn-input").keyup(function(e){
 		if(e.keyCode==13 && $("#btn-input").val() != ""){
 			var text = $("#btn-input").val();

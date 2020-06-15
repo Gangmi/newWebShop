@@ -25,15 +25,10 @@
 	rel="stylesheet">
 </head>
 <body>
+<!-- 	최상단 로고 -->
 	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#sidebar-collapse">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
 				<a class="navbar-brand" style="padding:3px"><img src="img/core-img/logo3.png" alt=""/></a>
 
 			</div>
@@ -46,6 +41,7 @@
 				<img src="http://placehold.it/50/30a5ff/fff" class="img-responsive"
 					alt="">
 			</div>
+<!-- 			로그인 프로필 -->
 			<div class="profile-usertitle">
 				<div class="profile-usertitle-name">ADMIN</div>
 				<div class="profile-usertitle-status">
@@ -55,7 +51,7 @@
 			<div class="clear"></div>
 		</div>
 		<div class="divider"></div>
-
+<!-- 		********** 네비게이션 탭 ************* -->
 		<ul class="nav menu">
 			<li><a href="dashBoard.do"><em class="fa fa-dashboard">&nbsp;</em>
 					Dashboard</a></li>
@@ -91,92 +87,55 @@
 			<div class="col-lg-12">
 
 
+<script>
+// 검색창 검색기능
+$(document).ready(function() {
+	var activeSystemClass = $('.list-group-item.active');
+		$('#system-search').keyup(function() {
+			var that = this;
+			var tableBody = $('.table-list-search tbody');
+			var tableRowsClass = $('.table-list-search tbody tr');
+		$('.search-sf').remove();
+			tableRowsClass.each(function(i,val) {
+			var rowText = $(val).text().toLowerCase();
+			var inputText = $(that).val().toLowerCase();
+				if (inputText != '') {$('.search-query-sf').remove();
+					tableBody.prepend('<tr class="search-query-sf"><td colspan="6"><strong>Searching for: "'+ $(that).val()+ '"</strong></td></tr>');
+				} else {$('.search-query-sf').remove();
+				}
+if (rowText.indexOf(inputText) == -1) {
+	tableRowsClass.eq(i).hide();
+} else {$('.search-sf').remove();
+tableRowsClass.eq(i).show();
+}
+});
+if (tableRowsClass.children(':visible').length == 0) {
+	tableBody.append('<tr class="search-sf"><td class="text-muted" colspan="6">No entries found.</td></tr>');
+}
+});
 
-				<script>
-					$(document)
-							.ready(
-									function() {
-										var activeSystemClass = $('.list-group-item.active');
-
-										//something is entered in search form
-										$('#system-search')
-												.keyup(
-														function() {
-															var that = this;
-															// affect all table rows on in systems table
-															var tableBody = $('.table-list-search tbody');
-															var tableRowsClass = $('.table-list-search tbody tr');
-															$('.search-sf')
-																	.remove();
-															tableRowsClass
-																	.each(function(
-																			i,
-																			val) {
-
-																		//Lower text for case insensitive
-																		var rowText = $(
-																				val)
-																				.text()
-																				.toLowerCase();
-																		var inputText = $(
-																				that)
-																				.val()
-																				.toLowerCase();
-																		if (inputText != '') {
-																			$(
-																					'.search-query-sf')
-																					.remove();
-																			tableBody
-																					.prepend('<tr class="search-query-sf"><td colspan="6"><strong>Searching for: "'
-																							+ $(
-																									that)
-																									.val()
-																							+ '"</strong></td></tr>');
-																		} else {
-																			$(
-																					'.search-query-sf')
-																					.remove();
-																		}
-
-																		if (rowText
-																				.indexOf(inputText) == -1) {
-																			//hide rows
-																			tableRowsClass
-																					.eq(
-																							i)
-																					.hide();
-
-																		} else {
-																			$(
-																					'.search-sf')
-																					.remove();
-																			tableRowsClass
-																					.eq(
-																							i)
-																					.show();
-																		}
-																	});
-															//all tr elements are hidden
-															if (tableRowsClass
-																	.children(':visible').length == 0) {
-																tableBody
-																		.append('<tr class="search-sf"><td class="text-muted" colspan="6">No entries found.</td></tr>');
-															}
-														});
-
-
-										
+$('.selectbox').on("change",function() {
+	// 해당하는 주문의 id값 가져오기
+	alert($(this).parent().siblings().eq(0).text())
+$.ajax({
+	type : 'GET',
+	url : "updateDeli.do",
+	data : "o_delivery="+ $(this).val()+
+	 "&o_id="+ $(this).parent().siblings().eq(0).text(),
+	contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+	success : function(data) {
+	}
+})
+})
+			
+				
+// delete 버튼 누르면 controll 다녀옴						
 $(document).on("click","#del",function(evt){
-alert("dd")
 window.location.href="memberDelete.do?m_id="+$(evt.target).parent().siblings().eq(0).val()
 
-
-
 })
-
-
 });
-				</script>
+</script>
 
 <!-- 			<div class="wrap-table100"> -->
 <!-- 				<div class="table100"> -->
@@ -198,42 +157,43 @@ window.location.href="memberDelete.do?m_id="+$(evt.target).parent().siblings().e
 						
 <!--		************************* 테이블 *********************** -->
 
-			<div class="wrap-table100">
-						<div class="col-md-9">
-							<table class="table table-list-search">
-								<thead>
-							<tr class="table100-head">
-								<th class="column1">NAME</th>
-								<th class="column2">ID</th>
-								<th class="column3">PASSWORD</th>
-								<th class="column4">TEL</th>
-								<th class="column5">EMAIL</th>
-								<th class="column6">ADDRESS</th>
-								<th class="column7">POST_CODE</th>
-								<th class="column8">GRADE</th>
-								<th class="column9">SUBSCRIBE</th>
-								<th class="column10">DELETE</th>
-							</tr>
-								</thead>
+<div class="wrap-table100">
+			<div class="col-md-9">
+				<table class="table table-list-search">
+					<thead>
+<!-- 					동적 테이블 생성 -->
+				<tr class="table100-head">
+					<th class="column1">NAME</th>
+					<th class="column2">ID</th>
+					<th class="column3">PASSWORD</th>
+					<th class="column4">TEL</th>
+					<th class="column5">EMAIL</th>
+					<th class="column6">ADDRESS</th>
+					<th class="column7">POST_CODE</th>
+					<th class="column8">GRADE</th>
+					<th class="column9">SUBSCRIBE</th>
+					<th class="column10">DELETE</th>
+				</tr>
+					</thead>
 <c:forEach items="${listVO }" var="list">
-								
-	<tr>
-		<input id="m_id" type="hidden" value="${list.m_id }"/>
-		<td class="column1">${list.m_name }</td>
-		<td class="column2">${list.m_id }</td>
-		<td class="column3">${list.m_pass }</td>
-		<td class="column4">${list.m_tel }</td>
-		<td class="column5">${list.m_email }</td>
-		<td class="column6">${list.m_addr }</td>
-		<td class="column7">${list.m_postcode }</td>
-		<td class="column8">${list.m_grade }</td>
-		<td class="column9">${list.m_sub }</td>
-		<td class="column10"><input id="del" type="button" value="delete"/></td>
-	</tr>
+							
+<tr>
+	<input id="m_id" type="hidden" value="${list.m_id }"/>
+<td class="column1">${list.m_name }</td>
+<td class="column2">${list.m_id }</td>
+<td class="column3">${list.m_pass }</td>
+<td class="column4">${list.m_tel }</td>
+<td class="column5">${list.m_email }</td>
+<td class="column6">${list.m_addr }</td>
+<td class="column7">${list.m_postcode }</td>
+<td class="column8">${list.m_grade }</td>
+<td class="column9">${list.m_sub }</td>
+	<td class="column10"><input id="del" type="button" value="delete"/></td>
+</tr>
 </c:forEach>
-							</table>
-						</div> <!-- ****************** 테이블 end*********************** -->
-						</div>
+			</table>
+		</div> <!-- ****************** 테이블 end*********************** -->
+		</div>
 <!-- 					</div> -->
 <!-- 				</div> -->
 			</div>

@@ -18,48 +18,19 @@
 <link rel="stylesheet" type="text/css" href="resources/css/a_css/util.css">
 <link rel="stylesheet" type="text/css" href="resources/css/a_css/main.css">
 
-
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!--Custom Font-->
 <link
 	href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i"
 	rel="stylesheet">
 
-<script>
-/* When the user clicks on the button, 
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-}
-
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
-}
-</script>
 </head>
 <body>
+<!-- 	최상단 로고 -->
 	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#sidebar-collapse">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
 				<a class="navbar-brand" style="padding:3px"><img src="img/core-img/logo3.png" alt=""/></a>
-
 			</div>
 		</div>
 		<!-- /.container-fluid -->
@@ -70,6 +41,7 @@ window.onclick = function(event) {
 				<img src="http://placehold.it/50/30a5ff/fff" class="img-responsive"
 					alt="">
 			</div>
+<!-- 			로그인 프로필 -->
 			<div class="profile-usertitle">
 				<div class="profile-usertitle-name">ADMIN</div>
 				<div class="profile-usertitle-status">
@@ -79,6 +51,7 @@ window.onclick = function(event) {
 			<div class="clear"></div>
 		</div>
 		<div class="divider"></div>
+<!-- 		*********** 네비게이션 탭 ************** -->
 		<ul class="nav menu">
 			<li><a href="dashBoard.do"><em class="fa fa-dashboard">&nbsp;</em>
 					Dashboard</a></li>
@@ -113,97 +86,54 @@ window.onclick = function(event) {
 		<div class="row">
 			<div class="col-lg-12">
 
-
-
 <script>
-$(document)
-		.ready(
-				function() {
-					var activeSystemClass = $('.list-group-item.active');
-
-					//something is entered in search form
-					$('#system-search')
-							.keyup(
-									function() {
-										var that = this;
-										// affect all table rows on in systems table
-										var tableBody = $('.table-list-search tbody');
-										var tableRowsClass = $('.table-list-search tbody tr');
-										$('.search-sf')
-												.remove();
-										tableRowsClass
-												.each(function(
-														i,
-														val) {
-
-													//Lower text for case insensitive
-													var rowText = $(
-															val)
-															.text()
-															.toLowerCase();
-													var inputText = $(
-															that)
-															.val()
-															.toLowerCase();
-													if (inputText != '') {
-														$(
-																'.search-query-sf')
-																.remove();
-														tableBody
-																.prepend('<tr class="search-query-sf"><td colspan="6"><strong>Searching for: "'
-																		+ $(
-																				that)
-																				.val()
-																		+ '"</strong></td></tr>');
-													} else {
-														$(
-																'.search-query-sf')
-																.remove();
-													}
-
-													if (rowText
-															.indexOf(inputText) == -1) {
-														//hide rows
-														tableRowsClass
-																.eq(
-																		i)
-																.hide();
-
-													} else {
-														$(
-																'.search-sf')
-																.remove();
-														tableRowsClass
-																.eq(
-																		i)
-																.show();
-													}
-												});
-										//all tr elements are hidden
-										if (tableRowsClass
-												.children(':visible').length == 0) {
-											tableBody
-													.append('<tr class="search-sf"><td class="text-muted" colspan="6">No entries found.</td></tr>');
-										}
-									});
-
-
-
-
-										
-	$(document).on("click","#del",function(evt){
-
-		window.location.href="memberDelete.do?m_id="+$(evt.target).parent().siblings().eq(0).val()
-
-		$("#mem").submit();
-
-	})
-
-
-
-
+// 검색창 검색기능
+$(document).ready(function() {
+	var activeSystemClass = $('.list-group-item.active');
+		$('#system-search').keyup(function() {
+			var that = this;
+			var tableBody = $('.table-list-search tbody');
+			var tableRowsClass = $('.table-list-search tbody tr');
+		$('.search-sf').remove();
+			tableRowsClass.each(function(i,val) {
+			var rowText = $(val).text().toLowerCase();
+			var inputText = $(that).val().toLowerCase();
+				if (inputText != '') {$('.search-query-sf').remove();
+					tableBody.prepend('<tr class="search-query-sf"><td colspan="6"><strong>Searching for: "'+ $(that).val()+ '"</strong></td></tr>');
+				} else {$('.search-query-sf').remove();
+				}
+if (rowText.indexOf(inputText) == -1) {
+	tableRowsClass.eq(i).hide();
+} else {$('.search-sf').remove();
+tableRowsClass.eq(i).show();
+}
+});
+if (tableRowsClass.children(':visible').length == 0) {
+	tableBody.append('<tr class="search-sf"><td class="text-muted" colspan="6">No entries found.</td></tr>');
+}
 });
 
+$('.selectbox').on("change",function() {
+	// 해당하는 주문의 id값 가져오기
+	alert($(this).parent().siblings().eq(0).text())
+$.ajax({
+	type : 'GET',
+	url : "updateDeli.do",
+	data : "o_delivery="+ $(this).val()+
+	 "&o_id="+ $(this).parent().siblings().eq(0).text(),
+	contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+	success : function(data) {
+	}
+})
+})
+			
+				
+// delete 버튼 누르면 controll 다녀옴						
+$(document).on("click","#del",function(evt){
+window.location.href="memberDelete.do?m_id="+$(evt.target).parent().siblings().eq(0).val()
+
+})
+});
 </script>
 
 <!-- 			<div class="wrap-table100"> -->

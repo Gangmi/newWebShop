@@ -20,15 +20,10 @@
 	
 </head>
 <body>
+<!-- 최상단 로고 -->
 	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#sidebar-collapse">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
 				<a class="navbar-brand" style="padding:3px"><img src="img/core-img/logo3.png" alt=""/></a>
 
 			</div>
@@ -41,6 +36,7 @@
 			<img src="http://placehold.it/50/30a5ff/fff" class="img-responsive"
 				alt="">
 		</div>
+<!-- 		로그인 프로필 -->
 		<div class="profile-usertitle">
 			<div class="profile-usertitle-name">ADMIN</div>
 			<div class="profile-usertitle-status">
@@ -50,7 +46,7 @@
 		<div class="clear"></div>
 	</div>
 	<div class="divider"></div>
-
+<!-- 	************ 네비게이션 탭 ************** -->
 	<ul class="nav menu">
 		<li><a href="dashBoard.do"><em class="fa fa-dashboard">&nbsp;</em>
 				Dashboard</a></li>
@@ -86,79 +82,47 @@
 			<div class="col-lg-12">
 
 <script>
-$(document).ready(
-function() {
-var activeSystemClass = $('.list-group-item.active');
+// 검색창 검색기능
+$(document).ready(function() {
+	var activeSystemClass = $('.list-group-item.active');
+		$('#system-search').keyup(function() {
+			var that = this;
+			var tableBody = $('.table-list-search tbody');
+			var tableRowsClass = $('.table-list-search tbody tr');
+		$('.search-sf').remove();
+			tableRowsClass.each(function(i,val) {
+			var rowText = $(val).text().toLowerCase();
+			var inputText = $(that).val().toLowerCase();
+				if (inputText != '') {$('.search-query-sf').remove();
+					tableBody.prepend('<tr class="search-query-sf"><td colspan="6"><strong>Searching for: "'+ $(that).val()+ '"</strong></td></tr>');
+				} else {$('.search-query-sf').remove();
+				}
+if (rowText.indexOf(inputText) == -1) {
+	tableRowsClass.eq(i).hide();
+} else {$('.search-sf').remove();
+tableRowsClass.eq(i).show();
+}
+});
+if (tableRowsClass.children(':visible').length == 0) {
+	tableBody.append('<tr class="search-sf"><td class="text-muted" colspan="6">No entries found.</td></tr>');
+}
+});
 
-//something is entered in search form
-$('#system-search')
-.keyup(
-	function() {
-	var that = this;
-	// affect all table rows on in systems table
-	var tableBody = $('.table-list-search tbody');
-	var tableRowsClass = $('.table-list-search tbody tr');
-	$('.search-sf')
-			.remove();
-	tableRowsClass
-		.each(function(
-			i,
-			val) {
-
-		//Lower text for case insensitive
-		var rowText = $(
-				val)
-				.text()
-				.toLowerCase();
-		var inputText = $(
-				that)
-				.val()
-				.toLowerCase();
-		if (inputText != '') {
-			$(
-					'.search-query-sf')
-					.remove();
-			tableBody
-					.prepend('<tr class="search-query-sf"><td colspan="6"><strong>Searching for: "'
-							+ $(
-									that)
-									.val()
-							+ '"</strong></td></tr>');
-		} else {
-			$(
-					'.search-query-sf')
-					.remove();
-		}
-
-		if (rowText
-				.indexOf(inputText) == -1) {
-			//hide rows
-			tableRowsClass
-					.eq(
-							i)
-					.hide();
-
-		} else {
-			$(
-					'.search-sf')
-					.remove();
-			tableRowsClass
-					.eq(
-							i)
-					.show();
-		}
-		});
-	//all tr elements are hidden
-	if (tableRowsClass
-		.children(':visible').length == 0) {
-		tableBody
-		.append('<tr class="search-sf"><td class="text-muted" colspan="6">No entries found.</td></tr>');
+$('.selectbox').on("change",function() {
+	// 해당하는 주문의 id값 가져오기
+	alert($(this).parent().siblings().eq(0).text())
+$.ajax({
+	type : 'GET',
+	url : "updateDeli.do",
+	data : "o_delivery="+ $(this).val()+
+	 "&o_id="+ $(this).parent().siblings().eq(0).text(),
+	contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+	success : function(data) {
 	}
-		});
+})
+})
 
-
-
-// 클릭하면 위에 올라가게 
+// 클릭하면 위 테이블에 올라가게 
 $(document).on("click",".p_vo",function(){
 
 	var str = ""
@@ -182,7 +146,7 @@ $(document).on("click",".p_vo",function(){
 	$(".receive").children().children().eq(9).val(tdArr[9])
 })
 
-
+// 파일 업로드시 
 // ajax function
 function fileSubmit(){
 	var form = $("MultiUpload")[0];
@@ -204,33 +168,27 @@ function fileSubmit(){
 	});
 }
 
-
-
-
 });
 </script>
 <script>
+// update, insert 버튼 클릭시 
 var header = {
         pageSubmitFn : function(pageName, form) {
            $("#pageName").val(pageName); // input 태그의 value를 설정한다.
+//            action 부여 후 submit();
             $("#"+form).attr("action",pageName+".do");             
             $("#"+form).submit();
         }
-
-
-
-    }
+   }
 </script>
 
 <div class="container" style="margin: 1px;padding:1px">
 <div class="row" style="margin: 1px">
-					
-<!-- 	@@@@@@@@@@@@@@@@@@@@ 삼품 검색 @@@@@@@@@@@@@@@@@@@@ -->
 
+<!-- 	@@@@@@@@@@@@@@@@@@@@ 삼품 검색 @@@@@@@@@@@@@@@@@@@@ -->
 <div class="col-md-3">
 	<form action="#" method="get">
 		<div class="input-group">
-			<!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
 			<input class="form-control" id="system-search" name="q"
 				placeholder="Search for" required> <span
 				class="input-group-btn">
@@ -241,7 +199,6 @@ var header = {
 		</div>
 	</form>
 	<br><br>
-	
 </div>
 
 <div class="col-md-6">
@@ -260,6 +217,7 @@ var header = {
 				<th>DATE</th>
 			</tr>
 		</thead>
+<!-- 		상단 테이블 -->
 		<form id="frm" id="frmfile" method="post" enctype="multipart/form-data">
 			<tr class="receive">
 				<td><input type="text" style="width:50px;border:none" name="p_id" value="${nextval}" readonly/></td>
@@ -273,13 +231,16 @@ var header = {
 				<td><input type="text" style="width:160px;border:none" id="txt2" disabled/></td>
 			</tr>
 			<tr>
+<!-- 				파일 업로드 -->
 				<td colspan="3"><input multiple="multiple" type="file" name="file" maxlength="60" size="40"></td>
+<!-- 				update 버튼 -->
 				<td><input id="update" onclick="javascript:header.pageSubmitFn('inventoryUpdate','frm')" style="float:right" type="button" value="UPDATE"/></td>
+<!-- 				insert 버튼 -->
 				<td><input id="insert" onclick="javascript:header.pageSubmitFn('inventoryInsert','frm')" style="float:right" type="button"value="INSERT"/></td>
 			</tr>
 	</table>
 </div>
-
+<!-- 	하단 상품 목록 리스트 -->
 	<table class="table table-list-search" style="margin:15px">
 		<thead>
 			<tr>

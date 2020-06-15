@@ -20,28 +20,24 @@
 
 </head>
 <body>
+<!-- 	최상단 로고 -->
 	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#sidebar-collapse">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
 				<a class="navbar-brand" style="padding: 3px"><img
 					src="img/core-img/logo3.png" alt="" /></a>
-
 			</div>
 		</div>
 		<!-- /.container-fluid -->
 	</nav>
+	
 	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
 		<div class="profile-sidebar">
 			<div class="profile-userpic">
 				<img src="http://placehold.it/50/30a5ff/fff" class="img-responsive"
 					alt="">
 			</div>
+<!-- 			로그인 프로필 -->
 			<div class="profile-usertitle">
 				<div class="profile-usertitle-name">ADMIN</div>
 				<div class="profile-usertitle-status">
@@ -51,7 +47,7 @@
 			<div class="clear"></div>
 		</div>
 		<div class="divider"></div>
-<!-- 		 네비게이션 탭 ******************** -->
+<!-- ***************** 네비게이션 탭 ******************** -->
 		<ul class="nav menu">
 			<li><a href="dashBoard.do"><em class="fa fa-dashboard">&nbsp;</em>
 					Dashboard</a></li>
@@ -79,6 +75,7 @@
 
 		<div class="row">
 			<div class="col-lg-12">
+<!-- 			제목 -->
 				<h1 class="page-header">Charts</h1>
 			</div>
 		</div>
@@ -87,6 +84,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
+<!-- 				최근 30일 일간 매출 라인 차트 -->
 					<div class="panel-heading">최근 일간 매출</div>
 					<div class="panel-body">
 						<div class="canvas-wrapper">
@@ -102,6 +100,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
+<!-- 				월간 매출 바 차트 -->
 					<div class="panel-heading">월별 매출</div>
 					<div class="panel-body">
 						<div class="canvas-wrapper">
@@ -117,6 +116,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="panel panel-default">
+<!-- 				카테고리 별 차트 -->
 					<div class="panel-heading">카테고리 매출</div>
 					<div class="panel-body">
 						<div class="canvas-wrapper">
@@ -127,6 +127,7 @@
 			</div>
 			<div class="col-md-6">
 				<div class="panel panel-default">
+<!-- 				연령 별 차트 -->
 					<div class="panel-heading">연령 매출</div>
 					<div class="panel-body">
 						<div class="canvas-wrapper">

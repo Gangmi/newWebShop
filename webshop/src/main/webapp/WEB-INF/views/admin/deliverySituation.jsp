@@ -34,16 +34,12 @@
 
 </head>
 <body>
+<!-- 	최상단 로고 -->
 	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#sidebar-collapse">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" style="padding:3px"><img src="img/core-img/logo3.png" alt=""/></a>
+				<a class="navbar-brand" style="padding: 3px"><img
+					src="img/core-img/logo3.png" alt="" /></a>
 
 			</div>
 		</div>
@@ -55,6 +51,7 @@
 				<img src="http://placehold.it/50/30a5ff/fff" class="img-responsive"
 					alt="">
 			</div>
+<!-- 			로그인 프로필 -->
 			<div class="profile-usertitle">
 				<div class="profile-usertitle-name">ADMIN</div>
 				<div class="profile-usertitle-status">
@@ -64,7 +61,7 @@
 			<div class="clear"></div>
 		</div>
 		<div class="divider"></div>
-
+<!-- 		*************** 네비게이션 탭 *************** -->
 		<ul class="nav menu">
 			<li><a href="dashBoard.do"><em class="fa fa-dashboard">&nbsp;</em>
 					Dashboard</a></li>
@@ -100,171 +97,102 @@
 		<div class="row">
 			<div class="col-lg-12">
 
+<script>
+// 검색창 검색기능
+$(document).ready(function() {
+	var activeSystemClass = $('.list-group-item.active');
+		$('#system-search').keyup(function() {
+			var that = this;
+			var tableBody = $('.table-list-search tbody');
+			var tableRowsClass = $('.table-list-search tbody tr');
+		$('.search-sf').remove();
+			tableRowsClass.each(function(i,val) {
+			var rowText = $(val).text().toLowerCase();
+			var inputText = $(that).val().toLowerCase();
+				if (inputText != '') {$('.search-query-sf').remove();
+					tableBody.prepend('<tr class="search-query-sf"><td colspan="6"><strong>Searching for: "'+ $(that).val()+ '"</strong></td></tr>');
+				} else {$('.search-query-sf').remove();
+				}
+if (rowText.indexOf(inputText) == -1) {
+	tableRowsClass.eq(i).hide();
+} else {$('.search-sf').remove();
+tableRowsClass.eq(i).show();
+}
+});
+if (tableRowsClass.children(':visible').length == 0) {
+	tableBody.append('<tr class="search-sf"><td class="text-muted" colspan="6">No entries found.</td></tr>');
+}
+});
 
+$('.selectbox').on("change",function() {
+	// 해당하는 주문의 id값 가져오기
+	alert($(this).parent().siblings().eq(0).text())
+$.ajax({
+	type : 'GET',
+	url : "updateDeli.do",
+	data : "o_delivery="+ $(this).val()+
+	 "&o_id="+ $(this).parent().siblings().eq(0).text(),
+	contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+	success : function(data) {
+	}
+})
+})
+});
+</script>
 
-				<script>
-					$(document)
-							.ready(
-									function() {
-										var activeSystemClass = $('.list-group-item.active');
-
-										//something is entered in search form
-										$('#system-search')
-												.keyup(
-														function() {
-															var that = this;
-															// affect all table rows on in systems table
-															var tableBody = $('.table-list-search tbody');
-															var tableRowsClass = $('.table-list-search tbody tr');
-															$('.search-sf')
-																	.remove();
-															tableRowsClass
-																	.each(function(
-																			i,
-																			val) {
-
-																		//Lower text for case insensitive
-																		var rowText = $(
-																				val)
-																				.text()
-																				.toLowerCase();
-																		var inputText = $(
-																				that)
-																				.val()
-																				.toLowerCase();
-																		if (inputText != '') {
-																			$(
-																					'.search-query-sf')
-																					.remove();
-																			tableBody
-																					.prepend('<tr class="search-query-sf"><td colspan="6"><strong>Searching for: "'
-																							+ $(
-																									that)
-																									.val()
-																							+ '"</strong></td></tr>');
-																		} else {
-																			$(
-																					'.search-query-sf')
-																					.remove();
-																		}
-
-																		if (rowText
-																				.indexOf(inputText) == -1) {
-																			//hide rows
-																			tableRowsClass
-																					.eq(
-																							i)
-																					.hide();
-
-																		} else {
-																			$(
-																					'.search-sf')
-																					.remove();
-																			tableRowsClass
-																					.eq(
-																							i)
-																					.show();
-																		}
-																	});
-															//all tr elements are hidden
-															if (tableRowsClass
-																	.children(':visible').length == 0) {
-																tableBody
-																		.append('<tr class="search-sf"><td class="text-muted" colspan="6">No entries found.</td></tr>');
-															}
-														});
-
-										$('.selectbox')
-												.on(
-														"change",
-														function() {
-															// 해당하는 주문의 id값 가져오기
-															alert($(this)
-																	.parent()
-																	.siblings()
-																	.eq(0)
-																	.text())
-
-															$
-																	.ajax({
-																		type : 'GET',
-																		url : "updateDeli.do",
-
-																		data : "o_delivery="
-																				+ $(
-																						this)
-																						.val()
-																				+ "&o_id="
-																				+ $(
-																						this)
-																						.parent()
-																						.siblings()
-																						.eq(
-																								0)
-																						.text(),
-																		contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-																		success : function(
-																				data) {
-
-																		}
-																	})
-														})
-
-									});
-				</script>
-
-				<div class="wrap-table100">
-					<div class="table100">
-						<!-- 		********************* 검색 창 ****************** -->
-						<div class="col-md-3">
-							<form action="#" method="get">
-								<div class="input-group">
-									<!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
-									<input class="form-control" id="system-search" name="q"
-										placeholder="Search for" required> <span
-										class="input-group-btn">
-										<button type="submit" class="btn btn-default">
-											<i class="glyphicon glyphicon-search"></i>
-										</button>
-									</span>
-								</div>
-							</form>
-						</div>
-
-						<!--		************************* 테이블 *********************** -->
-						<div class="wrap-table100">
-							<div class="col-md-9">
-								<table class="table table-list-search">
-									<thead>
-										<tr class="table100-head">
-											<th class="column1">주문번호</th>
-											<th class="column2">주문날짜</th>
-											<th class="column3">회원아이디</th>
-											<th class="column4">결제방법</th>
-											<th class="column5">배송상태</th>
-										</tr>
-									</thead>
-									<c:forEach items="${listVO }" var="list">
-										<tr>
-											<td class="column1">${list.o_id }</td>
-											<td class="column2">${list.o_date }</td>
-											<td class="column3">${list.m_id }</td>
-											<td class="column4">${list.o_payment }</td>
-											<td class="column5"><select name="delivery"
-												class="selectbox">
-													<option selected disabled hidden value="">${list.o_delivery }</option>
-													<option value="배송전">배송전</option>
-													<option value="배송중">배송중</option>
-													<option value="배송완료">배송완료</option>
-											</select></td>
-										</tr>
-									</c:forEach>
-								</table>
-							</div>
-							<!-- ****************** 테이블 end*********************** -->
-						</div>
-					</div>
+<div class="wrap-table100">
+	<div class="table100">
+		<!-- 		********************* 검색 창 ****************** -->
+		<div class="col-md-3">
+			<form action="#" method="get">
+				<div class="input-group">
+					<input class="form-control" id="system-search" name="q"
+						placeholder="Search for" required> <span
+						class="input-group-btn">
+						<button type="submit" class="btn btn-default">
+							<i class="glyphicon glyphicon-search"></i>
+						</button>
+					</span>
 				</div>
+			</form>
+		</div>
+
+		<!--		************************* 테이블 *********************** -->
+		<div class="wrap-table100">
+			<div class="col-md-9">
+				<table class="table table-list-search">
+					<thead>
+						<tr class="table100-head">
+							<th class="column1">주문번호</th>
+							<th class="column2">주문날짜</th>
+							<th class="column3">회원아이디</th>
+							<th class="column4">결제방법</th>
+							<th class="column5">배송상태</th>
+						</tr>
+					</thead>
+<!-- 					동적 배열로 주문 목록 가져오기 -->
+					<c:forEach items="${listVO }" var="list">
+						<tr>
+							<td class="column1">${list.o_id }</td>
+							<td class="column2">${list.o_date }</td>
+							<td class="column3">${list.m_id }</td>
+							<td class="column4">${list.o_payment }</td>
+<!-- 							배송 상황 변경 셀렉트 박스 -->
+							<td class="column5"><select name="delivery"
+								class="selectbox">
+									<option selected disabled hidden value="">${list.o_delivery }</option>
+									<option value="배송전">배송전</option>
+									<option value="배송중">배송중</option>
+									<option value="배송완료">배송완료</option>
+							</select></td>
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
+			<!-- ****************** 테이블 end*********************** -->
+		</div>
+	</div>
+</div>
 			</div>
 			<!-- /.panel-->
 		</div>
