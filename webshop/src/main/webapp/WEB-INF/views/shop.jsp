@@ -268,7 +268,11 @@ List<ProductVO> result = (List) request.getAttribute("details");
 						<li><a href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=nowcate%>&page=<%=request.getAttribute("nowpage")%>&p_color=green" class="green"></a></li>
 						<li><a href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=nowcate%>&page=<%=request.getAttribute("nowpage")%>&p_color=brown" class="brown"></a></li>
 					</ul>
-					<a href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%><%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>&p_cat=<%=nowcate%>&page=<%=request.getAttribute("nowpage")%>&startprice=<%=startprice%>&endprice=<%=endprice%>">reset</a>
+					<!--색 리셋버튼  -->
+					<a href="shop.do?itemQuan=<%=request.getAttribute("nowquan")%>
+					<%if(rawbrand!=null){%>&p_brand=<%=rawbrand%><%}%>
+					&p_cat=<%=nowcate%>&page=<%=request.getAttribute("nowpage")%>
+					&startprice=<%=startprice%>&endprice=<%=endprice%>">reset</a>
 				</div>
 			</div>
 
@@ -290,7 +294,7 @@ List<ProductVO> result = (List) request.getAttribute("details");
 						</div>
 						<div class="range-price">$<%=startprice %> - $<%=endprice %></div>
 						
-				 
+				 	<!-- 가격 검색을 할 시에 전송될 폼  -->
 						<form action="shop.do?">
 						<input name="itemQuan" type ="hidden" value="<%=request.getAttribute("nowquan")%>">
 						<%if(rawbrand!=null){%><input name="p_brand" type ="hidden" value="<%=rawbrand%>"><%}%>
@@ -320,7 +324,11 @@ List<ProductVO> result = (List) request.getAttribute("details");
 							<%if(request.getAttribute("search")!=null && !request.getAttribute("search").equals("undefined")) { %>
 							<h3>"<%=request.getAttribute("search") %>" 검색결과</h3>
 							<%} %>
-								<p><h6>Showing <%if(nowcate!=null&& !nowcate.equals("null")){ %><%=nowcate %><% }else{%>All<%}%> <%=startrow%>- <%if((nowquan*nowpage)<(Integer)request.getAttribute("totalitems")){%><%=nowquan*nowpage%><%}else{%><%=request.getAttribute("totalitems")%><%}%> 0f <%=request.getAttribute("totalitems")%><h6></p>
+								<!--검색된 결과의 갯수들을 보여주는 코드  -->
+								<p><h6>Showing <%if(nowcate!=null&& !nowcate.equals("null")){ %><%=nowcate %>
+								<% }else{%>All<%}%> <%=startrow%>- <%if((nowquan*nowpage)<(Integer)request.getAttribute("totalitems")){%>
+								<%=nowquan*nowpage%><%}else{%><%=request.getAttribute("totalitems")%>
+								<%}%> 0f <%=request.getAttribute("totalitems")%><h6></p>
 								<div class="view d-flex">
 									<a href="#"><i class="fa fa-th-large" aria-hidden="true"></i></a>
 									

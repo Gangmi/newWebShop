@@ -109,7 +109,7 @@ if(wish!=null)
 			<div class="logo">
 				<a href="index.do"><img src="img/core-img/logo.png" alt=""></a>
 			</div>
-			<!-- Amado Nav -->
+			<!-- 네비게이션 영역 -->
 			<nav class="amado-nav">
 				<ul>
 					<li><a href="index.do">Home</a></li>
@@ -123,7 +123,7 @@ if(wish!=null)
 			<div class="amado-btn-group mt-30 mb-100">
 				<a></a> <a></a>
 			</div>
-			<!-- Cart Menu -->
+			<!-- 로그인 확인하는 부분 -->
 			<div class="cart-fav-search mb-100">
 				<% if((String)session.getAttribute("userId")==null){%>                                      
                    <a href="login.do"> Login</a></li>
@@ -163,6 +163,7 @@ if(wish!=null)
 				<div class="row">
 					<div class="col-12">
 						<nav aria-label="breadcrumb">
+						<!--상품의 경로를 동적으로 생성하는 부분  -->
 							<ol class="breadcrumb mt-50">
 								<li class="breadcrumb-item"><a href="index.do">Home</a></li>
 								<li class="breadcrumb-item"><a href="shop.do?p_cat=<%=vo.getP_cat() %>"><%=vo.getP_cat() %></a></li>
@@ -177,6 +178,7 @@ if(wish!=null)
 						<div class="single_product_thumb">
 							<div id="product_details_slider" class="carousel slide"
 								data-ride="carousel">
+								<!-- 해당 상품의 카테고리와 , id 로 product img에서 사진을 불러와 출력하는 부분  -->
 								<ol class="carousel-indicators">
 									<li class="active" data-target="#product_details_slider"
 										data-slide-to="0"
@@ -188,6 +190,7 @@ if(wish!=null)
 									<li data-target="#product_details_slider" data-slide-to="2"
 										style="background-image: url(img/product-img/<%=vo.getP_cat()%><%=vo.getP_id()%>_3.jpg);">
 								</ol>
+								<!--캐러셀 슬라이드 아래 부분  -->
 								<div class="carousel-inner">
 									<div class="carousel-item active">
 										<a class="gallery_img"
@@ -223,6 +226,7 @@ if(wish!=null)
 							<!-- Product Meta Data -->
 							<div class="product-meta-data">
 								<div class="line"></div>
+								<!-- 가격과 상품 이름을 불러오는 부분  -->
 								<p class="product-price">
 									$<%=vo.getP_price()%></p>
 								<a href="product-details.do">
@@ -239,6 +243,7 @@ if(wish!=null)
 											class="fa fa-star" aria-hidden="true"></i> <i
 											class="fa fa-star" aria-hidden="true"></i>
 									</div>
+									<!-- 상품 디테일에서 브랜드를 클릭시 해당 브랜드로 연결하는 부분  -->
 									<div class="review">
 										<a href="shop.do?p_brand=<%=vo.getP_brand()%>"><h6><%=vo.getP_brand()%></h6></a>
 									</div>
@@ -246,6 +251,7 @@ if(wish!=null)
 								<!-- Avaiable -->
 
 								<p class="avaibility">
+								<!-- 재고량에 따른, instock nostock표시  -->
 									<%
 										if (vo.getP_quan() != 0) {
 									%><i class="fa fa-circle"></i> In Stock<%
@@ -260,6 +266,7 @@ if(wish!=null)
 
 							<div class="short_overview my-5">
 
+							<!--상품 디테일을 불러와서  출력하는 부분  -->
 								<p><%=vo.getP_detail()%></p>
 							</div>
 
@@ -286,6 +293,7 @@ if(wish!=null)
 											src="img/core-img/favorites<%=wishlist %>.png" alt=""></a>
 									</div>
 								</div>
+								<!-- 재고가 0이 아닐때 장바구니를 클릭할 수 있도록하는 부분 -->
 								<%
 									if (vo.getP_quan() != 0) {
 								%>
@@ -295,6 +303,7 @@ if(wish!=null)
 								<%
 									} else {
 								%>
+								<!-- 재고가 없을 때 sold out 으로 바뀌는 부분  -->
 								<button name="addtocart" value="5" class="btn amado-btn"
 									disabled>Sold Out</button>
 								<%
@@ -319,6 +328,7 @@ if(wish!=null)
 			<br>
 			<div>
 				<div>
+				<!-- 댓글을 작성하는 부분  -->
 					<span><strong>Comments</strong></span> <span id="cCnt"></span>
 				</div>
 				<div>
@@ -341,6 +351,7 @@ if(wish!=null)
 			<input type="hidden" id="p_id" name="p_id" value="<%=vo.getP_id()%>" />
 		</form>
 	</div>
+	<!-- 상품 페이지가 불러질때, 상품의 리스트를 불러오는 부분  -->
 	<div class="container">
 		<form id="commentListForm" name="commentListForm" method="post">
 			<div id="commentList"></div>

@@ -268,14 +268,11 @@
 	});
 	//댓글작성을 눌렀을 때
 	$("#commentForm").submit(function(){
-
 		
 		if($("#m_id").val()=="null"){
 			alert("로그인이 필요한 서비스 입니다.");
 			return;
 		}
-	
-		
 		  $.ajax({
 		        type:'get',
 		        url : "addComment.do?",
@@ -288,7 +285,7 @@
 		            }
 		        },
 		        error:function(request,status,error){
-		            //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		            
 		       }
 		        
 		    });
@@ -318,13 +315,14 @@
 	        data:"p_id="+$("#p_id").val(),
 	        contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
 	        success : function(data){
+	        	//String 으로 넘겨받은 데이터를 json타입으로 변환
 	        	var dat =eval(data);
 	        
 	            var html = "";
 	            var cCnt = data.length;
 	            
 	            if(data.length > 0){
-	                
+	                //가져온 json data 를 반복문을 통해 풀어내면서 화면에 덧붙이는 코딩
 	                for(var i=0; i<data.length; i++){
 	                    html += "<div>";
 	                    html += "<div><table class='table'><h6><strong>"+dat[i].m_id+"</strong>"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+data[i].com_date+"</h6>";
@@ -334,7 +332,7 @@
 	                    
 	                    html += "</div>";
 	                }
-	                
+	                //만약 가져온 데이터가 없다면,
 	            } else {
 	                
 	                html += "<div>";
@@ -343,7 +341,7 @@
 	                html += "</div>";
 	                
 	            }
-	            
+	            // 최종적으로 위에서 만들어진 html을 붙이는 곳
 	            $("#cCnt").html(cCnt);
 	            $("#commentList").html(html);
 	            
