@@ -31,6 +31,7 @@ public class AdminDAOImpl implements AdminDAO {
 	public void showChart() {
 		System.out.println("mybatis showchart() 호출");
 	}
+	
 	// 회원 리스트
 	public List<MemberVO> selectMember(MemberVO vo) {
 		System.out.println("mybatis memberList() 호출");
@@ -67,38 +68,28 @@ public class AdminDAOImpl implements AdminDAO {
 	public int[] salesMonth() {
 		int [] result2 = new int[12] ;
 		System.out.println("mybatis salesMonth() 호출");
-	
+		// HashMap으로 하나씩 매퍼로 전송
 		HashMap<String, Integer> hs = new HashMap<String, Integer>();
-		
 	     for(int i = 1; i<= 12; i++ ){
-	     
 	     hs.put("month",i);
-	     
 	     int j = mybatis.selectOne("AdminDAO.salesMonth", hs);
 	     result2 [i-1] = j;
 	     }
-	     System.out.println("mybatis salesMonth 끝나고나감");
 	     return result2;
 	}
 	
 	// 카테고리 별 매출
 	public int[] salesCategory() {
 		System.out.println("mybatis salesCategory() 호출");
-		int [] result = new int[5] ;
-	
+		int [] result = new int[5];
+		// HashMap으로 하나씩 매퍼로 전송
 		HashMap<String, String> hs = new HashMap<String, String>();
-		
 		String[]arr = {"table","bed","furniture","dressings","chair"};
-		
-		System.out.println("");
 	     for(int i = 0; i<= 4; i++ ){
-	    
 	    hs.put("category",arr[i]);
-	     
 	    int j = mybatis.selectOne("AdminDAO.salesCategory", hs);
 	    result [i] = j;
 	    }
-	    System.out.println("mybatis salesCategory 끝나고나감");
 	    return result;
 	}
 
@@ -106,100 +97,76 @@ public class AdminDAOImpl implements AdminDAO {
 	public int[] recentSales() {
 		System.out.println("mybatis recentSales() 호출");
 		int [] result = new int[31] ;
-	
+		// HashMap으로 하나씩 매퍼로 전송
 		HashMap<String, Integer> hs = new HashMap<String, Integer>();
-		
 	     for(int i = 0; i<= 30; i++ ){
-	    
 	    hs.put("day",i);
-	     
 	    int j = mybatis.selectOne("AdminDAO.recentSales", hs);
 	    result [i] = j;
 	    }
-	     
-	    System.out.println("mybatis recentSales 끝나고나감");
+	     System.out.println("recentSales 나감");
 	    return result;
 	}
 	
 	// 일일 주문건 수
 	public int orderCount() {
-		
 		return mybatis.selectOne("AdminDAO.orderCount");
+	// 1. 주문시 sysdate로 DB에 입력 
+	// 2. sysdate의 count로 갯수를 뽑아 리턴 
 	}
-
+	// 일일 회원가입 수
 	public int memberCount() {
-		
 		return mybatis.selectOne("AdminDAO.memberCount");
+	// 1. 회원가입시 sysdate로 DB에 입력 
+	// 2. sysdate의 count로 갯수를 뽑아 리턴 
 	}
 	
 	// 대시보드 방문자 수
 	public int[] viewCount() {
-		
 		System.out.println("mybatis viewList() 호출");
 		int [] result = new int[31] ;
-	
+		// HashMap으로 하나씩 매퍼로 전송
 		HashMap<String, Integer> hs = new HashMap<String, Integer>();
-		
-	     for(int i = 0; i<= 30; i++ ){
-	    
+	    for(int i = 0; i<= 30; i++ ){
 	    hs.put("view",i);
-	     
+	    // sysdate-#{view} 를 함으로써 -30일 까지의 방문자수 추출
 	    int j = mybatis.selectOne("AdminDAO.viewList", hs);
+	    // 각각 날짜의 방문자수를 배열로 만들어 리턴
 	    result [i] = j;
 	    }
-	    
-	    System.out.println("mybatis viewList 끝나고나감1");
 	    return result;
 	}
 	
 	// 세션 방문자 수
     public void setTotalCount() {
-    	System.out.println("DAO 도착");
-    	
     	mybatis.selectOne("AdminDAO.visitCount");
-    	
-    	System.out.println("mapper 실행 끝");
     }
 	
     // 인벤토리 nextval 가져오기
 	public int getNextid() {
 		System.out.println("nextval p_id DAO 도착");
-		
 		int result = mybatis.selectOne("AdminDAO.getNextid");
-		
 		return result;
 	}
 
 	// 나이대 매출
 	public int[] salesAge() {
 		System.out.println("salesAge DAO 도착");
-		
-		
 		int [] result = new int[6] ;
-		
 		HashMap<String, Integer> hs = new HashMap<String, Integer>();
-		
 	    for(int i = 0; i< 6; i++ ){
-	    
 	    hs.put("age",i+1);
-	     
 	    int j = mybatis.selectOne("AdminDAO.salesAge", hs);
-	    System.out.println(j);
 	    result [i] = j;
 	    }
-	    System.out.println("mybatis salesAge 끝나고나감");
 	    return result;
-		
 	}
 	
 	// 배송상태 변경
 	public int updateDeli(OrderVO vo) {
 		System.out.println("updateDeli DAO 도착");
-		
 		return mybatis.update("AdminDAO.updateDeli",vo);
-		
 	}
 	
 	
-
 }

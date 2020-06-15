@@ -31,9 +31,11 @@ public class AdminController {
 	// 대시보드
 	@RequestMapping("/dashBoard.do")
 	public ModelAndView dashBoard() {
-		System.out.println("대시보드 컨트롤 도착");
+		// 오늘 주문 건 수
 		int result1 = service.orderCount();
+		// 오늘 회원가입 수
 		int result2 = service.memberCount();
+		// 오늘 페이지 뷰 수
 		int[] result3 = service.viewCount();
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("admin/dashboard");
@@ -46,28 +48,24 @@ public class AdminController {
 	// 회원 삭제
 	@RequestMapping("/memberDelete.do")
 	public ModelAndView memberDelete(MemberVO vo) {
-		System.out.println("delete 컨트롤 도착");
 		int result = service.memberDelete(vo);
-		System.out.println("디비 갔다옴");
 		ModelAndView mv = new ModelAndView();
-		System.out.println("mv 객체 생성");
 		mv.setViewName("admin/memberManagement");
 		mv.addObject("result", result);
-		System.out.println(" list 저장");
-
 		return mv;
 	}
 
 	// 차트
 	@RequestMapping("/charts.do")
 	public ModelAndView charts() {
-		System.out.println("차트 컨트롤 도착");
+		// 카테고리별 매출 차트 데이터 가져오기
 		int[] category = service.salesCategory();
+		// 월간 매출 차트 데이터 가져오기
 		int[] month = service.salesMonth();
+		// 최근30일간 매출 차트 데이터 가져오기
 		int[] day = service.recentSales();
+		// 나이별 매출 데이터 가져오기
 		int[] age = service.salesAge();
-		System.out.println("디비 갔다옴 차트");
-
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("admin/charts");
 		mv.addObject("month", month);
@@ -80,90 +78,72 @@ public class AdminController {
 	// 회원 관리
 	@RequestMapping("/memberManagement.do")
 	public ModelAndView memberManagement(MemberVO vo) {
-		System.out.println("컨트롤 도착");
+		// 회원 리스트 데이터 가져오기
 		List<MemberVO> listVO = service.selectMember(vo);
-		System.out.println("디비 갔다옴");
 		ModelAndView mv = new ModelAndView();
-		System.out.println("mv 객체 생성");
 		mv.setViewName("admin/memberManagement");
 		mv.addObject("listVO", listVO);
-		System.out.println(" list 저장");
 		return mv;
 	}
 
 	// 사원 관리
 	@RequestMapping("/employeeManagement.do")
 	public ModelAndView employeeManagement(MemberVO vo) {
-		System.out.println("컨트롤 도착");
+		// 사원 리스트 가져오기
 		List<MemberVO> listVO = service.selectEmployee(vo);
-		System.out.println("디비 갔다옴");
 		ModelAndView mv = new ModelAndView();
-		System.out.println("mv 객체 생성");
 		mv.setViewName("admin/employeeManagement");
 		mv.addObject("listVO", listVO);
-		System.out.println(" list 저장");
 		return mv;
 	}
 
 	// 재고 검색
 	@RequestMapping("/inventorySituation.do")
 	public ModelAndView inventorySituation(ProductVO vo) {
-		System.out.println("inventorySituation 컨트롤 도착");
+		// 상품 리스트 가져오기
 		List<ProductVO> listVO = service.selectProduct(vo);
 		int nextval = service.getNextid();
-		System.out.println("디비 갔다옴");
 		ModelAndView mv = new ModelAndView();
-		System.out.println("mv 객체 생성");
 		mv.setViewName("admin/inventorySituation");
 		mv.addObject("listVO", listVO);
 		mv.addObject("nextval", nextval);
-		System.out.println(" list 저장");
 		return mv;
 	}
 
 	// 주문 리스트
 	@RequestMapping("/deliverySituation.do")
 	public ModelAndView deliverySituation(OrderVO vo) {
-		System.out.println("컨트롤 도착");
+		// 주문 리스트 가져오기
 		List<OrderVO> listVO = service.selectDelivery(vo);
-		System.out.println("디비 갔다옴");
 		ModelAndView mv = new ModelAndView();
-		System.out.println("mv 객체 생성");
 		mv.setViewName("admin/deliverySituation");
 		mv.addObject("listVO", listVO);
-		System.out.println(" list 저장");
 		return mv;
 	}
 
-	// 컨설팅 예약 관리
+	// 컨설팅 예약 관리 페이지 이동
 	@RequestMapping("/consultingReservation.do")
 	public String consultingReservation() {
 		return "admin/consultingReservation";
 	}
 
-	// 재고 현황 - insert
+	// 재고 관리 - insert
 	@RequestMapping(value = "/inventoryInsert.do")
 	public String inventoryInsert(ProductVO vo, MultipartHttpServletRequest multi) {
-		System.out.println("inventoryInsert 컨트롤 도착");
 		service.inventoryInsert(vo);
-		System.out.println("디비 갔다옴2222");
 		this.vo = vo;
+		// insert시 파일 같이 올리면 파일은 MultifileUp() 호출
 		MultifileUp(multi);
-
 		return "redirect:/inventorySituation.do";
 	}
 
-	// 재고 현황 - update
+	// 재고 관리 - update
 	@RequestMapping(value = "/inventoryUpdate.do")
 	public String inventoryUpdate(ProductVO vo, MultipartHttpServletRequest multi) {
-		System.out.println("inventoryUpdate 컨트롤 도착");
 		service.inventoryUpdate(vo);
-		System.out.println("디비 갔다옴11111111111");
 		this.vo = vo;
-		System.out.println("vo에 저장");
-
+		// update시 파일 같이 올리면 파일은 MultifileUp() 호출
 		MultifileUp(multi);
-
 		return "redirect:/inventorySituation.do";
 	}
 
@@ -176,35 +156,32 @@ public class AdminController {
 	// 파일 업로드
 	@RequestMapping(value = "/MultiUpload.do", method = RequestMethod.POST)
 	public String MultifileUp(MultipartHttpServletRequest multi) {
-		System.out.println("파일 업로드 실행");
-		String path = "C:\\Users\\Canon\\Documents\\newWebShop\\webshop\\src\\main\\webapp\\resources\\img\\product-img\\";
+		// 파일 업로드 경로 지정
+		String path = 
+		"C:\\Users\\Canon\\Documents\\newWebShop\\webshop\\src\\main\\webapp\\resources\\img\\product-img\\";
 		String fileName = ""; // 업로드 되는 파일명
-
+		// 경로에 폴더가 없을 경우 폴더 생성
 		File dir = new File(path);
 		if (!dir.isDirectory()) {
 			dir.mkdir();
 		}
 		Iterator<String> files = multi.getFileNames();
 		MultipartFile mpf = multi.getFile(files.next());
-
+		// 
 		if (mpf == null || mpf.getSize() <= 0) {
 			System.out.println("파일용랑 x");
 			return "fileSubmit";
 		}
-
 		List<MultipartFile> fileList = multi.getFiles("file");
 		int i = 0;
 		for (MultipartFile filePart : fileList) {
 			fileName = filePart.getOriginalFilename(); // 원본 파일명
-
-			System.out.println("실제  파일 이름 : " + fileName);
-
 			i++;
-
+			// 변경하려는 파일명 저장 - 파일명을 카테고리명과 상품ID로 맞춰주기 위해 vo에서 가져옴
 			fileName = vo.getP_cat() + vo.getP_id() + "_" + i + ".jpg";
 
 			long fileSize = filePart.getSize(); // 파일 사이즈
-
+			// 지정한 경로와 파일명으로 파일 저장
 			if (!fileName.equals("")) { // 파일 쓰기
 				try {
 					FileOutputStream fs = new FileOutputStream(path + fileName);
@@ -215,15 +192,12 @@ public class AdminController {
 				}
 			}
 		}
-		System.out.println("파일 업로드 끝");
 		return "redirect:/inventorySituation.do";
 	}
 
 	// 페이지 로딩 시 방문자 수 1 db에 올림
 	@RequestMapping("/setTotalCount.do")
 	public String setTotalCount() {
-		System.out.println("setTotalCount 실행");
-
 		service.setTotalCount();
 		return "admin/dashboard.do";
 	}
@@ -232,10 +206,7 @@ public class AdminController {
 	@ResponseBody
 	@RequestMapping(value = "/updateDeli.do", produces = "application/text; charset=UTF-8")
 	public void updateDeli(OrderVO vo) {
-		System.out.println("updateDeli 실행");
-
 		int result = service.updateDeli(vo);
-
 		if (result > 0) {
 			System.out.println("배송상태 변경성공");
 		} else {
