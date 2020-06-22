@@ -34,13 +34,12 @@ public class TotalInterceptor extends HandlerInterceptorAdapter {
         String log = "[접속시간]"+time1+"[접속ip]="+ip+"[요청url]"+requesturl+"\n";
 		
         System.out.println(log);
-        String filePath = "d:\\Temp\\testlog.txt";
-        FileWriter fileWriter = new FileWriter(filePath,true);
-        
-        fileWriter.write(log);
-        
-        fileWriter.close();
-
+//		String filePath = ":\\Temp\\testlog.txt";
+//		FileWriter fileWriter = new FileWriter(filePath, true);
+//
+//		fileWriter.write(log);
+//
+//		fileWriter.close();
 
 		
 		
